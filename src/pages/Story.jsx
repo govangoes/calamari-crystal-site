@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 // Assets
-import squidEmblem from '../assets/squid_emblem.png';
-import cloudLogo from '../assets/cloud_gold_logo.png';
+import squidEmblem from '/squid_emblem.png';
+import cloudLogo from '/cloud_gold_logo.png';
 
 /**
  * Story page

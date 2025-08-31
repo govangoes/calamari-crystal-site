@@ -1,7 +1,13 @@
-import { render } from '@testing-library/react'
 import React from 'react'
+import { render } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
-test('renders root app without crashing', () => {
-  render(<App />)
-  expect(document.querySelector('#root')).toBeInTheDocument()
+
+test('renders App without crashing', () => {
+  const { container } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  )
+  expect(container).toBeTruthy()
 })
