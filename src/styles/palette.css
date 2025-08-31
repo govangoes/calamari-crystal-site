@@ -1,0 +1,14 @@
+:root {
+  /* Tweak these to your exact brand values later if needed */
+  --abyss-navy:   #020617; /* deep sea */
+  --paper-white:  #F8FAFC; /* soft white */
+  --ultraviolet:  #6D28D9; /* purple glow */
+  --crystal-teal: #22D3EE; /* bioluminescent teal */
+  --monte-gold:   #EAB308; /* treasure gold */
+  --ink:          #0B1220; /* rich ink */
+  --blood-coral:  #F43F5E; /* accent red */
+  --kelp-green:   #10B981; /* accent green */
+}
+html.dark {
+  /* optional dark-mode nudges if you want different tints */
+}

@@ -1,3 +1,4 @@
+@import "./styles/palette.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,4 +44,10 @@ a, button, input, textarea {
   opacity: 0.6;
   filter: blur(1px);
   z-index: 40;
+}
+
+/* Hide fancy cursor on touch devices & restore system cursor */
+@media (pointer: coarse) {
+  .cc-cursor { display: none !important; }
+  html, body, * { cursor: auto !important; }
 }
