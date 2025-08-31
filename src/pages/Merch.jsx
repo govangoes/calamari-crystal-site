@@ -1,66 +1,44 @@
-import React from 'react';
+import ScrollReveal from "../components/ScrollReveal.jsx";
 
-// Merchandise page
-// This page showcases concept merchandise ideas described in the marketing
-// strategy. Each merch card uses a minimal placeholder image and descriptive
-// text. Later you can replace the img src with actual product photos.
-
-const merchItems = [
+const items = [
   {
-    title: 'Glowing Crystal Necklace',
-    description:
-      'A limited‑run pendant inspired by the album’s crystal. Crafted from purple/iridescent quartz, it subtly glows under UV light. Packaged as a Monte Crystal treasure with a tiny tag of the album name.',
+    name: "Glowing Crystal Necklace",
+    desc: "UV-reactive pendant—wear a shard of the legend.",
+    price: "$35",
   },
   {
-    title: 'Purple Squid Plush',
-    description:
-      'This whimsical plushie brings the Calamari Crystal hero to life. Soft, huggable and perfect for fans who love the playful side of GoVanGoes’ imagery. Ideal for TikTok cameos.',
+    name: "Treasure Map Lyric Poster",
+    desc: "Aged parchment design with hidden ciphers & song loci.",
+    price: "$20",
   },
   {
-    title: 'Treasure Map Lyric Book',
-    description:
-      'A pirate‑style map poster where each song is marked on an illustrated island. Lyrics are scrawled like aged parchment with hidden easter eggs for superfans.',
-  },
-  {
-    title: 'Deluxe Treasure Chest Bundle',
-    description:
-      'An exclusive fan bundle presented in a small wooden chest. Includes the CD or vinyl, lyric map, a glowing necklace and a handwritten thank‑you scroll.',
-  },
-  {
-    title: 'Crystal Eye Pins & Rings',
-    description:
-      'Affordable add‑ons: enamel pins or rings featuring the squid’s crystal eye. Perfect for bags, hats or lanyards.',
+    name: "Deluxe Treasure Chest Bundle",
+    desc: "Lyric map + necklace + signed note in a mini chest.",
+    price: "$120 (limited)",
   },
 ];
 
 export default function Merch() {
   return (
-    <main className="pt-20 pb-32 px-6 max-w-6xl mx-auto">
-      <h2 className="text-4xl md:text-5xl font-extrabold text-crystalCyan text-center mb-12">
-        Merch &amp; Collectibles
-      </h2>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {merchItems.map((item) => (
-          <div
-            key={item.title}
-            className="p-6 rounded-xl bg-richBlack/40 border border-opalGlow/15 backdrop-blur-md hover:border-crystalCyan/30 transition flex flex-col"
-          >
-            {/* Placeholder for product image */}
-            <div className="h-40 mb-4 rounded-lg bg-gradient-to-br from-crystalCyan/20 to-crystalMagenta/20 flex items-center justify-center">
-              <span className="text-opalGlow/70 italic">Image coming soon</span>
+    <section className="space-y-8">
+      <header className="text-center">
+        <h1 className="text-3xl md:text-4xl font-extrabold">Relics from the Deep</h1>
+        <p className="opacity-80 mt-2">Limited runs. Story-driven. Built for super-fans.</p>
+      </header>
+      <div className="grid md:grid-cols-3 gap-6">
+        {items.map((it) => (
+          <ScrollReveal key={it.name}>
+            <div className="p-6 rounded-xl bg-ink/50 border border-white/10 shadow-crystal">
+              <h3 className="font-semibold">{it.name}</h3>
+              <p className="opacity-80 mt-2">{it.desc}</p>
+              <div className="mt-4 flex items-center justify-between">
+                <span className="text-monteGold font-semibold">{it.price}</span>
+                <a className="px-4 py-2 rounded bg-ultraviolet text-paperWhite hover:opacity-90" href="#store">Buy</a>
+              </div>
             </div>
-            <h3 className="text-xl font-bold text-paperWhite mb-2">
-              {item.title}
-            </h3>
-            <p className="text-opalGlow/80 flex-grow">
-              {item.description}
-            </p>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
-      <p className="mt-12 text-center text-opalGlow/70">
-        Want to see these become reality? Join the mailing list and be first to know when each item drops.
-      </p>
-    </main>
+    </section>
   );
 }

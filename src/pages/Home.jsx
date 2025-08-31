@@ -1,22 +1,29 @@
-import Hero from '../components/Hero.jsx'
-import ScrollReveal from '../components/ScrollReveal.jsx'
+import Hero from "../components/Hero.jsx";
+import { Link } from "react-router-dom";
+
+const Card = ({ title, body, to }) => (
+  <Link to={to} className="group rounded-xl ring-1 ring-paperWhite/10 bg-graphite/50 hover:bg-graphite/70 transition p-6">
+    <h3 className="text-paperWhite font-semibold">{title}</h3>
+    <p className="mt-2 text-paperWhite/70">{body}</p>
+    <div className="mt-4 text-crystal group-hover:translate-x-0.5 transition">Explore →</div>
+  </Link>
+);
 
 export default function Home(){
   return (
-    <main>
+    <main className="bg-ink">
       <Hero />
-      <section id="content" className="relative py-20 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-          {[1,2,3].map((i) => (
-            <ScrollReveal key={i} delay={i*0.1}>
-              <div className="p-6 rounded-xl bg-richBlack/40 border border-opalGlow/15 backdrop-blur-md hover:border-crystalCyan/30 transition">
-                <h3 className="text-xl font-bold text-paperWhite mb-2">Depth {i}</h3>
-                <p className="text-opalGlow/80">Bioluminescent vibes and precision bars. Build the legend with every scroll.</p>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
+      <section className="mx-auto max-w-6xl px-4 py-12 grid gap-6 md:grid-cols-3">
+        <Card title="Lore: The Squid’s Revenge"
+              body="Betrayal → Escape → Crystal → Reckoning → Redemption. Dive into the chapters."
+              to="/story" />
+        <Card title="Merch: Treasures from the Deep"
+              body="Crystal pendants, map lyric posters, and more limited relics."
+              to="/merch" />
+        <Card title="Press Kit / EPK"
+              body="Bio, live stats, photos, and stage specs for promoters and partners."
+              to="/epk" />
       </section>
     </main>
-  )
+  );
 }

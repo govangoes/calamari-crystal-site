@@ -1,62 +1,28 @@
-import React from 'react';
-
-/**
- * Business Plan page
- *
- * This component summarises the key points of the GoVanGoes / Cloutlandish
- * business plan. It is meant to be informative without overwhelming the
- * reader. For more detail, you can link to an external PDF or blog post.
- */
 export default function Business() {
+  const streams = [
+    ["Live/Bookings", "$30k target"],
+    ["Merch", "$12k target"],
+    ["YouTube", "$8k target"],
+    ["Patreon/Members", "$7k target"],
+    ["Licensing/Digital", "$5k target"],
+  ];
   return (
-    <main className="pt-20 pb-32 px-6 max-w-6xl mx-auto space-y-16">
-      <section className="text-center">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-crystalCyan mb-4">
-          Business &amp; Vision
-        </h2>
-        <p className="text-opalGlow md:text-lg max-w-3xl mx-auto">
-          GoVanGoes operates under Cloutlandish LLC. The mission is to
-          entertain, inspire and empower through innovative hip‑hop
-          storytelling, immersive performances and multimedia artistry.
-        </p>
-      </section>
-      <section className="space-y-12">
-        <div>
-          <h3 className="text-2xl font-bold text-paperWhite mb-2">Brand Core</h3>
-          <ul className="list-disc pl-5 text-opalGlow/80 space-y-2">
-            <li><strong>Tone:</strong> Bold, energetic, passionate, creative</li>
-            <li><strong>Mission:</strong> Transform raw talent into generational impact</li>
-            <li><strong>Message:</strong> Be yourself. Outrun algorithms. Underdogs rise.</li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold text-paperWhite mb-2">Audience</h3>
-          <ul className="list-disc pl-5 text-opalGlow/80 space-y-2">
-            <li>Primary: confident, stylish women aged 16–34</li>
-            <li>Secondary: hip‑hop fans and creative millennials aged 18–45</li>
-            <li>Fans are mobile‑first, story‑driven and community oriented</li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold text-paperWhite mb-2">Revenue Streams</h3>
-          <ul className="list-disc pl-5 text-opalGlow/80 space-y-2">
-            <li>Live performances &amp; private bookings</li>
-            <li>Merchandise (streetwear, collectibles, bundles)</li>
-            <li>Digital content monetisation (YouTube, Patreon, memberships)</li>
-            <li>Digital products (sample packs, beat leases, lyric books)</li>
-            <li>Licensing &amp; collaborations</li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold text-paperWhite mb-2">Website Strategy</h3>
-          <p className="text-opalGlow/80">
-            The official site will serve as a hub for music, merch, tour dates
-            and fan engagement. Built with Squarespace (for general content)
-            and React (for interactive projects like this one), it will be
-            mobile‑first, high contrast and merch‑ready.
-          </p>
-        </div>
-      </section>
-    </main>
+    <section className="space-y-8">
+      <header className="text-center">
+        <h1 className="text-3xl md:text-4xl font-extrabold">Cloutlandish LLC • Year 1 Focus</h1>
+        <p className="opacity-80 mt-2">Power • Play • Precision</p>
+      </header>
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {streams.map(([name, goal]) => (
+          <div key={name} className="p-6 rounded-xl bg-ink/50 border border-white/10">
+            <div className="font-semibold">{name}</div>
+            <div className="opacity-80 mt-1">{goal}</div>
+          </div>
+        ))}
+      </div>
+      <div className="text-center">
+        <a className="px-5 py-3 rounded bg-monteGold text-ink hover:opacity-90" href="/contact">Booking & Collabs</a>
+      </div>
+    </section>
   );
 }

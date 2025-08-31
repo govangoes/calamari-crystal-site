@@ -1,8 +1,8 @@
 export default function EPK(){
   return (
-    <section className="space-y-4">
-      <h1 className="text-3xl md:text-4xl font-extrabold">Press Kit</h1>
-      <p className="opacity-80">Bio, selects, and contact. Replace this placeholder with real EPK content.</p>
-    </section>
+    <main className="mx-auto max-w-6xl px-4 py-16">
+      <h1 className="text-3xl font-bold">EPK — GoVanGoes</h1>
+      <p className="mt-3 text-paperWhite/80">One-sheet, stats, photos, stage plot coming soon.</p>
+    </main>
   );
 }

@@ -1,11 +1,11 @@
 export default function NotFound(){
   return (
-    <div className="min-h-[70vh] flex items-center justify-center">
-      <div className="text-center">
-        <div className="text-6xl font-black text-crystalMagenta tracking-widest">404</div>
-        <p className="mt-3 text-opalGlow/90">This is not the page you are looking for.</p>
-        <a href="/" className="inline-block mt-6 px-6 py-2 rounded-full border border-crystalCyan/40 hover:bg-crystalCyan/10 transition">Surface</a>
+    <section className="min-h-[50vh] grid place-items-center text-center">
+      <div>
+        <h1 className="text-5xl font-extrabold">404</h1>
+        <p className="opacity-80 mt-2">The current carried this page away.</p>
+        <a href="/" className="inline-block mt-6 px-5 py-3 rounded bg-ultraviolet text-paperWhite">Back to shore</a>
       </div>
-    </div>
+    </section>
   )
 }

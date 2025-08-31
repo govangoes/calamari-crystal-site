@@ -1,66 +1,38 @@
-import React from 'react';
+import ScrollReveal from "../components/ScrollReveal.jsx";
 
-/**
- * Marketing Strategy page
- *
- * This page summarises the comprehensive promotion plan for Calamari Crystal.
- * It highlights narrative integration, social campaigns, exclusive incentives
- * and content roll‑out. The information is presented in digestible sections
- * rather than a single long essay.
- */
+const timeline = [
+  { when: "T-4–6 weeks", what: "Mystery posts + pre-save incentive + open pre-orders + Treasure Hunt begins." },
+  { when: "T-3 weeks", what: "Lead Single #1 + lyric visualizer + polls." },
+  { when: "T-2 weeks", what: "Cover + tracklist reveal; optional Single #2." },
+  { when: "T-1 week", what: "Daily countdown, AMA ‘Ask the Squid’, rehearsal BTS." },
+  { when: "Release", what: "Album live, premiere, live Q&A in character, secret track to mailing list." },
+  { when: "Post-1–4 weeks", what: "Alt videos, fan features, giveaway, pop-up treasure moments." },
+];
+
 export default function Marketing() {
   return (
-    <main className="pt-20 pb-32 px-6 max-w-6xl mx-auto space-y-16">
-      <section className="text-center">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-crystalCyan mb-4">
-          Marketing &amp; Roll‑Out
-        </h2>
-        <p className="text-opalGlow md:text-lg max-w-3xl mx-auto">
-          Our campaign focuses on story‑driven engagement rather than big‑budget
-          advertising. Every post, video and merch drop fits into the Calamari
-          Crystal saga, inviting fans to play along and unravel the mystery.
-        </p>
-      </section>
-      <section className="space-y-8">
-        <div>
-          <h3 className="text-2xl font-bold text-paperWhite mb-2">
-            Narrative Integration
-          </h3>
-          <p className="text-opalGlow/80">
-            The revenge/treasure story infuses every channel — visuals, captions,
-            videos and live events. Using consistent motifs (squid, crystal,
-            crowns, maps) across platforms makes the album instantly
-            recognisable and builds an immersive world fans want to explore.
-          </p>
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold text-paperWhite mb-2">Social Media Quests</h3>
-          <p className="text-opalGlow/80">
-            Before release we’ll run a digital treasure hunt on Instagram and
-            TikTok. Cryptic clues, codes and lyric fragments will lead fans to
-            secret snippets and early merch discounts. Participation unlocks
-            exclusive content and encourages organic sharing via the
-            #CalamariCrystalQuest hashtag.
-          </p>
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold text-paperWhite mb-2">Exclusive Incentives</h3>
-          <p className="text-opalGlow/80">
-            Incentivise pre‑saves and email signups with unreleased tracks,
-            discount codes and limited merch. For example, pre‑save the album to
-            receive a bonus song or enter a raffle for a crystal necklace.
-          </p>
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold text-paperWhite mb-2">Content Roll‑Out</h3>
-          <p className="text-opalGlow/80">
-            Leading up to launch, we’ll release an animated teaser trailer,
-            lyric visualisers for key tracks, behind‑the‑scenes vlogs and
-            tongue‑in‑cheek “Captain’s Log” shorts. After release, additional
-            videos and live Q&amp;As will keep the momentum going.
-          </p>
-        </div>
-      </section>
-    </main>
+    <section className="space-y-10">
+      <header className="text-center space-y-2">
+        <h1 className="text-3xl md:text-4xl font-extrabold">Rollout Strategy</h1>
+        <p className="opacity-80">Narrative-first content. High engagement, low overhead.</p>
+      </header>
+
+      <ol className="space-y-4">
+        {timeline.map((t) => (
+          <ScrollReveal key={t.when}>
+            <li className="p-5 rounded-lg bg-ink/50 border border-white/10">
+              <div className="text-monteGold font-semibold">{t.when}</div>
+              <div className="opacity-90">{t.what}</div>
+            </li>
+          </ScrollReveal>
+        ))}
+      </ol>
+
+      <div className="text-center">
+        <a href="/contact" className="px-5 py-3 rounded bg-ultraviolet text-paperWhite hover:opacity-90">
+          Book a strategy session →
+        </a>
+      </div>
+    </section>
   );
 }

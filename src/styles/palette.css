@@ -1,14 +1,30 @@
-:root {
-  /* Tweak these to your exact brand values later if needed */
-  --abyss-navy:   #020617; /* deep sea */
-  --paper-white:  #F8FAFC; /* soft white */
-  --ultraviolet:  #6D28D9; /* purple glow */
-  --crystal-teal: #22D3EE; /* bioluminescent teal */
-  --monte-gold:   #EAB308; /* treasure gold */
-  --ink:          #0B1220; /* rich ink */
-  --blood-coral:  #F43F5E; /* accent red */
-  --kelp-green:   #10B981; /* accent green */
+/* Minimal bridge to your Tailwind theme + safe defaults */
+:root{
+  --ink: #080A12;
+  --paper: #F5F7FA;
 }
-html.dark {
-  /* optional dark-mode nudges if you want different tints */
+.bg-ink{ background-color: var(--ink); }
+.text-paperWhite{ color: var(--paper); }
+
+/* pretty gradient helper used by Hero */
+.bg-squid-gradient{
+  background-image:
+    radial-gradient(1200px 500px at 20% -10%, rgba(106,17,203,.35), transparent),
+    radial-gradient(900px 400px at 80% 0%, rgba(37,117,252,.25), transparent);
 }
+.shadow-crystal{
+  box-shadow: 0 0 0 1px rgba(128,255,255,.15), 0 12px 40px rgba(128,255,255,.12);
+}
+.bg-crystal-bloom{
+  background-image: linear-gradient(90deg, #7EF9FF, #C082FF 60%, #FFD166);
+}
+
+/* Deep sea background used by the app wrapper */
+:root { --abyssNavy: #0A1022; }
+.bg-abyssNavy { background-color: var(--abyssNavy); }
+
+cat >> src/styles/palette.css <<'EOF'
+
+/* Deep sea background used by the app wrapper */
+:root { --abyssNavy: #0A1022; }
+.bg-abyssNavy { background-color: var(--abyssNavy); }
