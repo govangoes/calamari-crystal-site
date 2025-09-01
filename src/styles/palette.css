@@ -28,3 +28,28 @@ cat >> src/styles/palette.css <<'EOF'
 /* Deep sea background used by the app wrapper */
 :root { --abyssNavy: #0A1022; }
 .bg-abyssNavy { background-color: var(--abyssNavy); }
+
+:root{
+  --abyssNavy:#0A1022;
+  --paperWhite:#F6F7FB;
+  --crystalCyan:#22d3ee;      /* neon cyan */
+  --crystalViolet:#a78bfa;    /* soft violet */
+}
+
+.social-crystal {
+  transition: transform .2s ease, filter .2s ease, opacity .2s ease;
+  color: var(--crystalCyan);
+}
+.social-crystal:hover {
+  transform: translateY(-2px) scale(1.05);
+  filter: drop-shadow(0 4px 22px rgba(34,211,238,.25)) drop-shadow(0 2px 12px rgba(167,139,250,.25));
+  color: var(--crystalViolet);
+}
+:root{
+  --abyssNavy:#0A1022;
+  --paperWhite:#F6F7FB;
+  --crystalCyan:#22d3ee;
+  --crystalViolet:#a78bfa;
+}
+.bg-abyssNavy{background-color:var(--abyssNavy);}
+.text-paperWhite{color:var(--paperWhite);}
