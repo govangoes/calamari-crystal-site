@@ -1,19 +1,12 @@
-      - name: Install deps (prefer npm ci, fallback to npm install)
-        run: |
-          npm ci --no-audit --no-fund || npm install --no-audit --no-fund
-
-      - name: Show workspace (debug)
-        run: |
-          node -v
-          npm -v
-          ls -la
-          echo "---- src tree ----"
-          ls -laR src || truename: CI
+name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -29,31 +22,24 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install
-        run: npm ci
+      - name: Install deps (prefer npm ci, fallback to npm install)
+        run: |
+          npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+
+      - name: Show workspace (debug)
+        run: |
+          node -v
+          npm -v
+          ls -la
+          echo "---- src tree ----"
+          ls -laR src || true
 
       - name: Build
         run: npm run build
 
-      - name: Preview artifact
-        if: success()
+      - name: Upload dist artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: distname: CI
-on:
-  pull_request:
-  push:
-    branches: [ main ]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
+          path: dist
