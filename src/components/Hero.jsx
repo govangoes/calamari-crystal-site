@@ -6,10 +6,15 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 py-24">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h1 className="text-5xl font-extrabold leading-tight">Calamari Crystal</h1>
+            <h1 className="text-5xl font-extrabold leading-tight">Be the Vibe. Be the Voice.</h1>
             <p className="mt-4 text-paperWhite/80">
-              A concept odyssey — betrayal, treasure, revenge, redemption.
+              Turn the volume into value—bars, showmanship, and a movement you can join.
             </p>
+            <div className="mt-6 flex gap-4">
+              <a href="/music" className="btn btn-primary">Listen Now</a>
+              <a href="/videos" className="btn btn-secondary">Watch a Performance</a>
+              <a href="/shop" className="btn btn-tertiary">Shop the Drop</a>
+            </div>
           </div>
           <div className="relative">
             <img
