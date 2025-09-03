@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App Tests</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .pass { background-color: #d4edda; border-color: #28a745; }
+        .fail { background-color: #f8d7da; border-color: #dc3545; }
+    </style>
+</head>
+<body>
+    <h1>Todo App Tests</h1>
+    <div id="test-results"></div>
+    
+    <!-- Include the todo app files for testing -->
+    <div style="display: none;">
+        <div id="todoInput"></div>
+        <div id="addButton"></div>
+        <div id="todoList"></div>
+        <div id="todoCount"></div>
+        <div id="clearCompleted"></div>
+        <div class="filter-btn" data-filter="all"></div>
+        <div class="filter-btn" data-filter="active"></div>
+        <div class="filter-btn" data-filter="completed"></div>
+    </div>
+
+    <script src="todo.js"></script>
+    <script>
+        // Simple test framework
+        const tests = [];
+        const results = document.getElementById('test-results');
+        
+        function test(name, fn) {
+            tests.push({ name, fn });
+        }
+        
+        function runTests() {
+            tests.forEach(({ name, fn }) => {
+                try {
+                    fn();
+                    addResult(name, true);
+                } catch (error) {
+                    addResult(name, false, error.message);
+                }
+            });
+        }
+        
+        function addResult(name, passed, error = '') {
+            const div = document.createElement('div');
+            div.className = `test ${passed ? 'pass' : 'fail'}`;
+            div.innerHTML = `
+                <strong>${passed ? '✓' : '✗'} ${name}</strong>
+                ${error ? `<br><small>Error: ${error}</small>` : ''}
+            `;
+            results.appendChild(div);
+        }
+        
+        function assert(condition, message) {
+            if (!condition) {
+                throw new Error(message || 'Assertion failed');
+            }
+        }
+        
+        // Tests
+        test('TodoApp class exists', () => {
+            assert(typeof TodoApp === 'function', 'TodoApp should be a constructor function');
+        });
+        
+        test('TodoApp can be instantiated', () => {
+            const app = new TodoApp();
+            assert(app instanceof TodoApp, 'Should create TodoApp instance');
+        });
+        
+        test('TodoApp has required methods', () => {
+            const app = new TodoApp();
+            assert(typeof app.addTodo === 'function', 'Should have addTodo method');
+            assert(typeof app.deleteTodo === 'function', 'Should have deleteTodo method');
+            assert(typeof app.toggleTodo === 'function', 'Should have toggleTodo method');
+            assert(typeof app.render === 'function', 'Should have render method');
+        });
+        
+        test('escapeHTML method works correctly', () => {
+            const app = new TodoApp();
+            const result = app.escapeHTML('<script>alert("xss")</script>');
+            assert(!result.includes('<script>'), 'Should escape HTML tags');
+            assert(result.includes('&lt;script&gt;'), 'Should convert to HTML entities');
+        });
+        
+        test('getFilteredTodos returns all todos by default', () => {
+            const app = new TodoApp();
+            app.todos = [
+                { id: 1, text: 'Test 1', completed: false },
+                { id: 2, text: 'Test 2', completed: true }
+            ];
+            const filtered = app.getFilteredTodos();
+            assert(filtered.length === 2, 'Should return all todos when filter is "all"');
+        });
+        
+        test('getFilteredTodos filters active todos', () => {
+            const app = new TodoApp();
+            app.todos = [
+                { id: 1, text: 'Test 1', completed: false },
+                { id: 2, text: 'Test 2', completed: true }
+            ];
+            app.currentFilter = 'active';
+            const filtered = app.getFilteredTodos();
+            assert(filtered.length === 1, 'Should return only active todos');
+            assert(filtered[0].completed === false, 'Returned todo should not be completed');
+        });
+        
+        test('getFilteredTodos filters completed todos', () => {
+            const app = new TodoApp();
+            app.todos = [
+                { id: 1, text: 'Test 1', completed: false },
+                { id: 2, text: 'Test 2', completed: true }
+            ];
+            app.currentFilter = 'completed';
+            const filtered = app.getFilteredTodos();
+            assert(filtered.length === 1, 'Should return only completed todos');
+            assert(filtered[0].completed === true, 'Returned todo should be completed');
+        });
+        
+        // Run tests when page loads
+        setTimeout(runTests, 100);
+    </script>
+</body>
+</html>
