@@ -1,35 +1,34 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CursorSquid from "./components/CursorSquid.jsx";
-import NavBar from "./components/NavBar.jsx";
-import Footer from "./components/Footer.jsx";
+import React from 'react';
+import { Link, Routes, Route } from 'react-router-dom';
 
-import Home from "./pages/Home.jsx";
-import NotFound from "./pages/NotFound.jsx";
-import Story from "./pages/Story.jsx";
-import Merch from "./pages/Merch.jsx";
-import Marketing from "./pages/Marketing.jsx";
-import Business from "./pages/Business.jsx";
-import Contact from "./pages/Contact.jsx";
-import EPK from "./pages/EPK.jsx";
-
-export default function App() {
+function Home() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-abyssNavy text-paperWhite">
-        <CursorSquid />
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/story" element={<Story />} />
-          <Route path="/merch" element={<Merch />} />
-          <Route path="/marketing" element={<Marketing />} />
-          <Route path="/business" element={<Business />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/epk" element={<EPK />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <div style={{padding:'2rem'}}>
+      <h1 style={{fontSize:'2rem'}}>GoVanGoes — It lives 🦑</h1>
+      <p>If you can read this, routing works.</p>
+      <img src="/logo2.png" alt="logo" style={{maxWidth:'200px', display:'block', marginTop:'1rem'}} />
+    </div>
+  );
+}
+
+function About() {
+  return <div style={{padding:'2rem'}}>About page placeholder.</div>;
+}
+
+export default function App(){
+  return (
+    <>
+      <header style={{padding:'1rem', borderBottom:'1px solid rgba(255,255,255,.15)'}}>
+        <nav style={{display:'flex', gap:'1rem'}}>
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+        </nav>
+      </header>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="*" element={<div style={{padding:'2rem'}}>Not Found</div>} />
+      </Routes>
+    </>
   );
 }
