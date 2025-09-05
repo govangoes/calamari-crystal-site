@@ -1,53 +1,40 @@
-@import "./styles/palette.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* subtle background texture / vignette */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(1200px 600px at 50% -10%, rgba(0,246,255,0.10), transparent 60%),
-              radial-gradient(800px 400px at 10% 100%, rgba(238,62,150,0.10), transparent 60%),
-              radial-gradient(700px 350px at 90% 90%, rgba(142,241,209,0.08), transparent 60%);
-  z-index: 0;
+/* Fallbacks if Tailwind isn't active */
+:root{
+  --abyssNavy:#05060a;
+  --paperWhite:#eaeef2;
+  --royalGold:#e3b341;
+  --crystalViolet:#7b2ff7;
 }
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  background: radial-gradient(1200px 800px at 20% 10%, #1a1030 0%, var(--abyssNavy) 55%),
+              radial-gradient(1200px 800px at 80% 90%, #201400 0%, var(--abyssNavy) 60%);
+  color:var(--paperWhite);
+}
+a{color:#9ec5ff;text-decoration:none}
+a:hover{text-decoration:underline}
 
-/* squid cursor base hides native cursor */
-html.dark, html {
-  cursor: none;
+.pill{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.55rem .9rem; border-radius:9999px;
+  background:linear-gradient(135deg, rgba(123,47,247,.15), rgba(227,179,65,.15));
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:saturate(140%) blur(4px);
+  transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
 }
-a, button, input, textarea {
-  cursor: none;
-}
+.pill:hover{ transform:translateY(-1px) scale(1.02); border-color:rgba(227,179,65,.45);
+  box-shadow:0 6px 18px rgba(123,47,247,.15), inset 0 0 24px rgba(227,179,65,.08); }
 
-.squid-cursor {
-  position: fixed;
-  top: 0; left: 0;
-  width: 32px; height: 32px;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  filter: drop-shadow(0 0 10px rgba(0,246,255,0.35))
-          drop-shadow(0 0 25px rgba(238,62,150,0.25));
-  z-index: 50;
-  opacity: 0.9;
-}
-
-.squid-trail {
-  position: fixed;
-  width: 10px; height: 10px;
-  border-radius: 9999px;
-  background: radial-gradient(circle at 30% 30%, rgba(0,246,255,0.8), rgba(238,62,150,0.5));
-  pointer-events: none;
-  opacity: 0.6;
-  filter: blur(1px);
-  z-index: 40;
-}
-
-/* Hide fancy cursor on touch devices & restore system cursor */
-@media (pointer: coarse) {
-  .cc-cursor { display: none !important; }
-  html, body, * { cursor: auto !important; }
+.nav{display:flex; gap:.75rem; flex-wrap:wrap}
+.section{padding:2rem}
+.hero{
+  padding:3.5rem 2rem 2rem;
+  background:linear-gradient(180deg, rgba(123,47,247,.12), transparent 45%);
+  border-bottom:1px solid rgba(255,255,255,.08)
 }
