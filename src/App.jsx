@@ -9,7 +9,7 @@ function Home() {
         <h1 style={{ fontSize: "2.25rem", margin: 0, lineHeight: 1.2 }}>
           GoVanGoes — Be the Vibe. Be the Voice.
         </h1>
-        <p style={{ opacity: 0.8, marginTop: ".5rem" }}>
+        <p style={{ opacity: 0.85, marginTop: ".5rem" }}>
           Bars, mind games & mystery. Wildly influential hip-hop.
         </p>
         <div style={{ marginTop: "1rem" }}>
@@ -44,7 +44,7 @@ export default function App() {
   return (
     <>
       <header className="section" style={{ paddingBottom: 0 }}>
-        <nav className="nav">
+        <nav className="nav" style={{ borderBottom: "1px solid rgba(255,255,255,.08)", paddingBottom: ".75rem" }}>
           <Link className="pill" to="/">Home</Link>
           <Link className="pill" to="/about">About</Link>
         </nav>
