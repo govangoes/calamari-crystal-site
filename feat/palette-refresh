@@ -1,0 +1,32 @@
+// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        // Core
+        inkBlack: "#0b0a0f",
+        abyssNavy: "#0f1020",
+        paperWhite: "#f5f7fb",
+        goldAura: "#ffd700",
+        // Calamari Crystal accents
+        crystal: {
+          purple: "#6f2da8",
+          pink:   "#ee3e96",
+          blue:   "#3b82f6",
+          teal:   "#14b8a6"
+        }
+      },
+      boxShadow: {
+        glow: "0 0 0 2px rgba(255,215,0,.20), 0 0 24px rgba(255,215,0,.35)"
+      },
+      backgroundImage: {
+        "hero-gradient":
+          "radial-gradient(900px 420px at 50% -10%, rgba(111,45,168,.18), transparent 60%), radial-gradient(700px 360px at 85% 120%, rgba(238,62,150,.16), transparent 60%)"
+      }
+    }
+  },
+  plugins: []
+}chore(palette): refresh brand colors + hero gradient
