@@ -15,3 +15,19 @@ body { @apply bg-inkBlack text-paperWhite; }
               radial-gradient(900px 500px at 0% 0%, #FF6FB522 0%, transparent 60%),
               #0B0B10;
 }
+
+/* ===== Buttons & Pills ===== */
+.btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-semibold transition will-change-transform; }
+.btn:focus-visible { @apply outline-none ring-2 ring-royalGold/60; }
+
+.btn-gold {
+  @apply bg-royalGold text-inkBlack shadow;
+  box-shadow: 0 6px 22px -6px rgba(211,176,66,.45);
+}
+.btn-gold:hover { @apply scale-[1.02]; }
+
+.btn-glass { @apply bg-white/5 text-paperWhite border border-white/10 backdrop-blur; }
+.btn-glass:hover { @apply border-royalGold/60; }
+
+.pill { @apply rounded-full px-4 py-2 border border-white/10 bg-white/5; }
+.pill:hover { @apply border-royalGold/50; }
