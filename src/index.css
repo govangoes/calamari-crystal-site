@@ -1,53 +1,31 @@
-@import "./styles/palette.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* subtle background texture / vignette */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(1200px 600px at 50% -10%, rgba(0,246,255,0.10), transparent 60%),
-              radial-gradient(800px 400px at 10% 100%, rgba(238,62,150,0.10), transparent 60%),
-              radial-gradient(700px 350px at 90% 90%, rgba(142,241,209,0.08), transparent 60%);
-  z-index: 0;
+/* === Brand tokens as CSS variables (for future use) === */
+@layer base {
+  :root {
+    --ink: #0b0a0f;
+    --abyss: #0f1020;
+    --paper: #f5f7fb;
+    --gold: #ffd700;
+    --crystal-purple: #6f2da8;
+    --crystal-pink: #ee3e96;
+    --crystal-blue: #3b82f6;
+    --crystal-teal: #14b8a6;
+  }
+
+  html, body, #root { height: 100%; }
+
+  /* Default theme backdrop */
+  body { @apply bg-abyssNavy text-inkBlack antialiased; }
+  .dark body { @apply bg-inkBlack text-paperWhite; }
 }
 
-/* squid cursor base hides native cursor */
-html.dark, html {
-  cursor: none;
-}
-a, button, input, textarea {
-  cursor: none;
-}
-
-.squid-cursor {
-  position: fixed;
-  top: 0; left: 0;
-  width: 32px; height: 32px;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  filter: drop-shadow(0 0 10px rgba(0,246,255,0.35))
-          drop-shadow(0 0 25px rgba(238,62,150,0.25));
-  z-index: 50;
-  opacity: 0.9;
-}
-
-.squid-trail {
-  position: fixed;
-  width: 10px; height: 10px;
-  border-radius: 9999px;
-  background: radial-gradient(circle at 30% 30%, rgba(0,246,255,0.8), rgba(238,62,150,0.5));
-  pointer-events: none;
-  opacity: 0.6;
-  filter: blur(1px);
-  z-index: 40;
-}
-
-/* Hide fancy cursor on touch devices & restore system cursor */
-@media (pointer: coarse) {
-  .cc-cursor { display: none !important; }
-  html, body, * { cursor: auto !important; }
+/* === Small helpers you can reuse in components === */
+@layer utilities {
+  .btn { @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform; }
+  .btn-primary { @apply btn bg-goldAura text-inkBlack hover:shadow-glow hover:scale-[1.02]; }
+  .pill { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm; }
+  .section { @apply relative py-16 md:py-24; }
 }
