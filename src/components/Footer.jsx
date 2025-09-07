@@ -1,16 +1,10 @@
 export default function Footer(){
+  const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-paperWhite/10 bg-ink/80 backdrop-blur">
-      <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-paperWhite/70">
-        <div className="flex flex-wrap gap-6 items-center justify-between">
-          <div>© {new Date().getFullYear()} GoVanGoes / Cloutlandish LLC</div>
-          <nav className="flex gap-4">
-            <a className="hover:text-paperWhite" href="https://tiktok.com/@govangoes">TikTok</a>
-            <a className="hover:text-paperWhite" href="https://instagram.com/govangoes">Instagram</a>
-            <a className="hover:text-paperWhite" href="https://youtube.com/@govangoes">YouTube</a>
-            <a className="hover:text-paperWhite" href="/contact">Booking</a>
-          </nav>
-        </div>
+    <footer className="section" style={{paddingTop:"3rem", paddingBottom:"3rem"}}>
+      <div style={{maxWidth:960, margin:"0 auto", padding:"0 20px", opacity:.85, display:"flex", justifyContent:"space-between", gap:12, flexWrap:"wrap"}}>
+        <span>© {year} Cloutlandish™ / GoVanGoes. All rights reserved.</span>
+        <a href="#top" className="pill">Back to top</a>
       </div>
     </footer>
   );

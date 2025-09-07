@@ -8,6 +8,7 @@ import Business from "./pages/Business.jsx";
 import Contact from "./pages/Contact.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
+import Footer from "./components/Footer.jsx";
 export default function App() {
   return (
     <div className="min-h-screen bg-inkBlack text-paperWhite">
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

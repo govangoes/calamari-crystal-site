@@ -1,11 +1,16 @@
 import NavPills from "./NavPills.jsx";
 import SocialLinks from "./SocialLinks.jsx";
+import ThemeToggle from "./ThemeToggle.jsx";
 
 export default function Hero(){
   return (
     <header className="section" style={{background:"var(--gradient-hero)", paddingTop:"6rem", paddingBottom:"6rem"}}>
       <div style={{maxWidth:960, margin:"0 auto", padding:"0 20px"}}>
-        <NavPills />
+        <div style={{display:"flex", gap:16, justifyContent:"space-between", alignItems:"center", flexWrap:"wrap"}}>
+          <NavPills />
+          <ThemeToggle />
+        </div>
+
         <h1 style={{fontSize:"clamp(38px,6vw,64px)", lineHeight:1.05, margin:"22px 0 12px"}}>
           Wildly influential. Unapologetically different.
         </h1>
