@@ -1,4 +1,50 @@
-import React from "react";
+* Simple utilities used by Hero/Home */
+.section { padding: 5rem 0; }
+@media (min-width: 768px){ .section { padding: 7rem 0; } }
+
+.btn-primary {
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:9999px; padding:.65rem 1.25rem; font-weight:700;
+  background:#FFD700; color:#0a0a0e;
+  box-shadow:0 8px 24px rgba(255,215,0,.18);
+  transition:transform .15s ease;
+}
+.btn-primary:hover{ transform:scale(1.02); }
+
+.pill{
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:9999px; padding:.55rem 1rem; font-weight:600;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.06); color:rgba(255,255,255,.85);
+  backdrop-filter:saturate(140%) blur(6px);
+}/* Simple utilities used by Hero/Home */
+.section { padding: 5rem 0; }
+@media (min-width: 768px){ .section { padding: 7rem 0; } }
+
+.btn-primary {
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:9999px; padding:.65rem 1.25rem; font-weight:700;
+  background:#FFD700; color:#0a0a0e;
+  box-shadow:0 8px 24px rgba(255,215,0,.18);
+  transition:transform .15s ease;
+}
+.btn-primary:hover{ transform:scale(1.02); }
+
+.pill{
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:9999px; padding:.55rem 1rem; font-weight:600;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.06); color:rgba(255,255,255,.85);
+  backdrop-filter:saturate(140%) blur(6px);
+}
+.pill:hover{ background:rgba(255,255,255,.1); }
+
+.bg-hero-gradient{
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(102,0,255,.30), transparent 60%),
+    radial-gradient(1000px 600px at 80% 20%, rgba(255,0,153,.25), transparent 60%),
+    linear-gradient(180deg, rgba(10,10,14,.95), rgba(10,10,14,1));
+}import React from "react";
 import SocialLinks from "./SocialLinks.jsx";
 
 export default function Hero() {
