@@ -1,15 +1,10 @@
-export default function SocialLinks({ className="" }){
-  const links = [
-    { href:"https://tiktok.com/@govangoes", label:"TikTok" },
-    { href:"https://instagram.com/govangoes", label:"Instagram" },
-    { href:"https://youtube.com/@govangoes", label:"YouTube" },
-    { href:"https://twitter.com/govangoes", label:"X/Twitter" },
-  ];
+export default function SocialLinks(){
   return (
-    <div className={className} style={{display:"flex",gap:"14px",flexWrap:"wrap",marginTop:18}}>
-      {links.map(l=>(
-        <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="pill">{l.label}</a>
-      ))}
+    <div style={{display:"flex", gap:10, flexWrap:"wrap", marginTop:18}}>
+      <a className="pill" href="https://instagram.com/govangoes" target="_blank" rel="noreferrer">Instagram</a>
+      <a className="pill" href="https://tiktok.com/@govangoes" target="_blank" rel="noreferrer">TikTok</a>
+      <a className="pill" href="https://youtube.com/@govangoes" target="_blank" rel="noreferrer">YouTube</a>
+      <a className="pill" href="https://x.com/govangoes" target="_blank" rel="noreferrer">X</a>
     </div>
   );
 }
