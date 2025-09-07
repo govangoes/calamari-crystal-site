@@ -1,3 +1,4 @@
+@import "./styles/tokens.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -31,3 +32,35 @@ body { @apply bg-inkBlack text-paperWhite; }
 
 .pill { @apply rounded-full px-4 py-2 border border-white/10 bg-white/5; }
 .pill:hover { @apply border-royalGold/50; }
+
+/* === Brand base === */
+html,body{height:100%}
+body{
+  background:var(--gradient-hero);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+
+/* Sections */
+.section{padding:5rem 0}
+@media (min-width:768px){ .section{padding:7rem 0} }
+
+/* Primary button */
+.btn-primary{
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:9999px; padding:.65rem 1.25rem; font-weight:700;
+  background:var(--gold); color:var(--ink);
+  box-shadow:0 8px 24px rgba(255,215,0,.18);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn-primary:hover{ transform:scale(1.02); box-shadow:0 10px 30px rgba(255,215,0,.25) }
+
+/* Glassy pill */
+.pill{
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:9999px; padding:.55rem 1rem; font-weight:600;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06); color:rgba(255,255,255,.86);
+  backdrop-filter:saturate(140%) blur(6px);
+}
+.pill:hover{ background:rgba(255,255,255,.10) }
