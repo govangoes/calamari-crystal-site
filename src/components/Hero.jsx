@@ -1,3 +1,4 @@
+import TaglineLockup from "./TaglineLockup.jsx";
 import NavPills from "./NavPills.jsx";
 import SocialLinks from "./SocialLinks.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
@@ -17,7 +18,13 @@ export default function Hero(){
         <div style={{maxWidth:960, margin:"0 auto", padding:"0 20px"}}>
           <h1 style={{fontSize:"clamp(38px,6vw,64px)", lineHeight:1.05, margin:"22px 0 12px"}}>
             Wildly influential. Unapologetically different.
-          </h1>
+          </<div style={{maxWidth:960, margin:"0 auto", padding:"0 20px"}}>
+  <TaglineLockup />
+  <p style={{fontSize:"clamp(16px,2.2vw,20px)", opacity:.88, maxWidth:720}}>
+    Art that makes noise — bars, showmanship, and a movement you can join.
+  </p>
+  {/* buttons/social */}
+</div>
           <p style={{fontSize:"clamp(16px,2.2vw,20px)", opacity:.88, maxWidth:720}}>
             Art that makes noise — bars, showmanship, and a movement you can join.
           </p>

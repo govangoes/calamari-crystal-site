@@ -88,3 +88,37 @@ body{
 
 /* Make hero gradient easy to reuse */
 .bg-hero{ background: var(--gradient-hero); }
+/* --- Tagline styles --- */
+.gvg-tagline{
+  font-weight: 900;
+  line-height: 1.05;
+  font-size: clamp(36px, 6vw, 64px);
+  margin: 0;
+  position: relative;
+}
+.gvg-tagline .wildly{
+  background: linear-gradient(18deg, #6F2DA8, #00D4FF 55%, #FF00A8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.gvg-tagline .influential{
+  color: #E6E6F0;
+  -webkit-text-stroke: .02em #FFD700;
+  text-stroke: .02em #FFD700;
+}
+.gvg-tagline .unapologetic,
+.gvg-tagline .different{
+  color: #E6E6F0;
+}
+.gvg-tagline .underline{
+  position: absolute;
+  left: 0;
+  width: 60%;
+  height: 14px;
+  bottom: -12px;
+}
+.gvg-tagline .underline path{
+  stroke: #FFD700;
+  stroke-width: 2;
+}
