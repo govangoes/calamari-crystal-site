@@ -1,4 +1,4 @@
-export function setSEO({ title, description, image, url } = {}) {
+export function setSEO({ title, description, image, imageAlt, url, author, site } = {}) {
   const origin = (typeof window !== 'undefined' && window.location) ? window.location.origin : '';
   const currentUrl = (typeof window !== 'undefined' && window.location) ? origin + window.location.pathname : url;
   if (title) document.title = title;
@@ -29,12 +29,26 @@ export function setSEO({ title, description, image, url } = {}) {
   if (absImage) {
     set('meta[property="og:image"]', 'content', absImage);
     set('meta[name="twitter:image"]', 'content', absImage);
+    if (imageAlt) {
+      set('meta[property="og:image:alt"]', 'content', imageAlt);
+      set('meta[name="twitter:image:alt"]', 'content', imageAlt);
+    }
   }
   const absUrl = url || currentUrl;
   if (absUrl) {
     set('meta[property="og:url"]', 'content', absUrl);
     const link = document.querySelector('link[rel="canonical"]');
     if (link) link.setAttribute('href', absUrl);
+  }
+
+  // Extras: site name / author
+  if (site) {
+    set('meta[property="og:site_name"]', 'content', site.replace(/^@/, ''));
+    set('meta[name="twitter:site"]', 'content', site);
+  }
+  if (author) {
+    set('meta[name="author"]', 'content', author);
+    set('meta[property="article:author"]', 'content', author);
   }
 }
 

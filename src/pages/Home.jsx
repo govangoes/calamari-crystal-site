@@ -7,6 +7,11 @@ export default function Home(){
     setSEO({
       title: "GoVanGoes — Wildly Influential. Unapologetically Different.",
       description: "Art that makes noise — bars, showmanship, and a movement you can join.",
+      url: "https://govangoes.com/",
+      image: "/og.jpg",
+      imageAlt: "GoVanGoes crest",
+      site: "@govangoes",
+      author: "GoVanGoes",
     });
   }, []);
   return (
