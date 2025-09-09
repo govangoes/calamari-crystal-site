@@ -18,12 +18,11 @@ export default function Header(){
     <header style={{
       position:"sticky", top:0, zIndex:40,
       backdropFilter:"saturate(140%) blur(8px)",
-      background:"rgba(10,10,14,.55)", borderBottom:"1px solid rgba(255,255,255,.08)"
+      background:"rgba(10,10,14,.55)"
     }}>
       <div style={{display:"flex",alignItems:"center",gap:16,justifyContent:"space-between",maxWidth:1200,margin:"0 auto",padding:"12px 20px"}}>
-        <Link to="/" aria-label="GoVanGoes home" style={{display:"inline-flex",alignItems:"center",gap:10}}>
-          <img src="/brand/crest.svg" alt="" width="24" height="24" style={{borderRadius:6}} aria-hidden="true" />
-          <img src="/brand/govangoes-wordmark.svg" alt="GoVanGoes" height="28" style={{display:'block'}} />
+        <Link to="/" aria-label="GoVanGoes home" style={{display:"inline-flex",alignItems:"center",gap:10, textDecoration:'none', color:'inherit'}}>
+          <strong className="wordmark">GoVanGoes</strong>
         </Link>
 
         <nav aria-label="Primary" style={{display:"none",gap:8,flexWrap:"wrap"}} className="md:flex">
