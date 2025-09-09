@@ -9,10 +9,13 @@ import Contact from "./pages/Contact.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 import Footer from "./components/Footer.jsx";
+import ThemeToggle from "./components/ThemeToggle.jsx";
 import initRevealOnScroll from "./utils/revealOnScroll.js";
+import { initTheme } from "./utils/theme.js";
 export default function App() {
   const location = useLocation();
   useEffect(() => {
+    initTheme();
     initRevealOnScroll();
   }, []);
   useEffect(() => {
@@ -30,6 +33,9 @@ export default function App() {
           <NavLink to="/marketing" className={({isActive}) => `rounded-full px-3 py-1 ${isActive ? "bg-royalGold text-inkBlack" : "hover:text-royalGold"}`}>Marketing</NavLink>
           <NavLink to="/business" className={({isActive}) => `rounded-full px-3 py-1 ${isActive ? "bg-royalGold text-inkBlack" : "hover:text-royalGold"}`}>Business</NavLink>
           <NavLink to="/contact" className={({isActive}) => `rounded-full px-3 py-1 ${isActive ? "bg-royalGold text-inkBlack" : "hover:text-royalGold"}`}>Contact</NavLink>
+          <div className="ml-auto">
+            <ThemeToggle />
+          </div>
         </nav>
       </header>
 

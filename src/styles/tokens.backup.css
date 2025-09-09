@@ -1,0 +1,134 @@
+/* ==== Global tokens & base styles ======================================= */
+:root{
+  /* Calamari Crystal (default) */
+  --bg: #0a0a0e;            /* near-black */
+  --text: #E6E6F0;          /* soft white */
+  --muted: #A0A3B1;
+
+  /* Brand tokens (requested) */
+  --gold: #FFD700;
+  --ink: #0A0A0E;
+  --crystal-1: #6F2DA8; /* purple */
+  --crystal-2: #00D4FF; /* aqua */
+  --crystal-3: #FF00A8; /* magenta */
+  --paper: #E6E6F0;
+
+  /* Existing tokens */
+  --surface: #101018;
+  --border: rgba(255,255,255,.12);
+
+  --gradient-hero:
+    radial-gradient(1200px 600px at 50% -10%, rgba(111,45,168,.35), transparent 60%),
+    radial-gradient(1000px 600px at 80% 20%, rgba(255,0,168,.28), transparent 60%),
+    linear-gradient(180deg, rgba(10,10,14,.96), rgba(10,10,14,1));
+}
+
+/* Gold/Black theme override (GVG) */
+.theme-gvg{
+  --bg: #050506;
+  --text: #F2F2F2;
+  --muted:#B7B7B7;
+
+  --surface:#0b0b0d;
+  --border: rgba(255,215,0,.22);
+
+  --gradient-hero:
+    radial-gradient(900px 480px at 35% -10%, rgba(255,215,0,.16), transparent 60%),
+    radial-gradient(900px 480px at 80% 20%, rgba(255,215,0,.10), transparent 60%),
+    linear-gradient(180deg, rgba(5,5,6,.98), rgba(5,5,6,1));
+}
+
+/* Base */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+/* Utilities */
+.section{ padding:5rem 0 }
+@media (min-width:768px){ .section{ padding:7rem 0 } }
+
+.btn-primary{
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:9999px; padding:.65rem 1.25rem; font-weight:700;
+  background:var(--gold); color:#0a0a0e;
+  box-shadow:0 8px 24px rgba(255,215,0,.18);
+  transition:transform .15s ease, box-shadow .15s ease;
+  text-decoration:none;
+}
+.btn-primary:hover{ transform:scale(1.02); box-shadow:0 10px 28px rgba(255,215,0,.24); }
+
+.pill{
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:9999px; padding:.55rem 1rem; font-weight:600;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06); color:rgba(255,255,255,.88);
+  text-decoration:none;
+  backdrop-filter:saturate(140%) blur(6px);
+}
+.pill:hover{ background:rgba(255,255,255,.1) }
+
+/* Card surface (future sections) */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+}
+
+/* Sticky header helper */
+.sticky-header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--border);
+}
+
+/* Make hero gradient easy to reuse */
+.bg-hero{ background: var(--gradient-hero); }
+/* --- Tagline styles --- */
+.gvg-tagline{
+  font-weight: 900;
+  line-height: 1.05;
+  font-size: clamp(36px, 6vw, 64px);
+  margin: 0;
+  position: relative;
+}
+.gvg-tagline .wildly{
+  background: linear-gradient(18deg, #6F2DA8, #00D4FF 55%, #FF00A8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.gvg-tagline .influential{
+  color: #E6E6F0;
+  -webkit-text-stroke: .02em #FFD700;
+  text-stroke: .02em #FFD700;
+}
+.gvg-tagline .unapologetic,
+.gvg-tagline .different{
+  color: #E6E6F0;
+}
+.gvg-tagline .underline{
+  position: absolute;
+  left: 0;
+  width: 60%;
+  height: 14px;
+  bottom: -12px;
+}
+.gvg-tagline .underline path{
+  stroke: #FFD700;
+  stroke-width: 2;
+}
+
+/* Reveal on scroll */
+[data-reveal]{ opacity:.001; transform: translateY(8px); transition:.4s ease; will-change: transform, opacity; }
+.is-revealed{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){
+  [data-reveal]{ opacity:1; transform:none; transition:none; }
+}
