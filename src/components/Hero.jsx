@@ -1,24 +1,10 @@
 import TaglineLockup from "./TaglineLockup.jsx";
-import ThemeToggle from "./ThemeToggle.jsx";
-import NavPills from "./NavPills.jsx";
 import SocialLinks from "./SocialLinks.jsx";
 
 export default function Hero(){
   return (
     <header className="section bg-hero-gradient" id="home" role="banner">
       <div style={{maxWidth:1120, margin:"0 auto", padding:"0 20px"}} data-reveal-stagger="0,80">
-        {/* Top row: logo placeholder + theme */}
-        <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'22px'}}>
-          <div style={{display:'flex', alignItems:'center', gap:12}}>
-            <div style={{width:36, height:36, borderRadius:'50%', background:'var(--gold)'}} aria-hidden="true" />
-            <strong style={{letterSpacing:.5}}>GoVanGoes</strong>
-          </div>
-          <ThemeToggle />
-        </div>
-
-        {/* Nav */}
-        <div style={{margin:'10px 0 22px'}}><NavPills /></div>
-
         {/* Tagline + subcopy */}
         <div style={{maxWidth:960}}>
           <TaglineLockup />

@@ -44,6 +44,8 @@ export default function EPKGallery({ manifestUrl = "/images/you/manifest.json" }
 
   const sorted = useMemo(() => (items ? [...items].sort(byIndex) : []), [items]);
 
+  const empty = items && items.length === 0 && !error;
+
   return (
     <section className="section" aria-label="EPK Photo Gallery">
       <div className="mx-auto max-w-6xl px-4">
@@ -57,6 +59,13 @@ export default function EPKGallery({ manifestUrl = "/images/you/manifest.json" }
 
         {error && (
           <p style={{ opacity: .8, marginTop: 12 }}>Note: {error}. Using a small placeholder entry. Create <code>/public/images/you/manifest.json</code> to control ordering, captions, and metadata.</p>
+        )}
+        {empty && (
+          <div className="card" style={{padding:16, marginTop:12}}>
+            <p className="lead" style={{margin:0}}>No photos found yet. Add your images to <code>/public/images/you</code>, then run:</p>
+            <pre style={{marginTop:8}}><code>npm run epk:scan</code></pre>
+            <p style={{opacity:.85, marginTop:6}}>Then edit <code>public/images/you/manifest.json</code> to add captions, dates, locations, and notes. See <a href="/images/you/manifest.example.json" target="_blank" rel="noreferrer">example</a>.</p>
+          </div>
         )}
 
         <div className="masonry" style={{ columnCount: 1, columnGap: "1rem", marginTop: "1.25rem" }}>
