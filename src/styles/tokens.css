@@ -13,8 +13,8 @@
 }
 
 :root[data-theme="light"] {
-  --bg: #F7F7FA;
-  --text: #0B0B0F;
+  --bg: #F5F7FC;
+  --text: #0A0A0E;
   --muted: #3D3D46;
   --surface: rgba(0,0,0,.04);
   --surfaceBorder: rgba(0,0,0,.12);
@@ -33,6 +33,15 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Light theme body: richer color overlays for contrast */
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(70rem 34rem at 50% -12%, rgba(111,45,168,.26), transparent 62%),
+    radial-gradient(60rem 30rem at 80% 18%, rgba(255,0,168,.20), transparent 62%),
+    radial-gradient(48rem 28rem at 10% 40%, rgba(0,212,255,.16), transparent 65%),
+    linear-gradient(180deg, #F2F5FF, var(--bg));
 }
 
 /* --- Custom font scaffolding (replace with your built files) --- */
