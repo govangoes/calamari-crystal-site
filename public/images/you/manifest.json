@@ -1,0 +1,83 @@
+[
+  {
+    "index": 1,
+    "src": "/images/you/gvg-photo-1-wd.jpg",
+    "caption": "",
+    "date": null,
+    "location": null,
+    "notes": "",
+    "aspect": "wd"
+  },
+  {
+    "index": 2,
+    "src": "/images/you/gvg-photo-2-wd.jpg",
+    "caption": "",
+    "date": null,
+    "location": null,
+    "notes": "",
+    "aspect": "wd"
+  },
+  {
+    "index": 3,
+    "src": "/images/you/gvg-photo-3-sq.jpg",
+    "caption": "",
+    "date": null,
+    "location": null,
+    "notes": "",
+    "aspect": "sq"
+  },
+  {
+    "index": 4,
+    "src": "/images/you/gvg-photo-4-lng.jpg",
+    "caption": "",
+    "date": null,
+    "location": null,
+    "notes": "",
+    "aspect": "lng"
+  },
+  {
+    "index": 5,
+    "src": "/images/you/gvg-photo-5-lng.jpg",
+    "caption": "",
+    "date": null,
+    "location": null,
+    "notes": "",
+    "aspect": "lng"
+  },
+  {
+    "index": 6,
+    "src": "/images/you/gvg-photo-6-lng.jpg",
+    "caption": "",
+    "date": null,
+    "location": null,
+    "notes": "",
+    "aspect": "lng"
+  },
+  {
+    "index": 7,
+    "src": "/images/you/gvg-photo-7-wd.jpg",
+    "caption": "",
+    "date": null,
+    "location": null,
+    "notes": "",
+    "aspect": "wd"
+  },
+  {
+    "index": 8,
+    "src": "/images/you/gvg-photo-8-lng.jpg",
+    "caption": "",
+    "date": null,
+    "location": null,
+    "notes": "",
+    "aspect": "lng"
+  },
+  {
+    "index": 9,
+    "src": "/images/you/gvg-photo-9-wd.jpg",
+    "caption": "",
+    "date": null,
+    "location": null,
+    "notes": "",
+    "aspect": "wd"
+  }
+]
