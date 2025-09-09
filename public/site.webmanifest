@@ -1,12 +1,15 @@
 {
-  "name": "GoVanGoes — Calamari Crystal",
+  "name": "GoVanGoes",
   "short_name": "GoVanGoes",
-  "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
-  ],
-  "theme_color": "#0B0B12",
-  "background_color": "#0B0B12",
+  "description": "Wildly Influential. Unapologetically Different.",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "start_url": "/"
+  "background_color": "#0A0A0E",
+  "theme_color": "#0A0A0E",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/maskable-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
 }
