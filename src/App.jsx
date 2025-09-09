@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, NavLink, useLocation } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Story from "./pages/Story.jsx";
 import Merch from "./pages/Merch.jsx";
@@ -9,7 +9,16 @@ import Contact from "./pages/Contact.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 import Footer from "./components/Footer.jsx";
+import initRevealOnScroll from "./utils/revealOnScroll.js";
 export default function App() {
+  const location = useLocation();
+  useEffect(() => {
+    initRevealOnScroll();
+  }, []);
+  useEffect(() => {
+    // Re-scan for new reveal targets on route changes
+    initRevealOnScroll();
+  }, [location.pathname]);
   return (
     <div className="min-h-screen bg-inkBlack text-paperWhite">
       {/* Simple sticky nav so we can navigate */}

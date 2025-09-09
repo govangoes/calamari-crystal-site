@@ -125,3 +125,10 @@ body{
   stroke: #FFD700;
   stroke-width: 2;
 }
+
+/* Reveal on scroll */
+[data-reveal]{ opacity:.001; transform: translateY(8px); transition:.4s ease; will-change: transform, opacity; }
+.is-revealed{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){
+  [data-reveal]{ opacity:1; transform:none; transition:none; }
+}

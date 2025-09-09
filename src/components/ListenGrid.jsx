@@ -12,11 +12,11 @@ const tracks = [
 export default function ListenGrid() {
   return (
     <section aria-label="Listen" className="section">
-      <div className="mx-auto max-w-6xl px-4">
+      <div className="mx-auto max-w-6xl px-4" data-reveal-stagger="0,70">
         <h2 className="h2">Listen</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
           {tracks.map((t) => (
-            <div key={t.title} className="card p-5">
+            <div key={t.title} className="card p-5" data-reveal>
               <h3 className="text-xl font-bold mb-1">{t.title}</h3>
               <p className="text-sm opacity-80 mb-3">{t.mood}</p>
               <button className="btn-primary">Play</button>
@@ -27,4 +27,3 @@ export default function ListenGrid() {
     </section>
   );
 }
-
