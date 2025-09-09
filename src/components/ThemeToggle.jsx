@@ -1,29 +1,47 @@
 import { useEffect, useState } from "react";
-
-const STORAGE_KEY = "gvg-theme"; // "crystal" | "gvg"
+import { initTheme, toggleTheme } from "../utils/theme.js";
 
 export default function ThemeToggle(){
-  const [mode, setMode] = useState("crystal");
+  const [theme, setTheme] = useState(() =>
+    typeof document !== 'undefined'
+      ? document.documentElement.getAttribute('data-theme') || 'light'
+      : 'light'
+  );
 
   useEffect(() => {
-    // Initialize from storage or current DOM
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === "gvg" || saved === "crystal") {
-      setMode(saved);
-      document.documentElement.classList.toggle("theme-gvg", saved === "gvg");
-    }
+    initTheme();
+    const t = document.documentElement.getAttribute('data-theme') || 'light';
+    setTheme(t);
+
+    // Observe attribute changes so UI stays in sync
+    const obs = new MutationObserver(() => {
+      const next = document.documentElement.getAttribute('data-theme') || 'light';
+      setTheme(next);
+    });
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => obs.disconnect();
   }, []);
 
-  function toggle(){
-    const next = mode === "gvg" ? "crystal" : "gvg";
-    setMode(next);
-    document.documentElement.classList.toggle("theme-gvg", next === "gvg");
-    localStorage.setItem(STORAGE_KEY, next);
-  }
+  const onClick = () => {
+    toggleTheme();
+    const next = document.documentElement.getAttribute('data-theme') || 'light';
+    setTheme(next);
+  };
+
+  const isDark = theme === 'dark';
 
   return (
-    <button onClick={toggle} className="pill" aria-label="Toggle theme">
-      {mode === "gvg" ? "Calamari Crystal" : "Gold / Black"}
+    <button
+      type="button"
+      onClick={onClick}
+      className="pill"
+      aria-pressed={isDark}
+      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      style={{gap:8}}
+    >
+      <span aria-hidden="true">{isDark ? "🌙" : "☀️"}</span>
+      <span>{isDark ? "Dark" : "Light"}</span>
     </button>
   );
 }
+
