@@ -32,7 +32,7 @@ export default function App() {
     initRevealOnScroll();
   }, [location.pathname]);
   return (
-    <div className="min-h-screen bg-inkBlack text-paperWhite">
+    <div className="min-h-screen">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
