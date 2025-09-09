@@ -6,8 +6,6 @@ export default function Music() {
     setSEO({
       title: "Music — GoVanGoes",
       description: "Latest singles, EPs, and concept‑album tracks.",
-      image: "https://govangoes.com/images/og.jpg",
-      url: "https://govangoes.com/music",
     });
   }, []);
   return (

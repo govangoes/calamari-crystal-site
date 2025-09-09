@@ -6,8 +6,6 @@ export default function Videos() {
     setSEO({
       title: "Videos — GoVanGoes",
       description: "Music videos, live performances, and BTS footage.",
-      image: "https://govangoes.com/images/og.jpg",
-      url: "https://govangoes.com/videos",
     });
   }, []);
   return (

@@ -6,8 +6,6 @@ export default function Bookings() {
     setSEO({
       title: "Bookings — GoVanGoes",
       description: "Shows, brand events, press, and collaborations.",
-      image: "https://govangoes.com/images/og.jpg",
-      url: "https://govangoes.com/bookings",
     });
   }, []);
   return (

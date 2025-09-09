@@ -6,8 +6,6 @@ export default function Terms() {
     setSEO({
       title: "Terms — GoVanGoes",
       description: "Terms of service and purchase policies.",
-      image: "https://govangoes.com/images/og.jpg",
-      url: "https://govangoes.com/terms",
     });
   }, []);
   return (

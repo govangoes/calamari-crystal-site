@@ -7,8 +7,6 @@ export default function Press() {
     setSEO({
       title: "Press — GoVanGoes",
       description: "Bio, photos, logos, and press contact.",
-      image: "https://govangoes.com/images/og.jpg",
-      url: "https://govangoes.com/press",
     });
   }, []);
   return (

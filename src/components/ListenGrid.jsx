@@ -10,6 +10,7 @@ const tracks = [
 ];
 
 export default function ListenGrid() {
+  const origin = typeof window !== 'undefined' && window.location ? window.location.origin : '';
   return (
     <section aria-label="Listen" className="section">
       <div className="mx-auto max-w-6xl px-4" data-reveal-stagger="0,70">
@@ -21,10 +22,10 @@ export default function ListenGrid() {
             "@type": "MusicAlbum",
             name: "Calamari Crystal",
             byArtist: { "@type": "MusicGroup", name: "GoVanGoes" },
-            image: "https://govangoes.com/images/og.jpg",
+            image: origin ? origin + "/images/og.jpg" : "/images/og.jpg",
             genre: "Hip-Hop",
             inLanguage: "en",
-            url: "https://govangoes.com/",
+            url: origin || "/",
           }) }}
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">

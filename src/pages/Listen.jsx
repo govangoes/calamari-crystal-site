@@ -7,8 +7,6 @@ export default function Listen() {
     setSEO({
       title: "Listen — GoVanGoes",
       description: "Stream the latest tracks, EPs, and live sessions.",
-      image: "https://govangoes.com/images/og.jpg",
-      url: "https://govangoes.com/listen",
     });
   }, []);
   return (

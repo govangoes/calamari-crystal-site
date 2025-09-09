@@ -1,4 +1,6 @@
-export function setSEO({ title, description, image, url }) {
+export function setSEO({ title, description, image, url } = {}) {
+  const origin = (typeof window !== 'undefined' && window.location) ? window.location.origin : '';
+  const currentUrl = (typeof window !== 'undefined' && window.location) ? origin + window.location.pathname : url;
   if (title) document.title = title;
   const set = (selector, attr, value) => {
     let el = document.querySelector(selector);
@@ -23,14 +25,16 @@ export function setSEO({ title, description, image, url }) {
     set('meta[property="og:description"]', 'content', description);
     set('meta[name="twitter:description"]', 'content', description);
   }
-  if (image) {
-    set('meta[property="og:image"]', 'content', image);
-    set('meta[name="twitter:image"]', 'content', image);
+  const absImage = image ? (image.startsWith('http') ? image : origin + image) : (origin ? origin + '/images/og.jpg' : undefined);
+  if (absImage) {
+    set('meta[property="og:image"]', 'content', absImage);
+    set('meta[name="twitter:image"]', 'content', absImage);
   }
-  if (url) {
-    set('meta[property="og:url"]', 'content', url);
+  const absUrl = url || currentUrl;
+  if (absUrl) {
+    set('meta[property="og:url"]', 'content', absUrl);
     const link = document.querySelector('link[rel="canonical"]');
-    if (link) link.setAttribute('href', url);
+    if (link) link.setAttribute('href', absUrl);
   }
 }
 

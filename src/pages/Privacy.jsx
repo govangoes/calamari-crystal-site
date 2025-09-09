@@ -6,8 +6,6 @@ export default function Privacy() {
     setSEO({
       title: "Privacy — GoVanGoes",
       description: "Privacy policy and data usage overview.",
-      image: "https://govangoes.com/images/og.jpg",
-      url: "https://govangoes.com/privacy",
     });
   }, []);
   return (

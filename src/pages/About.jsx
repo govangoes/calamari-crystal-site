@@ -6,8 +6,6 @@ export default function About() {
     setSEO({
       title: "About — GoVanGoes",
       description: "Wildly Influential. Unapologetically Different. Story and mission.",
-      image: "https://govangoes.com/images/og.jpg",
-      url: "https://govangoes.com/about",
     });
   }, []);
   return (
