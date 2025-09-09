@@ -1,0 +1,21 @@
+[
+  {
+    "index": 1,
+    "src": "/images/you/gvg-photo-1-wd.jpg",
+    "caption": "Early wide performance shot",
+    "date": "2011-05-14",
+    "location": "Orlando, FL",
+    "notes": "Opening for [Artist], first major stage.",
+    "aspect": "wd"
+  },
+  {
+    "index": 2,
+    "src": "/images/you/gvg-photo-2-sq.jpg",
+    "caption": "Studio session",
+    "date": "2014-09-22",
+    "location": "Tampa, FL",
+    "notes": "Tracking vocals for Calamari Crystal demos.",
+    "aspect": "sq"
+  }
+]
+
