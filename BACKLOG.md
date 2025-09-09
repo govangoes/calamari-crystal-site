@@ -27,3 +27,12 @@ Backlog — SEO/UX Improvements
 7) Analytics hygiene
 - Validate single analytics snippet in production only
 
+8) New routes and pages
+- Add route/page skeletons for: Music (/music), Bookings (/bookings), About (/about), Press (/press)
+- Add policy pages: Privacy (/privacy), Terms (/terms)
+- Wire header nav to new routes; add to sitemap.xml with absolute URLs
+- Add route-level setSEO for each new page (title/description/canonical)
+
+9) Domain alignment
+- When govangoes.com is live, switch og:url and canonical back to the primary domain
+- Update robots.txt sitemap URL accordingly
