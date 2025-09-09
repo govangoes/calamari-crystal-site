@@ -75,7 +75,13 @@ export default function EPKGallery({ manifestUrl = "/images/you/manifest.json" }
           {sorted.map((it) => (
             <div key={`${it.index}-${it.src}`} className="masonry-item">
               <button className="masonry-card" onClick={() => setActive(it)} aria-label="Open photo details">
-                <img src={it.src} alt={it.alt || it.caption || "EPK photo"} className="masonry-img" loading="lazy" />
+                <picture>
+                  {/* Prefer WebP when available */}
+                  {/\.(jpe?g|png)$/i.test(it.src) && (
+                    <source type="image/webp" srcSet={it.src.replace(/\.(jpe?g|png)$/i, '.webp')} />
+                  )}
+                  <img src={it.src} alt={it.alt || it.caption || "EPK photo"} className="masonry-img" loading="lazy" />
+                </picture>
                 {(it.caption || it.date || it.location) && (
                   <div className="masonry-meta">
                     {it.caption && <p className="masonry-caption">{it.caption}</p>}
@@ -119,4 +125,3 @@ export default function EPKGallery({ manifestUrl = "/images/you/manifest.json" }
     </section>
   );
 }
-

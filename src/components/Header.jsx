@@ -22,7 +22,7 @@ export default function Header(){
     }}>
       <div style={{display:"flex",alignItems:"center",gap:16,justifyContent:"space-between",maxWidth:1200,margin:"0 auto",padding:"12px 20px"}}>
         <Link to="/" aria-label="GoVanGoes home" style={{display:"inline-flex",alignItems:"center",gap:10}}>
-          <img src="/favicon-32x32.png" alt="" width="24" height="24" style={{borderRadius:6}} aria-hidden="true" />
+          <img src="/brand/crest.svg" alt="" width="24" height="24" style={{borderRadius:6}} aria-hidden="true" />
           <img src="/brand/govangoes-wordmark.svg" alt="GoVanGoes" height="28" style={{display:'block'}} />
         </Link>
 
