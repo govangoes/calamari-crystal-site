@@ -8,7 +8,7 @@ const links = [
 ];
 
 function Icon({ name, size=18 }) {
-  const common = { width:size, height:size, fill:"currentColor", ariaHidden:true, focusable:false };
+  const common = { width: size, height: size, fill: "currentColor", 'aria-hidden': true, focusable: "false" };
   switch(name){
     case "ig": // simplified rounded square + lens
       return (
@@ -59,4 +59,3 @@ export default function SocialLinks({ className="" }){
     </div>
   );
 }
-
