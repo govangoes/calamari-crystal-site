@@ -1,34 +1,23 @@
 import TaglineLockup from "./TaglineLockup.jsx";
-import NavPills from "./NavPills.jsx";
 import SocialLinks from "./SocialLinks.jsx";
-import ThemeToggle from "./ThemeToggle.jsx";
 
 export default function Hero() {
   return (
-    <>
-      <div id="top" aria-hidden="true" style={{ position: "absolute", inset: "0 auto auto 0", width: 0, height: 0 }} />
-      <header className="bg-hero section" style={{ paddingTop: "6rem", paddingBottom: "6rem" }}>
-        {/* Sticky nav bar with navigation pills and theme toggle */}
-        <div className="sticky-header" style={{ position: "sticky", top: 0 }}>
-          <div style={{ maxWidth: 960, margin: "0 auto", padding: "10px 20px", display: "flex", gap: 16, justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
-            <NavPills />
-            <ThemeToggle />
-           </div>
+    <section aria-label="Hero" className="bg-hero section">
+      <div className="mx-auto max-w-3xl px-4">
+        <TaglineLockup />
+        <p className="lead" style={{ maxWidth: 720 }}>
+          Art that makes noise — bars, showmanship, and a movement you can join.
+        </p>
+        <div className="flex gap-3 flex-wrap mt-6">
+          <a href="/listen" className="btn-primary">Listen Now</a>
+          <a href="/videos" className="btn-primary">Watch a Performance</a>
+          <a href="/shop" className="btn-primary">Shop the Drop</a>
         </div>
-
-        <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 20px" }}>
-          {/* Use your new TaglineLockup component here */}
-          <TaglineLockup />
-          <p style={{ fontSize: "clamp(16px,2.2vw,20px)", opacity: 0.88, maxWidth: 720 }}>
-            Art that makes noise — bars, showmanship, and a movement you can join.
-          </p>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 22 }}>
-            <a href="#about" className="btn-primary">Enter the Movement</a>
-            <a href="/videos" className="pill">Watch a Performance</a>
-          </div>
+        <div className="mt-5">
           <SocialLinks />
         </div>
-      </header>
-    </>
+      </div>
+    </section>
   );
 }
