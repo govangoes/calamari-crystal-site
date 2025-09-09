@@ -21,8 +21,14 @@ export default function Story() {
       </header>
 
       <div className="grid md:grid-cols-2 gap-8 items-center">
-        <img src="/squid_emblem.png" alt="Squid emblem" className="w-full rounded-lg shadow-crystal" />
-        <img src="/cloud_gold_logo.png" alt="Cloud logo" className="w-full rounded-lg opacity-80" />
+        <picture>
+          <source type="image/webp" srcSet="/squid_emblem.webp" />
+          <img src="/squid_emblem.png" alt="Squid emblem" className="w-full rounded-lg shadow-crystal" />
+        </picture>
+        <picture>
+          <source type="image/webp" srcSet="/cloud_gold_logo.webp" />
+          <img src="/cloud_gold_logo.png" alt="Cloud logo" className="w-full rounded-lg opacity-80" />
+        </picture>
       </div>
     </main>
   );
