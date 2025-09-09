@@ -38,7 +38,7 @@ export default function Merch() {
       <div className="grid md:grid-cols-3 gap-6">
         {items.map((it) => (
           <ScrollReveal key={it.name}>
-            <div className="p-6 rounded-xl bg-ink/50 border border-white/10 shadow-crystal">
+            <div className="card p-6">
               <h3 className="font-semibold">{it.name}</h3>
               <p className="opacity-80 mt-2">{it.desc}</p>
               <div className="mt-4 flex items-center justify-between">

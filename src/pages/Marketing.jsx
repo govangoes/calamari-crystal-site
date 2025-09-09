@@ -30,7 +30,7 @@ export default function Marketing() {
       <ol className="space-y-4">
         {timeline.map((t) => (
           <ScrollReveal key={t.when}>
-            <li className="p-5 rounded-lg bg-ink/50 border border-white/10">
+            <li className="card p-5">
               <div className="text-monteGold font-semibold">{t.when}</div>
               <div className="opacity-90">{t.what}</div>
             </li>

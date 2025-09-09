@@ -25,7 +25,7 @@ export default function Business() {
       </header>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
         {streams.map(([name, goal]) => (
-          <div key={name} className="p-6 rounded-xl bg-ink/50 border border-white/10">
+          <div key={name} className="card p-6">
             <div className="font-semibold">{name}</div>
             <div className="opacity-80 mt-1">{goal}</div>
           </div>

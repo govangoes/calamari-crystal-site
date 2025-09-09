@@ -15,7 +15,7 @@ export default function Story() {
     <main className="mx-auto max-w-6xl px-4 py-16 space-y-8">
       <header>
         <h1 className="text-4xl font-bold">The Calamari Crystal Chronicle</h1>
-        <p className="mt-2 text-paperWhite/75">
+        <p className="mt-2" style={{opacity:.8}}>
           Our purple squid rises from betrayal to luminous redemption…
         </p>
       </header>

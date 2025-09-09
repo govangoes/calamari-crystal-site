@@ -23,7 +23,7 @@ export default function Shop() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger="0,60">
           {items.map((p) => (
             <article key={p.name} className="card p-5" data-reveal>
-              <div className="mb-3 h-40 w-full rounded-xl bg-inkBlack/40"></div>
+              <div className="mb-3 h-40 w-full rounded-xl" style={{background:"linear-gradient(135deg, rgba(124,77,255,.18), rgba(0,0,0,.12))"}}></div>
               <h3 className="font-semibold">{p.name}</h3>
               <p className="text-sm opacity-80">{p.price}</p>
               <div className="mt-4">
