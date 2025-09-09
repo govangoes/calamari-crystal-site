@@ -21,9 +21,9 @@ export default function Header(){
       background:"rgba(10,10,14,.55)", borderBottom:"1px solid rgba(255,255,255,.08)"
     }}>
       <div style={{display:"flex",alignItems:"center",gap:16,justifyContent:"space-between",maxWidth:1200,margin:"0 auto",padding:"12px 20px"}}>
-        <Link to="/" aria-label="GoVanGoes home" style={{display:"inline-flex",alignItems:"center",gap:10,fontWeight:800,letterSpacing:.3}}>
+        <Link to="/" aria-label="GoVanGoes home" style={{display:"inline-flex",alignItems:"center",gap:10}}>
           <img src="/favicon-32x32.png" alt="" width="24" height="24" style={{borderRadius:6}} />
-          <span>GoVanGoes</span>
+          <span className="wordmark">GoVanGoes</span>
         </Link>
 
         <nav aria-label="Primary" style={{display:"none",gap:8,flexWrap:"wrap"}} className="md:flex">

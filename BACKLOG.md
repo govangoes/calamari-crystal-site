@@ -15,6 +15,9 @@ Backlog — SEO/UX Improvements
 4) Fonts and CLS
 - Preload primary font(s) and use `font-display: swap`
 - Verify no layout shift in header/hero on first paint
+ - Add WOFF2 files for Calamari Sans; add `<link rel="preload" as="font" crossorigin>` once files are present
+ - Optional: design SVG wordmark for header; replace text brand
+ - Optional: create a Display cut for H1/H2 later
 
 5) SSG/SSR migration (future)
 - Consider vite-plugin-ssr or Next.js for stronger SEO on content pages
