@@ -39,9 +39,7 @@ export default function Marketing() {
       </ol>
 
       <div className="text-center">
-        <a href="/contact" className="px-5 py-3 rounded bg-ultraviolet text-paperWhite hover:opacity-90">
-          Book a strategy session →
-        </a>
+        <a href="/contact" className="btn-primary">Book a strategy session →</a>
       </div>
     </section>
   );

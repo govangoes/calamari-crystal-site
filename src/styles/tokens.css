@@ -139,6 +139,14 @@ body {
     linear-gradient(180deg, var(--bg), var(--bg));
 }
 
+/* Light theme: slightly stronger overlays for contrast */
+:root[data-theme="light"] .bg-hero-gradient{
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(111,45,168,.28), transparent 60%),
+    radial-gradient(1000px 600px at 80% 20%, rgba(255,0,168,.18), transparent 60%),
+    linear-gradient(180deg, #F2F4FA, var(--bg));
+}
+
 /* Headings */
 .h2 { font-size: clamp(24px, 3.5vw, 36px); margin:0 0 .5rem; font-weight:800; }
 .lead { opacity:.9; font-size: clamp(16px, 2.2vw, 20px); }

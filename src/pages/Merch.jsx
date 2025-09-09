@@ -42,8 +42,8 @@ export default function Merch() {
               <h3 className="font-semibold">{it.name}</h3>
               <p className="opacity-80 mt-2">{it.desc}</p>
               <div className="mt-4 flex items-center justify-between">
-                <span className="text-monteGold font-semibold">{it.price}</span>
-                <a className="px-4 py-2 rounded bg-ultraviolet text-paperWhite hover:opacity-90" href="#store">Buy</a>
+                <span className="font-semibold" style={{color:'var(--gold)'}}>{it.price}</span>
+                <a className="btn-primary" href="#store">Buy</a>
               </div>
             </div>
           </ScrollReveal>

@@ -15,20 +15,6 @@ export default function TaglineLockup() {
       <br />
       <span className="unapologetic">Unapologetically</span>{" "}
       <span className="different">Different.</span>
-      {/* Minimal tentacle underline */}
-      <svg
-        className="underline"
-        viewBox="0 0 800 80"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path
-          d="M10,60 C160,10 360,10 790,60"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-      </svg>
     </h1>
   );
 }
