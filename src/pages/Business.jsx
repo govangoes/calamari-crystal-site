@@ -6,7 +6,7 @@ export default function Business() {
     setSEO({
       title: "Business — GoVanGoes",
       description: "Booking, management, and opportunities.",
-      image: "https://govangoes.com/og.jpg",
+      image: "https://govangoes.com/images/og.jpg",
       url: "https://govangoes.com/business",
     });
   }, []);

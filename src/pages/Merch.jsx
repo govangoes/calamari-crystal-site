@@ -25,7 +25,7 @@ export default function Merch() {
     setSEO({
       title: "Merch — GoVanGoes",
       description: "Shop the Drop: limited releases and accessories.",
-      image: "https://govangoes.com/og.jpg",
+      image: "https://govangoes.com/images/og.jpg",
       url: "https://govangoes.com/merch",
     });
   }, []);

@@ -7,6 +7,9 @@ import Marketing from "./pages/Marketing.jsx";
 import Business from "./pages/Business.jsx";
 import Contact from "./pages/Contact.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import Listen from "./pages/Listen.jsx";
+import Videos from "./pages/Videos.jsx";
+import Shop from "./pages/Shop.jsx";
 
 import Footer from "./components/Footer.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
@@ -42,6 +45,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/story" element={<Story />} />
+        <Route path="/listen" element={<Listen />} />
+        <Route path="/videos" element={<Videos />} />
+        <Route path="/shop" element={<Shop />} />
         <Route path="/merch" element={<Merch />} />
         <Route path="/marketing" element={<Marketing />} />
         <Route path="/business" element={<Business />} />

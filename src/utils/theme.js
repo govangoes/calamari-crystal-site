@@ -1,54 +1,47 @@
-const STORAGE_KEY = 'theme'; // 'light' | 'dark'
-
-export function getStoredTheme() {
-  try { return localStorage.getItem(STORAGE_KEY); } catch { return null; }
-}
-
-export function getSystemTheme() {
-  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark' : 'light';
+export function getPreferredTheme() {
+  const saved = window.localStorage.getItem('theme');
+  if (saved === 'dark' || saved === 'light') return saved;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 export function applyTheme(theme) {
-  const root = document.documentElement;
-  root.setAttribute('data-theme', theme);
-  try { localStorage.setItem(STORAGE_KEY, theme); } catch {}
-
-  // Update <meta name="theme-color">
+  const t = theme || getPreferredTheme();
+  document.documentElement.setAttribute('data-theme', t);
+  // Sync browser UI color on mobile
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) {
-    meta.setAttribute('content', theme === 'dark' ? '#0A0A0E' : '#F7F7FB');
-  }
-}
-
-export function initTheme() {
-  const stored = getStoredTheme();
-  const theme = stored || getSystemTheme();
-  applyTheme(theme);
-
-  // React to system changes if user hasn't explicitly chosen
-  if (!stored && window.matchMedia) {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const handler = () => applyTheme(mq.matches ? 'dark' : 'light');
-    try {
-      mq.addEventListener('change', handler);
-    } catch {
-      // Safari fallback
-      mq.addListener(handler);
-    }
-  }
+  if (meta) meta.setAttribute('content', t === 'dark' ? '#0A0A0E' : '#FFFFFF');
 }
 
 export function toggleTheme() {
-  const current = document.documentElement.getAttribute('data-theme') || 'light';
-  applyTheme(current === 'light' ? 'dark' : 'light');
+  const current = document.documentElement.getAttribute('data-theme') || getPreferredTheme();
+  const next = current === 'dark' ? 'light' : 'dark';
+  window.localStorage.setItem('theme', next);
+  applyTheme(next);
+}
+
+// New helpers compatible with requested API
+export function setTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  try { window.localStorage.setItem('theme', theme); } catch {}
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) {
+    meta.setAttribute('content', theme === 'dark' ? '#0A0A0E' : '#FFFFFF');
+  }
+}
+
+// Detect system preference once, then persist user override.
+export function initTheme() {
+  // 1) read persisted choice; 2) fall back to system; 3) default dark
+  const saved = (() => { try { return window.localStorage.getItem('theme'); } catch { return null; } })();
+  const systemPref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const theme = saved || systemPref || 'dark';
+  setTheme(theme);
 }
 
 export default {
-  getStoredTheme,
-  getSystemTheme,
+  getPreferredTheme,
   applyTheme,
-  initTheme,
   toggleTheme,
+  setTheme,
+  initTheme,
 };
-

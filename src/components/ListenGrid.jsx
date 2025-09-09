@@ -21,7 +21,7 @@ export default function ListenGrid() {
             "@type": "MusicAlbum",
             name: "Calamari Crystal",
             byArtist: { "@type": "MusicGroup", name: "GoVanGoes" },
-            image: "https://govangoes.com/og.jpg",
+            image: "https://govangoes.com/images/og.jpg",
             genre: "Hip-Hop",
             inLanguage: "en",
             url: "https://govangoes.com/",

@@ -6,7 +6,7 @@ export default function Contact() {
     setSEO({
       title: "Contact — GoVanGoes",
       description: "Get in touch for bookings and collaborations.",
-      image: "https://govangoes.com/og.jpg",
+      image: "https://govangoes.com/images/og.jpg",
       url: "https://govangoes.com/contact",
     });
   }, []);

@@ -16,7 +16,7 @@ export default function Marketing() {
     setSEO({
       title: "Marketing — GoVanGoes",
       description: "Creative campaigns, brand partnerships, and content.",
-      image: "https://govangoes.com/og.jpg",
+      image: "https://govangoes.com/images/og.jpg",
       url: "https://govangoes.com/marketing",
     });
   }, []);

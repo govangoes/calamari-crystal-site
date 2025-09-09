@@ -6,7 +6,7 @@ export default function NotFound(){
     setSEO({
       title: "404 — GoVanGoes",
       description: "The current carried this page away.",
-      image: "https://govangoes.com/og.jpg",
+      image: "https://govangoes.com/images/og.jpg",
       url: "https://govangoes.com/404",
     });
   }, []);

@@ -7,7 +7,7 @@ export default function Story() {
     setSEO({
       title: "Story — GoVanGoes",
       description: "Dive into the saga: betrayal, treasure, redemption.",
-      image: "https://govangoes.com/og.jpg",
+      image: "https://govangoes.com/images/og.jpg",
       url: "https://govangoes.com/story",
     });
   }, []);
