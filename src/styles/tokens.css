@@ -5,12 +5,15 @@
   --text: #E6E6F0;          /* soft white */
   --muted: #A0A3B1;
 
-  --gold:#FFD700;
-  --ink:#12061A;
-  --crystal-1:#6F2DA8;
-  --crystal-2:#00D4FF;
-  --crystal-3:#FF00A8;
+  /* Brand tokens (requested) */
+  --gold: #FFD700;
+  --ink: #0A0A0E;
+  --crystal-1: #6F2DA8; /* purple */
+  --crystal-2: #00D4FF; /* aqua */
+  --crystal-3: #FF00A8; /* magenta */
+  --paper: #E6E6F0;
 
+  /* Existing tokens */
   --surface: #101018;
   --border: rgba(255,255,255,.12);
 
