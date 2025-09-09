@@ -9,7 +9,10 @@ export default function TopNav() {
     <header className="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-white/10">
       <div className="mx-auto max-w-6xl px-4 flex items-center justify-between h-14">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/squid.png" alt="GoVanGoes" className="h-6 w-6" />
+        <picture>
+          <source srcSet="/squid.webp" type="image/webp" />
+          <img src="/squid.png" alt="GoVanGoes" className="h-6 w-6" decoding="async" />
+        </picture>
           <span className="text-white font-bold tracking-wide">GoVanGoes</span>
         </Link>
         <nav className="flex items-center gap-1">
