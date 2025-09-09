@@ -15,11 +15,7 @@ const nav = [
 
 export default function Header(){
   return (
-    <header style={{
-      position:"sticky", top:0, zIndex:40,
-      backdropFilter:"saturate(140%) blur(8px)",
-      background:"rgba(10,10,14,.55)"
-    }}>
+    <header style={{ position:"sticky", top:0, zIndex:40 }}>
       <div style={{display:"flex",alignItems:"center",gap:16,justifyContent:"space-between",maxWidth:1200,margin:"0 auto",padding:"12px 20px"}}>
         <Link to="/" aria-label="GoVanGoes home" style={{display:"inline-flex",alignItems:"center",gap:10, textDecoration:'none', color:'inherit'}}>
           <strong className="wordmark">GoVanGoes</strong>

@@ -38,10 +38,10 @@ body {
 /* Light theme body: richer color overlays for contrast */
 :root[data-theme="light"] body {
   background:
-    radial-gradient(70rem 34rem at 50% -12%, rgba(111,45,168,.26), transparent 62%),
-    radial-gradient(60rem 30rem at 80% 18%, rgba(255,0,168,.20), transparent 62%),
-    radial-gradient(48rem 28rem at 10% 40%, rgba(0,212,255,.16), transparent 65%),
-    linear-gradient(180deg, #F2F5FF, var(--bg));
+    radial-gradient(70rem 34rem at 50% -12%, rgba(111,45,168,.32), transparent 62%),
+    radial-gradient(60rem 30rem at 80% 18%, rgba(255,0,168,.26), transparent 62%),
+    radial-gradient(48rem 28rem at 10% 40%, rgba(0,212,255,.20), transparent 65%),
+    linear-gradient(180deg, #EEF2FF, var(--bg));
 }
 
 /* --- Custom font scaffolding (replace with your built files) --- */
@@ -151,9 +151,9 @@ body {
 /* Light theme: slightly stronger overlays for contrast */
 :root[data-theme="light"] .bg-hero-gradient{
   background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(111,45,168,.28), transparent 60%),
-    radial-gradient(1000px 600px at 80% 20%, rgba(255,0,168,.18), transparent 60%),
-    linear-gradient(180deg, #F2F4FA, var(--bg));
+    radial-gradient(1200px 600px at 50% -10%, rgba(111,45,168,.34), transparent 60%),
+    radial-gradient(1000px 600px at 80% 20%, rgba(255,0,168,.24), transparent 60%),
+    linear-gradient(180deg, #EEF2FF, var(--bg));
 }
 
 /* Headings */
