@@ -1,4 +1,15 @@
+import { useEffect } from "react";
+import setSEO from "../utils/seo.js";
+
 export default function NotFound(){
+  useEffect(() => {
+    setSEO({
+      title: "404 — GoVanGoes",
+      description: "The current carried this page away.",
+      image: "https://govangoes.com/og.jpg",
+      url: "https://govangoes.com/404",
+    });
+  }, []);
   return (
     <section className="min-h-[50vh] grid place-items-center text-center">
       <div>

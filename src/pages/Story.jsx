@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import setSEO from "../utils/seo.js";
 import { motion } from "framer-motion";
 
 export default function Story() {
+  useEffect(() => {
+    setSEO({
+      title: "Story — GoVanGoes",
+      description: "Dive into the saga: betrayal, treasure, redemption.",
+      image: "https://govangoes.com/og.jpg",
+      url: "https://govangoes.com/story",
+    });
+  }, []);
   return (
     <main className="mx-auto max-w-6xl px-4 py-16 space-y-8">
       <header>

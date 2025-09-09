@@ -1,4 +1,15 @@
+import { useEffect } from "react";
+import setSEO from "../utils/seo.js";
+
 export default function Contact() {
+  useEffect(() => {
+    setSEO({
+      title: "Contact — GoVanGoes",
+      description: "Get in touch for bookings and collaborations.",
+      image: "https://govangoes.com/og.jpg",
+      url: "https://govangoes.com/contact",
+    });
+  }, []);
   return (
     <section className="max-w-2xl mx-auto space-y-6">
       <header className="text-center">

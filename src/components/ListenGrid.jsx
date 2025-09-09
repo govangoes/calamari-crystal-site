@@ -14,6 +14,19 @@ export default function ListenGrid() {
     <section aria-label="Listen" className="section">
       <div className="mx-auto max-w-6xl px-4" data-reveal-stagger="0,70">
         <h2 className="h2">Listen</h2>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MusicAlbum",
+            name: "Calamari Crystal",
+            byArtist: { "@type": "MusicGroup", name: "GoVanGoes" },
+            image: "https://govangoes.com/og.jpg",
+            genre: "Hip-Hop",
+            inLanguage: "en",
+            url: "https://govangoes.com/",
+          }) }}
+        />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
           {tracks.map((t) => (
             <div key={t.title} className="card p-5" data-reveal>

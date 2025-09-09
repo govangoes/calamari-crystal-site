@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import setSEO from "../utils/seo.js";
 import ScrollReveal from "../components/ScrollReveal.jsx";
 
 const items = [
@@ -19,6 +21,14 @@ const items = [
 ];
 
 export default function Merch() {
+  useEffect(() => {
+    setSEO({
+      title: "Merch — GoVanGoes",
+      description: "Shop the Drop: limited releases and accessories.",
+      image: "https://govangoes.com/og.jpg",
+      url: "https://govangoes.com/merch",
+    });
+  }, []);
   return (
     <section className="space-y-8">
       <header className="text-center">

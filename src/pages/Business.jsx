@@ -1,4 +1,15 @@
+import { useEffect } from "react";
+import setSEO from "../utils/seo.js";
+
 export default function Business() {
+  useEffect(() => {
+    setSEO({
+      title: "Business — GoVanGoes",
+      description: "Booking, management, and opportunities.",
+      image: "https://govangoes.com/og.jpg",
+      url: "https://govangoes.com/business",
+    });
+  }, []);
   const streams = [
     ["Live/Bookings", "$30k target"],
     ["Merch", "$12k target"],

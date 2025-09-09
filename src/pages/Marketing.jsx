@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import setSEO from "../utils/seo.js";
 import ScrollReveal from "../components/ScrollReveal.jsx";
 
 const timeline = [
@@ -10,6 +12,14 @@ const timeline = [
 ];
 
 export default function Marketing() {
+  useEffect(() => {
+    setSEO({
+      title: "Marketing — GoVanGoes",
+      description: "Creative campaigns, brand partnerships, and content.",
+      image: "https://govangoes.com/og.jpg",
+      url: "https://govangoes.com/marketing",
+    });
+  }, []);
   return (
     <section className="space-y-10">
       <header className="text-center space-y-2">
