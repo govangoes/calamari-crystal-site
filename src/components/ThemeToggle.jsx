@@ -1,17 +1,33 @@
-import { useEffect, useState } from "react";
-import { applyTheme, toggleTheme, getCurrentTheme } from "../utils/theme.js";
+import React, { useEffect, useState } from "react";
+import { getCurrentTheme, toggleTheme } from "../utils/theme.js";
 
-export default function ThemeToggle(){
-  const [mode, setMode] = useState('dark');
-  useEffect(() => { const t=getCurrentTheme(); setMode(t); applyTheme(t); }, []);
-  function onClick(){
-    toggleTheme();
-    const t = document.documentElement.getAttribute('data-theme') || 'dark';
-    setMode(t);
-  }
+export default function ThemeToggle({ className = "" }) {
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const sync = () => setTheme(getCurrentTheme());
+    sync();
+    window.addEventListener("gvg-theme-change", sync);
+    window.addEventListener("storage", sync);
+    return () => {
+      window.removeEventListener("gvg-theme-change", sync);
+      window.removeEventListener("storage", sync);
+    };
+  }, []);
+
+  const isDark = theme === "dark";
   return (
-    <button className="pill" aria-label="Toggle theme" onClick={onClick} style={{gap:8}}>
-      {mode === 'dark' ? '🌙' : '☀️'} <span>{mode === 'dark' ? 'Dark' : 'Light'}</span>
+    <button
+      type="button"
+      className={`pill ${className}`}
+      onClick={() => {
+        toggleTheme();
+        setTheme(getCurrentTheme());
+      }}
+      aria-label="Toggle color theme"
+      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+    >
+      {isDark ? "☀️ Light" : "🌙 Dark"}
     </button>
   );
 }

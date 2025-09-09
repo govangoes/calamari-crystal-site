@@ -4,9 +4,9 @@ export function setSEO({ title, description, image, url }) {
     let el = document.querySelector(selector);
     if (!el) {
       el = document.createElement('meta');
-      if (selector.startsWith('meta[name="'])) {
+      if (selector.startsWith('meta[name="')) {
         el.setAttribute('name', selector.match(/meta\[name="([^"]+)"\]/)[1]);
-      } else if (selector.startsWith('meta[property="'])) {
+      } else if (selector.startsWith('meta[property="')) {
         el.setAttribute('property', selector.match(/meta\[property="([^"]+)"\]/)[1]);
       }
       document.head.appendChild(el);
@@ -35,4 +35,3 @@ export function setSEO({ title, description, image, url }) {
 }
 
 export default setSEO;
-
