@@ -39,3 +39,8 @@ Backlog — SEO/UX Improvements
 9) Domain alignment
 - When govangoes.com is live, switch og:url and canonical back to the primary domain
 - Update robots.txt sitemap URL accordingly
+
+10) EPK Automation
+- Install EXIF reader: `npm i -D exifr`
+- Run `npm run epk:exif` to auto-fill date/location in manifest from image EXIF (GPS/DateTimeOriginal)
+- Curate captions/notes in `public/images/you/manifest.json`
