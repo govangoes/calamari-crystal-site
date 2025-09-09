@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import setSEO from "../utils/seo.js";
 
 export default function Shop() {
+  useEffect(() => {
+    setSEO({
+      title: "Shop — GoVanGoes",
+      description: "Limited drops and exclusive bundles.",
+      image: "https://govangoes.com/images/og.jpg",
+      url: "https://govangoes.com/shop",
+    });
+  }, []);
   const items = [
     { name: "Cloutlandish Hoodie", price: "$79" },
     { name: "Producer‑Rapper Template", price: "$97" },
@@ -27,4 +36,3 @@ export default function Shop() {
     </section>
   );
 }
-

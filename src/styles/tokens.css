@@ -76,6 +76,13 @@ body {
 /* Gold hint on icon hover */
 .pill:hover { color: var(--gold); }
 
+/* Simple responsive utility to reveal header nav on md+ (768px) */
+@media (min-width: 768px){
+  .md\\:flex { display:flex !important; }
+  .md\\:block { display:block !important; }
+  .md\\:hidden { display:none !important; }
+}
+
 /* Cards, dividers */
 .card {
   background: var(--surface);

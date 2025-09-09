@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import setSEO from "../utils/seo.js";
 
 export default function Bookings() {
+  useEffect(() => {
+    setSEO({
+      title: "Bookings — GoVanGoes",
+      description: "Shows, brand events, press, and collaborations.",
+      image: "https://govangoes.com/images/og.jpg",
+      url: "https://govangoes.com/bookings",
+    });
+  }, []);
   return (
     <section className="section">
       <div className="mx-auto max-w-6xl px-4">
@@ -12,4 +21,3 @@ export default function Bookings() {
     </section>
   );
 }
-

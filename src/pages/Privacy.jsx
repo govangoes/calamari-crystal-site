@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import setSEO from "../utils/seo.js";
 
 export default function Privacy() {
+  useEffect(() => {
+    setSEO({
+      title: "Privacy — GoVanGoes",
+      description: "Privacy policy and data usage overview.",
+      image: "https://govangoes.com/images/og.jpg",
+      url: "https://govangoes.com/privacy",
+    });
+  }, []);
   return (
     <section className="section">
       <div className="mx-auto max-w-6xl px-4">
@@ -10,4 +19,3 @@ export default function Privacy() {
     </section>
   );
 }
-

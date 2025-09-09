@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import setSEO from "../utils/seo.js";
 import ListenGrid from "../components/ListenGrid.jsx";
 
 export default function Listen() {
+  useEffect(() => {
+    setSEO({
+      title: "Listen — GoVanGoes",
+      description: "Stream the latest tracks, EPs, and live sessions.",
+      image: "https://govangoes.com/images/og.jpg",
+      url: "https://govangoes.com/listen",
+    });
+  }, []);
   return (
     <>
       <section className="section">
@@ -17,4 +26,3 @@ export default function Listen() {
     </>
   );
 }
-

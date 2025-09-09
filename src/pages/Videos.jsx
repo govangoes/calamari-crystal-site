@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import setSEO from "../utils/seo.js";
 
 export default function Videos() {
+  useEffect(() => {
+    setSEO({
+      title: "Videos — GoVanGoes",
+      description: "Music videos, live performances, and BTS footage.",
+      image: "https://govangoes.com/images/og.jpg",
+      url: "https://govangoes.com/videos",
+    });
+  }, []);
   return (
     <section className="section">
       <div className="mx-auto max-w-6xl px-4">
@@ -12,4 +21,3 @@ export default function Videos() {
     </section>
   );
 }
-

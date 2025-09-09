@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import setSEO from "../utils/seo.js";
 
 export default function Music() {
+  useEffect(() => {
+    setSEO({
+      title: "Music — GoVanGoes",
+      description: "Latest singles, EPs, and concept‑album tracks.",
+      image: "https://govangoes.com/images/og.jpg",
+      url: "https://govangoes.com/music",
+    });
+  }, []);
   return (
     <section className="section">
       <div className="mx-auto max-w-6xl px-4">
@@ -19,4 +28,3 @@ export default function Music() {
     </section>
   );
 }
-

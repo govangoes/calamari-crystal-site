@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import setSEO from "../utils/seo.js";
 
 export default function Press() {
+  useEffect(() => {
+    setSEO({
+      title: "Press — GoVanGoes",
+      description: "Bio, photos, logos, and press contact.",
+      image: "https://govangoes.com/images/og.jpg",
+      url: "https://govangoes.com/press",
+    });
+  }, []);
   return (
     <section className="section">
       <div className="mx-auto max-w-6xl px-4">
@@ -11,4 +20,3 @@ export default function Press() {
     </section>
   );
 }
-
