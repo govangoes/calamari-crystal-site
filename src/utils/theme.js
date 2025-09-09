@@ -1,47 +1,54 @@
-export function getPreferredTheme() {
-  const saved = window.localStorage.getItem('theme');
-  if (saved === 'dark' || saved === 'light') return saved;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
+export const THEME_KEY = "gvg_theme";
 
-export function applyTheme(theme) {
-  const t = theme || getPreferredTheme();
-  document.documentElement.setAttribute('data-theme', t);
-  // Sync browser UI color on mobile
-  const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute('content', t === 'dark' ? '#0A0A0E' : '#FFFFFF');
-}
-
-export function toggleTheme() {
-  const current = document.documentElement.getAttribute('data-theme') || getPreferredTheme();
-  const next = current === 'dark' ? 'light' : 'dark';
-  window.localStorage.setItem('theme', next);
-  applyTheme(next);
-}
-
-// New helpers compatible with requested API
-export function setTheme(theme) {
-  document.documentElement.dataset.theme = theme;
-  try { window.localStorage.setItem('theme', theme); } catch {}
-  const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) {
-    meta.setAttribute('content', theme === 'dark' ? '#0A0A0E' : '#FFFFFF');
+function getStoredTheme() {
+  try {
+    return localStorage.getItem(THEME_KEY) || null;
+  } catch {
+    return null;
   }
 }
 
-// Detect system preference once, then persist user override.
-export function initTheme() {
-  // 1) read persisted choice; 2) fall back to system; 3) default dark
-  const saved = (() => { try { return window.localStorage.getItem('theme'); } catch { return null; } })();
-  const systemPref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  const theme = saved || systemPref || 'dark';
-  setTheme(theme);
+function getSystemTheme() {
+  if (typeof window === "undefined" || !window.matchMedia) return "dark";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
-export default {
-  getPreferredTheme,
-  applyTheme,
-  toggleTheme,
-  setTheme,
-  initTheme,
-};
+export function getCurrentTheme() {
+  const attr = document.documentElement.getAttribute("data-theme");
+  return attr || getSystemTheme();
+}
+
+export function applyTheme(theme) {
+  const t = theme || getSystemTheme();
+  const root = document.documentElement;
+  root.setAttribute("data-theme", t);
+  // Hints to the browser for form controls, etc.
+  root.style.colorScheme = t;
+  try {
+    localStorage.setItem(THEME_KEY, t);
+  } catch {}
+  // Broadcast so components can react without prop-drilling
+  window.dispatchEvent(new Event("gvg-theme-change"));
+}
+
+export function initTheme() {
+  const saved = getStoredTheme();
+  applyTheme(saved || getSystemTheme());
+
+  // If user hasn't explicitly chosen, follow system changes live
+  try {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = (e) => {
+      if (!getStoredTheme()) applyTheme(e.matches ? "dark" : "light");
+    };
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else mq.addListener && mq.addListener(onChange);
+  } catch {}
+}
+
+export function toggleTheme() {
+  const now = getCurrentTheme();
+  applyTheme(now === "dark" ? "light" : "dark");
+}
+
+export default { THEME_KEY, getCurrentTheme, applyTheme, initTheme, toggleTheme };
