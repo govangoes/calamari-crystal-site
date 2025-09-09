@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 84" role="img" aria-labelledby="title desc">
+  <title id="title">GoVanGoes wordmark</title>
+  <desc id="desc">Stylized GoVanGoes brand wordmark with crystal gradient and underline.</desc>
+  <defs>
+    <linearGradient id="gvgGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6F2DA8"/>
+      <stop offset="55%" stop-color="#00D4FF"/>
+      <stop offset="100%" stop-color="#FF00A8"/>
+    </linearGradient>
+    <style>
+      text { font-family: 'Calamari Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Inter, Arial, sans-serif; }
+      .word { font-weight: 800; font-size: 52px; letter-spacing: .5px; }
+      @media (prefers-color-scheme: light) {
+        .underline { stroke: #C59B00; }
+      }
+      @media (prefers-color-scheme: dark) {
+        .underline { stroke: #FFD700; }
+      }
+    </style>
+  </defs>
+
+  <!-- Wordmark text -->
+  <text x="0" y="54" class="word" fill="url(#gvgGradient)">GoVanGoes</text>
+
+  <!-- Subtle underline curve -->
+  <path class="underline" d="M4,70 C140,20 360,20 516,70" fill="none" stroke-width="3"/>
+</svg>
+
