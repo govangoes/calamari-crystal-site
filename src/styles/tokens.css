@@ -73,6 +73,8 @@ body {
   border-color: var(--gold);
   box-shadow: inset 0 0 0 .5px var(--gold);
 }
+/* Gold hint on icon hover */
+.pill:hover { color: var(--gold); }
 
 /* Cards, dividers */
 .card {
@@ -95,4 +97,3 @@ body {
 /* Headings */
 .h2 { font-size: clamp(24px, 3.5vw, 36px); margin:0 0 .5rem; font-weight:800; }
 .lead { opacity:.9; font-size: clamp(16px, 2.2vw, 20px); }
-
