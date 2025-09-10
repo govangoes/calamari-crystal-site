@@ -24,10 +24,10 @@ export default function NavBar(){
         <div className="flex items-center gap-1">
           <LinkItem to="/">Home</LinkItem>
           <LinkItem to="/story">Lore</LinkItem>
+          <LinkItem to="/music"><Music className="inline h-4 w-4 mr-1" />Music</LinkItem>
           <LinkItem to="/merch"><ShoppingBag className="inline h-4 w-4 mr-1" />Merch</LinkItem>
-          <LinkItem to="/marketing"><Music className="inline h-4 w-4 mr-1" />Drops</LinkItem>
-          <LinkItem to="/epk"><FileText className="inline h-4 w-4 mr-1" />EPK</LinkItem>
-          <LinkItem to="/contact"><MessageCircle className="inline h-4 w-4 mr-1" />Contact</LinkItem>
+          <LinkItem to="/press"><FileText className="inline h-4 w-4 mr-1" />Press</LinkItem>
+          <LinkItem to="/bookings"><MessageCircle className="inline h-4 w-4 mr-1" />Bookings</LinkItem>
         </div>
       </nav>
     </header>
