@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Gem, Music, ShoppingBag, FileText, MessageCircle } from "lucide-react";
+import ThemeToggle from "./ThemeToggle.jsx";
 
 const LinkItem = ({ to, children }) => (
   <NavLink
@@ -28,6 +29,7 @@ export default function NavBar(){
           <LinkItem to="/merch"><ShoppingBag className="inline h-4 w-4 mr-1" />Merch</LinkItem>
           <LinkItem to="/press"><FileText className="inline h-4 w-4 mr-1" />Press</LinkItem>
           <LinkItem to="/bookings"><MessageCircle className="inline h-4 w-4 mr-1" />Bookings</LinkItem>
+          <ThemeToggle />
         </div>
       </nav>
     </header>
