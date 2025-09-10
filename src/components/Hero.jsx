@@ -7,8 +7,8 @@ export default function Hero() {
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h1 className="text-5xl font-extrabold leading-tight">Wildly influential. Unapologetically different.</h1>
-            <p className="mt-4 text-paperWhite/80">
-              Turn the volume into value—bars, showmanship, and a movement you can join.
+            <p className="mt-4 text-ink/80 dark:text-paperWhite/80">
+              Precision bars. High‑impact performance.
             </p>
             <div className="mt-6 flex gap-4">
               <a href="/music" className="btn btn-primary">Listen Now</a>
