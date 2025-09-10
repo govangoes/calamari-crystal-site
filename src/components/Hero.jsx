@@ -8,7 +8,7 @@ export default function Hero() {
           <div>
             <h1 className="text-5xl font-extrabold leading-tight">Wildly influential. Unapologetically different.</h1>
             <p className="mt-4 text-ink/80 dark:text-paperWhite/80">
-              Precision bars. High‑impact performance.
+              Presence. Precision. Performance.
             </p>
             <div className="mt-6 flex gap-4">
               <a href="/music" className="btn btn-primary">Listen Now</a>
