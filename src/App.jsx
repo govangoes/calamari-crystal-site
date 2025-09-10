@@ -10,7 +10,7 @@ import Merch from "./pages/Merch.jsx";
 import Marketing from "./pages/Marketing.jsx";
 import Business from "./pages/Business.jsx";
 import Contact from "./pages/Contact.jsx";
-import EPK from "./pages/EPK.jsx";
+// EPK route aliases to Press content
 import Music from "./pages/Music.jsx";
 import Bookings from "./pages/Bookings.jsx";
 import About from "./pages/About.jsx";
@@ -37,7 +37,7 @@ export default function App() {
           <Route path="/press" element={<Press />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
-          <Route path="/epk" element={<EPK />} />
+          <Route path="/epk" element={<Press />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
