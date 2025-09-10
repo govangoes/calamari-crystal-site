@@ -25,9 +25,14 @@ jobs:
       - name: Install deps (prefer npm ci, fallback to npm install)
         run: |
           npm ci --no-audit --no-fund || npm install --no-audit --no-fund
-
       - name: Optimize images (WebP gen)
         run: npm run img:opt
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test -- --run
 
       - name: Show workspace (debug)
         run: |
@@ -36,12 +41,6 @@ jobs:
           ls -la
           echo "---- src tree ----"
           ls -laR src || true
-
-      - name: Lint
-        run: npm run lint || echo "Skipping lint (not configured on this branch)"
-
-      - name: Test
-        run: npm test -- --run || echo "Skipping tests if none configured"
 
       - name: Build
         run: npm run build
