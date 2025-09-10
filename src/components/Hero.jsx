@@ -17,11 +17,17 @@ export default function Hero() {
             </div>
           </div>
           <div className="relative">
-            <img
-              src="/squid_emblem.png"
-              alt="Squid Emblem"
-              className="w-full drop-shadow-2xl shadow-crystal"
-            />
+            <picture>
+              <source srcSet="/squid_emblem.webp" type="image/webp" />
+              <img
+                src="/squid_emblem.png"
+                alt="Squid Emblem"
+                className="w-full drop-shadow-2xl shadow-crystal"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </div>

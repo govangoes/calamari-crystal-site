@@ -11,6 +11,8 @@
       } catch (e) {}
     })();
     </script>
+    <!-- Preload critical hero image for faster LCP -->
+    <link rel="preload" as="image" href="/squid_emblem.png" fetchpriority="high">
 <link rel="canonical" href="https://govangoes.com/">
 
 
@@ -31,7 +33,18 @@
   ]
 }
 </script>
-<script defer data-domain="govangoes.com" src="https://plausible.io/js/script.js"></script>
+<script>
+(function(){
+  var h = location.hostname;
+  if (h !== 'localhost' && h !== '127.0.0.1') {
+    var s = document.createElement('script');
+    s.defer = true;
+    s.setAttribute('data-domain','govangoes.com');
+    s.src = 'https://plausible.io/js/script.js';
+    document.head.appendChild(s);
+  }
+})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -79,11 +92,18 @@
     <link rel="icon" href="/squid_emblem.png" />
     <meta property="og:title" content="GoVanGoes — Calamari Crystal" />
     <meta property="og:description" content="Dive into the saga: betrayal, treasure, redemption." />
-    <meta property="og:image" content="/Kraken_Cristo_Wallpaper_5120x1440.png" />
+<meta property="og:image" content="/og.jpg" />
     <meta name="theme-color" content="#020617" />
 
-    <!-- Plausible Analytics (set your real domain) -->
-    <script defer data-domain="govangoes.com" src="https://plausible.io/js/script.js"></script>
+    <!-- Analytics already added above with environment guard -->
+
+    <!-- Fonts: Preload once /public/fonts contains WOFF2 files -->
+    <!--
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/CalamariSans-Regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/CalamariSans-Semibold.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/CalamariSans-Bold.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/CalamariSans-Italic.woff2" crossorigin>
+    -->
 
     <!-- JSON-LD: Website + Organization -->
     <script type="application/ld+json">
