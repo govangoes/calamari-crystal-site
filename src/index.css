@@ -1,10 +1,10 @@
 @import "./styles/theme.css";
+@import "./styles/fonts.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* === Brand tokens as CSS variables (for future use) === */
-@import "./styles/fonts.css";
 @layer base {
   :root {
     /* Reserved for future per-component tokens */
