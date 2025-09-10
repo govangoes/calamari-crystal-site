@@ -21,7 +21,7 @@ import Terms from "./pages/Terms.jsx";
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-abyssNavy text-paperWhite">
+      <div className="min-h-screen bg-paperWhite text-ink dark:bg-abyssNavy dark:text-paperWhite">
         <CursorSquid />
         <NavBar />
         <Routes>
