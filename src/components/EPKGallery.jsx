@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import Lightbox from "./Lightbox.jsx";
 
 function toWebp(src) {
   const i = src.lastIndexOf('.');
@@ -8,6 +9,7 @@ function toWebp(src) {
 
 export default function EPKGallery({ items: itemsProp }) {
   const [items, setItems] = useState(itemsProp || []);
+  const [openIndex, setOpenIndex] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function EPKGallery({ items: itemsProp }) {
           const webp = toWebp(it.src);
           return (
             <figure key={(it.src || '') + idx} className="group overflow-hidden rounded-xl border border-ink/10 dark:border-white/10 bg-white/70 dark:bg-white/5">
-              <a href={it.src} target="_blank" rel="noopener noreferrer" className="block">
+              <a href={it.src} className="block" onClick={(e)=>{ e.preventDefault(); setOpenIndex(idx); }}>
                 <picture>
                   <source srcSet={webp} type="image/webp" />
                   <img
@@ -62,18 +64,35 @@ export default function EPKGallery({ items: itemsProp }) {
                     </div>
                   )}
                 </div>
-                <a
-                  href={it.src}
-                  download
-                  className="shrink-0 inline-flex items-center rounded-md px-3 py-1.5 text-xs border border-ink/15 dark:border-white/15 hover:bg-ink/5 dark:hover:bg-white/10 transition"
-                >
-                  Download
-                </a>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={it.src}
+                    download
+                    className="shrink-0 inline-flex items-center rounded-md px-3 py-1.5 text-xs border border-ink/15 dark:border-white/15 hover:bg-ink/5 dark:hover:bg-white/10 transition"
+                  >
+                    Download
+                  </a>
+                  <button
+                    className="shrink-0 inline-flex items-center rounded-md px-3 py-1.5 text-xs border border-ink/15 dark:border-white/15 hover:bg-ink/5 dark:hover:bg-white/10 transition"
+                    onClick={()=>setOpenIndex(idx)}
+                  >
+                    View
+                  </button>
+                </div>
               </figcaption>
             </figure>
           );
         })}
       </div>
+      {openIndex != null && (
+        <Lightbox
+          items={items}
+          index={openIndex}
+          onClose={()=>setOpenIndex(null)}
+          onPrev={()=>setOpenIndex((i)=> (i>0? i-1 : items.length-1))}
+          onNext={()=>setOpenIndex((i)=> (i<items.length-1? i+1 : 0))}
+        />
+      )}
     </section>
   );
 }
