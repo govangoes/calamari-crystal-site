@@ -23,7 +23,18 @@
   ]
 }
 </script>
-<script defer data-domain="govangoes.com" src="https://plausible.io/js/script.js"></script>
+<script>
+(function(){
+  var h = location.hostname;
+  if (h !== 'localhost' && h !== '127.0.0.1') {
+    var s = document.createElement('script');
+    s.defer = true;
+    s.setAttribute('data-domain','govangoes.com');
+    s.src = 'https://plausible.io/js/script.js';
+    document.head.appendChild(s);
+  }
+})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -74,8 +85,7 @@
 <meta property="og:image" content="/og.jpg" />
     <meta name="theme-color" content="#020617" />
 
-    <!-- Plausible Analytics (set your real domain) -->
-    <script defer data-domain="govangoes.com" src="https://plausible.io/js/script.js"></script>
+    <!-- Analytics already added above with environment guard -->
 
     <!-- Fonts: Preload once /public/fonts contains WOFF2 files -->
     <!--
