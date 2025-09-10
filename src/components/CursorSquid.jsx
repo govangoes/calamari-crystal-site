@@ -10,6 +10,7 @@ export default function CursorSquid() {
   const idRef = useRef(0);
   const rafRef = useRef(0);
   const disabledRef = useRef(false);
+  const [squid, setSquid] = useState({ x: -100, y: -100, deg: 0 });
 
   useEffect(() => {
     // Respect reduced motion
@@ -25,6 +26,13 @@ export default function CursorSquid() {
   useEffect(() => {
     const onMove = (e) => {
       if (disabledRef.current) return;
+      // Update squid position + direction
+      setSquid((prev) => {
+        const dx = e.clientX - (prev.x === -100 ? e.clientX : prev.x);
+        const dy = e.clientY - (prev.y === -100 ? e.clientY : prev.y);
+        const deg = (Math.atan2(dy, dx) * 180) / Math.PI;
+        return { x: e.clientX, y: e.clientY, deg };
+      });
       const id = ++idRef.current;
       setTrail((t) => {
         const next = [...t, { id, x: e.clientX, y: e.clientY, life: 1, splat: false }];
@@ -68,7 +76,18 @@ export default function CursorSquid() {
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
+  // Hide system cursor while active (unless reduced motion)
+  useEffect(() => {
+    if (!disabledRef.current) {
+      const prev = document.body.style.cursor;
+      document.body.style.cursor = 'none';
+      return () => { document.body.style.cursor = prev; };
+    }
+  }, []);
+
   if (disabledRef.current) return null;
+
+  const size = 26; // squid size in px
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999]">
@@ -98,6 +117,43 @@ export default function CursorSquid() {
           </div>
         );
       })}
+
+      {/* Squid cursor */}
+      <div
+        className="absolute will-change-transform drop-shadow"
+        style={{
+          transform: `translate(${squid.x - size / 2}px, ${squid.y - size / 2}px) rotate(${squid.deg}deg)`,
+          width: size,
+          height: size,
+        }}
+      >
+        <SquidIcon />
+      </div>
     </div>
+  );
+}
+
+function SquidIcon() {
+  // Simple stylized squid with tentacles; colors adapt via Tailwind text color
+  return (
+    <svg viewBox="0 0 28 28" className="h-full w-full text-ultraviolet dark:text-crystal" aria-hidden>
+      <defs>
+        <linearGradient id="squidBody" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stopColor="currentColor" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="currentColor" stopOpacity="0.75" />
+        </linearGradient>
+      </defs>
+      {/* Head / mantle */}
+      <path d="M14 2 L22 10 C22 14 18 16 14 16 C10 16 6 14 6 10 Z" fill="url(#squidBody)"/>
+      {/* Eyes */}
+      <circle cx="12" cy="10" r="1.3" fill="#0b0a0f" opacity=".9"/>
+      <circle cx="16" cy="10" r="1.3" fill="#0b0a0f" opacity=".9"/>
+      {/* Tentacles */}
+      <path d="M10 16 C9 19 8 22 9.5 24" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
+      <path d="M12 16 C11.5 19 11 22 12.4 24" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
+      <path d="M14 16 C14 19 14 22 14.8 24" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
+      <path d="M16 16 C16.5 19 17 22 16 24" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
+      <path d="M18 16 C19 19 20 22 18.5 24" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
+    </svg>
   );
 }
