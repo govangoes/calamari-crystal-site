@@ -18,14 +18,14 @@
   html, body, #root { height: 100%; }
 
   /* Default theme backdrop */
-  body { @apply bg-abyssNavy text-inkBlack antialiased; }
-  .dark body { @apply bg-inkBlack text-paperWhite; }
+  body { @apply bg-abyssNavy text-ink antialiased; }
+  .dark body { @apply bg-ink text-paperWhite; }
 }
 
 /* === Small helpers you can reuse in components === */
 @layer utilities {
   .btn { @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform; }
-  .btn-primary { @apply btn bg-goldAura text-inkBlack hover:shadow-glow hover:scale-[1.02]; }
+  .btn-primary { @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02]; }
   .pill { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm; }
   .section { @apply relative py-16 md:py-24; }
 }
