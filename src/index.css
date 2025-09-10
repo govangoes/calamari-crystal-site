@@ -1,3 +1,4 @@
+@import "./styles/theme.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,21 +6,13 @@
 /* === Brand tokens as CSS variables (for future use) === */
 @layer base {
   :root {
-    --ink: #0b0a0f;
-    --abyss: #0f1020;
-    --paper: #f5f7fb;
-    --gold: #ffd700;
-    --crystal-purple: #6f2da8;
-    --crystal-pink: #ee3e96;
-    --crystal-blue: #3b82f6;
-    --crystal-teal: #14b8a6;
+    /* Reserved for future per-component tokens */
   }
 
   html, body, #root { height: 100%; }
 
   /* Default theme backdrop */
-  body { @apply bg-abyssNavy text-ink antialiased; }
-  .dark body { @apply bg-ink text-paperWhite; }
+  body { @apply antialiased; }
 }
 
 /* === Small helpers you can reuse in components === */
