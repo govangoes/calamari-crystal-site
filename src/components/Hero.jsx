@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 py-24">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h1 className="text-5xl font-extrabold leading-tight">Be the Vibe. Be the Voice.</h1>
+            <h1 className="text-5xl font-extrabold leading-tight">Wildly influential. Unapologetically different.</h1>
             <p className="mt-4 text-paperWhite/80">
               Turn the volume into value—bars, showmanship, and a movement you can join.
             </p>
