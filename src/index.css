@@ -1,3 +1,4 @@
+@import "./styles/theme.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,28 +7,20 @@
 @import "./styles/fonts.css";
 @layer base {
   :root {
-    --ink: #0b0a0f;
-    --abyss: #0f1020;
-    --paper: #f5f7fb;
-    --gold: #ffd700;
-    --crystal-purple: #6f2da8;
-    --crystal-pink: #ee3e96;
-    --crystal-blue: #3b82f6;
-    --crystal-teal: #14b8a6;
+    /* Reserved for future per-component tokens */
   }
 
   html, body, #root { height: 100%; }
   :root { --font-brand: "Calamari Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
 
   /* Default theme backdrop */
-  body { @apply bg-abyssNavy text-inkBlack antialiased; font-family: var(--font-brand); }
-  .dark body { @apply bg-inkBlack text-paperWhite; }
+  body { @apply antialiased; }
 }
 
 /* === Small helpers you can reuse in components === */
 @layer utilities {
   .btn { @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform; }
-  .btn-primary { @apply btn bg-goldAura text-inkBlack hover:shadow-glow hover:scale-[1.02]; }
+  .btn-primary { @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02]; }
   .pill { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm; }
   .section { @apply relative py-16 md:py-24; }
 }
