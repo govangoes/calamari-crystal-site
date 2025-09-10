@@ -1,7 +1,14 @@
 export default function SocialIconBase({ title, children, size=28, className="" }) {
   const id = Math.random().toString(36).slice(2);
+  const labelled = Boolean(title);
   return (
-    <svg width={size} height={size} viewBox="0 0 28 28" role="img" aria-label={title} className={className}>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 28 28"
+      className={className}
+      {...(labelled ? { role: 'img', 'aria-label': title } : { 'aria-hidden': true, focusable: 'false' })}
+    >
       <defs>
         <linearGradient id={`crystal-${id}`} x1="0" x2="1" y1="0" y2="1">
           <stop offset="0%"  stopColor="var(--crystalCyan, #22d3ee)" />
