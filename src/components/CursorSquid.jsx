@@ -87,7 +87,7 @@ export default function CursorSquid() {
 
   if (disabledRef.current) return null;
 
-  const size = 26; // squid size in px
+  const size = 36; // squid size in px (slightly larger)
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999]">
