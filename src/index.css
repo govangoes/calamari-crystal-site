@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* === Brand tokens as CSS variables (for future use) === */
+@import "./styles/fonts.css";
 @layer base {
   :root {
     --ink: #0b0a0f;
@@ -16,9 +17,10 @@
   }
 
   html, body, #root { height: 100%; }
+  :root { --font-brand: "Calamari Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
 
   /* Default theme backdrop */
-  body { @apply bg-abyssNavy text-inkBlack antialiased; }
+  body { @apply bg-abyssNavy text-inkBlack antialiased; font-family: var(--font-brand); }
   .dark body { @apply bg-inkBlack text-paperWhite; }
 }
 

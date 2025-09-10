@@ -1,0 +1,35 @@
+/* Brand font faces. Place .woff2 files in /public/fonts before enabling preloads. */
+/* File names are suggestions; adjust if your files differ. */
+
+@font-face {
+  font-family: "Calamari Sans";
+  src: url('/fonts/CalamariSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Calamari Sans";
+  src: url('/fonts/CalamariSans-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Calamari Sans";
+  src: url('/fonts/CalamariSans-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Calamari Sans";
+  src: url('/fonts/CalamariSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
