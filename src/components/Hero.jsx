@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-squid-gradient">
@@ -11,9 +9,9 @@ export default function Hero() {
               Presence. Precision. Performance.
             </p>
             <div className="mt-6 flex gap-4">
-              <a href="/music" className="btn btn-primary">Listen Now</a>
-              <a href="/videos" className="btn btn-secondary">Watch a Performance</a>
-              <a href="/shop" className="btn btn-tertiary">Shop the Drop</a>
+              <a className="btn btn-primary" href="/music">Listen Now</a>
+              <a className="btn btn-secondary" href="/videos">Watch a Performance</a>
+              <a className="btn btn-tertiary" href="/shop">Shop the Drop</a>
             </div>
           </div>
           <div className="relative">
@@ -24,7 +22,7 @@ export default function Hero() {
                 alt="Squid Emblem"
                 className="w-full drop-shadow-2xl shadow-crystal"
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="async"
               />
             </picture>
