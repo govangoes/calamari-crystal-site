@@ -26,7 +26,6 @@ export default [
         },
       },
       globals: {
-        ...globalThis,
         window: 'readonly',
         document: 'readonly',
         navigator: 'readonly',
