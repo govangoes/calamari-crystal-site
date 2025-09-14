@@ -5,7 +5,6 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import testingLibrary from 'eslint-plugin-testing-library';
 import jestDom from 'eslint-plugin-jest-dom';
 import prettier from 'eslint-config-prettier';
-
 export default [
   js.configs.recommended,
   {
@@ -18,8 +17,9 @@ export default [
       'jest-dom': jestDom,
     },
     languageOptions: {
-      ecmaVersion: 'latest',
+      ecmaVersion: 2021,
       sourceType: 'module',
+      env: { browser: true, es2021: true },
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
@@ -44,6 +44,8 @@ export default [
       ...jsxA11y.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
+      'no-unused-vars': 'warn',
+      'no-console': ['warn', { allow: ['error'] }],
     },
   },
   {
