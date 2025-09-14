@@ -1,9 +1,11 @@
+/* global alert */
 import { useState } from "react";
+
 export default function Newsletter(){
   const [email,setEmail] = useState("");
-  const submit = (e)=>{ e.preventDefault(); alert("Thanks! We’ll keep you posted."); setEmail(""); };
+  const submit = (e)=>{ e.preventDefault(); alert("Thanks! We'll keep you posted."); setEmail(""); };
   return (
-    <form onSubmit={submit} className="rounded-xl border border-white/10 p-4 bg-ink/40 space-y-2">
+    <form className="rounded-xl border border-white/10 p-4 bg-ink/40 space-y-2" onSubmit={submit}>
       <h3 className="font-semibold">Join the Crew</h3>
       <p className="opacity-80 text-sm">Get drops, shows, and secret lore.</p>
       <div className="flex gap-2">
