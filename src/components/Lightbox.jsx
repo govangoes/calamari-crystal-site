@@ -6,7 +6,13 @@ export default function Lightbox({ items = [], index = 0, onClose, onPrev, onNex
   useEffect(() => {
     const prevOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = 'hidden';
-    try { closeRef.current?.focus(); } catch {}
+    
+    try { 
+      closeRef.current?.focus(); 
+    } catch {
+      // intentionally empty - focus may fail on some elements
+    }
+    
     const onKey = (e) => {
       if (e.key === 'Escape') onClose?.();
       if (e.key === 'ArrowLeft') onPrev?.();
@@ -23,6 +29,7 @@ export default function Lightbox({ items = [], index = 0, onClose, onPrev, onNex
         }
       }
     };
+    
     window.addEventListener('keydown', onKey);
     return () => {
       window.removeEventListener('keydown', onKey);
@@ -61,7 +68,7 @@ export default function Lightbox({ items = [], index = 0, onClose, onPrev, onNex
         aria-label="Next"
         data-lbx-focus
       >›</button>
-
+      
       {/* Media */}
       <figure className="max-w-[92vw] max-h-[82vh] w-full md:w-auto">
         <picture>
@@ -84,4 +91,3 @@ function toWebp(src) {
   if (i === -1) return src + '.webp';
   return src.slice(0, i) + '.webp';
 }
-
