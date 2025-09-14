@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "Calamari Crystal Site - a React-based web app.",
-  "author": "govangoes <govangoes@github.com>",
+  "author": "govangoes <govangoes@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -54,6 +54,7 @@
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-testing-library": "^6.0.0",
     "exifr": "^7.1.3",
     "jsdom": "^26.1.0",
     "prettier": "^3.3.3",
