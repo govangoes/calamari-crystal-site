@@ -1,3 +1,4 @@
+/* global requestAnimationFrame, cancelAnimationFrame */
 import { useEffect, useRef, useState } from "react";
 
 const MAX_PARTICLES = 48;
@@ -20,12 +21,15 @@ export default function CursorSquid() {
       if (m && m.addEventListener) {
         m.addEventListener('change', (e) => { disabledRef.current = e.matches; });
       }
-    } catch {}
+    } catch {
+      // intentionally empty - gracefully handle matchMedia errors
+    }
   }, []);
 
   useEffect(() => {
     const onMove = (e) => {
       if (disabledRef.current) return;
+      
       // Update squid position + direction
       setSquid((prev) => {
         const dx = e.clientX - (prev.x === -100 ? e.clientX : prev.x);
@@ -33,14 +37,17 @@ export default function CursorSquid() {
         const deg = (Math.atan2(dy, dx) * 180) / Math.PI;
         return { x: e.clientX, y: e.clientY, deg };
       });
+
       const id = ++idRef.current;
       setTrail((t) => {
         const next = [...t, { id, x: e.clientX, y: e.clientY, life: 1, splat: false }];
         return next.slice(Math.max(0, next.length - MAX_PARTICLES));
       });
     };
+
     const onDown = (e) => {
       if (disabledRef.current) return;
+      
       // Create a small cluster of splats around the click point
       const baseId = ++idRef.current;
       const pts = Array.from({ length: 6 }, (_, i) => ({
@@ -50,13 +57,16 @@ export default function CursorSquid() {
         life: 1.1,
         splat: true,
       }));
+
       setTrail((t) => {
         const next = [...t, ...pts];
         return next.slice(Math.max(0, next.length - MAX_PARTICLES));
       });
     };
+
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerdown", onDown, { passive: true });
+    
     return () => {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onDown);
@@ -72,6 +82,7 @@ export default function CursorSquid() {
       );
       rafRef.current = requestAnimationFrame(decay);
     };
+    
     rafRef.current = requestAnimationFrame(decay);
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
@@ -83,12 +94,13 @@ export default function CursorSquid() {
       document.body.style.cursor = 'none';
       return () => { document.body.style.cursor = prev; };
     }
+    // intentionally empty - no cleanup needed when reduced motion is enabled
   }, []);
 
   if (disabledRef.current) return null;
 
   const size = 36; // squid size in px (slightly larger)
-
+  
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999]">
       {trail.map((p) => {
@@ -96,13 +108,17 @@ export default function CursorSquid() {
         const opacity = (p.splat ? 0.16 : 0.10) + p.life * (p.splat ? 0.32 : 0.35);
         const tx = p.x - size / 2;
         const ty = p.y - size / 2;
+        
         return (
           <div
             key={p.id}
             className="absolute will-change-transform"
             style={{ transform: `translate(${tx}px, ${ty}px)` }}
           >
-            <div className="relative" style={{ width: size, height: size }}>
+            <div
+              className="relative"
+              style={{ width: size, height: size }}
+            >
               {/* Core ink dot (adapts to theme) */}
               <div
                 className="absolute inset-0 rounded-full bg-ink/70 dark:bg-ultraviolet/35"
@@ -117,7 +133,7 @@ export default function CursorSquid() {
           </div>
         );
       })}
-
+      
       {/* Squid cursor */}
       <div
         className="absolute will-change-transform drop-shadow"
@@ -136,24 +152,24 @@ export default function CursorSquid() {
 function SquidIcon() {
   // Simple stylized squid with tentacles; colors adapt via Tailwind text color
   return (
-    <svg viewBox="0 0 28 28" className="h-full w-full text-ultraviolet dark:text-crystal" aria-hidden>
+    <svg aria-hidden className="h-full w-full text-ultraviolet dark:text-crystal" viewBox="0 0 28 28">
       <defs>
-        <linearGradient id="squidBody" x1="0" x2="1" y1="0" y2="1">
+        <linearGradient id="squidBody" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="currentColor" stopOpacity="0.95" />
           <stop offset="100%" stopColor="currentColor" stopOpacity="0.75" />
         </linearGradient>
       </defs>
       {/* Head / mantle */}
-      <path d="M14 2 L22 10 C22 14 18 16 14 16 C10 16 6 14 6 10 Z" fill="url(#squidBody)"/>
+      <path d="M14 2 L22 10 C22 14 18 16 14 16 C10 16 6 14 6 10 Z" fill="url(#squidBody)" />
       {/* Eyes */}
-      <circle cx="12" cy="10" r="1.3" fill="#0b0a0f" opacity=".9"/>
-      <circle cx="16" cy="10" r="1.3" fill="#0b0a0f" opacity=".9"/>
+      <circle cx="12" cy="10" r="1.3" fill="#0b0a0f" opacity=".9" />
+      <circle cx="16" cy="10" r="1.3" fill="#0b0a0f" opacity=".9" />
       {/* Tentacles */}
-      <path d="M10 16 C9 19 8 22 9.5 24" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
-      <path d="M12 16 C11.5 19 11 22 12.4 24" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
-      <path d="M14 16 C14 19 14 22 14.8 24" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
-      <path d="M16 16 C16.5 19 17 22 16 24" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
-      <path d="M18 16 C19 19 20 22 18.5 24" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
+      <path d="M10 16 C9 19 8 22 9.5 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path d="M12 16 C11.5 19 11 22 12.4 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path d="M14 16 C14 19 14 22 14.8 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path d="M16 16 C16.5 19 17 22 16 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path d="M18 16 C19 19 20 22 18.5 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
     </svg>
   );
 }

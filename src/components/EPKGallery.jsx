@@ -1,4 +1,5 @@
-import { useEffect, useState, useCallback } from "react";
+/* global fetch */
+import { useEffect, useState } from "react";
 import Lightbox from "./Lightbox.jsx";
 
 function toWebp(src) {
@@ -90,7 +91,7 @@ export default function EPKGallery({ items: itemsProp }) {
           index={openIndex}
           onClose={()=>setOpenIndex(null)}
           onPrev={()=>setOpenIndex((i)=> (i>0? i-1 : items.length-1))}
-          onNext={()=>setOpenIndex((i)=> (i<items.length-1? i+1 : 0))}
+          onNext={()=>setOpenIndex((i)=> (i<items.length-1 ? i+1 : 0))}
         />
       )}
     </section>
