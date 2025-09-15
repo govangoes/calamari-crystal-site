@@ -1,5 +1,4 @@
 // Todo List App JavaScript
-
 // Defensive JSON parsing function
 function safeParse(json) {
     try {
@@ -161,11 +160,11 @@ class TodoApp {
         
         return `
             <li class="todo-item ${completedClass}" data-id="${todo.id}">
-                <div class="todo-checkbox ${checkedClass}" data-action="toggle" aria-label="Toggle task completion">
+                <div aria-label="Toggle task completion" class="todo-checkbox ${checkedClass}" data-action="toggle">
                     ${checkIcon}
                 </div>
                 <span class="todo-text">${this.escapeHTML(todo.text)}</span>
-                <button class="delete-btn" data-action="delete" aria-label="Delete task">Delete</button>
+                <button aria-label="Delete task" class="delete-btn" data-action="delete">Delete</button>
             </li>
         `;
     }
@@ -273,7 +272,7 @@ class TodoApp {
                 } else {
                     throw new Error('Invalid format');
                 }
-            } catch (error) {
+            } catch {
                 alert('Error importing todos. Please check the file format.');
             }
         };
@@ -309,10 +308,10 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
             .then(registration => {
-                console.log('SW registered: ', registration);
+                console.error('SW registered: ', registration);
             })
             .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
+                console.error('SW registration failed: ', registrationError);
             });
     });
 }
