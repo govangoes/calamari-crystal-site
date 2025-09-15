@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "Calamari Crystal Site - a React-based web app.",
-  "author": "govangoes <govangoes@gmail.com>",
+  "author": "govangoes <govangoes>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -36,16 +36,16 @@
   "dependencies": {
     "framer-motion": "^10.18.0",
     "lucide-react": "^0.469.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-router-dom": "^6.30.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^5.0.2",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.9.0",
@@ -64,5 +64,9 @@
     "vite": "^5.4.2",
     "vitest": "^3.2.4",
     "sharp": "^0.33.4"
+  },
+  "resolutions": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1"
   }
 }
