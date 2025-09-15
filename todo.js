@@ -1,5 +1,4 @@
 // Todo List App JavaScript
-
 class TodoApp {
     constructor() {
         this.todos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -263,7 +262,7 @@ class TodoApp {
                 } else {
                     throw new Error('Invalid format');
                 }
-            } catch (error) {
+            } catch {
                 alert('Error importing todos. Please check the file format.');
             }
         };
@@ -299,10 +298,10 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
             .then(registration => {
-                console.log('SW registered: ', registration);
+                console.error('SW registered: ', registration);
             })
             .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
+                console.error('SW registration failed: ', registrationError);
             });
     });
 }
