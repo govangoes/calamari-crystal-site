@@ -1,4 +1,3 @@
-/* global alert */
 import { useState } from "react";
 export default function Newsletter(){
   const [email,setEmail] = useState("");
