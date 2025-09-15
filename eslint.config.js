@@ -40,6 +40,7 @@ export default [
         URL: 'readonly',
         FileReader: 'readonly',
         global: 'readonly',
+        alert: 'readonly',
       },
     },
     settings: {
