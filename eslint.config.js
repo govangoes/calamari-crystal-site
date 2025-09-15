@@ -5,6 +5,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import testingLibrary from 'eslint-plugin-testing-library';
 import jestDom from 'eslint-plugin-jest-dom';
 import prettier from 'eslint-config-prettier';
+
 export default [
   js.configs.recommended,
   {
@@ -19,7 +20,6 @@ export default [
     languageOptions: {
       ecmaVersion: 2021,
       sourceType: 'module',
-      env: { browser: true, es2021: true },
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
@@ -30,6 +30,8 @@ export default [
         document: 'readonly',
         navigator: 'readonly',
         console: 'readonly',
+        browser: true,
+        es2021: true,
       },
     },
     settings: {
