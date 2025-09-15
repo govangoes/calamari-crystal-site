@@ -26,7 +26,7 @@ async function main(){
       const next = { ...item };
       if (!next.date){
         const dt = data?.DateTimeOriginal || data?.CreateDate || data?.ModifyDate;
-        if (dt) { try { next.date = (dt instanceof Date ? dt : new Date(dt)).toISOString().slice(0,10); } catch { // intentionally empty - date parsing failed } }
+        if (dt) { try { next.date = (dt instanceof Date ? dt : new Date(dt)).toISOString().slice(0,10); } catch (e) { // intentionally empty - date parsing failed } }
       }
       if (!next.location && (data?.latitude || data?.longitude)){
         const lat = data.latitude?.toFixed(5);
