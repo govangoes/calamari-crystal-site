@@ -34,7 +34,6 @@ export default [
         es2021: true,
         IntersectionObserver: 'readonly',
         localStorage: 'readonly',
-        alert: 'readonly',
         confirm: 'readonly',
         setTimeout: 'readonly',
         Blob: 'readonly',
