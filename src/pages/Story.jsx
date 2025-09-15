@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 export default function Story() {
   return (
@@ -10,7 +9,6 @@ export default function Story() {
           Our purple squid rises from betrayal to luminous redemption…
         </p>
       </header>
-
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <picture>
           <source srcSet="/squid_emblem.webp" type="image/webp" />
