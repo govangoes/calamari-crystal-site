@@ -7,9 +7,9 @@ const youDir = path.resolve('public', 'images', 'you');
 const manifestPath = path.join(youDir, 'manifest.json');
 async function maybeLoadExifr(){
   try { const mod = await import('exifr'); return mod.default || mod; }
-  catch (_error) { console.error('[epk:exif] exifr not installed. Run: npm i -D exifr'); process.exit(1); }
+  catch { console.error('[epk:exif] exifr not installed. Run: npm i -D exifr'); process.exit(1); }
 }
-function readJSON(fp){ try { return JSON.parse(fs.readFileSync(fp, 'utf8')); } catch (_error) { return null; } }
+function readJSON(fp){ try { return JSON.parse(fs.readFileSync(fp, 'utf8')); } catch { return null; } }
 function writeJSON(fp, data){ fs.writeFileSync(fp, JSON.stringify(data, null, 2)); }
 function uniqBySrc(arr){ const s=new Set(); return arr.filter(x=>{ if(s.has(x.src)) return false; s.add(x.src); return true; }); }
 async function main(){
