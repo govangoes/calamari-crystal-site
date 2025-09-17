@@ -26,7 +26,14 @@ async function main(){
       const next = { ...item };
       if (!next.date){
         const dt = data?.DateTimeOriginal || data?.CreateDate || data?.ModifyDate;
-        if (dt) { try { next.date = (dt instanceof Date ? dt : new Date(dt)).toISOString().slice(0,10); } catch (e) { // intentionally empty - date parsing failed } }
+        if (dt) { 
+          try { 
+            next.date = (dt instanceof Date ? dt : new Date(dt)).toISOString().slice(0,10); 
+          } catch (dateError) { 
+            // Date parsing failed - keep original date or leave empty
+            console.warn('[epk:exif] Failed to parse date for', item.src, dateError.message);
+          } 
+        }
       }
       if (!next.location && (data?.latitude || data?.longitude)){
         const lat = data.latitude?.toFixed(5);
@@ -34,7 +41,8 @@ async function main(){
         if (lat && lon) next.location = `${lat}, ${lon}`;
       }
       updated.push(next);
-    } catch (e) {
+    } catch (exifError) {
+      console.warn('[epk:exif] Failed to parse EXIF for', item.src, exifError.message);
       updated.push(item);
     }
   }
