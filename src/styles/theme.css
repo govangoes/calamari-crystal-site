@@ -14,6 +14,11 @@
   --cc-crystalCyan:    #22d3ee; /* neon cyan */
   --cc-crystalMagenta: #ee3e96; /* neon magenta */
   --cc-opalGlow:       #ffd166; /* warm highlight */
+  --cc-abyssNavy-rgb:      10 16 34;
+  --cc-squidViolet-rgb:    111 45 168;
+  --cc-crystalCyan-rgb:    34 211 238;
+  --cc-crystalMagenta-rgb: 238 62 150;
+  --cc-opalGlow-rgb:       255 209 102;
   --accent-coralPink:  #ff7c8a; /* alt accent */
   --core-jadeCore:     #10b981; /* success */
 }
@@ -30,6 +35,11 @@
   --cc-crystalCyan:    #24d6f1;
   --cc-crystalMagenta: #f0489e;
   --cc-opalGlow:       #ffcf6e;
+  --cc-abyssNavy-rgb:      10 16 34;
+  --cc-squidViolet-rgb:    123 52 189;
+  --cc-crystalCyan-rgb:    36 214 241;
+  --cc-crystalMagenta-rgb: 240 72 158;
+  --cc-opalGlow-rgb:       255 207 110;
   --accent-coralPink:  #ff8b97;
   --core-jadeCore:     #22c997;
 }

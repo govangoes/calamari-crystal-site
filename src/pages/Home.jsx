@@ -1,5 +1,6 @@
 import Hero from "../components/Hero.jsx";
 import JellyButton from "../components/JellyButton.jsx";
+import Pattern from "../components/Pattern.jsx";
 import { Link } from "react-router-dom";
 
 const Card = ({ title, body, to }) => (
@@ -10,27 +11,37 @@ const Card = ({ title, body, to }) => (
   </Link>
 );
 
-export default function Home(){
+export default function Home() {
   return (
-    <main className="bg-ink">
-      <Hero />
-      
-      {/* Add the JellyButton component here */}
-      <section className="mx-auto max-w-6xl px-4 py-8 flex justify-center">
-        <JellyButton onClick={() => alert('Hello from the Jelly Button!')}>Try the Jelly Button!</JellyButton>
-      </section>
-      
-      <section className="mx-auto max-w-6xl px-4 py-12 grid gap-6 md:grid-cols-3">
-        <Card title="Lore: The Squid's Revenge"
-              body="Betrayal → Escape → Crystal → Reckoning → Redemption. Dive into the chapters."
-              to="/story" />
-        <Card title="Merch: Treasures from the Deep"
-              body="Crystal pendants, map lyric posters, and more limited relics."
-              to="/merch" />
-        <Card title="Press Kit / EPK"
-              body="Bio, live stats, photos, and stage specs for promoters and partners."
-              to="/epk" />
-      </section>
+    <main className="relative overflow-hidden bg-ink">
+      <Pattern className="opacity-90 md:opacity-95" />
+
+      <div className="relative z-[1]">
+        <Hero />
+
+        {/* Add the JellyButton component here */}
+        <section className="mx-auto max-w-6xl px-4 py-8 flex justify-center">
+          <JellyButton onClick={() => alert("Hello from the Jelly Button!")}>Try the Jelly Button!</JellyButton>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 py-12 grid gap-6 md:grid-cols-3">
+          <Card
+            title="Lore: The Squid's Revenge"
+            body="Betrayal → Escape → Crystal → Reckoning → Redemption. Dive into the chapters."
+            to="/story"
+          />
+          <Card
+            title="Merch: Treasures from the Deep"
+            body="Crystal pendants, map lyric posters, and more limited relics."
+            to="/merch"
+          />
+          <Card
+            title="Press Kit / EPK"
+            body="Bio, live stats, photos, and stage specs for promoters and partners."
+            to="/epk"
+          />
+        </section>
+      </div>
     </main>
   );
 }
