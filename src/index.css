@@ -1,8 +1,29 @@
+@import "tailwindcss";
 @import "./styles/theme.css";
 @import "./styles/fonts.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+/* === Tailwind v4 Theme Configuration === */
+@theme {
+  /* Custom colors mapped from CSS variables */
+  --color-ink: var(--core-richBlack);
+  --color-graphite: var(--core-graphite);
+  --color-paperWhite: var(--core-paperWhite);
+  --color-monteGold: var(--core-gvgGold);
+  --color-abyssNavy: var(--cc-abyssNavy);
+  --color-ultraviolet: var(--cc-squidViolet);
+  --color-crystal: var(--cc-crystalCyan);
+  --color-magenta: var(--cc-crystalMagenta);
+  --color-coral: var(--accent-coralPink);
+  --color-jade: var(--core-jadeCore);
+  --color-opal: var(--cc-opalGlow);
+  
+  /* Custom background gradients */
+  --background-image-squid-gradient: linear-gradient(135deg, var(--cc-squidViolet), var(--cc-crystalCyan));
+  --background-image-crystal-bloom: linear-gradient(90deg, var(--cc-crystalCyan), var(--cc-crystalMagenta), var(--cc-opalGlow));
+  
+  /* Custom box shadows */
+  --shadow-crystal: 0 0 24px rgba(0, 194, 255, .35);
+}
 
 /* === Brand tokens as CSS variables (for future use) === */
 @layer base {
@@ -18,9 +39,18 @@
 }
 
 /* === Small helpers you can reuse in components === */
-@layer utilities {
-  .btn { @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform; }
-  .btn-primary { @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02]; }
-  .pill { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm; }
-  .section { @apply relative py-16 md:py-24; }
+@utility btn {
+  @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform;
+}
+
+@utility btn-primary {
+  @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02];
+}
+
+@utility pill {
+  @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm;
+}
+
+@utility section {
+  @apply relative py-16 md:py-24;
 }
