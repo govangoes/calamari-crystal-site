@@ -17,6 +17,7 @@ import About from "./pages/About.jsx";
 import Press from "./pages/Press.jsx";
 import Privacy from "./pages/Privacy.jsx";
 import Terms from "./pages/Terms.jsx";
+import News from "./pages/News.jsx";
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/bookings" element={<Bookings />} />
           <Route path="/about" element={<About />} />
           <Route path="/press" element={<Press />} />
+          <Route path="/news" element={<News />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/epk" element={<Press />} />
