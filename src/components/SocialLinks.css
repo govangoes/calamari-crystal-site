@@ -1,0 +1,257 @@
+.social-reef {
+  position: relative;
+  padding: clamp(2.5rem, 6vw, 4rem);
+  border-radius: 2.5rem;
+  overflow: hidden;
+  color: var(--core-paperWhite, #f5f7fb);
+  background:
+    radial-gradient(120% 120% at 10% -10%, rgba(34, 211, 238, 0.35), transparent 60%),
+    radial-gradient(120% 120% at 90% 0%, rgba(238, 62, 150, 0.24), transparent 65%),
+    linear-gradient(160deg, rgba(10, 16, 34, 0.94) 0%, rgba(19, 27, 52, 0.92) 45%, rgba(32, 41, 75, 0.88) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  box-shadow: 0 40px 110px rgba(4, 12, 30, 0.55), inset 0 0 60px rgba(34, 211, 238, 0.08);
+}
+
+.social-reef::before,
+.social-reef::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.social-reef::before {
+  background: radial-gradient(70% 60% at 50% 0%, rgba(255, 255, 255, 0.22), transparent 65%);
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+.social-reef::after {
+  background: url("data:image/svg+xml,%3Csvg width='600' height='320' viewBox='0 0 600 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 180c70 20 140 20 210 0s140-20 210 0 140 20 210 0v140H0Z' fill='rgba(34,211,238,0.12)'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 120% auto;
+  transform: translateY(-35%);
+  opacity: 0.4;
+  animation: reef-wave 18s linear infinite;
+}
+
+.social-reef__aurora,
+.social-reef__caustics {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.social-reef__aurora {
+  background: radial-gradient(40% 40% at 20% 20%, rgba(255, 209, 102, 0.25), transparent 65%),
+              radial-gradient(55% 50% at 80% 30%, rgba(34, 211, 238, 0.18), transparent 80%);
+  mix-blend-mode: screen;
+  opacity: 0.75;
+}
+
+.social-reef__caustics {
+  background:
+    radial-gradient(140% 70% at 50% 120%, rgba(34, 211, 238, 0.18), transparent 70%),
+    radial-gradient(80% 50% at 70% 85%, rgba(111, 45, 168, 0.18), transparent 75%);
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+  filter: blur(0.5px);
+}
+
+.social-reef__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.social-reef__header {
+  max-width: 48rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.social-reef__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(34, 211, 238, 0.15);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  color: rgba(229, 244, 255, 0.85);
+}
+
+.social-reef__title {
+  margin-top: 1rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+}
+
+.social-reef__copy {
+  margin-top: 0.9rem;
+  font-size: 1rem;
+  color: rgba(229, 235, 255, 0.75);
+}
+
+.social-reef__grid {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 1.8rem);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.social-reef__item {
+  position: relative;
+  list-style: none;
+}
+
+.social-reef__link {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(140deg, rgba(9, 20, 44, 0.8), rgba(34, 51, 85, 0.82));
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  box-shadow: inset 0 0 40px rgba(34, 211, 238, 0.05);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  text-decoration: none;
+  color: inherit;
+  backdrop-filter: blur(6px);
+}
+
+.social-reef__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: linear-gradient(140deg, rgba(34, 211, 238, 0.5), rgba(238, 62, 150, 0.3)) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.social-reef__link:hover,
+.social-reef__link:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(34, 211, 238, 0.45);
+  box-shadow: 0 16px 45px rgba(34, 211, 238, 0.16), inset 0 0 60px rgba(34, 211, 238, 0.08);
+}
+
+.social-reef__link:hover::after,
+.social-reef__link:focus-visible::after {
+  opacity: 0.8;
+}
+
+.social-reef__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.3rem;
+  height: 3.3rem;
+  border-radius: 1.2rem;
+  background: radial-gradient(110% 110% at 30% 20%, rgba(34, 211, 238, 0.25), transparent 70%);
+  box-shadow: inset 0 0 30px rgba(34, 211, 238, 0.15);
+  animation: float 5.5s ease-in-out infinite;
+}
+
+.social-reef__icon svg {
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+.social-reef__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.social-reef__name {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.social-reef__handle {
+  font-size: 0.95rem;
+  color: rgba(208, 224, 255, 0.8);
+}
+
+.social-reef__tagline {
+  font-size: 0.85rem;
+  color: rgba(183, 204, 255, 0.7);
+}
+
+.social-reef__bubble {
+  position: absolute;
+  width: clamp(1.8rem, 4vw, 2.6rem);
+  height: clamp(1.8rem, 4vw, 2.6rem);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.45), rgba(34, 211, 238, 0.15) 55%, rgba(34, 211, 238, 0));
+  top: 10%;
+  right: clamp(0.5rem, 2vw, 1rem);
+  filter: blur(0.2px);
+  opacity: 0.65;
+  animation: bubble-rise 8s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes reef-wave {
+  0% {
+    transform: translateY(-35%) translateX(0);
+  }
+  100% {
+    transform: translateY(-35%) translateX(-50%);
+  }
+}
+
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(0) scale(0.9);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(-12px) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-26px) scale(0.95);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .social-reef {
+    border-radius: 1.8rem;
+  }
+
+  .social-reef__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .social-reef__icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .social-reef__icon svg {
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+}

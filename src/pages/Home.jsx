@@ -1,5 +1,6 @@
 import Hero from "../components/Hero.jsx";
 import JellyButton from "../components/JellyButton.jsx";
+import SocialLinks from "../components/SocialLinks.jsx";
 import { Link } from "react-router-dom";
 
 const Card = ({ title, body, to }) => (
@@ -14,12 +15,16 @@ export default function Home(){
   return (
     <main className="bg-ink">
       <Hero />
-      
+
+      <div className="relative mx-auto max-w-6xl px-4 -mt-16 md:-mt-24">
+        <SocialLinks />
+      </div>
+
       {/* Add the JellyButton component here */}
       <section className="mx-auto max-w-6xl px-4 py-8 flex justify-center">
         <JellyButton onClick={() => alert('Hello from the Jelly Button!')}>Try the Jelly Button!</JellyButton>
       </section>
-      
+
       <section className="mx-auto max-w-6xl px-4 py-12 grid gap-6 md:grid-cols-3">
         <Card title="Lore: The Squid's Revenge"
               body="Betrayal → Escape → Crystal → Reckoning → Redemption. Dive into the chapters."
