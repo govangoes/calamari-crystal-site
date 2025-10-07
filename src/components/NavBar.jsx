@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Gem, Music, ShoppingBag, FileText, MessageCircle } from "lucide-react";
+import { Gem, Music, ShoppingBag, FileText, MessageCircle, Newspaper } from "lucide-react";
 import ThemeToggle from "./ThemeToggle.jsx";
 
 const LinkItem = ({ to, children }) => (
@@ -30,6 +30,7 @@ export default function NavBar(){
           <LinkItem to="/music"><Music className="inline h-4 w-4 mr-1" />Music</LinkItem>
           <LinkItem to="/merch"><ShoppingBag className="inline h-4 w-4 mr-1" />Merch</LinkItem>
           <LinkItem to="/press"><FileText className="inline h-4 w-4 mr-1" />Press</LinkItem>
+          <LinkItem to="/news"><Newspaper className="inline h-4 w-4 mr-1" />News</LinkItem>
           <LinkItem to="/bookings"><MessageCircle className="inline h-4 w-4 mr-1" />Bookings</LinkItem>
           <ThemeToggle />
         </div>
