@@ -15,10 +15,7 @@ export default function Home(){
     <main className="bg-ink">
       <Hero />
       
-      {/* Add the JellyButton component here */}
-      <section className="mx-auto max-w-6xl px-4 py-8 flex justify-center">
-        <JellyButton onClick={() => alert('Hello from the Jelly Button!')}>Try the Jelly Button!</JellyButton>
-      </section>
+      {/* Feature sections */}
       
       <section className="mx-auto max-w-6xl px-4 py-12 grid gap-6 md:grid-cols-3">
         <Card title="Lore: The Squid's Revenge"
