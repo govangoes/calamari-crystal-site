@@ -10,8 +10,8 @@ export default function Hero() {
             </p>
             <div className="mt-6 flex gap-4">
               <a className="btn btn-primary" href="/music">Listen Now</a>
-              <a className="btn btn-secondary" href="/videos">Watch a Performance</a>
-              <a className="btn btn-tertiary" href="/shop">Shop the Drop</a>
+              <a className="btn btn-secondary" href="https://www.youtube.com/@govangoes" target="_blank" rel="noreferrer">Watch a Performance</a>
+              <a className="btn btn-tertiary" href="/merch">Shop the Drop</a>
             </div>
           </div>
           <div className="relative">
