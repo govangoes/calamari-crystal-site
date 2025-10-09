@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@reference "tailwindcss/utilities";
 
 /* === Brand tokens as CSS variables (for future use) === */
 @layer base {
@@ -19,8 +20,20 @@
 
 /* === Small helpers you can reuse in components === */
 @layer utilities {
-  .btn { @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform; }
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crystal focus-visible:ring-offset-2;
+    @apply focus-visible:ring-offset-paperWhite dark:focus-visible:ring-offset-ink;
+  }
   .btn-primary { @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02]; }
+  .btn-secondary {
+    @apply btn border border-ink/15 text-ink bg-transparent hover:bg-ink/5 hover:border-ink/25 hover:shadow-crystal;
+    @apply dark:border-paperWhite/20 dark:text-paperWhite dark:hover:bg-paperWhite/10 dark:hover:border-paperWhite/30;
+  }
+  .btn-tertiary {
+    @apply btn bg-transparent text-ink/70 hover:text-ink hover:underline;
+    @apply dark:text-paperWhite/70 dark:hover:text-paperWhite;
+  }
   .pill { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm; }
   .section { @apply relative py-16 md:py-24; }
 }

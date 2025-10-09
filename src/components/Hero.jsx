@@ -22,7 +22,6 @@ export default function Hero() {
                 alt="Squid Emblem"
                 className="w-full drop-shadow-2xl shadow-crystal"
                 loading="eager"
-                fetchPriority="high"
                 decoding="async"
               />
             </picture>
