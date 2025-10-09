@@ -1,9 +1,9 @@
 {
-  "name": "final-hope",
+  "name": "calamari-crystal-site",
   "private": true,
-  "version": "1.0.0",
-  "description": "Calamari Crystal Site - a React-based web app.",
-  "author": "govangoes <govangoes>",
+  "version": "0.1.0",
+  "description": "GoVanGoes • Calamari Crystal — minimal Vite+React+Tailwind baseline",
+  "author": "GoVanGoes",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,60 +13,26 @@
   "bugs": {
     "url": "https://github.com/govangoes/calamari-crystal-site/issues"
   },
-  "engines": {
-    "node": "20.x",
-    "npm": ">=9.0.0"
-  },
+  "engines": { "node": "20.x", "npm": ">=9.0.0" },
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "img:opt": "node scripts/optimize-images.mjs",
-    "epk:exif": "node scripts/exif-to-manifest.mjs",
-    "clean": "rimraf dist",
-    "check": "npm run lint && npm run format:check && npm run test"
+    "clean": "rimraf dist"
   },
   "dependencies": {
-    "framer-motion": "^10.18.0",
-    "lucide-react": "^0.544.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.30.1"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.8.0",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^5.0.2",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.9.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jest-dom": "^5.4.0",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-react": "^7.34.3",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-testing-library": "^6.4.0",
-    "exifr": "^7.1.3",
-    "jsdom": "^26.1.0",
     "postcss": "^8.4.41",
-    "prettier": "^3.3.3",
     "rimraf": "^5.0.5",
-    "sharp": "^0.33.4",
     "tailwindcss": "^3.4.14",
-    "vite": "^5.4.2",
-    "vitest": "^3.2.4"
+    "vite": "^5.4.2"
   },
-  "resolutions": {
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1"
-  }
+  "resolutions": {}
 }
