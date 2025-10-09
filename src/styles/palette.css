@@ -1,34 +1,6 @@
-/* Minimal bridge to your Tailwind theme + safe defaults */
-:root{
-  --ink: #080A12;
-  --paper: #F5F7FA;
-}
-.bg-ink{ background-color: var(--ink); }
-.text-paperWhite{ color: var(--paper); }
+/* Brand helpers that complement Tailwind theme variables. */
 
-/* pretty gradient helper used by Hero */
-.bg-squid-gradient{
-  background-image:
-    radial-gradient(1200px 500px at 20% -10%, rgba(106,17,203,.35), transparent),
-    radial-gradient(900px 400px at 80% 0%, rgba(37,117,252,.25), transparent);
-}
-.shadow-crystal{
-  box-shadow: 0 0 0 1px rgba(128,255,255,.15), 0 12px 40px rgba(128,255,255,.12);
-}
-.bg-crystal-bloom{
-  background-image: linear-gradient(90deg, #7EF9FF, #C082FF 60%, #FFD166);
-}
-
-/* Deep sea background used by the app wrapper */
-:root { --abyssNavy: #0A1022; }
-.bg-abyssNavy { background-color: var(--abyssNavy); }
-
-cat >> src/styles/palette.css <<'EOF'
-
-/* Deep sea background used by the app wrapper */
-:root { --abyssNavy: #0A1022; }
-.bg-abyssNavy { background-color: var(--abyssNavy); }
-
+/* Core convenience tokens for plain CSS helpers */
 :root{
   --abyssNavy:#0A1022;
   --paperWhite:#F6F7FB;
@@ -36,6 +8,27 @@ cat >> src/styles/palette.css <<'EOF'
   --crystalViolet:#a78bfa;    /* soft violet */
 }
 
+/* Utility helpers used by components (non-Tailwind) */
+.bg-abyssNavy{ background-color: var(--abyssNavy); }
+.text-paperWhite{ color: var(--paperWhite); }
+
+/* Pretty gradient helper used by Hero */
+.bg-squid-gradient{
+  background-image:
+    radial-gradient(1200px 500px at 20% -10%, rgba(106,17,203,.35), transparent),
+    radial-gradient(900px 400px at 80% 0%, rgba(37,117,252,.25), transparent);
+}
+
+/* Soft neon ring for cards/images */
+.shadow-crystal{
+  box-shadow: 0 0 0 1px rgba(128,255,255,.15), 0 12px 40px rgba(128,255,255,.12);
+}
+
+.bg-crystal-bloom{
+  background-image: linear-gradient(90deg, #7EF9FF, #C082FF 60%, #FFD166);
+}
+
+/* Social icon hover accent */
 .social-crystal {
   transition: transform .2s ease, filter .2s ease, opacity .2s ease;
   color: var(--crystalCyan);
@@ -45,11 +38,3 @@ cat >> src/styles/palette.css <<'EOF'
   filter: drop-shadow(0 4px 22px rgba(34,211,238,.25)) drop-shadow(0 2px 12px rgba(167,139,250,.25));
   color: var(--crystalViolet);
 }
-:root{
-  --abyssNavy:#0A1022;
-  --paperWhite:#F6F7FB;
-  --crystalCyan:#22d3ee;
-  --crystalViolet:#a78bfa;
-}
-.bg-abyssNavy{background-color:var(--abyssNavy);}
-.text-paperWhite{color:var(--paperWhite);}
