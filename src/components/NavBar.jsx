@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Gem, Music, ShoppingBag, FileText, MessageCircle } from "lucide-react";
+import { Music, ShoppingBag, FileText, MessageCircle } from "lucide-react";
 import ThemeToggle from "./ThemeToggle.jsx";
 
 const LinkItem = ({ to, children }) => (
@@ -20,10 +20,10 @@ export default function NavBar(){
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-paperWhite/70 dark:bg-ink/50 border-b border-ink/10 dark:border-paperWhite/10">
       <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Gem className="h-5 w-5 text-monteGold" />
+        <a href="/" className="flex items-center gap-2 group">
+          <img src="/cloud_gold_logo.png" alt="Cloutlandish" className="h-6 w-auto drop-shadow group-hover:opacity-90 transition" />
           <span className="font-semibold tracking-wide text-ink dark:text-paperWhite">GoVanGoes</span>
-        </div>
+        </a>
         <div className="flex items-center gap-1">
           <LinkItem to="/">Home</LinkItem>
           <LinkItem to="/story">Lore</LinkItem>
