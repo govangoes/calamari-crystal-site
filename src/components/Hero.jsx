@@ -1,4 +1,11 @@
 export default function Hero() {
+  function onImgError(e) {
+    // Fallback to existing emblem if the custom logo is missing
+    if (!e.target.dataset.fellBack) {
+      e.target.dataset.fellBack = '1';
+      e.target.src = '/squid_emblem.png';
+    }
+  }
   return (
     <section className="relative overflow-hidden bg-squid-gradient">
       <div className="max-w-7xl mx-auto px-4 py-24">
@@ -29,14 +36,17 @@ export default function Hero() {
           </div>
           <div className="relative">
             <picture>
+              {/* Prefer the user-provided transparent clout logo if present */}
+              <source srcSet="/transparentcloutlogo.webp" type="image/webp" />
               <source srcSet="/squid_emblem.webp" type="image/webp" />
               <img
-                src="/squid_emblem.png"
-                alt="Squid Emblem"
+                src="/transparentcloutlogo.png"
+                alt="GoVanGoes mark"
                 className="w-full drop-shadow-2xl shadow-crystal"
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
+                onError={onImgError}
               />
             </picture>
           </div>
