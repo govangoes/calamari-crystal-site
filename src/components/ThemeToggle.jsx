@@ -5,7 +5,8 @@ function getInitialTheme() {
   try {
     const saved = localStorage.getItem("theme");
     if (saved === "dark" || saved === "light") return saved;
-    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark =
+      window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     return prefersDark ? "dark" : "light";
   } catch {
     return "dark";
@@ -17,8 +18,8 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
-    try { 
-      localStorage.setItem("theme", theme); 
+    try {
+      localStorage.setItem("theme", theme);
     } catch {
       // Ignore localStorage errors (e.g., private browsing mode)
     }

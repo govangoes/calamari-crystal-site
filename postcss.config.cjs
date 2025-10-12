@@ -4,16 +4,16 @@
 let tailwind;
 try {
   // Tailwind v4
-  tailwind = require('@tailwindcss/postcss');
+  tailwind = require("@tailwindcss/postcss");
 } catch {
   // Tailwind v3 fallback
-  tailwind = require('tailwindcss');
+  tailwind = require("tailwindcss");
 }
 
 module.exports = {
   plugins: [
     // Both v3 and v4 expose a plugin function we can call
     tailwind(),
-    require('autoprefixer')()
-  ]
+    require("autoprefixer")(),
+  ],
 };

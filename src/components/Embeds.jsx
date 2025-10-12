@@ -1,4 +1,4 @@
-export function SpotifyEmbed({ id, title="Spotify Player" }) {
+export function SpotifyEmbed({ id, title = "Spotify Player" }) {
   return (
     <div className="aspect-video w-full rounded-lg overflow-hidden border border-white/10">
       <iframe
@@ -13,7 +13,7 @@ export function SpotifyEmbed({ id, title="Spotify Player" }) {
   );
 }
 
-export function YouTubeEmbed({ id, title="YouTube" }) {
+export function YouTubeEmbed({ id, title = "YouTube" }) {
   return (
     <div className="aspect-video w-full rounded-lg overflow-hidden border border-white/10">
       <iframe

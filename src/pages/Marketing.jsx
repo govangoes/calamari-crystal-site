@@ -1,11 +1,17 @@
 import ScrollReveal from "../components/ScrollReveal.jsx";
 
 const timeline = [
-  { when: "T-4–6 weeks", what: "Mystery posts + pre-save incentive + open pre-orders + Treasure Hunt begins." },
+  {
+    when: "T-4–6 weeks",
+    what: "Mystery posts + pre-save incentive + open pre-orders + Treasure Hunt begins.",
+  },
   { when: "T-3 weeks", what: "Lead Single #1 + lyric visualizer + polls." },
   { when: "T-2 weeks", what: "Cover + tracklist reveal; optional Single #2." },
   { when: "T-1 week", what: "Daily countdown, AMA ‘Ask the Squid’, rehearsal BTS." },
-  { when: "Release", what: "Album live, premiere, live Q&A in character, secret track to mailing list." },
+  {
+    when: "Release",
+    what: "Album live, premiere, live Q&A in character, secret track to mailing list.",
+  },
   { when: "Post-1–4 weeks", what: "Alt videos, fan features, giveaway, pop-up treasure moments." },
 ];
 
@@ -29,7 +35,10 @@ export default function Marketing() {
       </ol>
 
       <div className="text-center">
-        <a href="/contact" className="px-5 py-3 rounded bg-ultraviolet text-paperWhite hover:opacity-90">
+        <a
+          href="/contact"
+          className="px-5 py-3 rounded bg-ultraviolet text-paperWhite hover:opacity-90"
+        >
           Book a strategy session →
         </a>
       </div>

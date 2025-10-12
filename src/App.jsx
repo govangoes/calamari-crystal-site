@@ -51,24 +51,30 @@ export default function App() {
 
 function RouteSEO() {
   const location = useLocation();
-  const map = useMemo(() => ({
-    "/": {
-      title: "GoVanGoes — Calamari Crystal",
-      description: "Bold performance hip‑hop. Power, play, precision. Underdogs rise.",
-    },
-    "/story": { title: "Story — GoVanGoes", description: "The Calamari Crystal saga." },
-    "/music": { title: "Music — GoVanGoes", description: "Listen to tracks and mixes." },
-    "/merch": { title: "Merch — GoVanGoes", description: "Official merch and drops." },
-    "/marketing": { title: "Marketing — GoVanGoes", description: "Brand, campaigns, collaborations." },
-    "/business": { title: "Business — GoVanGoes", description: "Booking, partnerships, press." },
-    "/contact": { title: "Contact — GoVanGoes", description: "Reach the crew." },
-    "/bookings": { title: "Bookings — GoVanGoes", description: "Book performances and events." },
-    "/about": { title: "About — GoVanGoes", description: "Who we are." },
-    "/press": { title: "Press — GoVanGoes", description: "Press kit and assets." },
-    "/privacy": { title: "Privacy — GoVanGoes" },
-    "/terms": { title: "Terms — GoVanGoes" },
-    "/epk": { title: "EPK — GoVanGoes", description: "Electronic press kit." },
-  }), []);
+  const map = useMemo(
+    () => ({
+      "/": {
+        title: "GoVanGoes — Calamari Crystal",
+        description: "Bold performance hip‑hop. Power, play, precision. Underdogs rise.",
+      },
+      "/story": { title: "Story — GoVanGoes", description: "The Calamari Crystal saga." },
+      "/music": { title: "Music — GoVanGoes", description: "Listen to tracks and mixes." },
+      "/merch": { title: "Merch — GoVanGoes", description: "Official merch and drops." },
+      "/marketing": {
+        title: "Marketing — GoVanGoes",
+        description: "Brand, campaigns, collaborations.",
+      },
+      "/business": { title: "Business — GoVanGoes", description: "Booking, partnerships, press." },
+      "/contact": { title: "Contact — GoVanGoes", description: "Reach the crew." },
+      "/bookings": { title: "Bookings — GoVanGoes", description: "Book performances and events." },
+      "/about": { title: "About — GoVanGoes", description: "Who we are." },
+      "/press": { title: "Press — GoVanGoes", description: "Press kit and assets." },
+      "/privacy": { title: "Privacy — GoVanGoes" },
+      "/terms": { title: "Terms — GoVanGoes" },
+      "/epk": { title: "EPK — GoVanGoes", description: "Electronic press kit." },
+    }),
+    [],
+  );
 
   useEffect(() => {
     const entry = map[location.pathname] || map["/"];

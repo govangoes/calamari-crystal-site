@@ -2,8 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 
 const MAX_PARTICLES = 48;
-const DECAY_RATE = 0.04;        // normal trail fade speed
-const SPLAT_DECAY_RATE = 0.02;  // slower fade for click splats
+const DECAY_RATE = 0.04; // normal trail fade speed
+const SPLAT_DECAY_RATE = 0.02; // slower fade for click splats
 
 // Ink trail cursor: particles follow pointer; click creates larger "splat" pulses.
 export default function CursorSquid() {
@@ -16,10 +16,12 @@ export default function CursorSquid() {
   useEffect(() => {
     // Respect reduced motion
     try {
-      const m = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+      const m = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
       disabledRef.current = !!(m && m.matches);
       if (m && m.addEventListener) {
-        m.addEventListener('change', (e) => { disabledRef.current = e.matches; });
+        m.addEventListener("change", (e) => {
+          disabledRef.current = e.matches;
+        });
       }
     } catch {
       // intentionally empty - gracefully handle matchMedia errors
@@ -29,7 +31,7 @@ export default function CursorSquid() {
   useEffect(() => {
     const onMove = (e) => {
       if (disabledRef.current) return;
-      
+
       // Update squid position + direction
       setSquid((prev) => {
         const dx = e.clientX - (prev.x === -100 ? e.clientX : prev.x);
@@ -47,7 +49,7 @@ export default function CursorSquid() {
 
     const onDown = (e) => {
       if (disabledRef.current) return;
-      
+
       // Create a small cluster of splats around the click point
       const baseId = ++idRef.current;
       const pts = Array.from({ length: 6 }, (_, i) => ({
@@ -66,7 +68,7 @@ export default function CursorSquid() {
 
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerdown", onDown, { passive: true });
-    
+
     return () => {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onDown);
@@ -78,11 +80,11 @@ export default function CursorSquid() {
       setTrail((t) =>
         t
           .map((p) => ({ ...p, life: p.life - (p.splat ? SPLAT_DECAY_RATE : DECAY_RATE) }))
-          .filter((p) => p.life > 0)
+          .filter((p) => p.life > 0),
       );
       rafRef.current = requestAnimationFrame(decay);
     };
-    
+
     rafRef.current = requestAnimationFrame(decay);
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
@@ -91,8 +93,10 @@ export default function CursorSquid() {
   useEffect(() => {
     if (!disabledRef.current) {
       const prev = document.body.style.cursor;
-      document.body.style.cursor = 'none';
-      return () => { document.body.style.cursor = prev; };
+      document.body.style.cursor = "none";
+      return () => {
+        document.body.style.cursor = prev;
+      };
     }
     // intentionally empty - no cleanup needed when reduced motion is enabled
   }, []);
@@ -100,25 +104,22 @@ export default function CursorSquid() {
   if (disabledRef.current) return null;
 
   const size = 36; // squid size in px (slightly larger)
-  
+
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999]">
       {trail.map((p) => {
         const size = p.splat ? 18 + p.life * 22 : 8 + p.life * 10; // px
-        const opacity = (p.splat ? 0.16 : 0.10) + p.life * (p.splat ? 0.32 : 0.35);
+        const opacity = (p.splat ? 0.16 : 0.1) + p.life * (p.splat ? 0.32 : 0.35);
         const tx = p.x - size / 2;
         const ty = p.y - size / 2;
-        
+
         return (
           <div
             key={p.id}
             className="absolute will-change-transform"
             style={{ transform: `translate(${tx}px, ${ty}px)` }}
           >
-            <div
-              className="relative"
-              style={{ width: size, height: size }}
-            >
+            <div className="relative" style={{ width: size, height: size }}>
               {/* Core ink dot (adapts to theme) */}
               <div
                 className="absolute inset-0 rounded-full bg-ink/70 dark:bg-ultraviolet/35"
@@ -133,7 +134,7 @@ export default function CursorSquid() {
           </div>
         );
       })}
-      
+
       {/* Squid cursor */}
       <div
         className="absolute will-change-transform drop-shadow"
@@ -152,7 +153,11 @@ export default function CursorSquid() {
 function SquidIcon() {
   // Simple stylized squid with tentacles; colors adapt via Tailwind text color
   return (
-    <svg aria-hidden className="h-full w-full text-ultraviolet dark:text-crystal" viewBox="0 0 28 28">
+    <svg
+      aria-hidden
+      className="h-full w-full text-ultraviolet dark:text-crystal"
+      viewBox="0 0 28 28"
+    >
       <defs>
         <linearGradient id="squidBody" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="currentColor" stopOpacity="0.95" />
@@ -165,11 +170,41 @@ function SquidIcon() {
       <circle cx="12" cy="10" r="1.3" fill="#0b0a0f" opacity=".9" />
       <circle cx="16" cy="10" r="1.3" fill="#0b0a0f" opacity=".9" />
       {/* Tentacles */}
-      <path d="M10 16 C9 19 8 22 9.5 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      <path d="M12 16 C11.5 19 11 22 12.4 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      <path d="M14 16 C14 19 14 22 14.8 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      <path d="M16 16 C16.5 19 17 22 16 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      <path d="M18 16 C19 19 20 22 18.5 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path
+        d="M10 16 C9 19 8 22 9.5 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 16 C11.5 19 11 22 12.4 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M14 16 C14 19 14 22 14.8 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M16 16 C16.5 19 17 22 16 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M18 16 C19 19 20 22 18.5 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }

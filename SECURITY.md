@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in this project, please report it responsibly by emailing us directly at **govangoes@gmail.com**. 
+If you discover a security vulnerability in this project, please report it responsibly by emailing us directly at **govangoes@gmail.com**.
 
 **Please do not open a public issue** for security vulnerabilities as this could expose the issue to malicious actors before a fix is available.
 

@@ -11,17 +11,35 @@
     /* Reserved for future per-component tokens */
   }
 
-  html, body, #root { height: 100%; }
-  :root { --font-brand: "Calamari Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  :root {
+    --font-brand:
+      "Calamari Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+      "Apple Color Emoji", "Segoe UI Emoji";
+  }
 
   /* Default theme backdrop */
-  body { @apply antialiased; }
+  body {
+    @apply antialiased;
+  }
 }
 
 /* === Small helpers you can reuse in components === */
 @layer utilities {
-  .btn { @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform; }
-  .btn-primary { @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02]; }
-  .pill { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm; }
-  .section { @apply relative py-16 md:py-24; }
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform;
+  }
+  .btn-primary {
+    @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02];
+  }
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm;
+  }
+  .section {
+    @apply relative py-16 md:py-24;
+  }
 }
