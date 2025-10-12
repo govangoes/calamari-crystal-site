@@ -19,7 +19,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "img:opt": "node scripts/optimize-images.mjs",
+    "lint": "echo 'No lint configured'",
+    "test": "echo 'No tests configured'"
   },
   "dependencies": {
     "react": "^18.2.0",
