@@ -1,3 +1,5 @@
+import Parallax from "./Parallax.jsx";
+
 export default function Hero() {
   function onImgError(e) {
     // Fallback to existing emblem if the custom logo is missing
@@ -34,7 +36,7 @@ export default function Hero() {
               </a>
             </div>
           </div>
-          <div className="relative">
+          <Parallax amount={28} className="relative">
             <picture>
               {/* Prefer the user-provided transparent clout logo if present */}
               <source srcSet="/transparentcloutlogo.webp" type="image/webp" />
@@ -49,7 +51,7 @@ export default function Hero() {
                 onError={onImgError}
               />
             </picture>
-          </div>
+          </Parallax>
         </div>
       </div>
       <a href="#sections" className="scroll-cue" aria-label="Scroll to content">

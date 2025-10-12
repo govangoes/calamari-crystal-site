@@ -19,7 +19,7 @@
   },
   "type": "module",
   "scripts": {
-    "prebuild": "node scripts/update-sitemap-lastmod.mjs",
+    "prebuild": "node scripts/update-sitemap-lastmod.mjs && node scripts/optimize-images.mjs",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
