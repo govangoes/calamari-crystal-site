@@ -19,6 +19,12 @@ Calamari Crystal is a cinematic concept‑album website for GoVanGoes built with
   - `VITE_SPOTIFY_ID` — Spotify ID matching the selected type
 - Example: `VITE_SPOTIFY_TYPE=track`, `VITE_SPOTIFY_ID=1r9xUipOqoNwggBpENDsvJ`
 
+### Hero Image
+- Configure the homepage hero mark via env var:
+  - `VITE_HERO_IMAGE_BASENAME` — base name (without extension) of a file in `public/` (default: `transparentcloutlogo`). The app will try `/<BASENAME>.webp` then `/<BASENAME>.png`.
+  - `VITE_HERO_ALT` — accessible alt text for the hero image.
+- Fallback order if the custom image is missing: `cloud_gold_logo` → `squid_emblem`.
+
 ## Project Structure
 - `src/pages` — Home, Story, Merch, Marketing, Business, Contact pages
 - `src/components` — Hero, SocialLinks, CursorSquid, ScrollReveal and other reusable components

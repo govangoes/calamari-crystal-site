@@ -1,12 +1,22 @@
 import Parallax from "./Parallax.jsx";
 
 export default function Hero() {
+  const baseName = import.meta.env.VITE_HERO_IMAGE_BASENAME || "transparentcloutlogo";
+  const altText = import.meta.env.VITE_HERO_ALT || "GoVanGoes mark";
+
   function onImgError(e) {
-    // Fallback to existing emblem if the custom logo is missing
-    if (!e.target.dataset.fellBack) {
-      e.target.dataset.fellBack = '1';
-      e.target.src = '/squid_emblem.png';
+    const src = e?.target?.src || "";
+    if (src.includes("transparentcloutlogo") && !e.target.dataset.fallback1) {
+      e.target.dataset.fallback1 = "1";
+      e.target.src = "/cloud_gold_logo.png";
+      return;
     }
+    if (src.includes("cloud_gold_logo") && !e.target.dataset.fallback2) {
+      e.target.dataset.fallback2 = "1";
+      e.target.src = "/squid_emblem.png";
+      return;
+    }
+    // Final fallback already tried
   }
   return (
     <section className="relative overflow-hidden bg-squid-gradient">
@@ -38,12 +48,13 @@ export default function Hero() {
           </div>
           <Parallax amount={28} className="relative">
             <picture>
-              {/* Prefer the user-provided transparent clout logo if present */}
-              <source srcSet="/transparentcloutlogo.webp" type="image/webp" />
-              <source srcSet="/squid_emblem.webp" type="image/webp" />
+              {/* Prefer custom hero image if present */}
+              <source srcSet={`/${baseName}.webp`} type="image/webp" />
+              {/* Fallback webp */}
+              <source srcSet="/cloud_gold_logo.webp" type="image/webp" />
               <img
-                src="/transparentcloutlogo.png"
-                alt="GoVanGoes mark"
+                src={`/${baseName}.png`}
+                alt={altText}
                 className="w-full drop-shadow-2xl shadow-crystal"
                 loading="eager"
                 fetchPriority="high"
