@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useMemo } from "react";
 import setSEO from "./utils/seo.js";
+import ScrollProgress from "./components/ScrollProgress.jsx";
 import CursorSquid from "./components/CursorSquid.jsx";
 import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";
@@ -23,6 +24,7 @@ import Terms from "./pages/Terms.jsx";
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollProgress />
       <RouteSEO />
       <div className="min-h-screen bg-paperWhite text-ink dark:bg-abyssNavy dark:text-paperWhite">
         <CursorSquid />

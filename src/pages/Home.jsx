@@ -1,6 +1,8 @@
 import Hero from "../components/Hero.jsx";
 import JellyButton from "../components/JellyButton.jsx";
 import { Link } from "react-router-dom";
+import ScrollReveal from "../components/ScrollReveal.jsx";
+import { YouTubeEmbed, SpotifyEmbed } from "../components/Embeds.jsx";
 
 const Card = ({ title, body, to }) => (
   <Link
@@ -18,8 +20,18 @@ export default function Home() {
     <main className="bg-ink">
       <Hero />
 
-      {/* Feature sections */}
+      {/* In-page quick nav */}
+      <section id="sections" className="mx-auto max-w-6xl px-4 py-8">
+        <div className="flex flex-wrap gap-2">
+          <a href="#music" className="pill">Listen</a>
+          <a href="#merch" className="pill">Merch</a>
+          <a href="#story" className="pill">Story</a>
+          <a href="#epk" className="pill">Press Kit</a>
+          <a href="#contact" className="pill">Contact</a>
+        </div>
+      </section>
 
+      {/* Feature cards */}
       <section className="mx-auto max-w-6xl px-4 py-12 grid gap-6 md:grid-cols-3">
         <Card
           title="Lore: The Squid's Revenge"
@@ -37,6 +49,53 @@ export default function Home() {
           to="/epk"
         />
       </section>
+
+      {/* Listen */}
+      <ScrollReveal className="section mx-auto max-w-6xl px-4" id="music">
+        <h2 className="text-2xl font-bold">Listen</h2>
+        <p className="mt-2 opacity-80">Dive into the Calamari Crystal era.</p>
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          <YouTubeEmbed id="dQw4w9WgXcQ" title="Featured Performance" />
+          <SpotifyEmbed id="0sNOF9WDwhWunNAHPD3Baj" title="Featured Album" />
+        </div>
+      </ScrollReveal>
+
+      {/* Merch */}
+      <ScrollReveal className="section mx-auto max-w-6xl px-4" id="merch">
+        <h2 className="text-2xl font-bold">Merch</h2>
+        <p className="mt-2 opacity-80">Treasures from the deep—limited runs only.</p>
+        <div className="mt-6">
+          <Link className="btn btn-primary" to="/merch">Shop the Drop</Link>
+        </div>
+      </ScrollReveal>
+
+      {/* Story */}
+      <ScrollReveal className="section mx-auto max-w-6xl px-4" id="story">
+        <h2 className="text-2xl font-bold">Story</h2>
+        <p className="mt-2 opacity-80 max-w-2xl">A Monte Cristo revenge tale remixed undersea. The purple squid rises from betrayal to luminous redemption.</p>
+        <div className="mt-6">
+          <Link className="pill" to="/story">Read the Chronicle →</Link>
+        </div>
+      </ScrollReveal>
+
+      {/* Press / EPK */}
+      <ScrollReveal className="section mx-auto max-w-6xl px-4" id="epk">
+        <h2 className="text-2xl font-bold">Press Kit</h2>
+        <p className="mt-2 opacity-80">Bio, live stats, photos, and stage specs.</p>
+        <div className="mt-6">
+          <Link className="pill" to="/press">Open EPK →</Link>
+        </div>
+      </ScrollReveal>
+
+      {/* Contact */}
+      <ScrollReveal className="section mx-auto max-w-6xl px-4" id="contact">
+        <h2 className="text-2xl font-bold">Contact</h2>
+        <p className="mt-2 opacity-80">Bookings, partnerships, and press.</p>
+        <div className="mt-6 flex gap-3">
+          <a className="pill" href="mailto:bookings@govangoes.com">bookings@govangoes.com</a>
+          <Link className="pill" to="/contact">Contact Form →</Link>
+        </div>
+      </ScrollReveal>
     </main>
   );
 }

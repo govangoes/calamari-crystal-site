@@ -11,6 +11,10 @@
     /* Reserved for future per-component tokens */
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   html,
   body,
   #root {
@@ -41,5 +45,13 @@
   }
   .section {
     @apply relative py-16 md:py-24;
+  }
+  .scroll-cue {
+    @apply absolute left-1/2 -translate-x-1/2 bottom-4 text-white/80 text-xs flex flex-col items-center gap-1;
+    animation: floaty 2.4s ease-in-out infinite;
+  }
+  @keyframes floaty {
+    0%,100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
   }
 }
