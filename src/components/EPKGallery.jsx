@@ -41,7 +41,7 @@ export default function EPKGallery({ items: itemsProp }) {
     <section className="mx-auto max-w-6xl px-4 py-8">
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((it, idx) => {
-          // Avoid webp <source> unless files exist. Use JPG/PNG directly for reliability.
+          // Prefer WebP now that variants are generated at build-time.
           return (
             <figure
               key={(it.src || "") + idx}
@@ -55,13 +55,16 @@ export default function EPKGallery({ items: itemsProp }) {
                   setOpenIndex(idx);
                 }}
               >
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  src={it.src}
-                  alt={it.alt || "GoVanGoes press photo"}
-                  className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                />
+                <picture>
+                  <source srcSet={toWebp(it.src)} type="image/webp" />
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    src={it.src}
+                    alt={it.alt || "GoVanGoes press photo"}
+                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+                </picture>
               </a>
               <figcaption className="p-4 text-sm flex items-start justify-between gap-4">
                 <div className="space-y-1">

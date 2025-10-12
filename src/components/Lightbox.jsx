@@ -85,11 +85,14 @@ export default function Lightbox({ items = [], index = 0, onClose, onPrev, onNex
 
       {/* Media */}
       <figure className="max-w-[92vw] max-h-[82vh] w-full md:w-auto">
-        <img
-          src={src}
-          alt={alt}
-          className="max-h-[70vh] w-auto h-auto mx-auto rounded-lg shadow-crystal"
-        />
+        <picture>
+          <source srcSet={toWebp(src)} type="image/webp" />
+          <img
+            src={src}
+            alt={alt}
+            className="max-h-[70vh] w-auto h-auto mx-auto rounded-lg shadow-crystal"
+          />
+        </picture>
         {(title || caption) && (
           <figcaption className="mt-3 text-sm opacity-90 px-2 text-center">
             {title && <div className="font-medium">{title}</div>}
