@@ -1,4 +1,3 @@
-/* global console, process */
 // Populates date/location in /public/images/you/manifest.json using EXIF
 // Usage: npm i -D exifr && npm run epk:exif
 import fs from 'node:fs';

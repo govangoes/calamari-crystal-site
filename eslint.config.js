@@ -8,6 +8,22 @@ import prettier from 'eslint-config-prettier';
 
 export default [
   js.configs.recommended,
+  // Node-specific files
+  {
+    files: ['api/**/*.js', 'scripts/**/*.{js,mjs}', 'vite.config.*', 'postcss.config.*', 'tailwind.config.*'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+        console: 'readonly',
+        module: 'readonly',
+        __dirname: 'readonly',
+        require: 'readonly',
+      },
+    },
+    rules: {
+      // Keep Node files minimal; rely on Prettier for style.
+    },
+  },
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     plugins: {
