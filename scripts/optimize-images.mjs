@@ -6,8 +6,8 @@ async function loadSharp() {
     const mod = await import('sharp');
     return mod.default || mod;
   } catch {
-    console.error('[img:opt] sharp is not installed. Run: npm i -D sharp');
-    process.exit(1);
+    console.warn('[img:opt] sharp is not installed. Skipping image optimization.');
+    return null;
   }
 }
 const root = path.resolve('public');
@@ -31,6 +31,10 @@ function shouldConvert(fp) {
 function bytes(n) { return (n/1024).toFixed(0)+'KB'; }
 async function main(){
   const sharp = await loadSharp();
+  if (!sharp) {
+    console.log('[img:opt] noop (sharp missing)');
+    return;
+  }
   let converted = 0;
   for (const fp of walk(root)) {
     if (!shouldConvert(fp)) continue;
