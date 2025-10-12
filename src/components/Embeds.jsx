@@ -1,10 +1,10 @@
-export function SpotifyEmbed({ id, title = "Spotify Player" }) {
+export function SpotifyEmbed({ id, type = "album", title = "Spotify Player" }) {
   return (
     <div className="aspect-video w-full rounded-lg overflow-hidden border border-white/10">
       <iframe
         className="w-full h-full"
         style={{ border: 0 }}
-        src={`https://open.spotify.com/embed/album/${id}?utm_source=generator&theme=0`}
+        src={`https://open.spotify.com/embed/${type}/${id}?utm_source=generator&theme=0`}
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
         title={title}

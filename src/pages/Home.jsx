@@ -3,6 +3,7 @@ import JellyButton from "../components/JellyButton.jsx";
 import { Link } from "react-router-dom";
 import ScrollReveal from "../components/ScrollReveal.jsx";
 import { YouTubeEmbed, SpotifyEmbed } from "../components/Embeds.jsx";
+import { YT_VIDEO_ID, SPOTIFY_TYPE, SPOTIFY_ID } from "../content/media.js";
 
 const Card = ({ title, body, to }) => (
   <Link
@@ -55,8 +56,8 @@ export default function Home() {
         <h2 className="text-2xl font-bold">Listen</h2>
         <p className="mt-2 opacity-80">Dive into the Calamari Crystal era.</p>
         <div className="mt-6 grid gap-6 md:grid-cols-2">
-          <YouTubeEmbed id="dQw4w9WgXcQ" title="Featured Performance" />
-          <SpotifyEmbed id="0sNOF9WDwhWunNAHPD3Baj" title="Featured Album" />
+          <YouTubeEmbed id={YT_VIDEO_ID} title="Featured Performance" />
+          <SpotifyEmbed id={SPOTIFY_ID} type={SPOTIFY_TYPE} title="Featured Release" />
         </div>
       </ScrollReveal>
 

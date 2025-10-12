@@ -12,6 +12,13 @@ Calamari Crystal is a cinematic concept‑album website for GoVanGoes built with
 - Auto‑fix lint issues: `npm run lint:fix`
 - (Tests coming soon) Run unit tests with Vitest: `npm run test`
 
+### Media IDs (YouTube/Spotify)
+- Set these in your Vercel Project → Settings → Environment Variables (and optionally in a local `.env`):
+  - `VITE_YT_VIDEO_ID` — YouTube video ID to feature on the Home page
+  - `VITE_SPOTIFY_TYPE` — one of `track`, `album`, or `playlist`
+  - `VITE_SPOTIFY_ID` — Spotify ID matching the selected type
+- Example: `VITE_SPOTIFY_TYPE=track`, `VITE_SPOTIFY_ID=1r9xUipOqoNwggBpENDsvJ`
+
 ## Project Structure
 - `src/pages` — Home, Story, Merch, Marketing, Business, Contact pages
 - `src/components` — Hero, SocialLinks, CursorSquid, ScrollReveal and other reusable components
@@ -45,4 +52,3 @@ Calamari Crystal is a cinematic concept‑album website for GoVanGoes built with
 - Never commit secrets (API keys, credentials) to the repository.
 - Keep serverless functions (`api/*`) stateless and avoid heavy computation.
 - Validate and sanitize user input in API routes.
-
