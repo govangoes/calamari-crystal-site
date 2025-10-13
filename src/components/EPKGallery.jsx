@@ -66,13 +66,13 @@ export default function EPKGallery({ items: itemsProp }) {
                   />
                 </picture>
               </a>
-              <figcaption className="p-4 text-sm flex items-start justify-between gap-4">
-                <div className="space-y-1">
+              <figcaption className="p-4 text-sm flex flex-col gap-4">
+                <div className="space-y-2">
                   {/* Prefer custom captions/titles; fall back to credit/date/location */}
                   {it.title && <div className="font-medium">{it.title}</div>}
                   {it.caption && (
                     <div className="space-y-3">
-                      <div className="max-h-48 overflow-y-auto rounded-lg border border-ink/10 dark:border-white/10 bg-white/60 dark:bg-white/10 p-3 text-sm leading-relaxed text-ink/80 dark:text-paperWhite/80 shadow-sm">
+                      <div className="w-full max-h-32 overflow-y-auto rounded-lg border border-ink/10 dark:border-white/10 bg-white/60 dark:bg-white/10 px-4 py-3 text-sm leading-relaxed text-ink/80 dark:text-paperWhite/80 shadow-sm">
                         <p className="whitespace-pre-line">{it.caption}</p>
                       </div>
                       {it.captionLink && it.captionLink.href && (
@@ -96,21 +96,6 @@ export default function EPKGallery({ items: itemsProp }) {
                       {it.location && <span>{it.location}</span>}
                     </div>
                   )}
-                </div>
-                <div className="flex items-center gap-2">
-                  <a
-                    href={it.src}
-                    download
-                    className="shrink-0 inline-flex items-center rounded-md px-3 py-1.5 text-xs border border-ink/15 dark:border-white/15 hover:bg-ink/5 dark:hover:bg-white/10 transition"
-                  >
-                    Download
-                  </a>
-                  <button
-                    className="shrink-0 inline-flex items-center rounded-md px-3 py-1.5 text-xs border border-ink/15 dark:border-white/15 hover:bg-ink/5 dark:hover:bg-white/10 transition"
-                    onClick={() => setOpenIndex(idx)}
-                  >
-                    View
-                  </button>
                 </div>
               </figcaption>
             </figure>
