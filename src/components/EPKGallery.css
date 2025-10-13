@@ -5,6 +5,16 @@
   border-radius: 20px;
   height: 360px;
   outline: none;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 16, 34, 0.92),
+    rgba(34, 211, 238, 0.08),
+    rgba(167, 139, 250, 0.12)
+  );
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  box-shadow:
+    0 20px 40px rgba(10, 16, 34, 0.45),
+    0 12px 32px rgba(34, 211, 238, 0.12);
 }
 
 @media (min-width: 768px) {
@@ -14,7 +24,9 @@
 }
 
 .epk-card:focus-visible {
-  box-shadow: 0 0 0 3px rgba(61, 165, 255, 0.45);
+  box-shadow:
+    0 0 0 3px rgba(167, 139, 250, 0.35),
+    0 20px 40px rgba(10, 16, 34, 0.55);
 }
 
 .epk-card__inner {
@@ -46,9 +58,9 @@
 }
 
 .epk-card__face--front {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 32px 64px rgba(15, 23, 42, 0.25);
-  background: radial-gradient(circle at 20% 20%, rgba(148, 163, 184, 0.25), rgba(15, 23, 42, 0.8));
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  box-shadow: 0 32px 64px rgba(10, 16, 34, 0.35);
+  background: radial-gradient(circle at 30% 20%, rgba(34, 211, 238, 0.18), rgba(10, 16, 34, 0.92));
 }
 
 .epk-card__image {
@@ -78,34 +90,43 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: linear-gradient(0deg, rgba(6, 11, 27, 0.85) 0%, rgba(6, 11, 27, 0) 100%);
+  background: linear-gradient(0deg, rgba(10, 16, 34, 0.92) 0%, rgba(10, 16, 34, 0) 100%);
 }
 
 .epk-card__badge {
   align-self: flex-start;
   padding: 6px 12px;
   border-radius: 999px;
-  background-color: rgba(15, 118, 110, 0.9);
-  color: #f9fafb;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.25), rgba(167, 139, 250, 0.25));
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  color: var(--crystalCyan, #22d3ee);
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .epk-card__title {
-  color: #f8fafc;
+  color: var(--paperWhite, #f6f7fb);
   font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.35;
-  text-shadow: 0 8px 24px rgba(15, 23, 42, 0.45);
+  text-shadow: 0 10px 24px rgba(10, 16, 34, 0.55);
 }
 
 .epk-card__face--back {
   transform: rotateY(180deg);
-  background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.25), rgba(12, 74, 110, 0.85));
-  color: #f8fafc;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.35);
+  background: linear-gradient(
+      150deg,
+      rgba(34, 211, 238, 0.18),
+      rgba(167, 139, 250, 0.3),
+      rgba(10, 16, 34, 0.92)
+    ),
+    radial-gradient(circle at 80% -20%, rgba(167, 139, 250, 0.35), transparent 55%);
+  color: var(--paperWhite, #f6f7fb);
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  box-shadow:
+    0 24px 48px rgba(10, 16, 34, 0.45),
+    0 18px 36px rgba(34, 211, 238, 0.14);
 }
 
 .epk-card__back-content {
@@ -120,15 +141,16 @@
 }
 
 .epk-card__caption {
-  background: rgba(2, 6, 23, 0.25);
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(10, 16, 34, 0.6);
+  border: 1px solid rgba(34, 211, 238, 0.35);
   border-radius: 14px;
   padding: 16px;
   max-height: 150px;
   overflow-y: auto;
   font-size: 0.92rem;
   line-height: 1.5;
-  color: rgba(248, 250, 252, 0.85);
+  color: rgba(246, 247, 251, 0.85);
+  box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.18);
 }
 
 .epk-card__caption p {
@@ -144,7 +166,7 @@
 }
 
 .epk-card__caption::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.35);
+  background: rgba(34, 211, 238, 0.35);
   border-radius: 999px;
 }
 
@@ -160,18 +182,21 @@
   align-self: flex-start;
   padding: 8px 16px;
   border-radius: 999px;
-  background-color: rgba(45, 212, 191, 0.15);
-  color: #5eead4;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.4), rgba(167, 139, 250, 0.4));
+  color: var(--paperWhite, #f6f7fb);
   font-size: 0.7rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 600;
-  transition: background-color 0.25s ease, transform 0.25s ease, color 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+  box-shadow: 0 10px 20px rgba(34, 211, 238, 0.18);
 }
 
 .epk-card__link:hover,
 .epk-card__link:focus-visible {
-  background-color: rgba(45, 212, 191, 0.35);
-  color: #f9fafb;
   transform: translateY(-1px);
+  filter: drop-shadow(0 6px 22px rgba(34, 211, 238, 0.45));
 }
