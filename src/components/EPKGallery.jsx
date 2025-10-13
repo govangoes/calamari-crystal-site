@@ -70,7 +70,21 @@ export default function EPKGallery({ items: itemsProp }) {
                 <div className="space-y-1">
                   {/* Prefer custom captions/titles; fall back to credit/date/location */}
                   {it.title && <div className="font-medium">{it.title}</div>}
-                  {it.caption && <div className="opacity-80">{it.caption}</div>}
+                  {it.caption && (
+                    <div className="opacity-80 space-y-2">
+                      <p className="whitespace-pre-line">{it.caption}</p>
+                      {it.captionLink && it.captionLink.href && (
+                        <a
+                          href={it.captionLink.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-crystal hover:opacity-80 transition"
+                        >
+                          {it.captionLink.label || "Learn more"}
+                        </a>
+                      )}
+                    </div>
+                  )}
                   {!it.caption && (it.credit || it.date || it.location) && (
                     <div className="opacity-60">
                       {it.credit && <span>{it.credit}</span>}
