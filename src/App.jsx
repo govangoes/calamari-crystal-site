@@ -5,6 +5,7 @@ import ScrollProgress from "./components/ScrollProgress.jsx";
 import CursorSquid from "./components/CursorSquid.jsx";
 import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";
+import BackgroundPattern from "./components/BackgroundPattern.jsx";
 
 import Home from "./pages/Home.jsx";
 import NotFound from "./pages/NotFound.jsx";
@@ -26,7 +27,8 @@ export default function App() {
     <BrowserRouter>
       <ScrollProgress />
       <RouteSEO />
-      <div className="min-h-screen bg-paperWhite text-ink dark:bg-abyssNavy dark:text-paperWhite">
+      <BackgroundPattern />
+      <div className="relative z-10 min-h-screen text-ink dark:text-paperWhite">
         <CursorSquid />
         <NavBar />
         <Routes>

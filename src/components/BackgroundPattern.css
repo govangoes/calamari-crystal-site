@@ -1,0 +1,43 @@
+.cc-background {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(
+    140deg,
+    rgba(10, 16, 34, 0.96),
+    rgba(255, 215, 0, 0.2),
+    rgba(167, 139, 250, 0.3),
+    rgba(34, 211, 238, 0.25)
+  );
+  filter: url(#cc-texture);
+  overflow: hidden;
+}
+
+.cc-background__ripple {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.14), transparent 55%),
+    radial-gradient(circle at 80% 10%, rgba(167, 139, 250, 0.18), transparent 50%),
+    radial-gradient(circle at 50% 65%, rgba(34, 211, 238, 0.16), transparent 60%);
+  animation: cc-ripple 16s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+.cc-background__filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+@keyframes cc-ripple {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.05) translateY(-2%);
+  }
+  100% {
+    transform: scale(1.08) translateY(1.5%);
+  }
+}
