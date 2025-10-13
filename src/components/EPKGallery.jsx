@@ -71,8 +71,10 @@ export default function EPKGallery({ items: itemsProp }) {
                   {/* Prefer custom captions/titles; fall back to credit/date/location */}
                   {it.title && <div className="font-medium">{it.title}</div>}
                   {it.caption && (
-                    <div className="opacity-80 space-y-2">
-                      <p className="whitespace-pre-line">{it.caption}</p>
+                    <div className="space-y-3">
+                      <div className="max-h-48 overflow-y-auto rounded-lg border border-ink/10 dark:border-white/10 bg-white/60 dark:bg-white/10 p-3 text-sm leading-relaxed text-ink/80 dark:text-paperWhite/80 shadow-sm">
+                        <p className="whitespace-pre-line">{it.caption}</p>
+                      </div>
                       {it.captionLink && it.captionLink.href && (
                         <a
                           href={it.captionLink.href}
