@@ -1,6 +1,7 @@
 /* global fetch */
 import { useEffect, useState } from "react";
 import Lightbox from "./Lightbox.jsx";
+import "./EPKGallery.css";
 
 function toWebp(src) {
   const i = src.lastIndexOf(".");
@@ -39,65 +40,72 @@ export default function EPKGallery({ items: itemsProp }) {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-8">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((it, idx) => {
           // Prefer WebP now that variants are generated at build-time.
           return (
             <figure
               key={(it.src || "") + idx}
-              className="group overflow-hidden rounded-xl border border-ink/10 dark:border-white/10 bg-white/70 dark:bg-white/5"
-            >
-              <a
-                href={it.src}
-                className="block"
-                onClick={(e) => {
-                  e.preventDefault();
+              className="epk-card focus:outline-none"
+              role="button"
+              tabIndex={0}
+              onClick={() => setOpenIndex(idx)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
                   setOpenIndex(idx);
-                }}
-              >
-                <picture>
-                  <source srcSet={toWebp(it.src)} type="image/webp" />
-                  <img
-                    loading="lazy"
-                    decoding="async"
-                    src={it.src}
-                    alt={it.alt || "GoVanGoes press photo"}
-                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                  />
-                </picture>
-              </a>
-              <figcaption className="p-4 text-sm flex flex-col gap-4">
-                <div className="space-y-2">
-                  {/* Prefer custom captions/titles; fall back to credit/date/location */}
-                  {it.title && <div className="font-medium">{it.title}</div>}
-                  {it.caption && (
-                    <div className="space-y-3">
-                      <div className="w-full max-h-32 overflow-y-auto rounded-lg border border-ink/10 dark:border-white/10 bg-white/60 dark:bg-white/10 px-4 py-3 text-sm leading-relaxed text-ink/80 dark:text-paperWhite/80 shadow-sm">
-                        <p className="whitespace-pre-line">{it.caption}</p>
-                      </div>
-                      {it.captionLink && it.captionLink.href && (
-                        <a
-                          href={it.captionLink.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-crystal hover:opacity-80 transition"
-                        >
-                          {it.captionLink.label || "Learn more"}
-                        </a>
-                      )}
-                    </div>
-                  )}
-                  {!it.caption && (it.credit || it.date || it.location) && (
-                    <div className="opacity-60">
-                      {it.credit && <span>{it.credit}</span>}
-                      {it.credit && (it.date || it.location) && <span> • </span>}
-                      {it.date && <span>{it.date}</span>}
-                      {it.date && it.location && <span> • </span>}
-                      {it.location && <span>{it.location}</span>}
-                    </div>
-                  )}
+                }
+              }}
+              aria-label={`View ${it.title || "press photo"}`}
+            >
+              <div className="epk-card__inner">
+                <div className="epk-card__face epk-card__face--front">
+                  <picture className="epk-card__image">
+                    <source srcSet={toWebp(it.src)} type="image/webp" />
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src={it.src}
+                      alt={it.alt || it.title || "GoVanGoes press photo"}
+                    />
+                  </picture>
+                  <div className="epk-card__front-content">
+                    <span className="epk-card__badge">Press Photo</span>
+                    {it.title && <h3 className="epk-card__title">{it.title}</h3>}
+                  </div>
                 </div>
-              </figcaption>
+                <div className="epk-card__face epk-card__face--back">
+                  <div className="epk-card__back-content">
+                    {it.title && <h3 className="epk-card__title">{it.title}</h3>}
+                    {it.caption ? (
+                      <div className="epk-card__caption" aria-label={`Caption for ${it.title || "press photo"}`}>
+                        <p>{it.caption}</p>
+                      </div>
+                    ) : (
+                      (it.credit || it.date || it.location) && (
+                        <div className="epk-card__meta">
+                          {it.credit && <span>{it.credit}</span>}
+                          {it.credit && (it.date || it.location) && <span> • </span>}
+                          {it.date && <span>{it.date}</span>}
+                          {it.date && it.location && <span> • </span>}
+                          {it.location && <span>{it.location}</span>}
+                        </div>
+                      )
+                    )}
+                    {it.captionLink && it.captionLink.href && (
+                      <a
+                        href={it.captionLink.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="epk-card__link"
+                        onClick={(event) => event.stopPropagation()}
+                      >
+                        {it.captionLink.label || "Learn more"}
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
             </figure>
           );
         })}
