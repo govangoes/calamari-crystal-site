@@ -21,15 +21,32 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-squid-gradient">
       <div className="max-w-7xl mx-auto px-4 py-24">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+        <div className="flex flex-col items-center text-center gap-8">
+          <Parallax amount={28} className="relative w-full max-w-md md:max-w-lg">
+            <picture>
+              {/* Prefer custom hero image if present */}
+              <source srcSet={`/${baseName}.webp`} type="image/webp" />
+              {/* Fallback webp */}
+              <source srcSet="/cloud_gold_logo.webp" type="image/webp" />
+              <img
+                src={`/${baseName}.png`}
+                alt={altText}
+                className="w-full drop-shadow-2xl shadow-crystal mx-auto"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                onError={onImgError}
+              />
+            </picture>
+          </Parallax>
           <div>
-            <h1 className="text-5xl font-extrabold leading-tight">
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
               Wildly influential. Unapologetically different.
             </h1>
-            <p className="mt-4 text-ink/80 dark:text-paperWhite/80">
+            <p className="mt-4 text-ink/80 dark:text-paperWhite/80 max-w-2xl mx-auto">
               Presence. Precision. Performance.
             </p>
-            <div className="mt-6 flex gap-4">
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
               <a className="btn btn-primary" href="/music">
                 Listen Now
               </a>
@@ -46,23 +63,6 @@ export default function Hero() {
               </a>
             </div>
           </div>
-          <Parallax amount={28} className="relative">
-            <picture>
-              {/* Prefer custom hero image if present */}
-              <source srcSet={`/${baseName}.webp`} type="image/webp" />
-              {/* Fallback webp */}
-              <source srcSet="/cloud_gold_logo.webp" type="image/webp" />
-              <img
-                src={`/${baseName}.png`}
-                alt={altText}
-                className="w-full drop-shadow-2xl shadow-crystal"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                onError={onImgError}
-              />
-            </picture>
-          </Parallax>
         </div>
       </div>
       <a href="#sections" className="scroll-cue" aria-label="Scroll to content">
