@@ -21,6 +21,7 @@ import About from "./pages/About.jsx";
 import Press from "./pages/Press.jsx";
 import Privacy from "./pages/Privacy.jsx";
 import Terms from "./pages/Terms.jsx";
+import RhymeLab from "./pages/RhymeLab.jsx";
 
 export default function App() {
   return (
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="/press" element={<Press />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/rhyme-lab" element={<RhymeLab />} />
           <Route path="/epk" element={<Press />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

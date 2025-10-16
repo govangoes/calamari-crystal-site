@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Gem, Music, ShoppingBag, FileText, MessageCircle } from "lucide-react";
+import { Gem, Music, ShoppingBag, FileText, MessageCircle, FlaskConical } from "lucide-react";
 import ThemeToggle from "./ThemeToggle.jsx";
 
 const LinkItem = ({ to, children }) => (
@@ -46,6 +46,10 @@ export default function NavBar() {
           <LinkItem to="/bookings">
             <MessageCircle className="inline h-4 w-4 mr-1" />
             Bookings
+          </LinkItem>
+          <LinkItem to="/rhyme-lab">
+            <FlaskConical className="inline h-4 w-4 mr-1" />
+            Rhyme Lab
           </LinkItem>
           <ThemeToggle />
         </div>
