@@ -6,7 +6,7 @@ const LinkItem = ({ to, children }) => (
   <NavLink
     to={to}
     className={({ isActive }) =>
-      `px-3 py-2 rounded-md text-sm font-medium transition
+      `px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition
        ${
          isActive
            ? "text-crystal dark:bg-graphite/60 bg-ink/10 ring-1 ring-crystal/40 shadow-crystal"
@@ -21,14 +21,14 @@ const LinkItem = ({ to, children }) => (
 export default function NavBar() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-paperWhite/70 dark:bg-ink/50 border-b border-ink/10 dark:border-paperWhite/10">
-      <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <nav className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3 sm:gap-4">
+        <div className="flex items-center gap-2 text-sm sm:text-base">
           <Gem className="h-5 w-5 text-monteGold" />
           <span className="font-semibold tracking-wide text-ink dark:text-paperWhite">
             GoVanGoes
           </span>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="ml-auto flex w-full flex-wrap items-center justify-end gap-1 sm:w-auto sm:flex-nowrap sm:gap-2">
           <LinkItem to="/">Home</LinkItem>
           <LinkItem to="/story">Lore</LinkItem>
           <LinkItem to="/music">
