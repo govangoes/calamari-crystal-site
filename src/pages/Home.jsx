@@ -23,19 +23,19 @@ export default function Home() {
       {/* In-page quick nav */}
       <section id="sections" className="mx-auto max-w-6xl px-4 py-8">
         <div className="flex flex-wrap gap-2">
-          <a href="#music" className="pill">
+          <a href="#music" className="pill flex-1 min-w-[140px] justify-center">
             Listen
           </a>
-          <a href="#merch" className="pill">
+          <a href="#merch" className="pill flex-1 min-w-[140px] justify-center">
             Merch
           </a>
-          <a href="#story" className="pill">
+          <a href="#story" className="pill flex-1 min-w-[140px] justify-center">
             Story
           </a>
-          <a href="#epk" className="pill">
+          <a href="#epk" className="pill flex-1 min-w-[140px] justify-center">
             Press Kit
           </a>
-          <a href="#contact" className="pill">
+          <a href="#contact" className="pill flex-1 min-w-[140px] justify-center">
             Contact
           </a>
         </div>

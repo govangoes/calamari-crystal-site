@@ -30,6 +30,11 @@
   body {
     @apply antialiased;
   }
+
+  html.is-mobile body {
+    overscroll-behavior-y: contain;
+    touch-action: manipulation;
+  }
 }
 
 /* === Small helpers you can reuse in components === */
