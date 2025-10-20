@@ -11,17 +11,47 @@
     /* Reserved for future per-component tokens */
   }
 
-  html, body, #root { height: 100%; }
-  :root { --font-brand: "Calamari Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  :root {
+    --font-brand:
+      "Calamari Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+      "Apple Color Emoji", "Segoe UI Emoji";
+  }
 
   /* Default theme backdrop */
-  body { @apply antialiased; }
+  body {
+    @apply antialiased;
+  }
 }
 
 /* === Small helpers you can reuse in components === */
 @layer utilities {
-  .btn { @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform; }
-  .btn-primary { @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02]; }
-  .pill { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm; }
-  .section { @apply relative py-16 md:py-24; }
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform;
+  }
+  .btn-primary {
+    @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02];
+  }
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm;
+  }
+  .section {
+    @apply relative py-16 md:py-24;
+  }
+  .scroll-cue {
+    @apply absolute left-1/2 -translate-x-1/2 bottom-4 text-white/80 text-xs flex flex-col items-center gap-1;
+    animation: floaty 2.4s ease-in-out infinite;
+  }
+  @keyframes floaty {
+    0%,100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+  }
 }

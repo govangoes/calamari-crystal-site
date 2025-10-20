@@ -8,7 +8,7 @@ import Business from "./pages/Business.jsx";
 import Contact from "./pages/Contact.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
-const navLink = ({isActive}) => `hover:opacity-100 ${isActive ? "opacity-100" : "opacity-80"}`;
+const navLink = ({ isActive }) => `hover:opacity-100 ${isActive ? "opacity-100" : "opacity-80"}`;
 
 export default function App() {
   return (
@@ -16,14 +16,28 @@ export default function App() {
       <CursorSquid />
       <header className="border-b border-white/10 sticky top-0 bg-ink/60 backdrop-blur supports-[backdrop-filter]:bg-ink/40">
         <nav className="mx-auto max-w-6xl px-4 py-4 flex flex-wrap items-center gap-4">
-          <Link to="/" className="font-extrabold tracking-wide">GoVanGoes</Link>
+          <Link to="/" className="font-extrabold tracking-wide">
+            GoVanGoes
+          </Link>
           <div className="flex gap-4 text-sm">
-            <NavLink to="/" className={navLink} end>Home</NavLink>
-            <NavLink to="/story" className={navLink}>Story</NavLink>
-            <NavLink to="/merch" className={navLink}>Merch</NavLink>
-            <NavLink to="/marketing" className={navLink}>Marketing</NavLink>
-            <NavLink to="/business" className={navLink}>Business</NavLink>
-            <NavLink to="/contact" className={navLink}>Contact</NavLink>
+            <NavLink to="/" className={navLink} end>
+              Home
+            </NavLink>
+            <NavLink to="/story" className={navLink}>
+              Story
+            </NavLink>
+            <NavLink to="/merch" className={navLink}>
+              Merch
+            </NavLink>
+            <NavLink to="/marketing" className={navLink}>
+              Marketing
+            </NavLink>
+            <NavLink to="/business" className={navLink}>
+              Business
+            </NavLink>
+            <NavLink to="/contact" className={navLink}>
+              Contact
+            </NavLink>
           </div>
         </nav>
       </header>

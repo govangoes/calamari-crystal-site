@@ -4,20 +4,16 @@
 let tailwind;
 try {
   // Tailwind v4
-  // eslint-disable-next-line import/no-extraneous-dependencies
-  tailwind = require('@tailwindcss/postcss');
-} catch (e) {
+  tailwind = require("@tailwindcss/postcss");
+} catch {
   // Tailwind v3 fallback
-  // eslint-disable-next-line import/no-extraneous-dependencies
-  tailwind = require('tailwindcss');
+  tailwind = require("tailwindcss");
 }
 
 module.exports = {
   plugins: [
     // Both v3 and v4 expose a plugin function we can call
     tailwind(),
-    // eslint-disable-next-line import/no-extraneous-dependencies
-    require('autoprefixer')()
-  ]
+    require("autoprefixer")(),
+  ],
 };
-

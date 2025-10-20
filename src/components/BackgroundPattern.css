@@ -1,0 +1,53 @@
+.cc-background {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  background:
+    radial-gradient(1200px 900px at -5% 10%, rgba(167, 139, 250, 0.45), transparent 65%),
+    radial-gradient(800px 720px at 105% 0%, rgba(34, 211, 238, 0.4), transparent 58%),
+    radial-gradient(900px 720px at 50% 120%, rgba(255, 215, 0, 0.32), transparent 62%),
+    linear-gradient(135deg, rgba(245, 247, 251, 0.94), rgba(10, 16, 34, 0.82));
+  filter: url(#cc-texture);
+}
+
+.cc-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: lighten;
+  background:
+    linear-gradient(120deg, rgba(255, 215, 0, 0.18), transparent 45%),
+    linear-gradient(200deg, rgba(34, 211, 238, 0.12), transparent 55%);
+}
+
+.cc-background__ripple {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 215, 0, 0.32), transparent 55%),
+    radial-gradient(circle at 82% 12%, rgba(167, 139, 250, 0.28), transparent 52%),
+    radial-gradient(circle at 46% 68%, rgba(34, 211, 238, 0.24), transparent 60%);
+  animation: cc-ripple 16s infinite alternate ease-in-out;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.cc-background__filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+@keyframes cc-ripple {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.05) translateY(-2%);
+  }
+  100% {
+    transform: scale(1.08) translateY(1.5%);
+  }
+}

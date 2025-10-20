@@ -4,15 +4,15 @@ Stack: Vite + React + Tailwind, deployed on Vercel.
 Live: https://calamari-crystal-site.vercel.app
 
 Quickstart
-	•	npm install
-	•	npm run dev
-	•	npm run build && npm run preview
+• npm install
+• npm run dev
+• npm run build && npm run preview
 
 Structure
-	•	src/pages — Home, Story, Merch, Marketing, Business, Contact
-	•	src/components — Hero, SocialLinks, CursorSquid, ScrollReveal
-	•	src/assets — brand images/icons
-	•	src/styles/palette.css — brand tokens
+• src/pages — Home, Story, Merch, Marketing, Business, Contact
+• src/components — Hero, SocialLinks, CursorSquid, ScrollReveal
+• src/assets — brand images/icons
+• src/styles/palette.css — brand tokens
 
 Deploy
 
@@ -24,12 +24,14 @@ MIT — see LICENSE.# Final Hope — GoVanGoes (Calamari Crystal)
 Vite + React + Tailwind site with underwater aesthetic, floating squid cursor, scroll reveals, and Coral Glow dark mode.
 
 ## Scripts
+
 - `npm i`
 - `npm run dev` — start locally
 - `npm run build` — production build
 - `npm run preview` — preview production
 
 ## Deploy
+
 Push to GitHub (main or dev). Connect repo to Vercel (Framework: Vite). Build command: `npm run build`. Output: `dist`.
 
 ## Domains + SPA Routing Checklist
@@ -58,5 +60,6 @@ Push to GitHub (main or dev). Connect repo to Vercel (Framework: Vite). Build co
   - `https://govangoes.com/api/phoneme?q=calamari crystal` should return JSON.
 
 Notes
+
 - If you prefer serving both `www` and apex without redirect, remove the `www` redirects in `vercel.json` and add both domains to the same project.
 - If `/api/dict` returns 503, run `npm run dict:build` to generate `src/data/dictionary.json` (optional features still work without it).

@@ -21,7 +21,9 @@ export default function Business() {
         ))}
       </div>
       <div className="text-center">
-        <a className="px-5 py-3 rounded bg-monteGold text-ink hover:opacity-90" href="/contact">Booking & Collabs</a>
+        <a className="px-5 py-3 rounded bg-monteGold text-ink hover:opacity-90" href="/contact">
+          Booking & Collabs
+        </a>
       </div>
     </section>
   );

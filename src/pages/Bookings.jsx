@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import setSEO from "../utils/seo.js";
 
-export default function Bookings(){
-  useEffect(()=>{
+export default function Bookings() {
+  useEffect(() => {
     setSEO({
       title: "Bookings — GoVanGoes",
       description: "Shows, brand events, press, and collaborations.",
@@ -12,7 +12,7 @@ export default function Bookings(){
       site: "@govangoes",
       author: "GoVanGoes",
     });
-  },[]);
+  }, []);
   return (
     <main className="mx-auto max-w-6xl px-4 py-16">
       <h1 className="text-3xl font-bold">Bookings</h1>
@@ -21,4 +21,3 @@ export default function Bookings(){
     </main>
   );
 }
-
