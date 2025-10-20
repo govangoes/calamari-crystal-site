@@ -13,7 +13,7 @@ function getInitialTheme() {
   }
 }
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ className = "", onToggle }) {
   const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
@@ -25,12 +25,17 @@ export default function ThemeToggle() {
     }
   }, [theme]);
 
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    if (typeof onToggle === "function") onToggle();
+  };
+
   return (
     <button
       type="button"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={toggleTheme}
       aria-pressed={theme === "dark"}
-      className="ml-2 p-2 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 transition"
+      className={`ml-2 p-2 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 transition ${className}`}
       title={theme === "dark" ? "Switch to light" : "Switch to dark"}
     >
       {theme === "dark" ? (
