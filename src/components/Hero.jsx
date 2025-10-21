@@ -1,22 +1,24 @@
 import Parallax from "./Parallax.jsx";
 
+const DEFAULT_HERO_BASENAME = "govangoes-logo";
+const FALLBACK_SEQUENCE = ["cloud_gold_logo", "squid_emblem"];
+
 export default function Hero() {
-  const baseName = import.meta.env.VITE_HERO_IMAGE_BASENAME || "transparentcloutlogo";
+  const baseName = import.meta.env.VITE_HERO_IMAGE_BASENAME || DEFAULT_HERO_BASENAME;
+  const fallbackSources = Array.from(
+    new Set([baseName, DEFAULT_HERO_BASENAME, ...FALLBACK_SEQUENCE]),
+  );
   const altText = import.meta.env.VITE_HERO_ALT || "GoVanGoes mark";
 
   function onImgError(e) {
-    const src = e?.target?.src || "";
-    if (src.includes("transparentcloutlogo") && !e.target.dataset.fallback1) {
-      e.target.dataset.fallback1 = "1";
-      e.target.src = "/cloud_gold_logo.png";
-      return;
-    }
-    if (src.includes("cloud_gold_logo") && !e.target.dataset.fallback2) {
-      e.target.dataset.fallback2 = "1";
-      e.target.src = "/squid_emblem.png";
-      return;
-    }
-    // Final fallback already tried
+    const target = e?.target;
+    if (!target) return;
+    const currentIndex = Number(target.dataset.fallbackIndex || 0);
+    if (currentIndex >= fallbackSources.length - 1) return;
+    const nextIndex = currentIndex + 1;
+    target.dataset.fallbackIndex = String(nextIndex);
+    const nextBase = fallbackSources[nextIndex];
+    target.src = `/${nextBase}.png`;
   }
   return (
     <section className="relative overflow-hidden bg-squid-gradient">
@@ -26,16 +28,20 @@ export default function Hero() {
             <picture>
               {/* Prefer custom hero image if present */}
               <source srcSet={`/${baseName}.webp`} type="image/webp" />
+              {baseName !== DEFAULT_HERO_BASENAME && (
+                <source srcSet={`/${DEFAULT_HERO_BASENAME}.webp`} type="image/webp" />
+              )}
               {/* Fallback webp */}
               <source srcSet="/cloud_gold_logo.webp" type="image/webp" />
               <img
-                src={`/${baseName}.png`}
+                src={`/${fallbackSources[0]}.png`}
                 alt={altText}
                 className="w-full drop-shadow-2xl shadow-crystal mx-auto"
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
                 onError={onImgError}
+                data-fallback-index="0"
               />
             </picture>
           </Parallax>

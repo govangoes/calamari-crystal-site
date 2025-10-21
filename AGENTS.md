@@ -21,7 +21,7 @@ Calamari Crystal is a cinematic concept‑album website for GoVanGoes built with
 
 ### Hero Image
 - Configure the homepage hero mark via env var:
-  - `VITE_HERO_IMAGE_BASENAME` — base name (without extension) of a file in `public/` (default: `transparentcloutlogo`). The app will try `/<BASENAME>.webp` then `/<BASENAME>.png`.
+  - `VITE_HERO_IMAGE_BASENAME` — base name (without extension) of a file in `public/` (default: `govangoes-logo`). The app will try `/<BASENAME>.webp` then `/<BASENAME>.png`.
   - `VITE_HERO_ALT` — accessible alt text for the hero image.
 - Fallback order if the custom image is missing: `cloud_gold_logo` → `squid_emblem`.
 
