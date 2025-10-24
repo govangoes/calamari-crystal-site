@@ -30,7 +30,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       aria-pressed={theme === "dark"}
-      className="ml-2 p-2 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 transition"
+      className="ml-2 flex h-11 w-11 items-center justify-center rounded-md border border-white/10 bg-white/5 hover:bg-white/10 transition"
       title={theme === "dark" ? "Switch to light" : "Switch to dark"}
     >
       {theme === "dark" ? (

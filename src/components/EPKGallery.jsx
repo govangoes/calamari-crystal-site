@@ -44,19 +44,13 @@ export default function EPKGallery({ items: itemsProp }) {
         {items.map((it, idx) => {
           // Prefer WebP now that variants are generated at build-time.
           return (
-            <figure
+            <button
               key={(it.src || "") + idx}
-              className="epk-card focus:outline-none"
-              role="button"
-              tabIndex={0}
+              type="button"
+              className="epk-card focus:outline-none text-left"
               onClick={() => setOpenIndex(idx)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  setOpenIndex(idx);
-                }
-              }}
               aria-label={`View ${it.title || "press photo"}`}
+              aria-haspopup="dialog"
             >
               <div className="epk-card__inner">
                 <div className="epk-card__face epk-card__face--front">
@@ -93,20 +87,29 @@ export default function EPKGallery({ items: itemsProp }) {
                       )
                     )}
                     {it.captionLink && it.captionLink.href && (
-                      <a
-                        href={it.captionLink.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <span
+                        role="link"
+                        tabIndex={0}
                         className="epk-card__link"
-                        onClick={(event) => event.stopPropagation()}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          window.open(it.captionLink.href, "_blank", "noopener,noreferrer");
+                        }}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            window.open(it.captionLink.href, "_blank", "noopener,noreferrer");
+                          }
+                        }}
                       >
                         {it.captionLink.label || "Learn more"}
-                      </a>
+                      </span>
                     )}
                   </div>
                 </div>
               </div>
-            </figure>
+            </button>
           );
         })}
       </div>

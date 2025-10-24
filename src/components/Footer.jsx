@@ -5,6 +5,9 @@ export default function Footer() {
         <div className="flex flex-wrap gap-6 items-center justify-between">
           <div>© {new Date().getFullYear()} GoVanGoes / Cloutlandish LLC</div>
           <nav className="flex gap-4 flex-wrap">
+            <a className="hover:text-ink dark:hover:text-paperWhite" href="mailto:hello@govangoes.com">
+              hello@govangoes.com
+            </a>
             <a
               className="hover:text-ink dark:hover:text-paperWhite"
               href="https://tiktok.com/@govangoes"

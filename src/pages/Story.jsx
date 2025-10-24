@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Story() {
   return (
-    <main className="mx-auto max-w-6xl px-4 py-16 space-y-8">
+    <main id="main" tabIndex="-1" className="mx-auto max-w-6xl px-4 py-16 space-y-8">
       <header>
         <h1 className="text-4xl font-bold">The Calamari Crystal Chronicle</h1>
         <p className="mt-2 text-paperWhite/75">

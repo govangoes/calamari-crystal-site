@@ -29,6 +29,9 @@ export default function App() {
       <RouteSEO />
       <BackgroundPattern />
       <div className="relative z-10 min-h-screen text-ink dark:text-paperWhite">
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
         <CursorSquid />
         <NavBar />
         <Routes>

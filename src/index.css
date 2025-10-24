@@ -30,6 +30,30 @@
   body {
     @apply antialiased;
   }
+
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.75rem;
+    background-color: #ffd700;
+    color: #0b0a12;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+    z-index: 50;
+  }
+
+  .skip-link:focus-visible {
+    transform: translate(-50%, 0.75rem);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25);
+  }
 }
 
 /* === Small helpers you can reuse in components === */
