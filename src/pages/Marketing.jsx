@@ -17,7 +17,7 @@ const timeline = [
 
 export default function Marketing() {
   return (
-    <section className="space-y-10">
+    <main id="main" tabIndex="-1" className="mx-auto max-w-6xl px-4 py-16 space-y-10">
       <header className="text-center space-y-2">
         <h1 className="text-3xl md:text-4xl font-extrabold">Rollout Strategy</h1>
         <p className="opacity-80">Narrative-first content. High engagement, low overhead.</p>
@@ -42,6 +42,6 @@ export default function Marketing() {
           Book a strategy session →
         </a>
       </div>
-    </section>
+    </main>
   );
 }

@@ -1,5 +1,4 @@
 import Hero from "../components/Hero.jsx";
-import JellyButton from "../components/JellyButton.jsx";
 import { Link } from "react-router-dom";
 import ScrollReveal from "../components/ScrollReveal.jsx";
 import { YouTubeEmbed, SpotifyEmbed } from "../components/Embeds.jsx";
@@ -18,7 +17,7 @@ const Card = ({ title, body, to }) => (
 
 export default function Home() {
   return (
-    <main className="bg-ink">
+    <main id="main" tabIndex="-1" className="bg-ink">
       <Hero />
 
       {/* In-page quick nav */}

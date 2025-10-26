@@ -14,7 +14,7 @@ export default function Music() {
     });
   }, []);
   return (
-    <main className="mx-auto max-w-6xl px-4 py-16">
+    <main id="main" tabIndex="-1" className="mx-auto max-w-6xl px-4 py-16">
       <h1 className="text-3xl font-bold">Music</h1>
       <p className="mt-3 text-paperWhite/80">Latest singles, EPs, and concept‑album tracks.</p>
     </main>

@@ -20,7 +20,7 @@ const items = [
 
 export default function Merch() {
   return (
-    <section className="space-y-8">
+    <main id="main" tabIndex="-1" className="mx-auto max-w-6xl px-4 py-16 space-y-8">
       <header className="text-center">
         <h1 className="text-3xl md:text-4xl font-extrabold">Relics from the Deep</h1>
         <p className="opacity-80 mt-2">Limited runs. Story-driven. Built for super-fans.</p>
@@ -44,6 +44,6 @@ export default function Merch() {
           </ScrollReveal>
         ))}
       </div>
-    </section>
+    </main>
   );
 }

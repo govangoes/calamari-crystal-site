@@ -7,7 +7,7 @@ export default function Business() {
     ["Licensing/Digital", "$5k target"],
   ];
   return (
-    <section className="space-y-8">
+    <main id="main" tabIndex="-1" className="mx-auto max-w-6xl px-4 py-16 space-y-8">
       <header className="text-center">
         <h1 className="text-3xl md:text-4xl font-extrabold">Cloutlandish LLC • Year 1 Focus</h1>
         <p className="opacity-80 mt-2">Power • Play • Precision</p>
@@ -25,6 +25,6 @@ export default function Business() {
           Booking & Collabs
         </a>
       </div>
-    </section>
+    </main>
   );
 }

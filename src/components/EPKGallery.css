@@ -1,4 +1,9 @@
 .epk-card {
+  display: block;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  color: inherit;
   position: relative;
   cursor: pointer;
   perspective: 1200px;
