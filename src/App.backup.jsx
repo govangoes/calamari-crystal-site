@@ -16,13 +16,14 @@ export default function App() {
       <CursorSquid />
       <header className="border-b border-white/10 sticky top-0 bg-ink/60 backdrop-blur supports-[backdrop-filter]:bg-ink/40">
         <nav className="mx-auto max-w-6xl px-4 py-4 flex flex-wrap items-center gap-4">
-          <Link to="/" className="font-extrabold tracking-wide">
+          <Link
+            to="/"
+            className="font-extrabold tracking-wide rounded-md px-2 py-1 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+            aria-label="Go to GoVanGoes home"
+          >
             GoVanGoes
           </Link>
           <div className="flex gap-4 text-sm">
-            <NavLink to="/" className={navLink} end>
-              Home
-            </NavLink>
             <NavLink to="/story" className={navLink}>
               Story
             </NavLink>
