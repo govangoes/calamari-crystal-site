@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Gem, Music, ShoppingBag, FileText, MessageCircle } from "lucide-react";
 import ThemeToggle from "./ThemeToggle.jsx";
 
@@ -22,14 +22,15 @@ export default function NavBar() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-paperWhite/70 dark:bg-ink/50 border-b border-ink/10 dark:border-paperWhite/10">
       <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <Link
+          to="/"
+          className="flex items-center gap-2 rounded-md px-2 py-1 transition hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crystal/70 dark:hover:bg-graphite/40"
+          aria-label="Go to GoVanGoes home"
+        >
           <Gem className="h-5 w-5 text-monteGold" />
-          <span className="font-semibold tracking-wide text-ink dark:text-paperWhite">
-            GoVanGoes
-          </span>
-        </div>
+          <span className="font-semibold tracking-wide text-ink dark:text-paperWhite">GoVanGoes</span>
+        </Link>
         <div className="flex items-center gap-1">
-          <LinkItem to="/">Home</LinkItem>
           <LinkItem to="/story">Lore</LinkItem>
           <LinkItem to="/music">
             <Music className="inline h-4 w-4 mr-1" />
