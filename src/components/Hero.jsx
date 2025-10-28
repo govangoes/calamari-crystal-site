@@ -36,7 +36,7 @@ export default function Hero() {
               <img
                 src={`/${fallbackSources[0]}.png`}
                 alt={altText}
-                className="w-full drop-shadow-2xl shadow-crystal mx-auto"
+                className="w-full mx-auto"
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
