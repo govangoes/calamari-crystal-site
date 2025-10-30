@@ -6,7 +6,7 @@ import {
   describeUniqueness,
   hydrateWordEntry,
   normalizeWord,
-  uniquenessScore,
+  sharedTail,
 } from "../utils/rhymeUtils.js";
 
 const STORAGE_KEY = "rhyme-lab-words";
@@ -67,12 +67,23 @@ export default function RhymeLab() {
 
   const summary = useMemo(() => {
     if (!hydrated.length) return null;
-    const topRhyme = [...hydrated].sort((a, b) => b.rhymeScore - a.rhymeScore)[0];
-    const topUnique = [...hydrated].sort((a, b) => b.uniqueness - a.uniqueness)[0];
-    const averageRhyme =
-      hydrated.reduce((acc, entry) => acc + entry.rhymeScore, 0) / hydrated.length;
-    const averageUniqueness =
-      hydrated.reduce((acc, entry) => acc + entry.uniqueness, 0) / hydrated.length;
+    let topRhyme = hydrated[0];
+    let topUnique = hydrated[0];
+    let sumRhyme = 0;
+    let sumUniq = 0;
+    for (let i = 0; i < hydrated.length; i++) {
+      const entry = hydrated[i];
+      sumRhyme += entry.rhymeScore;
+      sumUniq += entry.uniqueness;
+      if (entry.rhymeScore > topRhyme.rhymeScore) {
+        topRhyme = entry;
+      }
+      if (entry.uniqueness > topUnique.uniqueness) {
+        topUnique = entry;
+      }
+    }
+    const averageRhyme = sumRhyme / hydrated.length;
+    const averageUniqueness = sumUniq / hydrated.length;
     return {
       topRhyme,
       topUnique,
@@ -96,16 +107,18 @@ export default function RhymeLab() {
   }
 
   function renderMeter(label, score, accent) {
+    const pct = Math.max(0, Math.min(score, 1));
+    const pctDisplay = Math.round(pct * 100);
     return (
       <div className="space-y-1">
         <div className="flex items-center justify-between text-xs uppercase tracking-widest text-ink/60 dark:text-paperWhite/60">
           <span>{label}</span>
-          <span className="font-semibold">{Math.round(score * 100)}%</span>
+          <span className="font-semibold">{pctDisplay}%</span>
         </div>
         <div className="h-2 w-full rounded-full bg-ink/10 dark:bg-paperWhite/10 overflow-hidden">
           <div
             className={`${accent} h-full transition-all duration-500`}
-            style={{ width: `${Math.max(score * 100, 4)}%` }}
+            style={{ width: `${pctDisplay}%` }}
           />
         </div>
       </div>
@@ -321,7 +334,7 @@ export default function RhymeLab() {
                     {entry.uniquenessLabel}
                   </p>
                   <p className="text-xs text-ink/60 dark:text-paperWhite/60">
-                    Diversity index: {Math.round(uniquenessScore(entry.word) * 100)}%
+                    Diversity index: {Math.round(entry.uniqueness * 100)}%
                   </p>
                 </div>
               </div>
@@ -360,20 +373,4 @@ function SummaryCard({ title, highlight, descriptor, score }) {
       </p>
     </div>
   );
-}
-
-function sharedTail(a, b) {
-  const cleanA = normalizeWord(a);
-  const cleanB = normalizeWord(b);
-  if (!cleanA || !cleanB) return "";
-  let i = 0;
-  while (
-    i < cleanA.length &&
-    i < cleanB.length &&
-    cleanA[cleanA.length - 1 - i] === cleanB[cleanB.length - 1 - i]
-  ) {
-    i += 1;
-  }
-  if (i === 0) return "";
-  return cleanA.slice(cleanA.length - i);
 }
