@@ -43,12 +43,21 @@ export default function EPKGallery({ items: itemsProp }) {
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((it, idx) => {
           // Prefer WebP now that variants are generated at build-time.
+          const handleKeyDown = (event) => {
+            if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+              event.preventDefault();
+              setOpenIndex(idx);
+            }
+          };
+
           return (
-            <button
+            <div
               key={(it.src || "") + idx}
-              type="button"
+              role="button"
+              tabIndex={0}
               className="epk-card focus:outline-none"
               onClick={() => setOpenIndex(idx)}
+              onKeyDown={handleKeyDown}
               aria-label={`View ${it.title || "press photo"}`}
             >
               <div className="epk-card__inner">
@@ -102,7 +111,7 @@ export default function EPKGallery({ items: itemsProp }) {
                   </div>
                 </div>
               </div>
-            </button>
+            </div>
           );
         })}
       </div>
