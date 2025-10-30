@@ -8,7 +8,7 @@ export function normalizeWord(word = "") {
     .trim();
 }
 
-function commonSuffixLength(a, b) {
+export function commonSuffixLength(a, b) {
   const minLength = Math.min(a.length, b.length);
   let count = 0;
   for (let i = 0; i < minLength; i += 1) {
@@ -19,6 +19,15 @@ function commonSuffixLength(a, b) {
     }
   }
   return count;
+}
+
+export function sharedTail(a, b) {
+  const cleanA = normalizeWord(a);
+  const cleanB = normalizeWord(b);
+  if (!cleanA || !cleanB) return "";
+  const suffixLen = commonSuffixLength(cleanA, cleanB);
+  if (suffixLen === 0) return "";
+  return cleanA.slice(cleanA.length - suffixLen);
 }
 
 function lastVowelIndex(word) {
