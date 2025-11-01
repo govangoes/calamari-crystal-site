@@ -108,19 +108,19 @@ export default function NavBar() {
               Lore
             </MobileMenuItem>
             <MobileMenuItem to="/music" onClick={closeMobileMenu}>
-              <Music className="inline h-4 w-4 mr-2" />
+              <Music className="inline h-4 w-4 mr-1" />
               Music
             </MobileMenuItem>
             <MobileMenuItem to="/merch" onClick={closeMobileMenu}>
-              <ShoppingBag className="inline h-4 w-4 mr-2" />
+              <ShoppingBag className="inline h-4 w-4 mr-1" />
               Merch
             </MobileMenuItem>
             <MobileMenuItem to="/press" onClick={closeMobileMenu}>
-              <FileText className="inline h-4 w-4 mr-2" />
+              <FileText className="inline h-4 w-4 mr-1" />
               Press
             </MobileMenuItem>
             <MobileMenuItem to="/bookings" onClick={closeMobileMenu}>
-              <MessageCircle className="inline h-4 w-4 mr-2" />
+              <MessageCircle className="inline h-4 w-4 mr-1" />
               Bookings
             </MobileMenuItem>
           </div>
