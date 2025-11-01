@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { Gem, Music, ShoppingBag, FileText, MessageCircle, Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle.jsx";
 
-const LinkItem = ({ to, children, onClick = undefined }) => (
+const LinkItem = ({ to, children, onClick }) => (
   <NavLink
     to={to}
     onClick={onClick}
