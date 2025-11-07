@@ -51,7 +51,12 @@
     animation: floaty 2.4s ease-in-out infinite;
   }
   @keyframes floaty {
-    0%,100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, -6px); }
+    0%,
+    100% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, -6px);
+    }
   }
 }

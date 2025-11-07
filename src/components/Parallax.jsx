@@ -6,34 +6,35 @@ export default function Parallax({ amount = 24, className = "", children }) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (typeof window === "undefined") return;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const win = window;
+
+    const prefersReduced = win.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) return; // Respect users that prefer reduced motion
 
     let raf = 0;
     function update() {
       raf = 0;
       const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
+      const vh = win.innerHeight || 1;
       // -1 at top, 0 at center, +1 at bottom
-      const norm = ((rect.top + rect.height / 2) - vh / 2) / (vh / 2);
+      const norm = (rect.top + rect.height / 2 - vh / 2) / (vh / 2);
       const clamped = Math.max(-1, Math.min(1, norm));
       const y = clamped * amount; // translate in px
       el.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0)`;
     }
     function onScroll() {
-      if (!raf) raf = requestAnimationFrame(update);
+      if (!raf) raf = win.requestAnimationFrame(update);
     }
     el.style.willChange = "transform";
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    win.addEventListener("scroll", onScroll, { passive: true });
+    win.addEventListener("resize", onScroll);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
+      win.removeEventListener("scroll", onScroll);
+      win.removeEventListener("resize", onScroll);
+      if (raf) win.cancelAnimationFrame(raf);
     };
   }, [amount]);
 
@@ -43,4 +44,3 @@ export default function Parallax({ amount = 24, className = "", children }) {
     </div>
   );
 }
-

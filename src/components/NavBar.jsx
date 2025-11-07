@@ -57,7 +57,9 @@ export default function NavBar() {
           aria-label="Go to GoVanGoes home"
         >
           <Gem className="h-5 w-5 text-monteGold" />
-          <span className="font-semibold tracking-wide text-ink dark:text-paperWhite">GoVanGoes</span>
+          <span className="font-semibold tracking-wide text-ink dark:text-paperWhite">
+            GoVanGoes
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -91,11 +93,7 @@ export default function NavBar() {
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
           >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </nav>
