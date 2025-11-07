@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Gem, Music, ShoppingBag, FileText, MessageCircle } from "lucide-react";
+import { Gem, Music, ShoppingBag, FileText, MessageCircle, Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle.jsx";
 
-const LinkItem = ({ to, children }) => (
+const LinkItem = ({ to, children, onClick }) => (
   <NavLink
     to={to}
+    onClick={onClick}
     className={({ isActive }) =>
       `px-3 py-2 rounded-md text-sm font-medium transition
        ${
@@ -18,7 +20,34 @@ const LinkItem = ({ to, children }) => (
   </NavLink>
 );
 
+const MobileMenuItem = ({ to, children, onClick }) => (
+  <NavLink
+    to={to}
+    onClick={onClick}
+    className={({ isActive }) =>
+      `block px-4 py-3 text-base font-medium transition
+       ${
+         isActive
+           ? "text-crystal bg-ink/10 dark:bg-graphite/60"
+           : "text-ink/80 dark:text-paperWhite/80 hover:text-ink dark:hover:text-paperWhite hover:bg-ink/5 dark:hover:bg-graphite/40"
+       }`
+    }
+  >
+    {children}
+  </NavLink>
+);
+
 export default function NavBar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-paperWhite/70 dark:bg-ink/50 border-b border-ink/10 dark:border-paperWhite/10">
       <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
@@ -30,7 +59,9 @@ export default function NavBar() {
           <Gem className="h-5 w-5 text-monteGold" />
           <span className="font-semibold tracking-wide text-ink dark:text-paperWhite">GoVanGoes</span>
         </Link>
-        <div className="flex items-center gap-1">
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-1">
           <LinkItem to="/story">Lore</LinkItem>
           <LinkItem to="/music">
             <Music className="inline h-4 w-4 mr-1" />
@@ -50,7 +81,51 @@ export default function NavBar() {
           </LinkItem>
           <ThemeToggle />
         </div>
+
+        {/* Mobile Menu Button and Theme Toggle */}
+        <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle />
+          <button
+            onClick={toggleMobileMenu}
+            className="p-2 rounded-md text-ink/80 dark:text-paperWhite/80 hover:bg-ink/5 dark:hover:bg-graphite/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crystal/70 transition"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile Dropdown Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden border-t border-ink/10 dark:border-paperWhite/10 bg-paperWhite/95 dark:bg-ink/95 backdrop-blur-md">
+          <div className="py-2">
+            <MobileMenuItem to="/story" onClick={closeMobileMenu}>
+              Lore
+            </MobileMenuItem>
+            <MobileMenuItem to="/music" onClick={closeMobileMenu}>
+              <Music className="inline h-4 w-4 mr-1" />
+              Music
+            </MobileMenuItem>
+            <MobileMenuItem to="/merch" onClick={closeMobileMenu}>
+              <ShoppingBag className="inline h-4 w-4 mr-1" />
+              Merch
+            </MobileMenuItem>
+            <MobileMenuItem to="/press" onClick={closeMobileMenu}>
+              <FileText className="inline h-4 w-4 mr-1" />
+              Press
+            </MobileMenuItem>
+            <MobileMenuItem to="/bookings" onClick={closeMobileMenu}>
+              <MessageCircle className="inline h-4 w-4 mr-1" />
+              Bookings
+            </MobileMenuItem>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
