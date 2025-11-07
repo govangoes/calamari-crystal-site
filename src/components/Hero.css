@@ -1,0 +1,188 @@
+.hero-cristo {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(620px, 100vh, 880px);
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 4vw, 4rem) clamp(5rem, 10vw, 8rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(53, 231, 248, 0.24), transparent 55%),
+    radial-gradient(circle at 80% 10%, rgba(255, 138, 156, 0.18), transparent 60%),
+    linear-gradient(180deg, rgba(229, 246, 248, 0.75) 0%, rgba(10, 26, 42, 0.92) 100%);
+}
+
+.dark .hero-cristo {
+  background:
+    radial-gradient(circle at 20% 15%, rgba(0, 244, 255, 0.28), transparent 55%),
+    radial-gradient(circle at 80% 10%, rgba(255, 124, 138, 0.24), transparent 60%),
+    linear-gradient(200deg, rgba(10, 26, 42, 0.92) 0%, rgba(4, 12, 22, 0.98) 100%);
+}
+
+.hero-cristo__backdrop {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle, rgba(0, 244, 255, 0.18) 0%, transparent 65%);
+  filter: blur(40px);
+  opacity: 0.8;
+}
+
+.hero-cristo__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-cristo__particle {
+  position: absolute;
+  border-radius: 35%;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%),
+    radial-gradient(circle at 30% 30%, rgba(0, 244, 255, 0.6), transparent 70%);
+  opacity: 0.4;
+  animation-name: heroCrystalFloat;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.dark .hero-cristo__particle {
+  background:
+    radial-gradient(circle, rgba(0, 244, 255, 0.38) 0%, transparent 75%),
+    radial-gradient(circle at 40% 40%, rgba(255, 124, 138, 0.3), transparent 70%);
+  opacity: 0.5;
+}
+
+.hero-cristo__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  width: min(1100px, 100%);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero-cristo__content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hero-cristo__illustration {
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  transition:
+    opacity 600ms ease,
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-cristo__illustration.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.hero-cristo__parallax {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.hero-cristo__svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 28px 60px rgba(0, 244, 255, 0.16));
+  transition: filter 400ms ease;
+}
+
+.hero-cristo__svg.is-glowing {
+  filter: drop-shadow(0 34px 80px rgba(0, 244, 255, 0.45));
+}
+
+.hero-cristo__copy {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 520ms ease,
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .hero-cristo__copy {
+    text-align: left;
+  }
+}
+
+.hero-cristo__copy.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-cristo__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(53, 87, 120, 0.8);
+  margin-bottom: 1rem;
+}
+
+.dark .hero-cristo__eyebrow {
+  color: rgba(224, 247, 255, 0.75);
+}
+
+.hero-cristo__headline {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.08;
+}
+
+.hero-cristo__subhead {
+  margin-top: 1.5rem;
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+  line-height: 1.6;
+  color: rgba(31, 45, 58, 0.82);
+}
+
+.dark .hero-cristo__subhead {
+  color: rgba(224, 247, 255, 0.76);
+}
+
+.hero-cristo__actions {
+  margin-top: clamp(2rem, 4vw, 2.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .hero-cristo__actions {
+    justify-content: flex-start;
+  }
+}
+
+@keyframes heroCrystalFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-18px) scale(1.05);
+    opacity: 0.65;
+  }
+}
+
+html[data-animations="off"] .hero-cristo__particle {
+  animation: none !important;
+  opacity: 0.24;
+}
+
+html[data-animations="off"] .hero-cristo__illustration,
+html[data-animations="off"] .hero-cristo__copy,
+html[data-animations="off"] .hero-cristo__svg {
+  transition: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}

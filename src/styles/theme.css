@@ -1,35 +1,43 @@
 /* Calamari Crystal Light/Dark theme tokens mapped to Tailwind color vars */
 
-/* Light scheme */
 :root {
-  /* Core */
-  --core-richBlack: #0b0a0f; /* ink */
-  --core-graphite: #1f2430; /* surfaces, borders */
-  --core-paperWhite: #f5f7fb; /* text on dark / bg on light */
-  --core-gvgGold: #ffd700; /* accent gold */
+  --sea-background: #e5f6f8;
+  --crystal-glow: #35e7f8;
+  --tentacle-accent: #3c5878;
+  --text-primary: #1f2d3a;
+  --coral-accent: #ff8a9c;
 
-  /* Calamari Crystal accents */
-  --cc-abyssNavy: #0a1022; /* deep sea backdrop */
-  --cc-squidViolet: #6f2da8; /* hero tint */
-  --cc-crystalCyan: #22d3ee; /* neon cyan */
-  --cc-crystalMagenta: #ee3e96; /* neon magenta */
-  --cc-opalGlow: #ffd166; /* warm highlight */
-  --accent-coralPink: #ff7c8a; /* alt accent */
-  --core-jadeCore: #10b981; /* success */
+  --core-richBlack: #1f2d3a;
+  --core-graphite: #5c7d9a;
+  --core-paperWhite: #e5f6f8;
+  --core-gvgGold: #ffd58a;
+
+  --cc-abyssNavy: #86b4c9;
+  --cc-squidViolet: #6c8cc0;
+  --cc-crystalCyan: var(--crystal-glow);
+  --cc-crystalMagenta: #ff8a9c;
+  --cc-opalGlow: #ffe7b8;
+  --accent-coralPink: var(--coral-accent);
+  --core-jadeCore: #3dcdb1;
 }
 
-/* Dark scheme overrides */
 .dark {
-  --core-richBlack: #0b0a0f; /* main background */
-  --core-graphite: #151a27; /* dark surfaces */
-  --core-paperWhite: #e8ecf7; /* primary text */
-  --core-gvgGold: #ffd700;
+  --sea-background: #0a1a2a;
+  --crystal-glow: #00f4ff;
+  --tentacle-accent: #3c9bae;
+  --text-primary: #e0f7ff;
+  --coral-accent: #ff9c9f;
 
-  --cc-abyssNavy: #0a1022;
-  --cc-squidViolet: #7b34bd;
-  --cc-crystalCyan: #24d6f1;
-  --cc-crystalMagenta: #f0489e;
-  --cc-opalGlow: #ffcf6e;
-  --accent-coralPink: #ff8b97;
+  --core-richBlack: #0a1a2a;
+  --core-graphite: #14273b;
+  --core-paperWhite: #e0f7ff;
+  --core-gvgGold: #ffd166;
+
+  --cc-abyssNavy: #0a1a2a;
+  --cc-squidViolet: #264b7e;
+  --cc-crystalCyan: var(--crystal-glow);
+  --cc-crystalMagenta: #ff7c8a;
+  --cc-opalGlow: #ffc97d;
+  --accent-coralPink: var(--coral-accent);
   --core-jadeCore: #22c997;
 }

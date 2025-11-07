@@ -5,10 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* === Brand tokens as CSS variables (for future use) === */
+/* === Brand tokens & base styles === */
 @layer base {
   :root {
-    /* Reserved for future per-component tokens */
+    --font-brand:
+      "Calamari Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+      "Apple Color Emoji", "Segoe UI Emoji";
   }
 
   html {
@@ -20,38 +22,119 @@
   #root {
     height: 100%;
   }
-  :root {
-    --font-brand:
-      "Calamari Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-      "Apple Color Emoji", "Segoe UI Emoji";
-  }
 
-  /* Default theme backdrop */
   body {
     @apply antialiased;
+    font-family: var(--font-brand);
+    background-color: var(--sea-background);
+    color: var(--text-primary);
+    transition:
+      background-color 280ms ease,
+      color 280ms ease;
+  }
+
+  html[data-animations="off"] * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0ms !important;
   }
 }
 
-/* === Small helpers you can reuse in components === */
+/* === Reusable helpers === */
 @layer utilities {
   .btn {
-    @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform;
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition-transform duration-200;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.02em;
   }
+
   .btn-primary {
-    @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02];
+    @apply btn;
+    background: linear-gradient(120deg, var(--crystal-glow) 0%, var(--coral-accent) 90%);
+    color: #04111d;
+    box-shadow: 0 18px 38px rgba(0, 244, 255, 0.18);
   }
+
+  .btn-primary:hover {
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 22px 42px rgba(0, 244, 255, 0.24);
+  }
+
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--crystal-glow);
+    outline-offset: 2px;
+  }
+
+  .btn-secondary {
+    @apply btn;
+    background: transparent;
+    color: var(--tentacle-accent);
+    border: 1px solid rgba(60, 120, 142, 0.4);
+  }
+
+  .dark .btn-secondary {
+    color: var(--text-primary);
+    border-color: rgba(0, 244, 255, 0.35);
+    background-color: rgba(10, 26, 42, 0.45);
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-1px) scale(1.03);
+    background-color: rgba(53, 231, 248, 0.12);
+  }
+
+  .btn-tertiary {
+    @apply btn;
+    background: transparent;
+    color: var(--coral-accent);
+  }
+
+  .btn-tertiary:hover {
+    transform: translateY(-1px) scale(1.02);
+    color: var(--crystal-glow);
+  }
+
   .pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm;
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium;
+    border: 1px solid rgba(60, 120, 142, 0.28);
+    background: rgba(229, 246, 248, 0.6);
+    color: var(--text-primary);
+    transition:
+      transform 200ms ease,
+      border-color 200ms ease,
+      background-color 200ms ease;
   }
+
+  .dark .pill {
+    background: rgba(10, 26, 42, 0.6);
+    border-color: rgba(0, 244, 255, 0.22);
+    color: var(--text-primary);
+  }
+
+  .pill:hover {
+    transform: translateY(-1px);
+    border-color: rgba(53, 231, 248, 0.5);
+    background-color: rgba(53, 231, 248, 0.18);
+  }
+
   .section {
     @apply relative py-16 md:py-24;
   }
+
   .scroll-cue {
-    @apply absolute left-1/2 -translate-x-1/2 bottom-4 text-white/80 text-xs flex flex-col items-center gap-1;
+    @apply absolute left-1/2 -translate-x-1/2 bottom-4 text-xs flex flex-col items-center gap-1;
+    color: rgba(224, 247, 255, 0.75);
     animation: floaty 2.4s ease-in-out infinite;
   }
+
   @keyframes floaty {
-    0%,100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, -6px); }
+    0%,
+    100% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, -6px);
+    }
   }
 }

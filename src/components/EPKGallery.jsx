@@ -44,20 +44,7 @@ export default function EPKGallery({ items: itemsProp }) {
         {items.map((it, idx) => {
           // Prefer WebP now that variants are generated at build-time.
           return (
-            <figure
-              key={(it.src || "") + idx}
-              className="epk-card focus:outline-none"
-              role="button"
-              tabIndex={0}
-              onClick={() => setOpenIndex(idx)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  setOpenIndex(idx);
-                }
-              }}
-              aria-label={`View ${it.title || "press photo"}`}
-            >
+            <figure key={(it.src || "") + idx} className="epk-card focus:outline-none">
               <div className="epk-card__inner">
                 <div className="epk-card__face epk-card__face--front">
                   <picture className="epk-card__image">
@@ -78,7 +65,10 @@ export default function EPKGallery({ items: itemsProp }) {
                   <div className="epk-card__back-content">
                     {it.title && <h3 className="epk-card__title">{it.title}</h3>}
                     {it.caption ? (
-                      <div className="epk-card__caption" aria-label={`Caption for ${it.title || "press photo"}`}>
+                      <div
+                        className="epk-card__caption"
+                        aria-label={`Caption for ${it.title || "press photo"}`}
+                      >
                         <p>{it.caption}</p>
                       </div>
                     ) : (
@@ -106,6 +96,9 @@ export default function EPKGallery({ items: itemsProp }) {
                   </div>
                 </div>
               </div>
+              <button type="button" className="epk-card__trigger" onClick={() => setOpenIndex(idx)}>
+                <span className="sr-only">{`View ${it.title || "press photo"}`}</span>
+              </button>
             </figure>
           );
         })}

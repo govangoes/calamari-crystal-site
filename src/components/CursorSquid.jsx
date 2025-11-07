@@ -1,5 +1,6 @@
 /* global requestAnimationFrame, cancelAnimationFrame */
 import { useEffect, useRef, useState } from "react";
+import { useAnimationPreference } from "../utils/animationPreference.js";
 
 const MAX_PARTICLES = 48;
 const DECAY_RATE = 0.04; // normal trail fade speed
@@ -7,6 +8,8 @@ const SPLAT_DECAY_RATE = 0.02; // slower fade for click splats
 
 // Ink trail cursor: particles follow pointer; click creates larger "splat" pulses.
 export default function CursorSquid() {
+  const animationsEnabled = useAnimationPreference();
+
   const [trail, setTrail] = useState([]);
   const idRef = useRef(0);
   const rafRef = useRef(0);
@@ -29,6 +32,15 @@ export default function CursorSquid() {
   }, []);
 
   useEffect(() => {
+    if (!animationsEnabled) {
+      setTrail([]);
+      setSquid({ x: -100, y: -100, deg: 0 });
+    }
+  }, [animationsEnabled]);
+
+  useEffect(() => {
+    if (!animationsEnabled) return undefined;
+
     const onMove = (e) => {
       if (disabledRef.current) return;
 
@@ -73,9 +85,11 @@ export default function CursorSquid() {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onDown);
     };
-  }, []);
+  }, [animationsEnabled]);
 
   useEffect(() => {
+    if (!animationsEnabled) return undefined;
+
     const decay = () => {
       setTrail((t) =>
         t
@@ -87,21 +101,21 @@ export default function CursorSquid() {
 
     rafRef.current = requestAnimationFrame(decay);
     return () => cancelAnimationFrame(rafRef.current);
-  }, []);
+  }, [animationsEnabled]);
 
   // Hide system cursor while active (unless reduced motion)
   useEffect(() => {
-    if (!disabledRef.current) {
-      const prev = document.body.style.cursor;
-      document.body.style.cursor = "none";
-      return () => {
-        document.body.style.cursor = prev;
-      };
-    }
-    // intentionally empty - no cleanup needed when reduced motion is enabled
-  }, []);
+    if (!animationsEnabled || disabledRef.current) return undefined;
 
-  if (disabledRef.current) return null;
+    const prev = document.body.style.cursor;
+    document.body.style.cursor = "none";
+    return () => {
+      document.body.style.cursor = prev;
+    };
+    // intentionally empty - no cleanup needed when reduced motion is enabled
+  }, [animationsEnabled]);
+
+  if (!animationsEnabled || disabledRef.current) return null;
 
   const size = 36; // squid size in px (slightly larger)
 

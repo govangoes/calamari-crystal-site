@@ -28,7 +28,7 @@ export default function App() {
       <ScrollProgress />
       <RouteSEO />
       <BackgroundPattern />
-      <div className="relative z-10 min-h-screen text-ink dark:text-paperWhite">
+      <div className="relative z-10 min-h-screen text-ink dark:text-paperWhite bg-[color:var(--sea-background)] transition-colors duration-300">
         <CursorSquid />
         <NavBar />
         <Routes>
