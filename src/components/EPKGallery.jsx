@@ -47,7 +47,7 @@ export default function EPKGallery({ items: itemsProp }) {
             <button
               key={(it.src || "") + idx}
               type="button"
-              className="epk-card focus:outline-none"
+              className="epk-card focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400"
               onClick={() => setOpenIndex(idx)}
               aria-label={`View ${it.title || "press photo"}`}
             >
