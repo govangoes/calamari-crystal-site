@@ -22,8 +22,7 @@ export default function ScrollProgress() {
       aria-hidden
       className="fixed top-0 left-0 right-0 h-0.5 z-[60]"
       style={{
-        background:
-          "linear-gradient(90deg, rgba(34,211,238,.85), rgba(167,139,250,.85))",
+        background: "linear-gradient(90deg, rgba(34,211,238,.85), rgba(167,139,250,.85))",
         transform: `scaleX(${progress})`,
         transformOrigin: "0 0",
         transition: "transform .1s linear",
@@ -33,4 +32,3 @@ export default function ScrollProgress() {
     />
   );
 }
-

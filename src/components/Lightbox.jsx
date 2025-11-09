@@ -48,7 +48,7 @@ export default function Lightbox({ items = [], index = 0, onClose, onPrev, onNex
   const title = it?.title || "";
   const caption = it?.caption || "";
   const alt = it?.alt || title || "Press photo";
-  const webp = toWebp(src);
+  const webpSrc = toWebp(src);
 
   return (
     <div
@@ -86,7 +86,7 @@ export default function Lightbox({ items = [], index = 0, onClose, onPrev, onNex
       {/* Media */}
       <figure className="max-w-[92vw] max-h-[82vh] w-full md:w-auto">
         <picture>
-          <source srcSet={toWebp(src)} type="image/webp" />
+          <source srcSet={webpSrc} type="image/webp" />
           <img
             src={src}
             alt={alt}

@@ -44,18 +44,11 @@ export default function EPKGallery({ items: itemsProp }) {
         {items.map((it, idx) => {
           // Prefer WebP now that variants are generated at build-time.
           return (
-            <figure
+            <button
               key={(it.src || "") + idx}
+              type="button"
               className="epk-card focus:outline-none"
-              role="button"
-              tabIndex={0}
               onClick={() => setOpenIndex(idx)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  setOpenIndex(idx);
-                }
-              }}
               aria-label={`View ${it.title || "press photo"}`}
             >
               <div className="epk-card__inner">
@@ -78,7 +71,10 @@ export default function EPKGallery({ items: itemsProp }) {
                   <div className="epk-card__back-content">
                     {it.title && <h3 className="epk-card__title">{it.title}</h3>}
                     {it.caption ? (
-                      <div className="epk-card__caption" aria-label={`Caption for ${it.title || "press photo"}`}>
+                      <div
+                        className="epk-card__caption"
+                        aria-label={`Caption for ${it.title || "press photo"}`}
+                      >
                         <p>{it.caption}</p>
                       </div>
                     ) : (
@@ -106,7 +102,7 @@ export default function EPKGallery({ items: itemsProp }) {
                   </div>
                 </div>
               </div>
-            </figure>
+            </button>
           );
         })}
       </div>
