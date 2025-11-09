@@ -11,7 +11,7 @@ function loadDict() {
     const file = path.join(process.cwd(), "src", "data", "dictionary.json");
     const raw = fs.readFileSync(file, "utf8");
     return JSON.parse(raw);
-  } catch (e) {
+  } catch {
     return null;
   }
 }
