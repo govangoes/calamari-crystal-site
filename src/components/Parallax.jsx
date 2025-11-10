@@ -24,7 +24,7 @@ export default function Parallax({ amount = 24, className = "", children }) {
       el.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0)`;
     }
     function onScroll() {
-      if (!raf) raf = requestAnimationFrame(update);
+      if (!raf) raf = window.requestAnimationFrame(update);
     }
     el.style.willChange = "transform";
     onScroll();
@@ -33,7 +33,7 @@ export default function Parallax({ amount = 24, className = "", children }) {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
+      if (raf) window.cancelAnimationFrame(raf);
     };
   }, [amount]);
 

@@ -48,8 +48,6 @@ export default function Lightbox({ items = [], index = 0, onClose, onPrev, onNex
   const title = it?.title || "";
   const caption = it?.caption || "";
   const alt = it?.alt || title || "Press photo";
-  const webp = toWebp(src);
-
   return (
     <div
       className="fixed inset-0 z-[10000] bg-ink/80 dark:bg-ink/90 backdrop-blur-sm text-paperWhite flex items-center justify-center"
