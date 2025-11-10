@@ -21,6 +21,7 @@ import About from "./pages/About.jsx";
 import Press from "./pages/Press.jsx";
 import Privacy from "./pages/Privacy.jsx";
 import Terms from "./pages/Terms.jsx";
+import OpenMicsOrlando from "./pages/OpenMicsOrlando.jsx";
 
 export default function App() {
   return (
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="/bookings" element={<Bookings />} />
           <Route path="/about" element={<About />} />
           <Route path="/press" element={<Press />} />
+          <Route path="/open-mics-orlando" element={<OpenMicsOrlando />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/epk" element={<Press />} />
@@ -73,6 +75,12 @@ function RouteSEO() {
       "/bookings": { title: "Bookings — GoVanGoes", description: "Book performances and events." },
       "/about": { title: "About — GoVanGoes", description: "Who we are." },
       "/press": { title: "Press — GoVanGoes", description: "Press kit and assets." },
+      "/open-mics-orlando": {
+        title: "Open Mics in Orlando | GoVanGoes",
+        description:
+          "Discover the best open mics in Orlando for music, poetry, comedy, and hip-hop. Perform, connect, and vibe with local artists.",
+        image: "/og.webp",
+      },
       "/privacy": { title: "Privacy — GoVanGoes" },
       "/terms": { title: "Terms — GoVanGoes" },
       "/epk": { title: "EPK — GoVanGoes", description: "Electronic press kit." },

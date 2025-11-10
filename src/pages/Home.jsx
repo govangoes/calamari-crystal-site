@@ -1,5 +1,4 @@
 import Hero from "../components/Hero.jsx";
-import JellyButton from "../components/JellyButton.jsx";
 import { Link } from "react-router-dom";
 import ScrollReveal from "../components/ScrollReveal.jsx";
 import { YouTubeEmbed, SpotifyEmbed } from "../components/Embeds.jsx";
