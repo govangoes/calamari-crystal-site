@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Gem, Music, ShoppingBag, FileText, MessageCircle, Mic2, Map, Menu, X } from "lucide-react";
+import { Gem, Music, ShoppingBag, FileText, MessageCircle, Mic2, Map, MapPin, Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle.jsx";
 
 const LinkItem = ({ to, children, onClick }) => (
@@ -75,8 +75,12 @@ export default function NavBar() {
             <Mic2 className="inline h-4 w-4 mr-1" />
             Open Mics
           </LinkItem>
-          <LinkItem to="/orlando-nightlife.html">
+          <LinkItem to="/rap-map">
             <Map className="inline h-4 w-4 mr-1" />
+            Rap Map
+          </LinkItem>
+          <LinkItem to="/orlando-nightlife.html">
+            <MapPin className="inline h-4 w-4 mr-1" />
             Nightlife
           </LinkItem>
           <LinkItem to="/press">
@@ -127,8 +131,12 @@ export default function NavBar() {
               <Mic2 className="inline h-4 w-4 mr-1" />
               Open Mics
             </MobileMenuItem>
-            <MobileMenuItem to="/orlando-nightlife.html" onClick={closeMobileMenu}>
+            <MobileMenuItem to="/rap-map" onClick={closeMobileMenu}>
               <Map className="inline h-4 w-4 mr-1" />
+              Rap Map
+            </MobileMenuItem>
+            <MobileMenuItem to="/orlando-nightlife.html" onClick={closeMobileMenu}>
+              <MapPin className="inline h-4 w-4 mr-1" />
               Nightlife
             </MobileMenuItem>
             <MobileMenuItem to="/press" onClick={closeMobileMenu}>
