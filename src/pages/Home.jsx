@@ -18,17 +18,27 @@ const Card = ({ title, body, to }) => (
 
 export default function Home() {
   return (
-    <main className="bg-ink">
+    <main>
       <Hero />
 
       {/* In-page quick nav */}
       <section id="sections" className="mx-auto max-w-6xl px-4 py-8">
         <div className="flex flex-wrap gap-2">
-          <a href="#music" className="pill">Listen</a>
-          <a href="#merch" className="pill">Merch</a>
-          <a href="#story" className="pill">Story</a>
-          <a href="#epk" className="pill">Press Kit</a>
-          <a href="#contact" className="pill">Contact</a>
+          <a href="#music" className="pill">
+            Listen
+          </a>
+          <a href="#merch" className="pill">
+            Merch
+          </a>
+          <a href="#story" className="pill">
+            Story
+          </a>
+          <a href="#epk" className="pill">
+            Press Kit
+          </a>
+          <a href="#contact" className="pill">
+            Contact
+          </a>
         </div>
       </section>
 
@@ -66,16 +76,23 @@ export default function Home() {
         <h2 className="text-2xl font-bold">Merch</h2>
         <p className="mt-2 opacity-80">Treasures from the deep—limited runs only.</p>
         <div className="mt-6">
-          <Link className="btn btn-primary" to="/merch">Shop the Drop</Link>
+          <Link className="btn btn-primary" to="/merch">
+            Shop the Drop
+          </Link>
         </div>
       </ScrollReveal>
 
       {/* Story */}
       <ScrollReveal className="section mx-auto max-w-6xl px-4" id="story">
         <h2 className="text-2xl font-bold">Story</h2>
-        <p className="mt-2 opacity-80 max-w-2xl">A Monte Cristo revenge tale remixed undersea. The purple squid rises from betrayal to luminous redemption.</p>
+        <p className="mt-2 opacity-80 max-w-2xl">
+          A Monte Cristo revenge tale remixed undersea. The purple squid rises from betrayal to
+          luminous redemption.
+        </p>
         <div className="mt-6">
-          <Link className="pill" to="/story">Read the Chronicle →</Link>
+          <Link className="pill" to="/story">
+            Read the Chronicle →
+          </Link>
         </div>
       </ScrollReveal>
 
@@ -84,7 +101,9 @@ export default function Home() {
         <h2 className="text-2xl font-bold">Press Kit</h2>
         <p className="mt-2 opacity-80">Bio, live stats, photos, and stage specs.</p>
         <div className="mt-6">
-          <Link className="pill" to="/press">Open EPK →</Link>
+          <Link className="pill" to="/press">
+            Open EPK →
+          </Link>
         </div>
       </ScrollReveal>
 
@@ -93,8 +112,12 @@ export default function Home() {
         <h2 className="text-2xl font-bold">Contact</h2>
         <p className="mt-2 opacity-80">Bookings, partnerships, and press.</p>
         <div className="mt-6 flex gap-3">
-          <a className="pill" href="mailto:bookings@govangoes.com">bookings@govangoes.com</a>
-          <Link className="pill" to="/contact">Contact Form →</Link>
+          <a className="pill" href="mailto:bookings@govangoes.com">
+            bookings@govangoes.com
+          </a>
+          <Link className="pill" to="/contact">
+            Contact Form →
+          </Link>
         </div>
       </ScrollReveal>
     </main>
