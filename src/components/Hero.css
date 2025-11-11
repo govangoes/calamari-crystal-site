@@ -87,6 +87,23 @@
   margin: 0 auto;
 }
 
+.hero-cristo__image {
+  display: block;
+}
+
+.hero-cristo__image-asset {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 32px 72px rgba(0, 244, 255, 0.18));
+  transition: filter 400ms ease;
+}
+
+.hero-cristo__image-asset:hover,
+.hero-cristo__image-asset:focus-visible {
+  filter: drop-shadow(0 38px 88px rgba(0, 244, 255, 0.32));
+}
+
 .hero-cristo__svg {
   width: 100%;
   height: auto;

@@ -1,8 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Parallax from "./Parallax.jsx";
 import usePrefersReducedMotion from "../utils/usePrefersReducedMotion.js";
 import { useAnimationPreference } from "../utils/animationPreference.js";
 import "./Hero.css";
+
+const DEFAULT_HERO_BASENAME = "govangoes-logo";
+const FALLBACK_SEQUENCE = ["cloud_gold_logo", "squid_emblem"];
 
 const floatingCrystals = [
   { id: "c1", size: 140, top: 12, left: 8, delay: 0, duration: 28 },
@@ -22,6 +25,19 @@ export default function Hero() {
   );
   const [cristoVisible, setCristoVisible] = useState(!allowMotion);
   const [copyVisible, setCopyVisible] = useState(!allowMotion);
+  const configuredBaseName = import.meta.env.VITE_HERO_IMAGE_BASENAME;
+  const fallbackSources = useMemo(() => {
+    if (!configuredBaseName) return [];
+    return Array.from(
+      new Set([configuredBaseName, DEFAULT_HERO_BASENAME, ...FALLBACK_SEQUENCE]),
+    );
+  }, [configuredBaseName]);
+  const [fallbackIndex, setFallbackIndex] = useState(0);
+  const [useIllustration, setUseIllustration] = useState(
+    fallbackSources.length === 0,
+  );
+  const heroAltText =
+    import.meta.env.VITE_HERO_ALT || "GoVanGoes mark";
 
   useEffect(() => {
     if (!allowMotion) {
@@ -38,6 +54,34 @@ export default function Hero() {
       window.clearTimeout(copyTimer);
     };
   }, [allowMotion]);
+
+  useEffect(() => {
+    if (!fallbackSources.length) {
+      setUseIllustration(true);
+      setFallbackIndex(0);
+      return;
+    }
+    setUseIllustration(false);
+    setFallbackIndex(0);
+  }, [fallbackSources]);
+
+  const handleHeroImageError = useCallback(
+    (event) => {
+      const target = event?.currentTarget || event?.target;
+      setFallbackIndex((currentIndex) => {
+        const nextIndex = currentIndex + 1;
+        if (!fallbackSources.length || nextIndex >= fallbackSources.length) {
+          setUseIllustration(true);
+          return currentIndex;
+        }
+        if (target) {
+          target.src = `/${fallbackSources[nextIndex]}.png`;
+        }
+        return nextIndex;
+      });
+    },
+    [fallbackSources],
+  );
 
   return (
     <section className="hero-cristo" aria-labelledby="hero-headline">
@@ -64,7 +108,17 @@ export default function Hero() {
       <div className="hero-cristo__content">
         <div className={`hero-cristo__illustration ${cristoVisible ? "is-visible" : ""}`}>
           <Parallax amount={allowMotion ? 20 : 0} className="hero-cristo__parallax">
-            <CristoIllustration glowing={cristoVisible} />
+            {useIllustration ? (
+              <CristoIllustration glowing={cristoVisible} />
+            ) : (
+              <HeroImage
+                key={fallbackSources[fallbackIndex]}
+                baseName={fallbackSources[fallbackIndex]}
+                fallbackSources={fallbackSources}
+                altText={heroAltText}
+                onError={handleHeroImageError}
+              />
+            )}
           </Parallax>
         </div>
 
@@ -113,6 +167,31 @@ export default function Hero() {
         </svg>
       </a>
     </section>
+  );
+}
+
+function HeroImage({ baseName, fallbackSources, altText, onError }) {
+  if (!baseName) return null;
+
+  const webpSources = Array.from(
+    new Set(fallbackSources.map((name) => `/${name}.webp`)),
+  );
+
+  return (
+    <picture className="hero-cristo__image">
+      {webpSources.map((src) => (
+        <source key={src} srcSet={src} type="image/webp" />
+      ))}
+      <img
+        src={`/${baseName}.png`}
+        alt={altText}
+        className="hero-cristo__image-asset"
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+        onError={onError}
+      />
+    </picture>
   );
 }
 
