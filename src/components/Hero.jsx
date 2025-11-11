@@ -117,6 +117,27 @@ export default function Hero() {
                 fallbackSources={fallbackSources}
                 altText={heroAltText}
                 onError={handleHeroImageError}
+    <section className="relative overflow-hidden bg-squid-gradient">
+      <div className="max-w-7xl mx-auto px-4 py-24">
+        <div className="flex flex-col items-center text-center gap-8">
+          <Parallax amount={28} className="relative w-full max-w-md md:max-w-lg">
+            <picture>
+              {/* Prefer custom hero image if present */}
+              <source srcSet={`/${baseName}.webp`} type="image/webp" />
+              {baseName !== DEFAULT_HERO_BASENAME && (
+                <source srcSet={`/${DEFAULT_HERO_BASENAME}.webp`} type="image/webp" />
+              )}
+              {/* Fallback webp */}
+              <source srcSet="/cloud_gold_logo.webp" type="image/webp" />
+              <img
+                src={`/${fallbackSources[0]}.png`}
+                alt={altText}
+                className="w-full mx-auto"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                onError={onImgError}
+                data-fallback-index="0"
               />
             )}
           </Parallax>
@@ -136,7 +157,7 @@ export default function Hero() {
               Listen Now
             </a>
             <a
-              className="btn btn-secondary"
+   /* merge */           className="btn btn-secondary"
               href="https://www.youtube.com/@govangoes"
               target="_blank"
               rel="noreferrer"

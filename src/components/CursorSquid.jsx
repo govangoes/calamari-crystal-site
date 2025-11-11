@@ -13,22 +13,60 @@ export default function CursorSquid() {
   const [trail, setTrail] = useState([]);
   const idRef = useRef(0);
   const rafRef = useRef(0);
-  const disabledRef = useRef(false);
+  const disabledRef = useRef(true);
   const [squid, setSquid] = useState({ x: -100, y: -100, deg: 0 });
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    // Respect reduced motion
+    let motionQuery;
+    let pointerQuery;
+
+    const updateState = () => {
+      const prefersReducedMotion = motionQuery?.matches ?? false;
+      const hasFinePointer = pointerQuery?.matches ?? true;
+      const shouldDisable = prefersReducedMotion || !hasFinePointer;
+
+      disabledRef.current = shouldDisable;
+      setEnabled(!shouldDisable);
+    };
+
+    const attachListener = (mediaQuery) => {
+      if (!mediaQuery) return () => {};
+
+      const handler = () => updateState();
+      if (mediaQuery.addEventListener) {
+        mediaQuery.addEventListener("change", handler);
+        return () => mediaQuery.removeEventListener("change", handler);
+      }
+      if (mediaQuery.addListener) {
+        mediaQuery.addListener(handler);
+        return () => mediaQuery.removeListener(handler);
+      }
+      return () => {};
+    };
+
     try {
-      const m = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
-      disabledRef.current = !!(m && m.matches);
-      if (m && m.addEventListener) {
-        m.addEventListener("change", (e) => {
-          disabledRef.current = e.matches;
-        });
+      if (typeof window !== "undefined" && window.matchMedia) {
+        motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        pointerQuery = window.matchMedia("(any-pointer: fine)");
+        updateState();
+        const detachMotion = attachListener(motionQuery);
+        const detachPointer = attachListener(pointerQuery);
+
+        return () => {
+          detachMotion();
+          detachPointer();
+        };
       }
     } catch {
       // intentionally empty - gracefully handle matchMedia errors
     }
+
+    // Fallback: enable cursor when we can't detect the environment.
+    disabledRef.current = false;
+    setEnabled(true);
+
+    return () => {};
   }, []);
 
   useEffect(() => {
@@ -106,6 +144,7 @@ export default function CursorSquid() {
   // Hide system cursor while active (unless reduced motion)
   useEffect(() => {
     if (!animationsEnabled || disabledRef.current) return undefined;
+    if (!enabled) return undefined;
 
     const prev = document.body.style.cursor;
     document.body.style.cursor = "none";
@@ -116,6 +155,9 @@ export default function CursorSquid() {
   }, [animationsEnabled]);
 
   if (!animationsEnabled || disabledRef.current) return null;
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   const size = 36; // squid size in px (slightly larger)
 

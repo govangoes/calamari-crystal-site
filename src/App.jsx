@@ -21,6 +21,7 @@ import About from "./pages/About.jsx";
 import Press from "./pages/Press.jsx";
 import Privacy from "./pages/Privacy.jsx";
 import Terms from "./pages/Terms.jsx";
+import RapMap from "./pages/RapMap.jsx";
 
 export default function App() {
   return (
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/bookings" element={<Bookings />} />
           <Route path="/about" element={<About />} />
+          <Route path="/rap-map" element={<RapMap />} />
           <Route path="/press" element={<Press />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
@@ -72,6 +74,10 @@ function RouteSEO() {
       "/contact": { title: "Contact — GoVanGoes", description: "Reach the crew." },
       "/bookings": { title: "Bookings — GoVanGoes", description: "Book performances and events." },
       "/about": { title: "About — GoVanGoes", description: "Who we are." },
+      "/rap-map": {
+        title: "Rap Map — GoVanGoes",
+        description: "Explore the living atlas of hip-hop vocabulary.",
+      },
       "/press": { title: "Press — GoVanGoes", description: "Press kit and assets." },
       "/privacy": { title: "Privacy — GoVanGoes" },
       "/terms": { title: "Terms — GoVanGoes" },
