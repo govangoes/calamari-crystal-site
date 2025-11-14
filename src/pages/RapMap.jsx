@@ -22,7 +22,7 @@ const dataPipeline = [
   {
     stage: "Collect",
     detail:
-      "Assemble verified lyric sheets, liner notes, and cultural references from MF DOOM's catalog plus directly influenced artists like Earl Sweatshirt, Homeboy Sandman, and Joey Bada$$.",
+      "Assemble verified lyric sheets, liner notes, and cultural references from MF DOOM&rsquo;s catalog plus directly influenced artists like Earl Sweatshirt, Homeboy Sandman, and Joey Bada$$.",
   },
   {
     stage: "Transform",
@@ -46,25 +46,25 @@ const timelineNodes = [
     year: "1999",
     artist: "MF DOOM",
     highlight:
-      "Operation: Doomsday establishes dense multisyllabic rhyme webs and comic-book mythos that become the Rap Map's origin point.",
+      "Operation: Doomsday establishes dense multisyllabic rhyme webs and comic-book mythos that become the Rap Map&rsquo;s origin point.",
   },
   {
     year: "2010",
     artist: "Earl Sweatshirt",
     highlight:
-      "EARL channels DOOM's sardonic imagery—our overlap matrix shows a 42% shared rare-vocabulary pool including culinary metaphors and occult nods.",
+      "EARL channels DOOM&rsquo;s sardonic imagery—our overlap matrix shows a 42% shared rare-vocabulary pool including culinary metaphors and occult nods.",
   },
   {
     year: "2013",
     artist: "Joey Bada$$",
     highlight:
-      "1999 mixtape revives dusty boom-bap cadences; cadence flowlines reveal DOOM-inspired off-kilter bar breaks on tracks like 'Hardknock'.",
+      "1999 mixtape revives dusty boom-bap cadences; cadence flowlines reveal DOOM-inspired off-kilter bar breaks on tracks like &lsquo;Hardknock&rsquo;.",
   },
   {
     year: "2018",
     artist: "Noname",
     highlight:
-      "Room 25 leans into poetic density—syllable heatmaps visualize a pivot toward spoken-word syncopation influenced by DOOM's conversational pacing.",
+      "Room 25 leans into poetic density—syllable heatmaps visualize a pivot toward spoken-word syncopation influenced by DOOM&rsquo;s conversational pacing.",
   },
 ];
 
@@ -77,7 +77,7 @@ const comparisonMetrics = [
   {
     metric: "Rhyme Topography",
     explanation:
-      "Render rhyme schemes as polar charts, contrasting DOOM's internal stacks with peers' end-bar emphasis for instant stylistic contrast.",
+      "Render rhyme schemes as polar charts, contrasting DOOM&rsquo;s internal stacks with peers&rsquo; end-bar emphasis for instant stylistic contrast.",
   },
   {
     metric: "Cadence Timeline",
@@ -117,7 +117,10 @@ const communityModules = [
 export default function RapMap() {
   return (
     <main className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-ink via-abyssNavy to-ultraviolet" aria-hidden>
+      <div
+        className="absolute inset-0 -z-10 bg-gradient-to-br from-ink via-abyssNavy to-ultraviolet"
+        aria-hidden
+      >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_55%)]" />
       </div>
       <section className="mx-auto flex min-h-[70vh] max-w-6xl flex-col items-center justify-center gap-8 px-4 py-24 text-center text-paperWhite">
@@ -128,8 +131,9 @@ export default function RapMap() {
           Discover the Vocabulary Universe of Hip-Hop
         </h1>
         <p className="max-w-2xl text-lg text-paperWhite/80">
-          Rap Map is a living atlas of rhyme—mapping cadences, word choice, and cultural callbacks across eras. We start with MF
-          DOOM and trace the influence through every cipher, so you can study legends or spotlight your own sound.
+          Rap Map is a living atlas of rhyme—mapping cadences, word choice, and cultural callbacks
+          across eras. We start with MF DOOM and trace the influence through every cipher, so you
+          can study legends or spotlight your own sound.
         </p>
         <div className="flex flex-col items-center gap-4 sm:flex-row">
           <button
@@ -153,8 +157,9 @@ export default function RapMap() {
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
             <h2 className="text-2xl font-semibold text-crystal">What the Rap Map Unlocks</h2>
             <p className="mt-3 max-w-3xl text-paperWhite/75">
-              Every data stream feeds into an immersive explorer—from syllable density maps to quotable archives. Plug into the
-              ecosystem and uncover patterns that make hip-hop history.
+              Every data stream feeds into an immersive explorer—from syllable density maps to
+              quotable archives. Plug into the ecosystem and uncover patterns that make hip-hop
+              history.
             </p>
           </div>
         </ScrollReveal>
@@ -163,7 +168,9 @@ export default function RapMap() {
             <ScrollReveal key={feature.title}>
               <article className="h-full rounded-2xl border border-white/10 bg-ink/60 p-6 shadow-crystal transition hover:-translate-y-1 hover:border-crystal/60">
                 <h3 className="text-xl font-semibold text-monteGold">{feature.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-paperWhite/75">{feature.description}</p>
+                <p className="mt-3 text-sm leading-relaxed text-paperWhite/75">
+                  {feature.description}
+                </p>
               </article>
             </ScrollReveal>
           ))}
@@ -172,7 +179,9 @@ export default function RapMap() {
           <div className="rounded-3xl border border-white/10 bg-ink/70 p-8">
             <h2 className="text-2xl font-semibold text-opal">From Dataset to Interactive Atlas</h2>
             <p className="mt-3 text-paperWhite/75">
-              Rap Map thrives on trustworthy data. Each verse is sourced, cleaned, enriched, and visualized through a transparent pipeline that empowers researchers, superfans, and emerging MCs alike.
+              Rap Map thrives on trustworthy data. Each verse is sourced, cleaned, enriched, and
+              visualized through a transparent pipeline that empowers researchers, superfans, and
+              emerging MCs alike.
             </p>
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {dataPipeline.map((step) => (
@@ -180,7 +189,9 @@ export default function RapMap() {
                   key={step.stage}
                   className="rounded-2xl border border-crystal/20 bg-white/5 p-6 text-left shadow-crystal/40 transition hover:border-crystal/60"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crystal/70">{step.stage}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-crystal/70">
+                    {step.stage}
+                  </p>
                   <p className="mt-3 text-sm leading-relaxed text-paperWhite/80">{step.detail}</p>
                 </div>
               ))}
@@ -191,8 +202,9 @@ export default function RapMap() {
           <div className="rounded-3xl border border-white/10 bg-ink/70 p-8 text-center shadow-crystal">
             <h2 className="text-2xl font-semibold text-opal">Beta Cohort Forming Now</h2>
             <p className="mt-3 text-paperWhite/75">
-              We are onboarding curators, statisticians, and producers to shape the platform experience. Share your ideas and get
-              early access to tools that make your verses shine.
+              We are onboarding curators, statisticians, and producers to shape the platform
+              experience. Share your ideas and get early access to tools that make your verses
+              shine.
             </p>
             <a
               className="mt-6 inline-flex items-center justify-center rounded-full border border-crystal/50 px-6 py-3 text-sm font-semibold text-crystal transition hover:bg-crystal hover:text-ink"
@@ -204,18 +216,30 @@ export default function RapMap() {
         </ScrollReveal>
         <ScrollReveal>
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-            <h2 className="text-2xl font-semibold text-crystal">Example Map: MF DOOM's Influence Constellation</h2>
+            <h2 className="text-2xl font-semibold text-crystal">
+              Example Map: MF DOOM&rsquo;s Influence Constellation
+            </h2>
             <p className="mt-3 max-w-3xl text-paperWhite/75">
-              Start the tour in 1999 with Operation: Doomsday. Our prototype influence arc links MF DOOM to a curated roster of lyricists who inherit, mutate, or remix his cadence playbook. Hovering over each node reveals annotated song excerpts, production notes, and evolving slang signatures.
+              Start the tour in 1999 with Operation: Doomsday. Our prototype influence arc links MF
+              DOOM to a curated roster of lyricists who inherit, mutate, or remix his cadence
+              playbook. Hovering over each node reveals annotated song excerpts, production notes,
+              and evolving slang signatures.
             </p>
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {timelineNodes.map((node) => (
-                <div key={node.artist} className="rounded-2xl border border-white/15 bg-ink/60 p-6 shadow-crystal/40">
+                <div
+                  key={node.artist}
+                  className="rounded-2xl border border-white/15 bg-ink/60 p-6 shadow-crystal/40"
+                >
                   <div className="flex items-baseline justify-between">
-                    <p className="text-sm font-semibold uppercase tracking-[0.25em] text-opal/80">{node.year}</p>
+                    <p className="text-sm font-semibold uppercase tracking-[0.25em] text-opal/80">
+                      {node.year}
+                    </p>
                     <p className="text-lg font-semibold text-monteGold">{node.artist}</p>
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-paperWhite/80">{node.highlight}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-paperWhite/80">
+                    {node.highlight}
+                  </p>
                 </div>
               ))}
             </div>
@@ -225,7 +249,9 @@ export default function RapMap() {
           <div className="rounded-3xl border border-white/10 bg-ink/70 p-8 text-paperWhite">
             <h2 className="text-2xl font-semibold text-opal">Comparison Engine Blueprint</h2>
             <p className="mt-3 max-w-3xl text-paperWhite/75">
-              Fans can plug in two artists—or even paste their own verse—to receive a cinematic breakdown. These are the core metrics we surface on launch to show how MF DOOM's DNA threads through contemporary catalogs.
+              Fans can plug in two artists—or even paste their own verse—to receive a cinematic
+              breakdown. These are the core metrics we surface on launch to show how MF DOOM&rsquo;s
+              DNA threads through contemporary catalogs.
             </p>
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {comparisonMetrics.map((metric) => (
@@ -234,7 +260,9 @@ export default function RapMap() {
                   className="rounded-2xl border border-crystal/20 bg-white/5 p-6 text-left shadow-crystal/40 transition hover:border-crystal/60"
                 >
                   <p className="text-lg font-semibold text-monteGold">{metric.metric}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-paperWhite/80">{metric.explanation}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-paperWhite/80">
+                    {metric.explanation}
+                  </p>
                 </div>
               ))}
             </div>
@@ -244,13 +272,20 @@ export default function RapMap() {
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
             <h2 className="text-2xl font-semibold text-crystal">Community Lab Modules</h2>
             <p className="mt-3 max-w-3xl text-paperWhite/75">
-              Beyond metrics, Rap Map thrives on collective imagination. The Community Lab invites curators, statisticians, and beat makers to co-author experiments that keep the atlas alive.
+              Beyond metrics, Rap Map thrives on collective imagination. The Community Lab invites
+              curators, statisticians, and beat makers to co-author experiments that keep the atlas
+              alive.
             </p>
             <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {communityModules.map((module) => (
-                <div key={module.title} className="rounded-2xl border border-white/15 bg-ink/60 p-6 shadow-crystal/40">
+                <div
+                  key={module.title}
+                  className="rounded-2xl border border-white/15 bg-ink/60 p-6 shadow-crystal/40"
+                >
                   <p className="text-lg font-semibold text-monteGold">{module.title}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-paperWhite/80">{module.description}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-paperWhite/80">
+                    {module.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -260,12 +295,16 @@ export default function RapMap() {
           <div className="rounded-3xl border border-crystal/30 bg-gradient-to-br from-ink/80 via-abyssNavy/80 to-ultraviolet/80 p-8 text-center shadow-crystal">
             <h2 className="text-3xl font-black text-crystal">Your Verse, Our Atlas</h2>
             <p className="mt-4 text-paperWhite/80">
-              Upload upcoming singles, cipher freestyles, or archival gems. Rap Map translates your language into living data so you can benchmark influence, discover collaborators, and leave breadcrumbs for the next generation.
+              Upload upcoming singles, cipher freestyles, or archival gems. Rap Map translates your
+              language into living data so you can benchmark influence, discover collaborators, and
+              leave breadcrumbs for the next generation.
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <button
                 type="button"
-                onClick={() => window.alert("Lyric uploader coming soon. Thanks for your interest in Rap Map!")}
+                onClick={() =>
+                  window.alert("Lyric uploader coming soon. Thanks for your interest in Rap Map!")
+                }
                 className="btn-primary"
               >
                 Prepare Your Upload
