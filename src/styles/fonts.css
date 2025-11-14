@@ -1,25 +1,29 @@
 /* === Calamari Crystal Unified Fonts === */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600&display=swap");
 
 :root {
-  --font-body: 'Outfit', sans-serif;
-  --font-header: 'Bebas Neue', var(--font-body);
-  --font-accent: 'Brush Script MT', cursive;
+  --font-body: "Outfit", sans-serif;
+  --font-header: "Bebas Neue", var(--font-body);
+  --font-accent: "Brush Script MT", cursive;
 }
 
-body, p, li {
+body,
+p,
+li {
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.6;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: var(--font-header);
   letter-spacing: 0.05em;
   line-height: 1.35;
 }
 
-h3, h4 {
+h3,
+h4 {
   font-family: var(--font-body);
   font-weight: 600;
 }

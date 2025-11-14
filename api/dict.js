@@ -11,7 +11,7 @@ function loadDict() {
     const file = path.join(process.cwd(), "src", "data", "dictionary.json");
     const raw = fs.readFileSync(file, "utf8");
     return JSON.parse(raw);
-  } catch (e) {
+  } catch {
     return null;
   }
 }
@@ -29,12 +29,10 @@ export default async function handler(req, res) {
   }
   let bucket = dict[type];
   if (!bucket) {
-    res
-      .status(400)
-      .json({
-        error: "invalid_type",
-        types: Object.keys(dict).filter((k) => typeof dict[k] === "object"),
-      });
+    res.status(400).json({
+      error: "invalid_type",
+      types: Object.keys(dict).filter((k) => typeof dict[k] === "object"),
+    });
     return;
   }
   if (!key) {

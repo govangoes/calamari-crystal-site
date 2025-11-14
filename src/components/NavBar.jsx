@@ -57,7 +57,9 @@ export default function NavBar() {
           aria-label="Go to GoVanGoes home"
         >
           <Gem className="h-5 w-5 text-monteGold" />
-          <span className="font-semibold tracking-wide text-ink dark:text-paperWhite">GoVanGoes</span>
+          <span className="font-semibold tracking-wide text-ink dark:text-paperWhite">
+            GoVanGoes
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -95,11 +97,7 @@ export default function NavBar() {
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
           >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </nav>
@@ -116,13 +114,13 @@ export default function NavBar() {
               Music
             </MobileMenuItem>
             <MobileMenuItem to="/merch" onClick={closeMobileMenu}>
-            <ShoppingBag className="inline h-4 w-4 mr-1" />
-            Merch
-          </MobileMenuItem>
-          <MobileMenuItem to="/rap-map" onClick={closeMobileMenu}>
-            <Map className="inline h-4 w-4 mr-1" />
-            Rap Map
-          </MobileMenuItem>
+              <ShoppingBag className="inline h-4 w-4 mr-1" />
+              Merch
+            </MobileMenuItem>
+            <MobileMenuItem to="/rap-map" onClick={closeMobileMenu}>
+              <Map className="inline h-4 w-4 mr-1" />
+              Rap Map
+            </MobileMenuItem>
             <MobileMenuItem to="/press" onClick={closeMobileMenu}>
               <FileText className="inline h-4 w-4 mr-1" />
               Press
