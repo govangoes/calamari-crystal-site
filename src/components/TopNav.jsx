@@ -20,9 +20,6 @@ export default function TopNav() {
           <span className="text-white font-bold tracking-wide">GoVanGoes</span>
         </Link>
         <nav className="flex items-center gap-2">
-          <NavLink to="/" end className={navClass}>
-            Home
-          </NavLink>
           <NavLink
             to="/services"
             className={({ isActive }) =>
@@ -35,9 +32,21 @@ export default function TopNav() {
           <NavLink to="/music" className={navClass}>
             Music
           </NavLink>
+          <NavLink to="/rap-map" className={navClass}>
+            Rap Map
+          </NavLink>
+          <NavLink to="/open-mics-orlando" className={navClass}>
+            Open Mics
+          </NavLink>
           <NavLink to="/merch" className={navClass}>
             Merch
           </NavLink>
+          <a
+            href="/orlando-nightlife.html"
+            className="px-3 py-2 rounded-md text-sm font-semibold transition text-white/80 hover:text-white"
+          >
+            Nightlife
+          </a>
           <NavLink to="/press" className={navClass}>
             Press
           </NavLink>
