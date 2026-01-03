@@ -19,27 +19,33 @@ export default function TopNav() {
           </picture>
           <span className="text-white font-bold tracking-wide">GoVanGoes</span>
         </Link>
-        <nav className="flex items-center gap-1">
-          <NavLink to="/story" className={navClass}>
-            Story
+        <nav className="flex items-center gap-2">
+          <NavLink to="/" end className={navClass}>
+            Home
           </NavLink>
-          <NavLink to="/services" className={navClass}>
+          <NavLink
+            to="/services"
+            className={({ isActive }) =>
+              "px-4 py-2 rounded-full text-sm font-extrabold transition transform bg-gradient-to-r from-cyan-400 via-yellow-300 to-pink-400 text-ink shadow-crystal hover:scale-105 " +
+              (isActive ? "ring-2 ring-white/70" : "ring-1 ring-white/20")
+            }
+          >
             Services
+          </NavLink>
+          <NavLink to="/music" className={navClass}>
+            Music
           </NavLink>
           <NavLink to="/merch" className={navClass}>
             Merch
           </NavLink>
-          <NavLink to="/marketing" className={navClass}>
-            Marketing
+          <NavLink to="/press" className={navClass}>
+            Press
           </NavLink>
-          <NavLink to="/business" className={navClass}>
-            Business
+          <NavLink to="/bookings" className={navClass}>
+            Bookings
           </NavLink>
           <NavLink to="/contact" className={navClass}>
             Contact
-          </NavLink>
-          <NavLink to="/press" className={navClass}>
-            Press
           </NavLink>
         </nav>
       </div>
