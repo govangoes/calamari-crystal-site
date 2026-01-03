@@ -23,6 +23,9 @@ export default function TopNav() {
           <NavLink to="/story" className={navClass}>
             Story
           </NavLink>
+          <NavLink to="/services" className={navClass}>
+            Services
+          </NavLink>
           <NavLink to="/merch" className={navClass}>
             Merch
           </NavLink>

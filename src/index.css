@@ -40,6 +40,119 @@
   .btn-primary {
     @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02];
   }
+  /* === Primary CTA: GoVanGoes gradient button (Uiverse-inspired, high contrast) === */
+  .gradient-button {
+    position: relative;
+    padding: 16px 32px;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 999px;
+    overflow: hidden;
+    transform: translateZ(0);
+    transition: transform 0.2s ease, filter 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .gradient-button:hover {
+    transform: scale(1.03);
+    filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.22));
+  }
+
+  .gradient-button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      from 0deg,
+      #ffffff,
+      #8a5bff,
+      #ff2db2,
+      #00e5ff,
+      #ffd84d,
+      #ffffff
+    );
+    z-index: -2;
+    filter: blur(12px);
+    transform: rotate(0deg);
+    transition: transform 1.5s ease-in-out;
+  }
+
+  .gradient-button:hover::before {
+    transform: rotate(180deg);
+  }
+
+  .gradient-button::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: #05050a;
+    border-radius: 999px;
+    z-index: -1;
+    filter: blur(4px);
+  }
+
+  .gradient-text {
+    color: transparent;
+    background: conic-gradient(
+      from 0deg,
+      #ffffff,
+      #d7c6ff,
+      #ffd1ef,
+      #c9f7ff,
+      #fff1b3,
+      #ffffff
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 1px 12px rgba(255, 255, 255, 0.25);
+    filter: hue-rotate(0deg);
+  }
+
+  .gradient-button:hover .gradient-text {
+    animation: hue-rotating 2s linear infinite;
+  }
+
+  .gradient-button:active {
+    transform: scale(0.99);
+  }
+
+  .gradient-button:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+  }
+
+  @keyframes hue-rotating {
+    to {
+      filter: hue-rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gradient-button,
+    .gradient-button:hover,
+    .gradient-button:active {
+      transition: none !important;
+      transform: none !important;
+      filter: none !important;
+    }
+    .gradient-button:hover::before {
+      transform: none;
+    }
+    .gradient-button:hover .gradient-text {
+      animation: none;
+    }
+  }
   .pill {
     @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm;
   }
