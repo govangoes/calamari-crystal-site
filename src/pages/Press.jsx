@@ -9,7 +9,7 @@ export default function Press() {
       title: "Press — GoVanGoes",
       description: "Bio, photos, logos, and press contact.",
       url: "https://govangoes.com/press",
-      image: "/og.jpg",
+      image: "/og-image.png",
       imageAlt: "GoVanGoes crest",
       site: "@govangoes",
       author: "GoVanGoes",

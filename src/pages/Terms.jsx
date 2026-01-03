@@ -7,7 +7,7 @@ export default function Terms() {
       title: "Terms — GoVanGoes",
       description: "Terms of service and purchase policies.",
       url: "https://govangoes.com/terms",
-      image: "/og.jpg",
+      image: "/og-image.png",
       imageAlt: "GoVanGoes crest",
       site: "@govangoes",
       author: "GoVanGoes",

@@ -7,7 +7,7 @@ export default function Music() {
       title: "Music — GoVanGoes",
       description: "Latest singles, EPs, and concept‑album tracks.",
       url: "https://govangoes.com/music",
-      image: "/og.jpg",
+      image: "/og-image.png",
       imageAlt: "GoVanGoes crest",
       site: "@govangoes",
       author: "GoVanGoes",

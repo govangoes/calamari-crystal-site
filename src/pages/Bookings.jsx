@@ -7,7 +7,7 @@ export default function Bookings() {
       title: "Bookings — GoVanGoes",
       description: "Shows, brand events, press, and collaborations.",
       url: "https://govangoes.com/bookings",
-      image: "/og.jpg",
+      image: "/og-image.png",
       imageAlt: "GoVanGoes crest",
       site: "@govangoes",
       author: "GoVanGoes",
