@@ -9,11 +9,10 @@ export default function Hero() {
       className="relative flex flex-col items-center justify-center gap-6 px-6 pt-40 pb-32 text-center sm:pb-40 sm:pt-48"
     >
       <h1 className="max-w-4xl text-6xl font-extrabold leading-tight tracking-tighter sm:text-7xl md:text-8xl">
-        GoVanGoes — Jazz for the People
+        Wildly influential. Unapologetically different.
       </h1>
       <p className="max-w-2xl text-lg font-semibold leading-relaxed text-slate-400 sm:text-xl sm:leading-relaxed">
-        Bringing classic jazz standards and original compositions to life with
-        soul and energy.
+        Presence. Precision. Performance.
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-3">
         <Link
