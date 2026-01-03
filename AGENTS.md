@@ -12,6 +12,33 @@ Calamari Crystal is a cinematic concept‑album website for GoVanGoes built with
 - Auto‑fix lint issues: `npm run lint:fix`
 - (Tests coming soon) Run unit tests with Vitest: `npm run test`
 
+## Golden Workflow
+1. Run `npm run dev`
+2. Verify `/` and `/services` render correctly in the browser
+3. Run `npm run build`
+4. Run `npm run check`
+5. Commit + push (Vercel auto deploys)
+
+## Route Verification
+- Always confirm `/` and `/services` load.
+- If you change navigation or routing, also check `/contact` and `/press`.
+- If a route appears blank, confirm `BrowserRouter` is in `src/main.jsx` and the route is in `src/App.jsx`.
+
+## Pre‑Push Commands
+- Required: `npm run build`, `npm run check`
+- Optional: `npm run preview` for a final SPA smoke check
+
+## Business Priority Pages
+- `/services` (must always render and sell services)
+- `/contact` (booking CTA)
+- `/` (hero must sell services)
+
+## What Not To Change (Unless Requested)
+- `vercel.json` rewrites/redirects/headers
+- Domain redirects and canonical host behavior
+- API routes in `api/*` (unless explicitly requested)
+- `scripts/*` build helpers (sitemap update, image optimization)
+
 ### Media IDs (YouTube/Spotify)
 - Set these in your Vercel Project → Settings → Environment Variables (and optionally in a local `.env`):
   - `VITE_YT_VIDEO_ID` — YouTube video ID to feature on the Home page
