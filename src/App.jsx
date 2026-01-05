@@ -11,6 +11,9 @@ import Contact from "./pages/Contact.jsx";
 import Press from "./pages/Press.jsx";
 import Music from "./pages/Music.jsx";
 import RapMap from "./pages/RapMap.jsx";
+import LyricsLab from "./pages/LyricsLab.jsx";
+import Artists from "./pages/Artists.jsx";
+import Upload from "./pages/Upload.jsx";
 import OpenMicsOrlando from "./pages/OpenMicsOrlando.jsx";
 import Bookings from "./pages/Bookings.jsx";
 import About from "./pages/About.jsx";
@@ -45,6 +48,9 @@ export default function App() {
             <Route path="/press" element={<Press />} />
             <Route path="/music" element={<Music />} />
             <Route path="/rap-map" element={<RapMap />} />
+            <Route path="/artists" element={<Artists />} />
+            <Route path="/lyrics-lab" element={<LyricsLab />} />
+            <Route path="/upload" element={<Upload />} />
             <Route path="/open-mics-orlando" element={<OpenMicsOrlando />} />
             <Route path="/bookings" element={<Bookings />} />
             <Route path="/about" element={<About />} />

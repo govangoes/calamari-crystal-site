@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import ScrollReveal from "../components/ScrollReveal.jsx";
+import RapMapExplorer from "../components/RapMapExplorer.jsx";
 
 const features = [
   {
@@ -18,6 +20,26 @@ const features = [
   },
 ];
 
+const rapMapFeatureCards = [
+  {
+    title: "Interactive Map",
+    description: "Visualize artists by unique word usage and explore influence links.",
+    to: "/artists",
+    cta: "Explore ->",
+  },
+  {
+    title: "Upload Lyrics",
+    description: "Analyze your own catalog and see how your vocabulary stacks up.",
+    to: "/upload",
+    cta: "Analyze ->",
+  },
+  {
+    title: "Compare Artists",
+    description: "Side-by-side vocab stats, rhyme density, and phrase rarity.",
+    cta: "Coming soon",
+  },
+];
+
 export default function RapMap() {
   return (
     <main className="relative overflow-hidden">
@@ -32,17 +54,19 @@ export default function RapMap() {
           Discover the Vocabulary Universe of Hip-Hop
         </h1>
         <p className="max-w-2xl text-lg text-paperWhite/80">
-          Rap Map is a living atlas of rhyme—mapping cadences, word choice, and cultural callbacks across eras. We start with MF
+          Rap Map is a living atlas of rhyme--mapping cadences, word choice, and cultural callbacks across eras. We start with MF
           DOOM and trace the influence through every cipher, so you can study legends or spotlight your own sound.
         </p>
         <div className="flex flex-col items-center gap-4 sm:flex-row">
-          <button
-            type="button"
-            onClick={() => window.alert("Coming soon! We will notify you when Rap Map launches.")}
-            className="btn-primary"
+          <a href="#explore" className="btn-primary">
+            Explore the Map
+          </a>
+          <Link
+            className="btn border border-white/20 bg-white/5 text-paperWhite hover:border-crystal/60 hover:text-crystal"
+            to="/upload"
           >
-            Get Notified
-          </button>
+            Upload Your Lyrics
+          </Link>
           <a
             className="btn border border-white/20 bg-white/5 text-paperWhite hover:border-crystal/60 hover:text-crystal"
             href="/contact"
@@ -52,12 +76,43 @@ export default function RapMap() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-4 pb-16 text-paperWhite">
+        <div className="grid gap-6 md:grid-cols-3">
+          {rapMapFeatureCards.map((card) => {
+            const Action = card.to ? Link : card.href ? "a" : "span";
+            const actionProps = card.to ? { to: card.to } : card.href ? { href: card.href } : {};
+            return (
+              <ScrollReveal key={card.title}>
+                <article className="h-full rounded-2xl border border-white/10 bg-ink/70 p-6 shadow-crystal transition hover:-translate-y-1 hover:border-crystal/60">
+                  <h2 className="text-xl font-semibold text-monteGold">{card.title}</h2>
+                  <p className="mt-3 text-sm leading-relaxed text-paperWhite/75">
+                    {card.description}
+                  </p>
+                  <Action
+                    className={`mt-4 inline-flex items-center gap-2 text-sm font-semibold ${
+                      card.to || card.href
+                        ? "text-crystal transition hover:text-monteGold"
+                        : "text-paperWhite/40"
+                    }`}
+                    {...actionProps}
+                  >
+                    {card.cta}
+                  </Action>
+                </article>
+              </ScrollReveal>
+            );
+          })}
+        </div>
+      </section>
+
+      <RapMapExplorer id="explore" />
+
       <section className="mx-auto max-w-6xl space-y-12 px-4 pb-24 text-paperWhite">
         <ScrollReveal>
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
             <h2 className="text-2xl font-semibold text-crystal">What the Rap Map Unlocks</h2>
             <p className="mt-3 max-w-3xl text-paperWhite/75">
-              Every data stream feeds into an immersive explorer—from syllable density maps to quotable archives. Plug into the
+              Every data stream feeds into an immersive explorer--from syllable density maps to quotable archives. Plug into the
               ecosystem and uncover patterns that make hip-hop history.
             </p>
           </div>
