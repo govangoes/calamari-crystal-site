@@ -13,6 +13,7 @@ import Music from "./pages/Music.jsx";
 import RapMap from "./pages/RapMap.jsx";
 import LyricsLab from "./pages/LyricsLab.jsx";
 import Artists from "./pages/Artists.jsx";
+import ArtistProfile from "./pages/ArtistProfile.jsx";
 import Upload from "./pages/Upload.jsx";
 import OpenMicsOrlando from "./pages/OpenMicsOrlando.jsx";
 import Bookings from "./pages/Bookings.jsx";
@@ -49,6 +50,7 @@ export default function App() {
             <Route path="/music" element={<Music />} />
             <Route path="/rap-map" element={<RapMap />} />
             <Route path="/artists" element={<Artists />} />
+            <Route path="/artists/:id" element={<ArtistProfile />} />
             <Route path="/lyrics-lab" element={<LyricsLab />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/open-mics-orlando" element={<OpenMicsOrlando />} />

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import RapMapExplorer from "../components/RapMapExplorer.jsx";
+import { rapMapArtists } from "../data/rapMapArtists.js";
 
 export default function Artists() {
   return (
@@ -31,6 +32,28 @@ export default function Artists() {
           >
             Full Rap Map
           </Link>
+        </div>
+      </section>
+      <section className="mx-auto max-w-6xl px-4 pb-16 text-paperWhite">
+        <div className="grid gap-6 md:grid-cols-3">
+          {rapMapArtists.map((artist) => (
+            <article
+              key={artist.id}
+              className="rounded-2xl border border-white/10 bg-ink/70 p-6 shadow-crystal transition hover:-translate-y-1 hover:border-crystal/60"
+            >
+              <p className="text-xs uppercase tracking-[0.3em] text-paperWhite/60">
+                {artist.role}
+              </p>
+              <h2 className="mt-3 text-xl font-semibold text-monteGold">{artist.name}</h2>
+              <p className="mt-2 text-sm text-paperWhite/70">{artist.summary}</p>
+              <Link
+                to={`/artists/${artist.id}`}
+                className="mt-4 inline-flex items-center text-sm font-semibold text-crystal hover:text-monteGold"
+              >
+                View Profile ->
+              </Link>
+            </article>
+          ))}
         </div>
       </section>
       <RapMapExplorer
