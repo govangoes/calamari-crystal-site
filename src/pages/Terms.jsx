@@ -6,7 +6,7 @@ export default function Terms() {
     setSEO({
       title: "Terms — GoVanGoes",
       description: "Terms of service and purchase policies.",
-      url: "https://govangoes.com/terms",
+      url: "https://www.govangoes.com/terms",
       image: "/og-image.png",
       imageAlt: "GoVanGoes crest",
       site: "@govangoes",

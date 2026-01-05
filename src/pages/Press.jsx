@@ -8,7 +8,7 @@ export default function Press() {
     setSEO({
       title: "Press — GoVanGoes",
       description: "Bio, photos, logos, and press contact.",
-      url: "https://govangoes.com/press",
+      url: "https://www.govangoes.com/press",
       image: "/og-image.png",
       imageAlt: "GoVanGoes crest",
       site: "@govangoes",

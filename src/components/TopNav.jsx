@@ -14,8 +14,8 @@ export default function TopNav() {
           aria-label="Go to GoVanGoes home"
         >
           <picture>
-            <source srcSet="/squid.webp" type="image/webp" />
-            <img src="/squid.png" alt="GoVanGoes" className="h-6 w-6" decoding="async" />
+            <source srcSet="/maskable-icon-512.webp" type="image/webp" />
+            <img src="/icon-192.png" alt="GoVanGoes" className="h-6 w-6" decoding="async" />
           </picture>
           <span className="text-white font-bold tracking-wide">GoVanGoes</span>
         </Link>

@@ -6,7 +6,7 @@ export default function Privacy() {
     setSEO({
       title: "Privacy — GoVanGoes",
       description: "Privacy policy and data usage overview.",
-      url: "https://govangoes.com/privacy",
+      url: "https://www.govangoes.com/privacy",
       image: "/og-image.png",
       imageAlt: "GoVanGoes crest",
       site: "@govangoes",
