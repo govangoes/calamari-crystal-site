@@ -50,7 +50,7 @@ export default function Artists() {
                 to={`/artists/${artist.id}`}
                 className="mt-4 inline-flex items-center text-sm font-semibold text-crystal hover:text-monteGold"
               >
-                View Profile ->
+                {"View Profile ->"}
               </Link>
             </article>
           ))}

@@ -1,21 +1,27 @@
-import ScrollReveal from "./ScrollReveal";
+import ScrollReveal from "./ScrollReveal.jsx";
 
-// This component handles the layout and animation for every section
-export default function Section({ id, title, subtitle, children, className = "" }) {
+/**
+ * Reusable section with ScrollReveal animation, heading, description, and content area.
+ */
+export default function Section({
+  id,
+  title,
+  description,
+  descriptionClassName = "",
+  contentClassName = "",
+  children,
+}) {
   return (
-    <ScrollReveal 
-      className={`section mx-auto max-w-6xl px-4 py-12 ${className}`} 
-      id={id}
-    >
-      <div className="mb-6">
-        <h2 className="text-3xl font-bold text-paperWhite">{title}</h2>
-        {subtitle && <p className="mt-2 text-lg text-paperWhite/80 max-w-2xl">{subtitle}</p>}
-      </div>
-      
-      {/* This renders whatever you put inside the <Section> tags */}
-      <div className="content-wrapper">
-        {children}
-      </div>
+    <ScrollReveal className="section mx-auto max-w-6xl px-4" id={id}>
+      <h2 className="text-2xl font-bold">{title}</h2>
+      {description && (
+        <p className={`mt-2 opacity-80 ${descriptionClassName}`}>{description}</p>
+      )}
+      {children && (
+        <div className={contentClassName ? `mt-6 ${contentClassName}` : "mt-6"}>
+          {children}
+        </div>
+      )}
     </ScrollReveal>
   );
 }

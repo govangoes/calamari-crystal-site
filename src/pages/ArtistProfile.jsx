@@ -15,7 +15,7 @@ export default function ArtistProfile() {
           This profile is still loading into the Rap Map archive.
         </p>
         <Link to="/artists" className="mt-6 inline-flex text-crystal hover:text-monteGold">
-          Back to Artists ->
+          {"Back to Artists ->"}
         </Link>
       </main>
     );
