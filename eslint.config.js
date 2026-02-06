@@ -126,14 +126,7 @@ export default [
     },
   },
   {
-    ignores: [
-      "codex/**",
-      "api/**",
-      "dist/**",
-      "build/**",
-      "node_modules/**",
-      "public/**",
-    ],
+    ignores: ["codex/**", "api/**", "dist/**", "build/**", "node_modules/**", "public/**"],
   },
   prettier,
 ];

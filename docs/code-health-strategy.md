@@ -6,13 +6,13 @@ This document turns the **Code Health Report** and **Software Portfolio Overview
 
 ## 1. Current Snapshot (from reports)
 
-| Metric | Value |
-|--------|--------|
-| **Code Health** | 81% healthy (green), **19% problematic (yellow)**, 0% unhealthy (red) |
-| **Health score** | 9.6 (hotspot), 9.6 avg, **8.7 worst performer** |
-| **Knowledge Distribution** | **Attention** (portfolio) — improvement recommended |
-| **Team–Code Alignment** | Not configured (define teams in CodeScene if needed) |
-| **Delivery** | Pro plan required for metrics; CI already runs on push/PR |
+| Metric                     | Value                                                                 |
+| -------------------------- | --------------------------------------------------------------------- |
+| **Code Health**            | 81% healthy (green), **19% problematic (yellow)**, 0% unhealthy (red) |
+| **Health score**           | 9.6 (hotspot), 9.6 avg, **8.7 worst performer**                       |
+| **Knowledge Distribution** | **Attention** (portfolio) — improvement recommended                   |
+| **Team–Code Alignment**    | Not configured (define teams in CodeScene if needed)                  |
+| **Delivery**               | Pro plan required for metrics; CI already runs on push/PR             |
 
 **Takeaway:** The repo is in good shape overall. The main levers are: (1) reduce the 19% problematic (yellow) code, and (2) improve knowledge distribution so the project isn’t dependent on a single person.
 

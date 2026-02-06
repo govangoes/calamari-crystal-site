@@ -54,7 +54,9 @@
     border-radius: 999px;
     overflow: hidden;
     transform: translateZ(0);
-    transition: transform 0.2s ease, filter 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      filter 0.2s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -73,15 +75,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: conic-gradient(
-      from 0deg,
-      #ffffff,
-      #8a5bff,
-      #ff2db2,
-      #00e5ff,
-      #ffd84d,
-      #ffffff
-    );
+    background: conic-gradient(from 0deg, #ffffff, #8a5bff, #ff2db2, #00e5ff, #ffd84d, #ffffff);
     z-index: -2;
     filter: blur(12px);
     transform: rotate(0deg);
@@ -104,15 +98,7 @@
 
   .gradient-text {
     color: transparent;
-    background: conic-gradient(
-      from 0deg,
-      #ffffff,
-      #d7c6ff,
-      #ffd1ef,
-      #c9f7ff,
-      #fff1b3,
-      #ffffff
-    );
+    background: conic-gradient(from 0deg, #ffffff, #d7c6ff, #ffd1ef, #c9f7ff, #fff1b3, #ffffff);
     -webkit-background-clip: text;
     background-clip: text;
     text-shadow: 0 1px 12px rgba(255, 255, 255, 0.25);
@@ -164,7 +150,12 @@
     animation: floaty 2.4s ease-in-out infinite;
   }
   @keyframes floaty {
-    0%,100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, -6px); }
+    0%,
+    100% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, -6px);
+    }
   }
 }

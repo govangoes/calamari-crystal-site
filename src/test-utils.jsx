@@ -8,9 +8,7 @@ import { MemoryRouter } from "react-router-dom";
  */
 function renderWithRouter(ui, options = {}) {
   const { ...renderOptions } = options;
-  const Wrapper = ({ children }) => (
-    <MemoryRouter>{children}</MemoryRouter>
-  );
+  const Wrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
   return render(ui, {
     wrapper: Wrapper,
     ...renderOptions,

@@ -14,10 +14,7 @@ export default function RapMapExplorer({
   const [transform, setTransform] = useState({ x: 0, y: 0, scale: 1 });
   const panRef = useRef(null);
 
-  const artistMap = useMemo(
-    () => new Map(rapMapArtists.map((artist) => [artist.id, artist])),
-    []
-  );
+  const artistMap = useMemo(() => new Map(rapMapArtists.map((artist) => [artist.id, artist])), []);
   const selectedArtist =
     rapMapArtists.find((artist) => artist.id === selectedId) ?? rapMapArtists[0];
 
@@ -181,9 +178,7 @@ export default function RapMapExplorer({
               </p>
               <h3 className="mt-2 text-2xl font-semibold text-paperWhite">
                 {selectedArtist.name}
-                <span className="ml-2 text-sm text-paperWhite/60">
-                  ({selectedArtist.alias})
-                </span>
+                <span className="ml-2 text-sm text-paperWhite/60">({selectedArtist.alias})</span>
               </h3>
               <p className="mt-2 text-sm text-paperWhite/75">{selectedArtist.summary}</p>
               <div className="mt-4 grid gap-2 text-sm text-paperWhite/70">
@@ -221,9 +216,7 @@ export default function RapMapExplorer({
                 View Profile
               </Link>
               <div className="mt-6 rounded-2xl border border-white/10 bg-black/40 p-4">
-                <p className="text-xs uppercase tracking-[0.3em] text-paperWhite/60">
-                  Sample Bars
-                </p>
+                <p className="text-xs uppercase tracking-[0.3em] text-paperWhite/60">Sample Bars</p>
                 <ul className="mt-3 space-y-2 text-sm text-paperWhite/80">
                   {selectedArtist.bars.map((bar) => (
                     <li key={bar} className="rounded-lg bg-white/5 px-3 py-2">

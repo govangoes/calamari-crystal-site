@@ -11,8 +11,7 @@ export const orlandoOpenMics = [
     day: "Every Monday",
     time: "7:30 PM",
     genre: ["Music", "Poetry", "Comedy"],
-    description:
-      "A long-running creative hub for local performers — cozy stage, full of energy.",
+    description: "A long-running creative hub for local performers — cozy stage, full of energy.",
     host: "Austin’s Coffee",
     link: "https://www.instagram.com/austinscoffeewp",
     rating: 4.9,

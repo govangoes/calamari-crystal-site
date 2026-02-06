@@ -5,11 +5,7 @@ import SocialLinks from "../components/SocialLinks.jsx";
 import { Link } from "react-router-dom";
 import { YouTubeEmbed, SpotifyEmbed } from "../components/Embeds.jsx";
 import { YT_VIDEO_ID, SPOTIFY_TYPE, SPOTIFY_ID } from "../content/media.js";
-import {
-  STREAMING_LINKS,
-  MIX_MASTER_FORM_URL,
-  FILE_UPLOAD_URL,
-} from "../content/links.js";
+import { STREAMING_LINKS, MIX_MASTER_FORM_URL, FILE_UPLOAD_URL } from "../content/links.js";
 import { merchItems, merchCta } from "../content/merch.js";
 import { shows, showsCta } from "../content/shows.js";
 
@@ -23,9 +19,7 @@ const Card = ({ title, body, to, href, cta = "Explore →" }) => {
   const isInternal = Boolean(to);
   const Component = isInternal ? Link : "a";
 
-  const props = isInternal
-    ? { to }
-    : { href, target: "_blank", rel: "noreferrer" };
+  const props = isInternal ? { to } : { href, target: "_blank", rel: "noreferrer" };
 
   return (
     <Component
@@ -100,11 +94,7 @@ export default function Home() {
       {/* Quick Nav */}
       <nav className="mx-auto max-w-6xl px-4 py-8 flex flex-wrap gap-3 justify-center md:justify-start">
         {nav.map((item) => (
-          <a
-            key={item.label}
-            href={item.href}
-            className="pill hover:bg-crystal/20 transition"
-          >
+          <a key={item.label} href={item.href} className="pill hover:bg-crystal/20 transition">
             {item.label}
           </a>
         ))}
@@ -203,8 +193,8 @@ export default function Home() {
             Calamari Crystal: Chapter I
           </h3>
           <p className="mt-3 text-paperWhite/70 leading-relaxed">
-            Cinematic rap with oceanic menace—built for late-night drives, reels, and
-            chapter-based storytelling.
+            Cinematic rap with oceanic menace—built for late-night drives, reels, and chapter-based
+            storytelling.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             {STREAMING_LINKS.map((link) => (
@@ -223,9 +213,7 @@ export default function Home() {
 
         <div className="rounded-xl ring-1 ring-paperWhite/10 bg-graphite/50 p-6">
           <p className="pill border-monteGold/60 text-monteGold">Merch Capsule</p>
-          <h3 className="mt-4 text-2xl font-semibold text-paperWhite">
-            Treasures from the Deep
-          </h3>
+          <h3 className="mt-4 text-2xl font-semibold text-paperWhite">Treasures from the Deep</h3>
           <ul className="mt-4 space-y-2 text-paperWhite/70">
             {merchItems.map((item) => (
               <li key={item.name}>
@@ -235,12 +223,7 @@ export default function Home() {
           </ul>
           <div className="mt-6">
             {merchCta ? (
-              <a
-                className="btn btn-primary"
-                href={merchCta.href}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="btn btn-primary" href={merchCta.href} target="_blank" rel="noreferrer">
                 {merchCta.label}
               </a>
             ) : (
@@ -280,11 +263,7 @@ export default function Home() {
         contentClassName="grid gap-6 md:grid-cols-2"
       >
         <YouTubeEmbed id={YT_VIDEO_ID} title="Featured Performance" />
-        <SpotifyEmbed
-          id={SPOTIFY_ID}
-          type={SPOTIFY_TYPE}
-          title="Featured Release"
-        />
+        <SpotifyEmbed id={SPOTIFY_ID} type={SPOTIFY_TYPE} title="Featured Release" />
         <div className="md:col-span-2 flex flex-wrap gap-3">
           {STREAMING_LINKS.map((link) => (
             <a
@@ -308,9 +287,7 @@ export default function Home() {
       >
         <div className="space-y-4">
           {shows.length ? (
-            shows.map((show) => (
-              <ShowRow key={`${show.date}-${show.city}`} {...show} />
-            ))
+            shows.map((show) => <ShowRow key={`${show.date}-${show.city}`} {...show} />)
           ) : (
             <div className="rounded-xl ring-1 ring-paperWhite/10 bg-graphite/40 p-6 text-paperWhite/70">
               No shows announced yet. Join the mailing list for first access.
@@ -334,11 +311,7 @@ export default function Home() {
       </Section>
 
       {/* Merch */}
-      <Section
-        id="merch"
-        title="Merch"
-        description="Treasures from the deep—limited runs only."
-      >
+      <Section id="merch" title="Merch" description="Treasures from the deep—limited runs only.">
         <div className="grid gap-6 md:grid-cols-3">
           {merchItems.map((item) => (
             <div
@@ -367,12 +340,7 @@ export default function Home() {
         </div>
         <div className="mt-6">
           {merchCta ? (
-            <a
-              className="btn btn-primary"
-              href={merchCta.href}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="btn btn-primary" href={merchCta.href} target="_blank" rel="noreferrer">
               {merchCta.label}
             </a>
           ) : (
@@ -394,11 +362,7 @@ export default function Home() {
       </Section>
 
       {/* Press / EPK */}
-      <Section
-        id="epk"
-        title="Press Kit"
-        description="Bio, live stats, photos, and stage specs."
-      >
+      <Section id="epk" title="Press Kit" description="Bio, live stats, photos, and stage specs.">
         <Link className="pill" to="/press">
           Open EPK →
         </Link>

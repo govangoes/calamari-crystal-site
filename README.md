@@ -12,11 +12,11 @@ This project is a high-performance, single-page application (SPA) built to serve
 
 We chose a modern, "bleeding-edge" stack to ensure long-term maintainability and performance:
 
-* **Core:** [React 18](https://reactjs.org/) (Component-based UI)
-* **Build Tool:** [Vite 7](https://vitejs.dev/) (Instant server start & lightning-fast HMR)
-* **Styling:** [Tailwind CSS](https://tailwindcss.com/) (Utility-first styling for rapid UI development)
-* **Routing:** [React Router v6](https://reactrouter.com/) (Client-side routing)
-* **Quality Control:** ESLint + Prettier + JSX-A11y (Ensuring accessible, clean code)
+- **Core:** [React 18](https://reactjs.org/) (Component-based UI)
+- **Build Tool:** [Vite 7](https://vitejs.dev/) (Instant server start & lightning-fast HMR)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) (Utility-first styling for rapid UI development)
+- **Routing:** [React Router v6](https://reactrouter.com/) (Client-side routing)
+- **Quality Control:** ESLint + Prettier + JSX-A11y (Ensuring accessible, clean code)
 
 ## 📂 Project Structure
 
@@ -27,3 +27,4 @@ src/
 ├── pages/           # Route views (Home, Story, Merch)
 ├── styles/          # Tailwind directives and global overrides
 └── main.jsx         # Application entry point
+```

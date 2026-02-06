@@ -19,8 +19,8 @@ export default function Artists() {
           Vocabulary Maps, Artist by Artist
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-paperWhite/80">
-          Browse the beta map, inspect artist fingerprints, and jump into Lyrics Lab to analyze
-          your own catalog.
+          Browse the beta map, inspect artist fingerprints, and jump into Lyrics Lab to analyze your
+          own catalog.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link to="/lyrics-lab" className="btn-primary">
@@ -41,9 +41,7 @@ export default function Artists() {
               key={artist.id}
               className="rounded-2xl border border-white/10 bg-ink/70 p-6 shadow-crystal transition hover:-translate-y-1 hover:border-crystal/60"
             >
-              <p className="text-xs uppercase tracking-[0.3em] text-paperWhite/60">
-                {artist.role}
-              </p>
+              <p className="text-xs uppercase tracking-[0.3em] text-paperWhite/60">{artist.role}</p>
               <h2 className="mt-3 text-xl font-semibold text-monteGold">{artist.name}</h2>
               <p className="mt-2 text-sm text-paperWhite/70">{artist.summary}</p>
               <Link

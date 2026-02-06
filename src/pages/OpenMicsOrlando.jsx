@@ -41,13 +41,15 @@ export default function OpenMicsOrlando() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(79,70,229,0.3),_transparent_60%)]" />
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-4 py-16 sm:px-6 lg:px-8">
         <header className="space-y-6 text-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-violet-200">Calamari Crystal Presents</p>
+          <p className="text-xs uppercase tracking-[0.4em] text-violet-200">
+            Calamari Crystal Presents
+          </p>
           <h1 className="text-4xl font-black leading-tight text-paperWhite drop-shadow-lg md:text-5xl">
             🎤 Orlando Open Mics
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-violet-100">
-            Find the best spots to perform, connect, and vibe with the city. Curated hip-hop, poetry,
-            comedy, and mixed-genre stages to keep you in the loop.
+            Find the best spots to perform, connect, and vibe with the city. Curated hip-hop,
+            poetry, comedy, and mixed-genre stages to keep you in the loop.
           </p>
         </header>
 
@@ -109,7 +111,8 @@ export default function OpenMicsOrlando() {
             </label>
           </div>
           <p className="text-sm text-violet-200/70">
-            {filteredEvents.length} event{filteredEvents.length === 1 ? "" : "s"} match your filters.
+            {filteredEvents.length} event{filteredEvents.length === 1 ? "" : "s"} match your
+            filters.
           </p>
         </div>
 
@@ -191,8 +194,8 @@ export default function OpenMicsOrlando() {
             Submit Your Open Mic Event
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-base text-violet-100">
-            Want your event featured? Let GVG know! Share the details and we’ll amplify it across the
-            Calamari Crystal network.
+            Want your event featured? Let GVG know! Share the details and we’ll amplify it across
+            the Calamari Crystal network.
           </p>
           <Link
             to="/contact"

@@ -26,7 +26,10 @@ export default function ArtistProfile() {
 
   return (
     <main className="relative overflow-hidden text-paperWhite">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-ink via-abyssNavy to-ultraviolet" aria-hidden>
+      <div
+        className="absolute inset-0 -z-10 bg-gradient-to-br from-ink via-abyssNavy to-ultraviolet"
+        aria-hidden
+      >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_55%)]" />
       </div>
 

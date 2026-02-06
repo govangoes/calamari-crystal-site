@@ -13,8 +13,8 @@ export default function Hero() {
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
           Sound good. Look official. Move different.
           <br className="hidden md:block" />
-          Mixing, mastering, and booking for artists who take their craft seriously. Clean
-          process, clear communication, and results that feel as good as they sound.
+          Mixing, mastering, and booking for artists who take their craft seriously. Clean process,
+          clear communication, and results that feel as good as they sound.
         </h1>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">

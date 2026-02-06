@@ -79,7 +79,8 @@ export default function LyricsLabContent({
                 </div>
                 {analysis.coverage < 1 && (
                   <p className="mt-2 text-xs text-paperWhite/60">
-                    Score adjusted for short input (coverage {Math.round(analysis.coverage * 100)}%).
+                    Score adjusted for short input (coverage {Math.round(analysis.coverage * 100)}
+                    %).
                   </p>
                 )}
                 <div className="mt-6 space-y-4">

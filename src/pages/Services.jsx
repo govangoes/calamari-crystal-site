@@ -4,9 +4,7 @@ import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL } from "../content/links.js";
 
 // Reusable Service Card Component with "Glass" Effect
 const ServiceCard = ({ icon: Icon, title, desc, bestFor, delay }) => (
-  <div
-    className="group relative flex flex-col p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 hover:-translate-y-1"
-  >
+  <div className="group relative flex flex-col p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
     {/* Glow Effect on Hover */}
     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-crystal/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
@@ -19,9 +17,7 @@ const ServiceCard = ({ icon: Icon, title, desc, bestFor, delay }) => (
       <p className="mt-3 text-paperWhite/70 text-sm leading-relaxed min-h-[60px]">{desc}</p>
 
       <div className="mt-4 pt-4 border-t border-white/10">
-        <p className="text-xs font-semibold text-crystal uppercase tracking-wider">
-          Best For:
-        </p>
+        <p className="text-xs font-semibold text-crystal uppercase tracking-wider">Best For:</p>
         <p className="text-sm text-paperWhite/90 mt-1">{bestFor}</p>
       </div>
     </div>
@@ -74,7 +70,6 @@ export default function Services() {
       <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-5 pointer-events-none mix-blend-overlay"></div>
 
       <div className="max-w-6xl mx-auto px-4 py-20 relative z-10">
-
         {/* Header */}
         <header className="text-center max-w-3xl mx-auto mb-20">
           <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-paperWhite via-crystal to-paperWhite bg-[length:200%_auto] animate-gradient-x">
@@ -135,7 +130,6 @@ export default function Services() {
             </Link>
           </div>
         </div>
-
       </div>
     </section>
   );

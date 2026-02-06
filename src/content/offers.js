@@ -19,7 +19,7 @@ const body = encodeURIComponent(
     `• Reference links:\n` +
     `• Deadline:\n` +
     `• Budget (optional):\n\n` +
-    `Thanks!`
+    `Thanks!`,
 );
 
 export const CUSTOM_AUDIO_MAILTO = `mailto:${BOOKING_EMAIL}?subject=${subject}&body=${body}`;

@@ -84,9 +84,7 @@ const normalizeText = (text) =>
 
 const tokenize = (text) => {
   const matches = text.toLowerCase().match(/[a-z0-9']+/g) || [];
-  return matches
-    .map((word) => word.replace(/^'+|'+$/g, ""))
-    .filter((word) => word.length > 0);
+  return matches.map((word) => word.replace(/^'+|'+$/g, "")).filter((word) => word.length > 0);
 };
 
 const splitLines = (text) =>
@@ -193,8 +191,11 @@ export const analyzeLyrics = (rawText, ranges = DEFAULT_SCORE_RANGES) => {
   const rhymeDensityScore =
     normalizeRange(rhymeDensity, ranges.rhymeDensity.min, ranges.rhymeDensity.max) * 100;
   const internalRhymeScore =
-    normalizeRange(internalRhymeRatio, ranges.internalRhymeRatio.min, ranges.internalRhymeRatio.max) *
-    100;
+    normalizeRange(
+      internalRhymeRatio,
+      ranges.internalRhymeRatio.min,
+      ranges.internalRhymeRatio.max,
+    ) * 100;
   const phraseRarityScore =
     normalizeRange(phraseRarity, ranges.phraseRarity.min, ranges.phraseRarity.max) * 100;
 
