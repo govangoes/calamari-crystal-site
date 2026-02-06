@@ -3,7 +3,7 @@ import { Mic, Music, Sliders, PenTool, Speaker, Package, ArrowRight } from "luci
 import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL } from "../content/links.js";
 
 // Reusable Service Card Component with "Glass" Effect
-const ServiceCard = ({ icon: Icon, title, desc, bestFor, delay }) => (
+const ServiceCard = ({ icon: Icon, title, desc, bestFor }) => (
   <div className="group relative flex flex-col p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
     {/* Glow Effect on Hover */}
     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-crystal/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -113,7 +113,7 @@ export default function Services() {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((s, i) => (
+          {services.map((s) => (
             <ServiceCard key={s.title} {...s} />
           ))}
         </div>
