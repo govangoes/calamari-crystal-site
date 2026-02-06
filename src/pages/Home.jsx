@@ -421,9 +421,18 @@ export default function Home() {
           </div>
           <SocialLinks />
           <div>
-            <a className="pill hover:bg-crystal/10" href={showsCta.href} target="_blank" rel="noreferrer">
-              Tour updates →
-            </a>
+            {showsCta ? (
+              <a
+                className="pill hover:bg-crystal/10"
+                href={showsCta.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Tour updates →
+              </a>
+            ) : (
+              <span className="pill text-paperWhite/60">Tour updates soon</span>
+            )}
           </div>
         </div>
       </Section>
