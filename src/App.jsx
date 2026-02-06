@@ -35,7 +35,7 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
-      <div className="min-h-dvh bg-ink text-paperWhite flex flex-col">
+      <div className="min-h-dvh bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0a0a0a] to-black text-paperWhite flex flex-col">
         <TopNav />
         <div className="flex-1">
           <Routes>
@@ -53,7 +53,7 @@ export default function App() {
             <Route path="/artists/:id" element={<ArtistProfile />} />
             <Route path="/lyrics-lab" element={<LyricsLab />} />
             <Route path="/upload" element={<Upload />} />
-            <Route path="/open-mics-orlando" element={<OpenMicsOrlando />} />
+            <Route path="/open-mics" element={<OpenMicsOrlando />} />
             <Route path="/bookings" element={<Bookings />} />
             <Route path="/about" element={<About />} />
             <Route path="/privacy" element={<Privacy />} />

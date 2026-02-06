@@ -70,6 +70,11 @@ Calamari Crystal is a cinematic concept‑album website for GoVanGoes built with
 - Use Tailwind for styling; prefer utility classes and the brand palette in `src/styles/palette.css`.
 - Use descriptive variable and function names; comment complex logic.
 
+## Code Health (CodeScene-Informed)
+- **Strategy:** See `docs/code-health-strategy.md` for goals (reduce problematic code, improve knowledge distribution).
+- **Architecture:** See `docs/ARCHITECTURE.md` for routing, hotspots, and key directories.
+- On PRs use the checklist in `.github/pull_request_template.md` (lint, test, build, no unnecessary complexity).
+
 ## Pull Request Guidelines
 - Use conventional commit prefixes (`feat:`, `fix:`, `chore:`, `docs:`) in commit messages.
 - Write a clear description of the change.

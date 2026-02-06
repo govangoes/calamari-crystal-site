@@ -35,7 +35,7 @@ export default function TopNav() {
           <NavLink to="/rap-map" className={navClass}>
             Rap Map
           </NavLink>
-          <NavLink to="/open-mics-orlando" className={navClass}>
+          <NavLink to="/open-mics" className={navClass}>
             Open Mics
           </NavLink>
           <NavLink to="/merch" className={navClass}>

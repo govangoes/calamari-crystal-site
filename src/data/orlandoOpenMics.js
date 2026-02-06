@@ -1,3 +1,8 @@
+/**
+ * Orlando-area open mic venues for the Open Mics page.
+ * Each item: { name, location, mapUrl, day, time, genre[], description, host, link, rating }.
+ * Sorted/display logic lives in src/pages/OpenMicsOrlando.jsx.
+ */
 export const orlandoOpenMics = [
   {
     name: "Austin’s Coffee Open Mic",

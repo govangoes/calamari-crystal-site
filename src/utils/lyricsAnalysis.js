@@ -1,3 +1,7 @@
+/**
+ * Lyrics analysis for Lyrics Lab: word/phrase counts, stop-word filtering, and phrase loops.
+ * Used by src/components/LyricsLabContent.jsx. Keep pure (no DOM/side effects) for testability.
+ */
 const STOP_WORDS = new Set([
   "a",
   "an",
