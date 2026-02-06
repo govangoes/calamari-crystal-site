@@ -114,24 +114,24 @@ export default function Home() {
       <Section
         id="start"
         title="Start Here"
-        description="Two lanes: live bookings and remote vocal mixing/mastering."
+        description="Two lanes: live bookings and remote vocal mixing/mastering with a guided, artist-first process."
         contentClassName="grid gap-6 md:grid-cols-3"
       >
         <Card
           title="Book Me"
-          body="Shows, hosting, brand events, and curated experiences."
+          body="Shows, hosting, and brand events with clear communication from inquiry to showtime."
           to="/bookings"
           cta="Open booking info →"
         />
         <Card
           title="Mix & Master My Vocals"
-          body="Clean, competitive vocal mixes with fast turnaround and clear revisions."
+          body="Clean vocal mixes with a guided process, open communication, and room for feedback."
           href={MIX_MASTER_FORM_URL}
           cta="Start the form →"
         />
         <Card
           title="Upload Files"
-          body="Drop stems, roughs, and references in the shared folder."
+          body="Upload stems, roughs, and references when you're ready."
           href={FILE_UPLOAD_URL}
           cta="Upload files →"
         />
@@ -141,7 +141,7 @@ export default function Home() {
       <Section
         id="services"
         title="Services"
-        description="Remote vocal mixing & mastering with clear communication and fast delivery."
+        description="Remote vocal mixing & mastering with a calm, collaborative process and clear communication."
         descriptionClassName="max-w-2xl"
         contentClassName="grid gap-6 md:grid-cols-2"
       >
@@ -149,9 +149,9 @@ export default function Home() {
           <h3 className="text-xl text-paperWhite font-semibold">Mix & Master Services</h3>
 
           <ul className="mt-4 space-y-2 text-paperWhite/70 leading-relaxed">
-            <li>• Vocal mix for one song</li>
-            <li>• Vocal mix + master (ready for release)</li>
-            <li>• Mastering only (stereo bounce)</li>
+            <li>• Vocal mix for one song (notes welcome)</li>
+            <li>• Vocal mix + master (release-ready feel)</li>
+            <li>• Mastering only (final polish)</li>
             <li>• Alt versions (clean, performance, stems)</li>
           </ul>
 
@@ -172,17 +172,17 @@ export default function Home() {
 
         <div className="rounded-xl ring-1 ring-paperWhite/10 bg-graphite/50 p-6">
           <h3 className="text-xl text-paperWhite font-semibold">
-            What to send (so I can deliver fast)
+            What to send (for a smooth, guided start)
           </h3>
 
           <ol className="mt-4 space-y-2 text-paperWhite/70 leading-relaxed">
-            <li>1) Vibe/genre + 1–2 reference tracks</li>
-            <li>2) Length + where it will be used</li>
-            <li>3) Deadline + any must-haves (BPM, mood, instruments)</li>
+            <li>1) Vision notes + 1–2 reference tracks</li>
+            <li>2) Vocal stems + beat or instrumental</li>
+            <li>3) Deadline + anything you want emphasized</li>
           </ol>
 
           <p className="mt-4 text-paperWhite/60 text-sm">
-            Email:{" "}
+            Questions welcome. Email:{" "}
             <a className="underline" href={`mailto:${BOOKING_EMAIL}`}>
               {BOOKING_EMAIL}
             </a>
@@ -432,7 +432,7 @@ export default function Home() {
       <Section
         id="contact"
         title="Contact"
-        description="Bookings, partnerships, and press."
+        description="Bookings, partnerships, and press with clear next steps."
         contentClassName="flex gap-3"
       >
         <a className="pill" href={`mailto:${BOOKING_EMAIL}`}>

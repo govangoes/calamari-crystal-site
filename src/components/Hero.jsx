@@ -11,9 +11,10 @@ export default function Hero() {
     >
       <div className="text-center">
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
-          Booked for the show.
+          Sound good. Look official. Move different.
           <br className="hidden md:block" />
-          Trusted in the mix.
+          Mixing, mastering, and booking for artists who take their craft seriously. Clean
+          process, clear communication, and results that feel as good as they sound.
         </h1>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -36,7 +37,7 @@ export default function Hero() {
 
         <div className="mt-6 mx-auto max-w-2xl text-sm text-paperWhite/70">
           <div className="grid gap-2 text-left sm:text-center">
-            <span>Step 1: Fill out the form</span>
+            <span>Step 1: Fill out the form and share your vision</span>
             <span>
               Step 2:{" "}
               <a
@@ -48,7 +49,7 @@ export default function Hero() {
                 Upload Files
               </a>
             </span>
-            <span>Step 3: I&rsquo;ll reply with next steps and timeline</span>
+            <span>Step 3: I&rsquo;ll reply with next steps, timeline, and feedback welcome</span>
           </div>
         </div>
 

@@ -33,37 +33,37 @@ export default function Services() {
     {
       title: "Mixing & Mastering",
       icon: Sliders,
-      desc: "Clarity, punch, and competitive loudness. We make sure your track hits hard on Spotify, Apple Music, and in the club.",
+      desc: "Clarity, balance, and polish with your vision leading the mix. Notes and revisions are part of the process.",
       bestFor: "Singles • EPs • Albums",
     },
     {
       title: "Vocal Production",
       icon: Mic,
-      desc: "Clean vocals, tight timing, and industry polish. We fix the pitch without killing the vibe.",
+      desc: "Clean vocals, tight timing, and tasteful polish while keeping the emotion intact.",
       bestFor: "Hooks • Verses • Harmonies",
     },
     {
       title: "Custom Production",
       icon: Music,
-      desc: "No leased beats. We build the production around your cadence, vibe, and story from scratch.",
+      desc: "Original production built around your cadence, story, and references, collaborative from sketch to final bounce.",
       bestFor: "Hip-Hop • R&B • Alternative",
     },
     {
       title: "Songwriting",
       icon: PenTool,
-      desc: "Stronger hooks, cleaner verses, better structure. Co-writing or full ghostwriting available under NDA.",
+      desc: "Stronger hooks, cleaner verses, better structure. Co-writing available with a clear, discreet process.",
       bestFor: "Artists needing a pen upgrade",
     },
     {
       title: "Studio Design",
       icon: Speaker,
-      desc: "Stop sounding cheap. We analyze your room and install custom acoustic treatment for professional recording at home.",
+      desc: "Room analysis and treatment guidance so your recordings translate outside the room.",
       bestFor: "Home Studios • Serious Creators",
     },
     {
       title: "Development Packages",
       icon: Package,
-      desc: "A full roadmap: Sound identity, branding, release strategy, and content. Don't just drop music—build a career.",
+      desc: "A focused roadmap: sound identity, branding, release strategy, and content built around your vision.",
       bestFor: "Career Artists",
     },
   ];
@@ -78,11 +78,12 @@ export default function Services() {
         {/* Header */}
         <header className="text-center max-w-3xl mx-auto mb-20">
           <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-paperWhite via-crystal to-paperWhite bg-[length:200%_auto] animate-gradient-x">
-            Build Your Sound.
+            Build Your Sound, With Care.
           </h1>
           <p className="mt-6 text-xl text-paperWhite/80 leading-relaxed">
-            Real studio-quality sound. Real strategy. Real growth. <br className="hidden md:block" />
-            If you're serious about your music, you need more than a mix—you need a team.
+            Mixing, mastering, and artist support with clear communication and a guided process.
+            <br className="hidden md:block" />
+            Your vision leads the decisions, and feedback is always welcome.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -99,7 +100,7 @@ export default function Services() {
             </a>
           </div>
           <div className="mt-4 flex flex-wrap justify-center gap-3 text-sm text-paperWhite/70">
-            <span>Step 1: Fill out the form</span>
+            <span>Step 1: Fill out the form and share your vision</span>
             <span>
               Step 2:{" "}
               <a
@@ -111,7 +112,7 @@ export default function Services() {
                 Upload Files
               </a>
             </span>
-            <span>Step 3: I&rsquo;ll reply with next steps and timeline</span>
+            <span>Step 3: I&rsquo;ll reply with next steps, timeline, and feedback welcome</span>
           </div>
         </header>
 
@@ -124,9 +125,9 @@ export default function Services() {
 
         {/* CTA Section */}
         <div className="mt-24 p-8 md:p-12 rounded-3xl bg-gradient-to-r from-crystal/20 to-purple-900/20 border border-crystal/30 text-center backdrop-blur-lg">
-          <h2 className="text-3xl font-bold text-paperWhite">Ready to Level Up?</h2>
+          <h2 className="text-3xl font-bold text-paperWhite">Ready When You Are.</h2>
           <p className="mt-4 text-paperWhite/80 max-w-2xl mx-auto text-lg">
-            We don't work with everyone. We work with artists who are ready to invest in their sound.
+            I keep a focused roster so each project gets attention, clarity, and care.
           </p>
           <div className="mt-8">
             <Link className="btn btn-primary inline-flex items-center gap-2" to="/contact">
