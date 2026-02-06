@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mic, Music, Sliders, PenTool, Speaker, Package, ArrowRight } from "lucide-react";
+import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL } from "../content/links.js";
 
 // Reusable Service Card Component with "Glass" Effect
 const ServiceCard = ({ icon: Icon, title, desc, bestFor, delay }) => (
@@ -85,12 +86,32 @@ export default function Services() {
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link className="btn btn-primary px-8 py-3 text-lg" to="/contact">
-              Book a Strategy Call
+            <Link className="btn btn-primary px-8 py-3 text-lg" to="/bookings">
+              Book Me
             </Link>
-            <Link className="px-8 py-3 rounded-full border border-white/20 hover:bg-white/10 transition text-paperWhite font-semibold flex items-center gap-2" to="/music">
-              Hear Our Work <ArrowRight size={18} />
-            </Link>
+            <a
+              className="px-8 py-3 rounded-full border border-white/20 hover:bg-white/10 transition text-paperWhite font-semibold flex items-center gap-2"
+              href={MIX_MASTER_FORM_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Mix &amp; Master My Vocals <ArrowRight size={18} />
+            </a>
+          </div>
+          <div className="mt-4 flex flex-wrap justify-center gap-3 text-sm text-paperWhite/70">
+            <span>Step 1: Fill out the form</span>
+            <span>
+              Step 2:{" "}
+              <a
+                className="underline text-paperWhite"
+                href={FILE_UPLOAD_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Upload Files
+              </a>
+            </span>
+            <span>Step 3: I&rsquo;ll reply with next steps and timeline</span>
           </div>
         </header>
 

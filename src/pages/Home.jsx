@@ -1,15 +1,19 @@
 import Hero from "../components/Hero.jsx";
 import Section from "../components/Section.jsx";
+import Newsletter from "../components/Newsletter.jsx";
+import SocialLinks from "../components/SocialLinks.jsx";
 import { Link } from "react-router-dom";
 import { YouTubeEmbed, SpotifyEmbed } from "../components/Embeds.jsx";
 import { YT_VIDEO_ID, SPOTIFY_TYPE, SPOTIFY_ID } from "../content/media.js";
-
 import {
-  BOOKING_EMAIL,
-  FREE_CREATOR_PACK_URL,
-  CREATOR_PACK_URL,
-  CUSTOM_AUDIO_MAILTO,
-} from "../content/offers.js";
+  STREAMING_LINKS,
+  MIX_MASTER_FORM_URL,
+  FILE_UPLOAD_URL,
+} from "../content/links.js";
+import { merchItems, merchCta } from "../content/merch.js";
+import { shows, showsCta } from "../content/shows.js";
+
+import { BOOKING_EMAIL } from "../content/offers.js";
 
 // Upgraded Card:
 // - supports internal routes (to="/...")
@@ -39,15 +43,53 @@ const Card = ({ title, body, to, href, cta = "Explore →" }) => {
   );
 };
 
+const formatShowDate = (dateString) => {
+  if (!dateString) return "TBA";
+  const date = new Date(`${dateString}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return "TBA";
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+};
+
+const ShowRow = ({ date, city, venue, href, status }) => (
+  <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl ring-1 ring-paperWhite/10 bg-graphite/40 p-4">
+    <div>
+      <div className="text-xs uppercase tracking-[0.3em] text-paperWhite/50">
+        {formatShowDate(date)}
+      </div>
+      <div className="mt-1 text-lg font-semibold text-paperWhite">{city}</div>
+      <div className="text-sm text-paperWhite/60">{venue}</div>
+    </div>
+    {href ? (
+      <a
+        className="pill border-crystal/40 text-crystal hover:bg-crystal/10"
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {status || "Tickets"}
+      </a>
+    ) : (
+      <span className="pill border-white/15 text-paperWhite/60">Details soon</span>
+    )}
+  </div>
+);
+
 export default function Home() {
   // Use explicit hrefs so multi-word labels never break anchors
   const nav = [
     { label: "Start", href: "#start" },
     { label: "Services", href: "#services" },
+    { label: "Drop", href: "#drop" },
     { label: "Music", href: "#music" },
+    { label: "Tour", href: "#tour" },
     { label: "Merch", href: "#merch" },
     { label: "Story", href: "#story" },
     { label: "EPK", href: "#epk" },
+    { label: "Mailing List", href: "#newsletter" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -72,26 +114,26 @@ export default function Home() {
       <Section
         id="start"
         title="Start Here"
-        description="Need clean, usable music for your content today? Grab a free sample, upgrade when you're ready, or request something custom."
+        description="Two lanes: live bookings and remote vocal mixing/mastering."
         contentClassName="grid gap-6 md:grid-cols-3"
       >
         <Card
-          title="Free Download: Creator Starter Track"
-          body="One loopable background track for videos/streams/podcasts. (Email required at download.)"
-          href={FREE_CREATOR_PACK_URL}
-          cta="Get it free →"
+          title="Book Me"
+          body="Shows, hosting, brand events, and curated experiences."
+          to="/bookings"
+          cta="Open booking info →"
         />
         <Card
-          title="Creator Pack Vol. 1 ($15)"
-          body="5 loopable background tracks + simple license. Built for creators."
-          href={CREATOR_PACK_URL}
-          cta="Buy the pack →"
+          title="Mix & Master My Vocals"
+          body="Clean, competitive vocal mixes with fast turnaround and clear revisions."
+          href={MIX_MASTER_FORM_URL}
+          cta="Start the form →"
         />
         <Card
-          title="Custom Beat / Podcast Intro"
-          body="Tell me the vibe + references. Fast turnaround, clean delivery, revisions."
-          href={CUSTOM_AUDIO_MAILTO}
-          cta="Request custom audio →"
+          title="Upload Files"
+          body="Drop stems, roughs, and references in the shared folder."
+          href={FILE_UPLOAD_URL}
+          cta="Upload files →"
         />
       </Section>
 
@@ -99,32 +141,32 @@ export default function Home() {
       <Section
         id="services"
         title="Services"
-        description="Small, fast, creator-first audio offers. Designed to hit $100/month without burnout."
+        description="Remote vocal mixing & mastering with clear communication and fast delivery."
         descriptionClassName="max-w-2xl"
         contentClassName="grid gap-6 md:grid-cols-2"
       >
         <div className="rounded-xl ring-1 ring-paperWhite/10 bg-graphite/50 p-6">
-          <h3 className="text-xl text-paperWhite font-semibold">Quick Offers</h3>
+          <h3 className="text-xl text-paperWhite font-semibold">Mix & Master Services</h3>
 
           <ul className="mt-4 space-y-2 text-paperWhite/70 leading-relaxed">
-            <li>• 30-second loop / background track — $20</li>
-            <li>• Podcast intro/outro (15–30 sec) — $25</li>
-            <li>• Custom beat (full) — $50+</li>
-            <li>• Basic mix cleanup (vocals over beat) — $30+</li>
+            <li>• Vocal mix for one song</li>
+            <li>• Vocal mix + master (ready for release)</li>
+            <li>• Mastering only (stereo bounce)</li>
+            <li>• Alt versions (clean, performance, stems)</li>
           </ul>
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               className="btn btn-primary"
-              href={CUSTOM_AUDIO_MAILTO}
+              href={MIX_MASTER_FORM_URL}
               target="_blank"
               rel="noreferrer"
             >
-              Book Services →
+              Mix & Master My Vocals →
             </a>
-            <Link className="pill" to="/contact">
-              Contact Form →
-            </Link>
+            <a className="pill" href={FILE_UPLOAD_URL} target="_blank" rel="noreferrer">
+              Upload Files →
+            </a>
           </div>
         </div>
 
@@ -145,6 +187,66 @@ export default function Home() {
               {BOOKING_EMAIL}
             </a>
           </p>
+        </div>
+      </Section>
+
+      {/* Latest Drop / Capsule */}
+      <Section
+        id="drop"
+        title="Latest Drop"
+        description="Stream the new chapter and grab the capsule before it disappears."
+        contentClassName="grid gap-6 md:grid-cols-2"
+      >
+        <div className="rounded-xl ring-1 ring-paperWhite/10 bg-graphite/50 p-6">
+          <p className="pill border-crystal/40 text-crystal">Featured Release</p>
+          <h3 className="mt-4 text-2xl font-semibold text-paperWhite">
+            Calamari Crystal: Chapter I
+          </h3>
+          <p className="mt-3 text-paperWhite/70 leading-relaxed">
+            Cinematic rap with oceanic menace—built for late-night drives, reels, and
+            chapter-based storytelling.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            {STREAMING_LINKS.map((link) => (
+              <a
+                key={link.label}
+                className="pill hover:bg-crystal/10"
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-xl ring-1 ring-paperWhite/10 bg-graphite/50 p-6">
+          <p className="pill border-monteGold/60 text-monteGold">Merch Capsule</p>
+          <h3 className="mt-4 text-2xl font-semibold text-paperWhite">
+            Treasures from the Deep
+          </h3>
+          <ul className="mt-4 space-y-2 text-paperWhite/70">
+            {merchItems.map((item) => (
+              <li key={item.name}>
+                • {item.name} — {item.price}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6">
+            {merchCta ? (
+              <a
+                className="btn btn-primary"
+                href={merchCta.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {merchCta.label}
+              </a>
+            ) : (
+              <span className="pill text-paperWhite/60">Drop coming soon</span>
+            )}
+          </div>
         </div>
       </Section>
 
@@ -183,6 +285,52 @@ export default function Home() {
           type={SPOTIFY_TYPE}
           title="Featured Release"
         />
+        <div className="md:col-span-2 flex flex-wrap gap-3">
+          {STREAMING_LINKS.map((link) => (
+            <a
+              key={link.label}
+              className="pill hover:bg-crystal/10"
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </Section>
+
+      {/* Tour Dates */}
+      <Section
+        id="tour"
+        title="Tour Dates"
+        description="Catch the live set or pull up to the next pop-up."
+      >
+        <div className="space-y-4">
+          {shows.length ? (
+            shows.map((show) => (
+              <ShowRow key={`${show.date}-${show.city}`} {...show} />
+            ))
+          ) : (
+            <div className="rounded-xl ring-1 ring-paperWhite/10 bg-graphite/40 p-6 text-paperWhite/70">
+              No shows announced yet. Join the mailing list for first access.
+            </div>
+          )}
+        </div>
+        <div className="mt-6">
+          {showsCta ? (
+            <a
+              className="pill hover:bg-crystal/10"
+              href={showsCta.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {showsCta.label} →
+            </a>
+          ) : (
+            <span className="pill text-paperWhite/60">More dates soon</span>
+          )}
+        </div>
       </Section>
 
       {/* Merch */}
@@ -191,9 +339,46 @@ export default function Home() {
         title="Merch"
         description="Treasures from the deep—limited runs only."
       >
-        <Link className="btn btn-primary" to="/merch">
-          Shop the Drop
-        </Link>
+        <div className="grid gap-6 md:grid-cols-3">
+          {merchItems.map((item) => (
+            <div
+              key={item.name}
+              className="rounded-xl ring-1 ring-paperWhite/10 bg-graphite/40 p-6"
+            >
+              <h3 className="text-lg font-semibold text-paperWhite">{item.name}</h3>
+              <p className="mt-2 text-paperWhite/70">{item.desc}</p>
+              <div className="mt-4 flex items-center justify-between">
+                <span className="text-monteGold font-semibold">{item.price}</span>
+                {item.href ? (
+                  <a
+                    className="pill hover:bg-crystal/10"
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {item.status} →
+                  </a>
+                ) : (
+                  <span className="pill text-paperWhite/60">{item.status}</span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-6">
+          {merchCta ? (
+            <a
+              className="btn btn-primary"
+              href={merchCta.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {merchCta.label}
+            </a>
+          ) : (
+            <span className="pill text-paperWhite/60">Drop coming soon</span>
+          )}
+        </div>
       </Section>
 
       {/* Story */}
@@ -217,6 +402,30 @@ export default function Home() {
         <Link className="pill" to="/press">
           Open EPK →
         </Link>
+      </Section>
+
+      {/* Newsletter / Social */}
+      <Section
+        id="newsletter"
+        title="Join the Crew"
+        description="Drops, shows, and secret lore before the timeline sees it."
+        contentClassName="grid gap-6 md:grid-cols-2"
+      >
+        <Newsletter />
+        <div className="rounded-xl border border-white/10 p-6 bg-ink/40 space-y-4">
+          <div>
+            <h3 className="text-lg font-semibold text-paperWhite">Follow + Watch</h3>
+            <p className="mt-2 text-sm text-paperWhite/70">
+              Short clips, behind-the-scenes, and live announcements.
+            </p>
+          </div>
+          <SocialLinks />
+          <div>
+            <a className="pill hover:bg-crystal/10" href={showsCta.href} target="_blank" rel="noreferrer">
+              Tour updates →
+            </a>
+          </div>
+        </div>
       </Section>
 
       {/* Contact */}

@@ -4,13 +4,16 @@ import YouTubeIcon from "../icons/YouTubeIcon";
 import XIcon from "../icons/XIcon";
 import SpotifyIcon from "../icons/SpotifyIcon";
 import BeRealIcon from "../icons/BeRealIcon";
+import AppleMusicIcon from "../icons/AppleMusicIcon";
+import { APPLE_MUSIC_URL, SPOTIFY_URL } from "../content/links.js";
 
 const socials = [
   { name: "TikTok", href: "https://tiktok.com/@govangoes", Icon: TikTokIcon },
   { name: "Instagram", href: "https://instagram.com/govangoes", Icon: InstagramIcon },
   { name: "YouTube", href: "https://youtube.com/@govangoes", Icon: YouTubeIcon },
   { name: "X", href: "https://twitter.com/govangoes", Icon: XIcon },
-  { name: "Spotify", href: "#", Icon: SpotifyIcon },
+  { name: "Spotify", href: SPOTIFY_URL, Icon: SpotifyIcon },
+  { name: "Apple Music", href: APPLE_MUSIC_URL, Icon: AppleMusicIcon },
   { name: "BeReal", href: "https://bere.al/govangoes", Icon: BeRealIcon },
 ];
 

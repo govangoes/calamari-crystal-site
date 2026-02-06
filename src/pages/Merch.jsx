@@ -1,22 +1,5 @@
 import ScrollReveal from "../components/ScrollReveal.jsx";
-
-const items = [
-  {
-    name: "Glowing Crystal Necklace",
-    desc: "UV-reactive pendant—wear a shard of the legend.",
-    price: "$35",
-  },
-  {
-    name: "Treasure Map Lyric Poster",
-    desc: "Aged parchment design with hidden ciphers & song loci.",
-    price: "$20",
-  },
-  {
-    name: "Deluxe Treasure Chest Bundle",
-    desc: "Lyric map + necklace + signed note in a mini chest.",
-    price: "$120 (limited)",
-  },
-];
+import { merchItems, merchCta } from "../content/merch.js";
 
 export default function Merch() {
   return (
@@ -26,23 +9,45 @@ export default function Merch() {
         <p className="opacity-80 mt-2">Limited runs. Story-driven. Built for super-fans.</p>
       </header>
       <div className="grid md:grid-cols-3 gap-6">
-        {items.map((it) => (
+        {merchItems.map((it) => (
           <ScrollReveal key={it.name}>
             <div className="p-6 rounded-xl bg-ink/50 border border-white/10 shadow-crystal">
               <h3 className="font-semibold">{it.name}</h3>
               <p className="opacity-80 mt-2">{it.desc}</p>
               <div className="mt-4 flex items-center justify-between">
                 <span className="text-monteGold font-semibold">{it.price}</span>
-                <a
-                  className="px-4 py-2 rounded bg-ultraviolet text-paperWhite hover:opacity-90"
-                  href="#store"
-                >
-                  Buy
-                </a>
+                {it.href ? (
+                  <a
+                    className="px-4 py-2 rounded bg-ultraviolet text-paperWhite hover:opacity-90"
+                    href={it.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {it.status}
+                  </a>
+                ) : (
+                  <span className="px-4 py-2 rounded border border-white/15 text-paperWhite/60">
+                    {it.status}
+                  </span>
+                )}
               </div>
             </div>
           </ScrollReveal>
         ))}
+      </div>
+      <div className="text-center">
+        {merchCta ? (
+          <a
+            className="btn btn-primary"
+            href={merchCta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {merchCta.label}
+          </a>
+        ) : (
+          <span className="pill text-paperWhite/60">Full drop coming soon</span>
+        )}
       </div>
     </section>
   );
