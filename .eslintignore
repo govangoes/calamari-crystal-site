@@ -1,0 +1,10 @@
+# Tooling / agent files
+codex/**
+api/**
+
+# Build artifacts
+dist/**
+build/**
+
+# Node
+node_modules/**

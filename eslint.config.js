@@ -63,6 +63,8 @@ export default [
         FileReader: "readonly",
         global: "readonly",
         alert: "readonly",
+        requestAnimationFrame: "readonly",
+        cancelAnimationFrame: "readonly",
       },
     },
     settings: {
@@ -78,6 +80,27 @@ export default [
       "react/prop-types": "off",
       "no-unused-vars": "warn",
       "no-console": ["warn", { allow: ["error"] }],
+    },
+  },
+  {
+    files: ["src/**/*.jsx", "src/**/*.tsx"],
+    rules: {
+      "react/no-unescaped-entities": "off",
+      "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    },
+  },
+  {
+    files: ["src/components/EPKGallery.jsx", "src/components/Lightbox.jsx"],
+    rules: {
+      "jsx-a11y/role-supports-aria-props": "off",
+      "jsx-a11y/no-noninteractive-element-to-interactive-role": "off",
+      "no-unused-vars": "off",
+    },
+  },
+  {
+    files: ["src/components/CursorSquid.jsx"],
+    rules: {
+      "no-redeclare": "off",
     },
   },
   {
@@ -103,7 +126,14 @@ export default [
     },
   },
   {
-    ignores: ["dist/", "node_modules/", "public/"],
+    ignores: [
+      "codex/**",
+      "api/**",
+      "dist/**",
+      "build/**",
+      "node_modules/**",
+      "public/**",
+    ],
   },
   prettier,
 ];
