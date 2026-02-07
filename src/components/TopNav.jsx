@@ -7,6 +7,7 @@ const navClass = ({ isActive }) =>
   (isActive ? "bg-white/10 text-white" : "text-white/80 hover:text-white");
 
 export default function TopNav() {
+  const baseUrl = import.meta.env.BASE_URL;
   return (
     <header className="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-white/10">
       <div className="mx-auto max-w-6xl px-4 flex items-center justify-between h-14">
@@ -44,7 +45,7 @@ export default function TopNav() {
             Merch
           </NavLink>
           <a
-            href="/orlando-nightlife.html"
+            href={`${baseUrl}orlando-nightlife.html`}
             className="px-3 py-2 rounded-md text-sm font-semibold transition text-white/80 hover:text-white"
           >
             Nightlife

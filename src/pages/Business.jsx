@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Business() {
   const streams = [
     ["Live/Bookings", "$30k target"],
@@ -21,9 +23,12 @@ export default function Business() {
         ))}
       </div>
       <div className="text-center">
-        <a className="px-5 py-3 rounded bg-monteGold text-ink hover:opacity-90" href="/contact">
+        <Link
+          className="px-5 py-3 rounded bg-monteGold text-ink hover:opacity-90"
+          to="/contact"
+        >
           Booking & Collabs
-        </a>
+        </Link>
       </div>
     </section>
   );

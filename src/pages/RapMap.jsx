@@ -71,12 +71,12 @@ export default function RapMap() {
           >
             Upload Your Lyrics
           </Link>
-          <a
+          <Link
             className="btn border border-white/20 bg-white/5 text-paperWhite hover:border-crystal/60 hover:text-crystal"
-            href="/contact"
+            to="/contact"
           >
             Collaborate with Us
-          </a>
+          </Link>
         </div>
       </section>
 

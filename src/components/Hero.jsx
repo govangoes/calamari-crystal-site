@@ -59,9 +59,9 @@ export default function Hero() {
         </div>
 
         <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <a href="/music" className="pill">
+          <Link to="/music" className="pill">
             Listen
-          </a>
+          </Link>
           <a
             href="https://www.youtube.com/@govangoes"
             className="pill"
@@ -70,9 +70,9 @@ export default function Hero() {
           >
             Watch
           </a>
-          <a href="/merch" className="pill">
+          <Link to="/merch" className="pill">
             Merch
-          </a>
+          </Link>
         </div>
       </div>
     </section>

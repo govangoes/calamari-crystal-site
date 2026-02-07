@@ -1,4 +1,5 @@
 import ScrollReveal from "../components/ScrollReveal.jsx";
+import { Link } from "react-router-dom";
 
 const timeline = [
   {
@@ -35,12 +36,12 @@ export default function Marketing() {
       </ol>
 
       <div className="text-center">
-        <a
-          href="/contact"
+        <Link
+          to="/contact"
           className="px-5 py-3 rounded bg-ultraviolet text-paperWhite hover:opacity-90"
         >
           Book a strategy session →
-        </a>
+        </Link>
       </div>
     </section>
   );

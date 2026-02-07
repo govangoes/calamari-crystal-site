@@ -4,6 +4,7 @@ import EPKGallery from "../components/EPKGallery.jsx";
 import { epkHero, epkPhotos } from "../content/epkPhotos.js";
 
 export default function Press() {
+  const baseUrl = import.meta.env.BASE_URL;
   useEffect(() => {
     setSEO({
       title: "Press — GoVanGoes",
@@ -28,7 +29,7 @@ export default function Press() {
         <div className="mt-4 flex items-center gap-4">
           <a
             className="underline"
-            href="/GoVanGoes-OneSheet.pdf"
+            href={`${baseUrl}GoVanGoes-OneSheet.pdf`}
             target="_blank"
             rel="noopener noreferrer"
           >
