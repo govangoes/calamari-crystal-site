@@ -29,7 +29,7 @@ export default function Services() {
     {
       title: "Mixing & Mastering",
       icon: Sliders,
-      desc: "Clarity, balance, and polish with your vision leading the mix. Notes and revisions are part of the process.",
+      desc: "Tiered mix + master options with clear revisions and flexible turnaround.",
       bestFor: "Singles • EPs • Albums",
     },
     {
@@ -108,6 +108,43 @@ export default function Services() {
               </a>
             </span>
             <span>Step 3: I&rsquo;ll reply with next steps, timeline, and feedback welcome</span>
+          </div>
+
+          <div className="mt-10 mx-auto max-w-3xl rounded-2xl border border-white/10 bg-white/5 p-6 text-left sm:text-center">
+            <h2 className="text-lg font-semibold text-paperWhite">Mix &amp; Master Tiers</h2>
+            <ul className="mt-4 space-y-4 text-paperWhite/70 leading-relaxed">
+              <li>
+                <div className="text-paperWhite font-semibold">BASIC — $79</div>
+                <div className="text-sm">Mix + master (1 song)</div>
+                <div className="text-xs text-paperWhite/60">
+                  1 revision · Typical: 2–4 days (often faster)
+                </div>
+              </li>
+              <li>
+                <div className="text-paperWhite font-semibold">PRO — $129</div>
+                <div className="text-sm">Mix + master (1 song)</div>
+                <div className="text-xs text-paperWhite/60">
+                  2 revisions · Typical: 1–2 days (priority)
+                </div>
+              </li>
+              <li>
+                <div className="text-paperWhite font-semibold">DELUXE — $199</div>
+                <div className="text-sm">Mix + master (1 song)</div>
+                <div className="text-xs text-paperWhite/60">
+                  Vocal cleanup + light tuning (if needed) · 3 revisions · Typical: 24–48 hours
+                </div>
+              </li>
+            </ul>
+            <p className="mt-4 text-sm text-paperWhite/60">
+              Turnaround depends on file quality and the current queue — I&rsquo;ll confirm timing
+              after I review your upload.
+            </p>
+            <p className="mt-2 text-sm text-paperWhite/60">
+              Revisions are for notes and tweaks — not a full re-mix from scratch.
+            </p>
+            <p className="mt-3 text-sm text-paperWhite/70">
+              Add-ons: Extra revision $15 · Stems export $25 · Rush (same day) $50 (if available)
+            </p>
           </div>
         </header>
 

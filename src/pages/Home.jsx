@@ -115,7 +115,7 @@ export default function Home() {
         />
         <Card
           title="Mix & Master My Vocals"
-          body="Clean vocal mixes with a guided process, open communication, and room for feedback."
+          body="Tiered mix & master: Basic $79 / Pro $129 / Deluxe $199. Calm process, clear revisions."
           href={MIX_MASTER_FORM_URL}
           cta="Start the form →"
         />
@@ -138,11 +138,26 @@ export default function Home() {
         <div className="rounded-xl ring-1 ring-paperWhite/10 bg-graphite/50 p-6">
           <h3 className="text-xl text-paperWhite font-semibold">Mix & Master Services</h3>
 
-          <ul className="mt-4 space-y-2 text-paperWhite/70 leading-relaxed">
-            <li>• Vocal mix for one song (notes welcome)</li>
-            <li>• Vocal mix + master (release-ready feel)</li>
-            <li>• Mastering only (final polish)</li>
-            <li>• Alt versions (clean, performance, stems)</li>
+          <ul className="mt-4 space-y-4 text-paperWhite/70 leading-relaxed">
+            <li>
+              <div className="text-paperWhite font-semibold">BASIC — $79</div>
+              <div className="text-sm">Mix + master (1 song)</div>
+              <div className="text-xs text-paperWhite/60">
+                1 revision · Typical: 2–4 days (often faster)
+              </div>
+            </li>
+            <li>
+              <div className="text-paperWhite font-semibold">PRO — $129</div>
+              <div className="text-sm">Mix + master (1 song)</div>
+              <div className="text-xs text-paperWhite/60">2 revisions · Typical: 1–2 days</div>
+            </li>
+            <li>
+              <div className="text-paperWhite font-semibold">DELUXE — $199</div>
+              <div className="text-sm">Mix + master (1 song)</div>
+              <div className="text-xs text-paperWhite/60">
+                Vocal cleanup + light tuning (if needed) · 3 revisions · Typical: 24–48 hours
+              </div>
+            </li>
           </ul>
 
           <div className="mt-6 flex flex-wrap gap-3">
