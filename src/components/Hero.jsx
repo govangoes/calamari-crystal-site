@@ -14,8 +14,10 @@ export default function Hero() {
           <h1 className="font-extrabold text-[clamp(2rem,3.6vw,4rem)] leading-[1.05] tracking-[-0.01em] drop-shadow-[0_2px_18px_rgba(8,12,24,0.35)]">
             <span className="block">Sound good. Look official. Move different.</span>
             <span className="mt-4 block text-[clamp(1rem,1.6vw,1.35rem)] font-medium leading-[1.5] text-paperWhite/80">
-              Mixing, mastering, and booking for artists who take their craft seriously. Clean
-              process, clear communication, and results that feel as good as they sound.
+              <span>Mixing, mastering, and booking —</span>{" "}
+              <span className="text-[0.82em] font-normal text-paperWhite/60">
+                clean process, clear communication, serious results.
+              </span>
             </span>
           </h1>
         </div>
