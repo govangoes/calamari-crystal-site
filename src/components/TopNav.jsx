@@ -1,4 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
+import brandMarkPng from "/icon-192.png";
+import brandMarkWebp from "/maskable-icon-512.webp";
 
 const navClass = ({ isActive }) =>
   "px-3 py-2 rounded-md text-sm font-semibold transition " +
@@ -14,8 +16,8 @@ export default function TopNav() {
           aria-label="Go to GoVanGoes home"
         >
           <picture>
-            <source srcSet="/maskable-icon-512.webp" type="image/webp" />
-            <img src="/icon-192.png" alt="GoVanGoes" className="h-6 w-6" decoding="async" />
+            <source srcSet={brandMarkWebp} type="image/webp" />
+            <img src={brandMarkPng} alt="GoVanGoes" className="h-6 w-6" decoding="async" />
           </picture>
           <span className="text-white font-bold tracking-wide">GoVanGoes</span>
         </Link>

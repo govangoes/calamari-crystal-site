@@ -10,16 +10,19 @@ export default function Hero() {
       className="relative flex flex-col items-center justify-center gap-6 px-6 pt-40 pb-32 text-center sm:pb-40 sm:pt-48"
     >
       <div className="text-center">
-        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
-          Sound good. Look official. Move different.
-          <br className="hidden md:block" />
-          Mixing, mastering, and booking for artists who take their craft seriously. Clean process,
-          clear communication, and results that feel as good as they sound.
-        </h1>
+        <div className="mx-auto max-w-[900px]">
+          <h1 className="font-extrabold text-[clamp(2rem,3.6vw,4rem)] leading-[1.05] tracking-[-0.01em] drop-shadow-[0_2px_18px_rgba(8,12,24,0.35)]">
+            <span className="block">Sound good. Look official. Move different.</span>
+            <span className="mt-4 block text-[clamp(1rem,1.6vw,1.35rem)] font-medium leading-[1.5] text-paperWhite/80">
+              Mixing, mastering, and booking for artists who take their craft seriously. Clean
+              process, clear communication, and results that feel as good as they sound.
+            </span>
+          </h1>
+        </div>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className="mt-10 flex flex-wrap justify-center gap-3 sm:gap-4">
           <Link
-            className="btn btn-primary"
+            className="btn btn-primary text-sm sm:text-base"
             to="/bookings"
             aria-label="Book Go Van Goes for a show or event"
           >
@@ -27,7 +30,7 @@ export default function Hero() {
           </Link>
           <a
             href={MIX_MASTER_FORM_URL}
-            className="btn btn-primary"
+            className="btn btn-primary text-sm sm:text-base"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -35,8 +38,8 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="mt-6 mx-auto max-w-2xl text-sm text-paperWhite/70">
-          <div className="grid gap-2 text-left sm:text-center">
+        <div className="mt-6 mx-auto max-w-[560px] text-xs sm:text-sm text-paperWhite/60">
+          <div className="grid gap-2 leading-relaxed text-left sm:text-center">
             <span>Step 1: Fill out the form and share your vision</span>
             <span>
               Step 2:{" "}
@@ -53,7 +56,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
+        <div className="mt-7 flex flex-wrap justify-center gap-3">
           <a href="/music" className="pill">
             Listen
           </a>
