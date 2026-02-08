@@ -220,6 +220,38 @@
     background: rgba(10, 14, 30, 0.88);
   }
 
+  .video-frame {
+    position: relative;
+    border-radius: 1.15rem;
+    padding: 0.6rem;
+    border: 1px solid rgba(195, 203, 224, 0.2);
+    background:
+      linear-gradient(145deg, rgba(9, 13, 29, 0.9), rgba(6, 9, 20, 0.84)), rgba(9, 13, 29, 0.88);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 18px 34px rgba(4, 8, 20, 0.46),
+      0 0 0 1px rgba(111, 45, 168, 0.1);
+  }
+
+  .video-frame__edge {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+      radial-gradient(35% 48% at 8% 0%, rgba(111, 45, 168, 0.22), transparent 70%),
+      radial-gradient(38% 48% at 92% 0%, rgba(34, 211, 238, 0.2), transparent 70%);
+    opacity: 0.85;
+  }
+
+  .video-frame__inner {
+    position: relative;
+    z-index: 1;
+    border-radius: 0.9rem;
+    overflow: hidden;
+    background: rgba(3, 6, 16, 0.9);
+  }
+
   .btn {
     @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform;
     font-family: var(--font-body);
@@ -504,6 +536,7 @@
     .crystal-input,
     .crystal-textarea,
     .crystal-select,
+    .video-frame,
     .ui-btn,
     .ui-btn:hover,
     .ui-btn:active,

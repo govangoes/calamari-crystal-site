@@ -201,10 +201,10 @@ export default function Services() {
         {/* CTA Section */}
         <CrystalCard
           variant="solid"
-          className="mt-24 rounded-3xl border-crystal/30 bg-gradient-to-r from-crystal/20 to-purple-900/20 p-8 text-center md:p-12"
+          className="mt-24 rounded-3xl border-crystal/30 bg-gradient-to-r from-ultraviolet/28 via-ink/70 to-crystal/14 p-8 text-center md:p-12"
         >
           <h2 className="text-3xl font-bold text-paperWhite">Ready When You Are.</h2>
-          <p className="mt-4 mx-auto max-w-2xl text-lg text-paperWhite/90">
+          <p className="mt-4 mx-auto max-w-2xl text-lg text-muted">
             I keep a focused roster so each project gets attention, clarity, and care.
           </p>
           <div className="mt-8">

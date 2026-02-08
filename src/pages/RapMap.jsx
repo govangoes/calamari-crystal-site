@@ -92,9 +92,7 @@ export default function RapMap() {
                   className="h-full p-6 transition duration-300 hover:-translate-y-1 hover:border-crystal/50"
                 >
                   <h2 className="text-xl font-semibold text-monteGold">{card.title}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-paperWhite/75">
-                    {card.description}
-                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">{card.description}</p>
                   <Action
                     className={`mt-4 inline-flex items-center gap-2 text-sm font-semibold ${
                       card.to || card.href
@@ -118,7 +116,7 @@ export default function RapMap() {
         <ScrollReveal>
           <CrystalCard variant="glass" className="rounded-3xl p-8">
             <h2 className="text-2xl font-semibold text-crystal">What the Rap Map Unlocks</h2>
-            <p className="mt-3 max-w-3xl text-paperWhite/75">
+            <p className="mt-3 max-w-3xl text-muted">
               Every data stream feeds into an immersive explorer--from syllable density maps to
               quotable archives. Plug into the ecosystem and uncover patterns that make hip-hop
               history.
@@ -134,9 +132,7 @@ export default function RapMap() {
                 className="h-full p-6 transition duration-300 hover:-translate-y-1 hover:border-crystal/50"
               >
                 <h3 className="text-xl font-semibold text-monteGold">{feature.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-paperWhite/75">
-                  {feature.description}
-                </p>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{feature.description}</p>
               </CrystalCard>
             </ScrollReveal>
           ))}
@@ -144,17 +140,18 @@ export default function RapMap() {
         <ScrollReveal>
           <CrystalCard variant="solid" className="rounded-3xl p-8 text-center">
             <h2 className="text-2xl font-semibold text-opal">Beta Cohort Forming Now</h2>
-            <p className="mt-3 text-paperWhite/75">
+            <p className="mt-3 text-muted">
               We are onboarding curators, statisticians, and producers to shape the platform
               experience. Share your ideas and get early access to tools that make your verses
               shine.
             </p>
-            <a
-              className="mt-6 inline-flex items-center justify-center rounded-full border border-crystal/50 px-6 py-3 text-sm font-semibold text-crystal transition hover:bg-crystal hover:text-ink"
+            <GhostButton
+              as="a"
+              className="mt-6"
               href="mailto:hello@govangoes.com?subject=Rap%20Map%20Beta"
             >
               Request Beta Access
-            </a>
+            </GhostButton>
           </CrystalCard>
         </ScrollReveal>
       </section>

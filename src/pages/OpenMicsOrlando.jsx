@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import { orlandoOpenMics } from "../data/orlandoOpenMics.js";
 import CrystalBadge from "../components/ui/CrystalBadge.jsx";
 import CrystalCard from "../components/ui/CrystalCard.jsx";
+import CrystalInput from "../components/ui/CrystalInput.jsx";
+import CrystalSelect from "../components/ui/CrystalSelect.jsx";
+import Field from "../components/ui/Field.jsx";
+import GhostButton from "../components/ui/GhostButton.jsx";
 import Hairline from "../components/ui/Hairline.jsx";
 import SectionHeader from "../components/ui/SectionHeader.jsx";
 
@@ -58,21 +62,21 @@ export default function OpenMicsOrlando() {
 
         <CrystalCard variant="glass" className="grid gap-4 p-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <label className="flex flex-col text-left text-sm font-semibold text-violet-100">
-              Search
-              <input
+            <Field label="Search" htmlFor="open-mics-search">
+              <CrystalInput
+                id="open-mics-search"
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder="Search by name, venue, or vibe"
-                className="mt-2 w-full rounded-xl border border-violet-500/40 bg-slate-900/70 px-4 py-3 text-base text-paperWhite shadow-inner outline-none transition focus:border-ultraviolet focus:ring-2 focus:ring-ultraviolet/60"
+                className="text-base"
               />
-            </label>
-            <label className="flex flex-col text-left text-sm font-semibold text-violet-100">
-              Genre
-              <select
+            </Field>
+            <Field label="Genre" htmlFor="open-mics-genre">
+              <CrystalSelect
+                id="open-mics-genre"
                 value={genreFilter}
                 onChange={(event) => setGenreFilter(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-violet-500/40 bg-slate-900/70 px-4 py-3 text-base text-paperWhite shadow-inner outline-none transition focus:border-ultraviolet focus:ring-2 focus:ring-ultraviolet/60"
+                className="text-base"
               >
                 <option value="all">All genres</option>
                 {uniqueGenres.map((genre) => (
@@ -80,14 +84,14 @@ export default function OpenMicsOrlando() {
                     {genre}
                   </option>
                 ))}
-              </select>
-            </label>
-            <label className="flex flex-col text-left text-sm font-semibold text-violet-100">
-              Day
-              <select
+              </CrystalSelect>
+            </Field>
+            <Field label="Day" htmlFor="open-mics-day">
+              <CrystalSelect
+                id="open-mics-day"
                 value={dayFilter}
                 onChange={(event) => setDayFilter(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-violet-500/40 bg-slate-900/70 px-4 py-3 text-base text-paperWhite shadow-inner outline-none transition focus:border-ultraviolet focus:ring-2 focus:ring-ultraviolet/60"
+                className="text-base"
               >
                 <option value="all">All days</option>
                 {uniqueDays.map((day) => (
@@ -95,14 +99,14 @@ export default function OpenMicsOrlando() {
                     {day}
                   </option>
                 ))}
-              </select>
-            </label>
-            <label className="flex flex-col text-left text-sm font-semibold text-violet-100">
-              Rating
-              <select
+              </CrystalSelect>
+            </Field>
+            <Field label="Rating" htmlFor="open-mics-rating">
+              <CrystalSelect
+                id="open-mics-rating"
                 value={ratingFilter}
                 onChange={(event) => setRatingFilter(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-violet-500/40 bg-slate-900/70 px-4 py-3 text-base text-paperWhite shadow-inner outline-none transition focus:border-ultraviolet focus:ring-2 focus:ring-ultraviolet/60"
+                className="text-base"
               >
                 <option value="all">All ratings</option>
                 {["4.5", "4", "3.5", "3"].map((value) => (
@@ -110,10 +114,10 @@ export default function OpenMicsOrlando() {
                     {value}+ stars
                   </option>
                 ))}
-              </select>
-            </label>
+              </CrystalSelect>
+            </Field>
           </div>
-          <p className="text-sm text-violet-200/70">
+          <p className="text-sm text-muted">
             {filteredEvents.length} event{filteredEvents.length === 1 ? "" : "s"} match your
             filters.
           </p>
@@ -143,7 +147,7 @@ export default function OpenMicsOrlando() {
                   </a>
                 </div>
                 <RatingStars rating={event.rating} />
-                <div className="flex flex-wrap items-center gap-3 text-sm text-violet-100">
+                <div className="flex flex-wrap items-center gap-3 text-sm text-muted">
                   <CrystalBadge
                     variant="chip"
                     className="border-ultraviolet/50 bg-ultraviolet/15 text-crystal"
@@ -154,9 +158,9 @@ export default function OpenMicsOrlando() {
                     {event.time}
                   </CrystalBadge>
                 </div>
-                <p className="text-base text-violet-100/80">{event.description}</p>
+                <p className="text-base text-muted">{event.description}</p>
                 {event.host && (
-                  <p className="text-sm uppercase tracking-wide text-violet-300/80">
+                  <p className="text-sm uppercase tracking-wide text-muted">
                     Host: <span className="text-paperWhite">{event.host}</span>
                   </p>
                 )}
@@ -165,7 +169,7 @@ export default function OpenMicsOrlando() {
                     <CrystalBadge
                       key={tag}
                       variant="chip"
-                      className="border-violet-400/30 bg-slate-800/70 text-violet-200 transition group-hover:border-crystal/50 group-hover:text-paperWhite"
+                      className="border-white/20 bg-slate-900/65 text-muted transition group-hover:border-crystal/50 group-hover:text-paperWhite"
                     >
                       {tag}
                     </CrystalBadge>
@@ -193,7 +197,7 @@ export default function OpenMicsOrlando() {
               className="col-span-full border-dashed border-white/20 bg-slate-900/50 p-10 text-center text-violet-100"
             >
               <p className="text-lg font-semibold">No open mics match those filters… yet.</p>
-              <p className="mt-2 text-sm text-violet-200/70">
+              <p className="mt-2 text-sm text-muted">
                 Try clearing your search or picking a different genre to explore more vibes.
               </p>
             </CrystalCard>
@@ -203,23 +207,20 @@ export default function OpenMicsOrlando() {
         <CrystalCard
           as="section"
           variant="solid"
-          className="relative overflow-hidden rounded-3xl border-white/20 bg-gradient-to-br from-ultraviolet/40 via-slate-900/80 to-[#0F172A] p-10 text-center shadow-[0_0_60px_-20px_rgba(79,70,229,0.9)]"
+          className="relative overflow-hidden rounded-3xl border-white/20 bg-gradient-to-br from-ultraviolet/32 via-slate-900/80 to-[#0F172A] p-10 text-center"
         >
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(226,232,240,0.12),_transparent_60%)]" />
           <h2 className="text-3xl font-extrabold text-paperWhite md:text-4xl">
             Submit Your Open Mic Event
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-base text-violet-100">
+          <p className="mx-auto mt-3 max-w-2xl text-base text-muted">
             Want your event featured? Let GVG know! Share the details and we’ll amplify it across
             the Calamari Crystal network.
           </p>
-          <Link
-            to="/contact"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-orange-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition hover:bg-orange-500 hover:shadow-orange-400/30"
-          >
+          <GhostButton as={Link} to="/contact" className="mt-6">
             Submit your Open Mic
             <span aria-hidden>→</span>
-          </Link>
+          </GhostButton>
         </CrystalCard>
       </section>
     </main>

@@ -1,8 +1,15 @@
-export function SpotifyEmbed({ id, type = "album", title = "Spotify Player" }) {
+export function SpotifyEmbed({ id, type = "album", title = "Spotify Player", className = "" }) {
   if (!id) return null;
 
+  const composedClassName = [
+    "aspect-video w-full overflow-hidden rounded-lg border border-white/10",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <div className="aspect-video w-full rounded-lg overflow-hidden border border-white/10">
+    <div className={composedClassName}>
       <iframe
         className="w-full h-full"
         style={{ border: 0 }}
@@ -15,11 +22,18 @@ export function SpotifyEmbed({ id, type = "album", title = "Spotify Player" }) {
   );
 }
 
-export function YouTubeEmbed({ id, title = "YouTube" }) {
+export function YouTubeEmbed({ id, title = "YouTube", className = "" }) {
   if (!id) return null;
 
+  const composedClassName = [
+    "aspect-video w-full overflow-hidden rounded-lg border border-white/10",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <div className="aspect-video w-full rounded-lg overflow-hidden border border-white/10">
+    <div className={composedClassName}>
       <iframe
         className="w-full h-full"
         src={`https://www.youtube.com/embed/${id}`}

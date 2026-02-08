@@ -8,6 +8,7 @@ import MixMasterForm from "../components/forms/MixMasterForm.jsx";
 import CrystalBadge from "../components/ui/CrystalBadge.jsx";
 import CrystalCard from "../components/ui/CrystalCard.jsx";
 import Hairline from "../components/ui/Hairline.jsx";
+import VideoFrame from "../components/ui/VideoFrame.jsx";
 import { CONTACT_EMAIL } from "../content/offers.js";
 import { epkPhotos } from "../content/epkPhotos.js";
 import {
@@ -133,11 +134,25 @@ export default function Home() {
         contentClassName="space-y-6"
       >
         {HAS_YOUTUBE ? (
-          <YouTubeEmbed id={YT_VIDEO_ID} title="Featured Performance" />
+          <VideoFrame>
+            <YouTubeEmbed
+              id={YT_VIDEO_ID}
+              title="Featured Performance"
+              className="rounded-xl border-0"
+            />
+          </VideoFrame>
         ) : HAS_SPOTIFY ? (
-          <SpotifyEmbed id={SPOTIFY_ID} type={SPOTIFY_TYPE} title="Featured Release" />
+          <VideoFrame>
+            <SpotifyEmbed
+              id={SPOTIFY_ID}
+              type={SPOTIFY_TYPE}
+              title="Featured Release"
+              className="rounded-xl border-0"
+            />
+          </VideoFrame>
         ) : null}
 
+        <Hairline />
         <div className="flex flex-wrap gap-3">
           {STREAMING_LINKS.map((link) => (
             <a
