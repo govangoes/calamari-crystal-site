@@ -92,7 +92,13 @@ export default function Services() {
   return (
     <section className="relative min-h-screen">
       {/* Background Ambience (Optional extra texture) */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-5 pointer-events-none mix-blend-overlay"></div>
+      <div
+        className="pointer-events-none absolute left-0 top-0 h-full w-full mix-blend-overlay opacity-5"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.35) 0.6px, transparent 0.6px)",
+          backgroundSize: "3px 3px",
+        }}
+      />
 
       <div className="max-w-6xl mx-auto px-4 py-20 relative z-10">
         {/* Header */}
