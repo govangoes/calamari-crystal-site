@@ -224,6 +224,60 @@
     @apply relative py-16 md:py-24;
   }
 
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+  }
+
+  .menu-overlay__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(4, 8, 20, 0.68);
+    opacity: 0;
+    backdrop-filter: blur(1px);
+    transition:
+      opacity 0.24s ease,
+      backdrop-filter 0.24s ease;
+  }
+
+  .menu-overlay__panel {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 2;
+    width: min(20rem, 92vw);
+    border-radius: 1rem;
+    border: 1px solid rgba(195, 203, 224, 0.22);
+    background:
+      linear-gradient(145deg, rgba(8, 11, 24, 0.96), rgba(6, 10, 22, 0.97)), rgba(8, 11, 24, 0.95);
+    padding: 1.5rem;
+    box-shadow:
+      0 22px 48px rgba(2, 5, 16, 0.6),
+      0 0 32px rgba(34, 211, 238, 0.1);
+    opacity: 0;
+    transform: translateY(-10px) scale(0.96);
+    transform-origin: top right;
+    transition:
+      opacity 0.24s ease,
+      transform 0.24s ease;
+  }
+
+  .menu-overlay--open {
+    pointer-events: auto;
+  }
+
+  .menu-overlay--open .menu-overlay__backdrop {
+    opacity: 1;
+    backdrop-filter: blur(7px);
+  }
+
+  .menu-overlay--open .menu-overlay__panel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
   .scroll-cue {
     @apply absolute left-1/2 -translate-x-1/2 bottom-4 text-white/80 text-xs flex flex-col items-center gap-1;
     animation: floaty 2.4s ease-in-out infinite;
@@ -247,6 +301,11 @@
       transition: none !important;
       transform: none !important;
       animation: none !important;
+    }
+
+    .menu-overlay__backdrop,
+    .menu-overlay__panel {
+      transition: none !important;
     }
   }
 }
