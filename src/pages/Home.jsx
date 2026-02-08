@@ -5,6 +5,7 @@ import { SpotifyEmbed, YouTubeEmbed } from "../components/Embeds.jsx";
 import AsSeenIn from "../components/AsSeenIn.jsx";
 import BookingForm from "../components/forms/BookingForm.jsx";
 import MixMasterForm from "../components/forms/MixMasterForm.jsx";
+import ProofGrid from "../components/ProofGrid.jsx";
 import CrystalBadge from "../components/ui/CrystalBadge.jsx";
 import CrystalCard from "../components/ui/CrystalCard.jsx";
 import Hairline from "../components/ui/Hairline.jsx";
@@ -64,6 +65,7 @@ export default function Home() {
           </div>
           <Hairline />
           <AsSeenIn className="border-white/15 bg-ink/25" />
+          <ProofGrid />
         </div>
       </section>
 
