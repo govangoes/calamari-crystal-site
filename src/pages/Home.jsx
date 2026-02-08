@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Hero from "../components/Hero.jsx";
 import Section from "../components/Section.jsx";
 import { SpotifyEmbed, YouTubeEmbed } from "../components/Embeds.jsx";
+import AsSeenIn from "../components/AsSeenIn.jsx";
 import BookingForm from "../components/forms/BookingForm.jsx";
 import MixMasterForm from "../components/forms/MixMasterForm.jsx";
 import { CONTACT_EMAIL } from "../content/offers.js";
@@ -49,15 +50,18 @@ export default function Home() {
 
       <section id="proof" className="relative mx-auto max-w-6xl isolate overflow-hidden px-4 pb-12">
         <PsychedelicTextureLayer variant="section" strength="low" />
-        <div className="relative z-[1] flex flex-wrap items-center gap-2 text-xs text-muted">
-          {proofItems.map((item) => (
-            <span
-              key={item}
-              className="rounded-full border border-crystal/30 bg-crystal/5 px-3 py-1"
-            >
-              {item}
-            </span>
-          ))}
+        <div className="relative z-[1] space-y-5">
+          <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
+            {proofItems.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-crystal/30 bg-crystal/5 px-3 py-1"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <AsSeenIn />
         </div>
       </section>
 

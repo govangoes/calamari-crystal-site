@@ -236,6 +236,29 @@
     @apply relative py-16 md:py-24;
   }
 
+  .as-seen-scroll {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 1) 7%,
+      rgba(0, 0, 0, 1) 93%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 1) 7%,
+      rgba(0, 0, 0, 1) 93%,
+      transparent 100%
+    );
+  }
+
+  .as-seen-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
   .menu-overlay {
     position: fixed;
     inset: 0;
