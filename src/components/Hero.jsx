@@ -1,6 +1,7 @@
 import React from "react";
 import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL, SHOP_URL } from "../content/links.js";
 import PsychedelicButton from "./ui/PsychedelicButton.jsx";
+import PsychedelicTextureLayer from "./ui/PsychedelicTextureLayer.jsx";
 
 export default function Hero() {
   const baseUrl = import.meta.env.BASE_URL;
@@ -9,9 +10,10 @@ export default function Hero() {
     <section
       id="start"
       aria-label="Introduction and calls to action"
-      className="relative flex flex-col items-center justify-center gap-6 px-6 pt-40 pb-32 text-center sm:pb-40 sm:pt-48"
+      className="relative isolate flex flex-col items-center justify-center gap-6 overflow-hidden px-6 pb-32 pt-40 text-center sm:pb-40 sm:pt-48"
     >
-      <div className="text-center">
+      <PsychedelicTextureLayer className="opacity-[0.24]" />
+      <div className="relative z-[1] text-center">
         <div className="mx-auto max-w-[900px]">
           <h1 className="font-extrabold text-[clamp(2rem,3.6vw,4rem)] leading-[1.05] tracking-[-0.01em] drop-shadow-[0_2px_18px_rgba(8,12,24,0.35)]">
             <span className="block">Sound good. Look official. Move different.</span>

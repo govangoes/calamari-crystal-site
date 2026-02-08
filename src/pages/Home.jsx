@@ -15,6 +15,7 @@ import {
 import { shows, showsCta } from "../content/shows.js";
 import GhostButton from "../components/ui/GhostButton.jsx";
 import PsychedelicButton from "../components/ui/PsychedelicButton.jsx";
+import PsychedelicTextureLayer from "../components/ui/PsychedelicTextureLayer.jsx";
 
 const proofItems = ["Apple Music artist profile", "Remote delivery", "Notes welcome"];
 
@@ -58,8 +59,9 @@ export default function Home() {
     <main className="bg-ink min-h-screen">
       <Hero />
 
-      <section id="proof" className="mx-auto max-w-6xl px-4 pb-12">
-        <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
+      <section id="proof" className="relative mx-auto max-w-6xl isolate overflow-hidden px-4 pb-12">
+        <PsychedelicTextureLayer className="opacity-[0.14]" />
+        <div className="relative z-[1] flex flex-wrap items-center gap-2 text-xs text-muted">
           {proofItems.map((item) => (
             <span
               key={item}
@@ -77,6 +79,8 @@ export default function Home() {
         title="Premium Vocal Mixing & Mastering"
         description="Remote vocal mixing & mastering with clear revisions and a calm, guided process."
         contentClassName="space-y-6"
+        withTexture
+        textureClassName="opacity-[0.16]"
       >
         <div className="grid gap-3 sm:grid-cols-3">
           {tiers.map((tier) => (
@@ -105,6 +109,8 @@ export default function Home() {
         title="Book Go Van Goes"
         description="Shows, hosting, and brand events with clear communication from inquiry to showtime."
         contentClassName="space-y-4"
+        withTexture
+        textureClassName="opacity-[0.14]"
       >
         {hasBookingForm ? (
           <div className="flex flex-wrap items-center gap-3">

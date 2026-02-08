@@ -2,6 +2,7 @@ import { Mic, Music, Sliders, PenTool, Speaker, Package, ArrowRight } from "luci
 import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL } from "../content/links.js";
 import GhostButton from "../components/ui/GhostButton.jsx";
 import PsychedelicButton from "../components/ui/PsychedelicButton.jsx";
+import PsychedelicTextureLayer from "../components/ui/PsychedelicTextureLayer.jsx";
 
 // Reusable Service Card Component with "Glass" Effect
 const ServiceCard = ({ icon: Icon, title, desc, bestFor }) => (
@@ -135,46 +136,49 @@ export default function Services() {
             <span>Step 3: I&rsquo;ll reply with next steps, timeline, and feedback welcome</span>
           </div>
 
-          <div className="mt-10 mx-auto max-w-4xl rounded-2xl border border-white/10 bg-white/5 p-6 text-left">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <h2 className="text-lg font-semibold text-paperWhite">Mix &amp; Master Tiers</h2>
-              <span className="text-xs uppercase tracking-[0.35em] text-paperWhite/50">
-                Packages from $79
-              </span>
-            </div>
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
-              {tiers.map((tier) => (
-                <div
-                  key={tier.name}
-                  className="relative rounded-2xl border border-white/10 bg-ink/50 p-5"
-                >
-                  {tier.popular && (
-                    <span className="absolute right-4 top-4 rounded-full border border-crystal/40 bg-crystal/10 px-2 py-1 text-[10px] uppercase tracking-[0.25em] text-crystal">
-                      Most Popular
-                    </span>
-                  )}
-                  <div className="flex items-baseline justify-between gap-2">
-                    <h3 className="text-lg font-semibold text-paperWhite">{tier.name}</h3>
-                    <span className="text-monteGold font-semibold">{tier.price}</span>
+          <div className="relative mx-auto mt-10 max-w-4xl isolate overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 text-left">
+            <PsychedelicTextureLayer className="opacity-[0.16]" />
+            <div className="relative z-[1]">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h2 className="text-lg font-semibold text-paperWhite">Mix &amp; Master Tiers</h2>
+                <span className="text-xs uppercase tracking-[0.35em] text-paperWhite/50">
+                  Packages from $79
+                </span>
+              </div>
+              <div className="mt-5 grid gap-4 md:grid-cols-3">
+                {tiers.map((tier) => (
+                  <div
+                    key={tier.name}
+                    className="relative rounded-2xl border border-white/10 bg-ink/50 p-5"
+                  >
+                    {tier.popular && (
+                      <span className="absolute right-4 top-4 rounded-full border border-crystal/40 bg-crystal/10 px-2 py-1 text-[10px] uppercase tracking-[0.25em] text-crystal">
+                        Most Popular
+                      </span>
+                    )}
+                    <div className="flex items-baseline justify-between gap-2">
+                      <h3 className="text-lg font-semibold text-paperWhite">{tier.name}</h3>
+                      <span className="text-monteGold font-semibold">{tier.price}</span>
+                    </div>
+                    <ul className="mt-3 list-inside list-disc space-y-2 text-sm text-muted">
+                      {tier.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="mt-3 list-inside list-disc space-y-2 text-sm text-muted">
-                    {tier.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 space-y-1 text-xs text-muted">
-              <p>
-                Turnaround depends on file quality and the current queue — I&rsquo;ll confirm timing
-                after I review your upload.
+                ))}
+              </div>
+              <div className="mt-4 space-y-1 text-xs text-muted">
+                <p>
+                  Turnaround depends on file quality and the current queue — I&rsquo;ll confirm
+                  timing after I review your upload.
+                </p>
+                <p>Revisions are for notes and tweaks — not a full re-mix from scratch.</p>
+              </div>
+              <p className="mt-3 text-xs text-muted">
+                Add-ons: Extra revision $15 · Stems export $25 · Rush (same day) $50 (if available)
               </p>
-              <p>Revisions are for notes and tweaks — not a full re-mix from scratch.</p>
             </div>
-            <p className="mt-3 text-xs text-muted">
-              Add-ons: Extra revision $15 · Stems export $25 · Rush (same day) $50 (if available)
-            </p>
           </div>
         </header>
 

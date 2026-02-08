@@ -180,6 +180,41 @@
     transform: scale(0.99);
   }
 
+  .psy-texture-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0.2;
+    background:
+      radial-gradient(120% 95% at 8% 0%, rgba(123, 52, 189, 0.42), transparent 62%),
+      radial-gradient(110% 90% at 92% 0%, rgba(34, 211, 238, 0.26), transparent 58%),
+      radial-gradient(95% 75% at 52% 100%, rgba(255, 209, 102, 0.16), transparent 66%);
+    overflow: hidden;
+  }
+
+  .psy-texture-layer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(-32deg, rgba(244, 246, 255, 0.04) 0 1px, transparent 1px 7px),
+      radial-gradient(circle at 20% 20%, rgba(244, 246, 255, 0.16), transparent 42%);
+    mix-blend-mode: screen;
+    opacity: 0.28;
+  }
+
+  .psy-texture-layer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 0.5px, transparent 0.5px);
+    background-size: 3px 3px;
+    opacity: 0.2;
+    mix-blend-mode: soft-light;
+  }
+
   .pill {
     @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm;
     font-family: var(--font-body);
