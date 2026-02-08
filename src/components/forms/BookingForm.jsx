@@ -2,6 +2,10 @@ import { useMemo, useState } from "react";
 import { CONTACT_EMAIL } from "../../content/offers.js";
 import GhostButton from "../ui/GhostButton.jsx";
 import PsychedelicButton from "../ui/PsychedelicButton.jsx";
+import CrystalCard from "../ui/CrystalCard.jsx";
+import CrystalInput from "../ui/CrystalInput.jsx";
+import CrystalTextarea from "../ui/CrystalTextarea.jsx";
+import Field from "../ui/Field.jsx";
 import { copyTextToClipboard, submitFormWithFallback } from "./formUtils.js";
 
 const INITIAL_FIELDS = {
@@ -29,9 +33,6 @@ function formatBookingBody(fields) {
     fields.message || "Not provided",
   ].join("\n");
 }
-
-const inputClassName =
-  "w-full rounded-xl border border-white/15 bg-black/35 px-3 py-2.5 text-sm text-paperWhite placeholder:text-paperWhite/45 outline-none transition focus:border-crystal/60 focus:ring-2 focus:ring-crystal/35";
 
 export default function BookingForm({ className = "" }) {
   const [fields, setFields] = useState(INITIAL_FIELDS);
@@ -79,96 +80,87 @@ export default function BookingForm({ className = "" }) {
     setIsSubmitting(false);
   };
 
+  const rootClassName = className ? `space-y-4 p-5 sm:p-6 ${className}` : "space-y-4 p-5 sm:p-6";
+
   return (
-    <form
-      className={
-        className
-          ? `space-y-4 rounded-2xl border border-white/10 bg-ink/45 p-5 ${className}`
-          : "space-y-4 rounded-2xl border border-white/10 bg-ink/45 p-5"
-      }
-      onSubmit={handleSubmit}
-    >
+    <CrystalCard as="form" variant="glass" className={rootClassName} onSubmit={handleSubmit}>
       <div className="grid gap-3 md:grid-cols-2">
-        <label className="space-y-1">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">Name</span>
-          <input
-            className={inputClassName}
+        <Field label="Name" htmlFor="booking-name" required>
+          <CrystalInput
+            id="booking-name"
             name="name"
             value={fields.name}
             onChange={updateField("name")}
             required
+            autoComplete="name"
           />
-        </label>
-        <label className="space-y-1">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">Email</span>
-          <input
-            className={inputClassName}
+        </Field>
+        <Field label="Email" htmlFor="booking-email" required>
+          <CrystalInput
+            id="booking-email"
             name="email"
             type="email"
             value={fields.email}
             onChange={updateField("email")}
             required
+            autoComplete="email"
           />
-        </label>
+        </Field>
       </div>
 
       <div className="grid gap-3 md:grid-cols-2">
-        <label className="space-y-1">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">Phone (optional)</span>
-          <input
-            className={inputClassName}
+        <Field label="Phone (optional)" htmlFor="booking-phone">
+          <CrystalInput
+            id="booking-phone"
             name="phone"
             value={fields.phone}
             onChange={updateField("phone")}
+            autoComplete="tel"
           />
-        </label>
-        <label className="space-y-1">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">Date / City</span>
-          <input
-            className={inputClassName}
+        </Field>
+        <Field label="Date / City" htmlFor="booking-date-city" required>
+          <CrystalInput
+            id="booking-date-city"
             name="dateCity"
             value={fields.dateCity}
             onChange={updateField("dateCity")}
             placeholder="May 22, Orlando"
             required
           />
-        </label>
+        </Field>
       </div>
 
       <div className="grid gap-3 md:grid-cols-2">
-        <label className="space-y-1">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">Set Length</span>
-          <input
-            className={inputClassName}
+        <Field label="Set Length" htmlFor="booking-set-length">
+          <CrystalInput
+            id="booking-set-length"
             name="setLength"
             value={fields.setLength}
             onChange={updateField("setLength")}
             placeholder="30 mins"
           />
-        </label>
-        <label className="space-y-1">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">Budget</span>
-          <input
-            className={inputClassName}
+        </Field>
+        <Field label="Budget" htmlFor="booking-budget">
+          <CrystalInput
+            id="booking-budget"
             name="budget"
             value={fields.budget}
             onChange={updateField("budget")}
             placeholder="$500-$1,000"
           />
-        </label>
+        </Field>
       </div>
 
-      <label className="space-y-1">
-        <span className="text-xs uppercase tracking-[0.2em] text-muted">Message</span>
-        <textarea
-          className={`${inputClassName} min-h-28 resize-y`}
+      <Field label="Message" htmlFor="booking-message" required>
+        <CrystalTextarea
+          id="booking-message"
           name="message"
           value={fields.message}
           onChange={updateField("message")}
           placeholder="Tell us about the event, audience, and timeline."
           required
         />
-      </label>
+      </Field>
 
       <div className="flex flex-wrap items-center gap-3">
         <PsychedelicButton as="button" type="submit" disabled={isSubmitting}>
@@ -183,6 +175,6 @@ export default function BookingForm({ className = "" }) {
         Sends to <span className="text-strong">{CONTACT_EMAIL}</span>.
       </p>
       {status && <p className="text-xs text-paperWhite/85">{status}</p>}
-    </form>
+    </CrystalCard>
   );
 }

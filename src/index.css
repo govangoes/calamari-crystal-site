@@ -144,6 +144,82 @@
     opacity: 0.65;
   }
 
+  .crystal-field-label {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .crystal-field-help {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .crystal-field-error {
+    font-size: 0.75rem;
+    color: rgb(255 124 138 / 0.94);
+    line-height: 1.4;
+  }
+
+  .crystal-input,
+  .crystal-textarea,
+  .crystal-select {
+    width: 100%;
+    min-height: 2.9rem;
+    border-radius: 0.8rem;
+    border: 1px solid rgba(195, 203, 224, 0.26);
+    background: rgba(9, 13, 28, 0.76);
+    color: rgba(245, 247, 255, 0.96);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    padding: 0.72rem 0.86rem;
+    outline: none;
+    transition:
+      border-color 0.22s ease,
+      box-shadow 0.22s ease,
+      background-color 0.22s ease;
+  }
+
+  .crystal-input::placeholder,
+  .crystal-textarea::placeholder {
+    color: rgba(195, 203, 224, 0.6);
+  }
+
+  .crystal-textarea {
+    min-height: 7rem;
+    resize: vertical;
+  }
+
+  .crystal-select {
+    appearance: none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, rgba(195, 203, 224, 0.8) 50%),
+      linear-gradient(135deg, rgba(195, 203, 224, 0.8) 50%, transparent 50%);
+    background-position:
+      calc(100% - 18px) calc(1.22rem),
+      calc(100% - 12px) calc(1.22rem);
+    background-size:
+      6px 6px,
+      6px 6px;
+    background-repeat: no-repeat;
+  }
+
+  .crystal-input:focus-visible,
+  .crystal-textarea:focus-visible,
+  .crystal-select:focus-visible {
+    border-color: rgba(34, 211, 238, 0.66);
+    box-shadow:
+      0 0 0 2px rgba(9, 13, 28, 0.96),
+      0 0 0 4px rgba(111, 45, 168, 0.36),
+      0 0 14px rgba(34, 211, 238, 0.16);
+    background: rgba(10, 14, 30, 0.88);
+  }
+
   .btn {
     @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform;
     font-family: var(--font-body);
@@ -425,6 +501,9 @@
   @media (prefers-reduced-motion: reduce) {
     .crystal-card,
     .crystal-badge,
+    .crystal-input,
+    .crystal-textarea,
+    .crystal-select,
     .ui-btn,
     .ui-btn:hover,
     .ui-btn:active,

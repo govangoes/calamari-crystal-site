@@ -2,6 +2,10 @@ import { useMemo, useState } from "react";
 import { CONTACT_EMAIL } from "../../content/offers.js";
 import GhostButton from "../ui/GhostButton.jsx";
 import PsychedelicButton from "../ui/PsychedelicButton.jsx";
+import CrystalCard from "../ui/CrystalCard.jsx";
+import CrystalInput from "../ui/CrystalInput.jsx";
+import CrystalTextarea from "../ui/CrystalTextarea.jsx";
+import Field from "../ui/Field.jsx";
 import { copyTextToClipboard, submitFormWithFallback } from "./formUtils.js";
 
 const INITIAL_FIELDS = {
@@ -29,9 +33,6 @@ function formatMixMasterBody(fields) {
     fields.notes || "Not provided",
   ].join("\n");
 }
-
-const inputClassName =
-  "w-full rounded-xl border border-white/15 bg-black/35 px-3 py-2.5 text-sm text-paperWhite placeholder:text-paperWhite/45 outline-none transition focus:border-crystal/60 focus:ring-2 focus:ring-crystal/35";
 
 export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
   const [fields, setFields] = useState(INITIAL_FIELDS);
@@ -79,88 +80,79 @@ export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
     setIsSubmitting(false);
   };
 
+  const rootClassName = className ? `space-y-4 p-5 sm:p-6 ${className}` : "space-y-4 p-5 sm:p-6";
+
   return (
-    <form
-      className={
-        className
-          ? `space-y-4 rounded-2xl border border-white/10 bg-ink/45 p-5 ${className}`
-          : "space-y-4 rounded-2xl border border-white/10 bg-ink/45 p-5"
-      }
-      onSubmit={handleSubmit}
-    >
+    <CrystalCard as="form" variant="glass" className={rootClassName} onSubmit={handleSubmit}>
       <div className="grid gap-3 md:grid-cols-2">
-        <label className="space-y-1">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">Name</span>
-          <input
-            className={inputClassName}
+        <Field label="Name" htmlFor="mix-name" required>
+          <CrystalInput
+            id="mix-name"
             name="name"
             value={fields.name}
             onChange={updateField("name")}
             required
+            autoComplete="name"
           />
-        </label>
-        <label className="space-y-1">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">Email</span>
-          <input
-            className={inputClassName}
+        </Field>
+        <Field label="Email" htmlFor="mix-email" required>
+          <CrystalInput
+            id="mix-email"
             name="email"
             type="email"
             value={fields.email}
             onChange={updateField("email")}
             required
+            autoComplete="email"
           />
-        </label>
+        </Field>
       </div>
 
       <div className="grid gap-3 md:grid-cols-2">
-        <label className="space-y-1">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">Desired Turnaround</span>
-          <input
-            className={inputClassName}
+        <Field label="Desired Turnaround" htmlFor="mix-turnaround">
+          <CrystalInput
+            id="mix-turnaround"
             name="desiredTurnaround"
             value={fields.desiredTurnaround}
             onChange={updateField("desiredTurnaround")}
             placeholder="48 hours / 1 week"
           />
-        </label>
-        <label className="space-y-1">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">Reference Link</span>
-          <input
-            className={inputClassName}
+        </Field>
+        <Field label="Reference Link" htmlFor="mix-reference-link">
+          <CrystalInput
+            id="mix-reference-link"
             name="referenceLink"
             type="url"
             value={fields.referenceLink}
             onChange={updateField("referenceLink")}
             placeholder="https://..."
           />
-        </label>
+        </Field>
       </div>
 
-      <label className="space-y-1">
-        <span className="text-xs uppercase tracking-[0.2em] text-muted">
-          Upload Link / Instructions
-        </span>
-        <textarea
-          className={`${inputClassName} min-h-24 resize-y`}
+      <Field label="Upload Link / Instructions" htmlFor="mix-upload" required>
+        <CrystalTextarea
+          id="mix-upload"
           name="uploadInstructions"
           value={fields.uploadInstructions}
           onChange={updateField("uploadInstructions")}
           placeholder="Share your Drive/Dropbox link and any file notes."
           required
+          className="min-h-24"
         />
-      </label>
+      </Field>
 
-      <label className="space-y-1">
-        <span className="text-xs uppercase tracking-[0.2em] text-muted">Notes</span>
-        <textarea
-          className={`${inputClassName} min-h-24 resize-y`}
+      <Field label="Notes" htmlFor="mix-notes" required>
+        <CrystalTextarea
+          id="mix-notes"
           name="notes"
           value={fields.notes}
           onChange={updateField("notes")}
           placeholder="Tell me vibe, references, and revision priorities."
           required
+          className="min-h-24"
         />
-      </label>
+      </Field>
 
       <div className="flex flex-wrap items-center gap-3">
         <PsychedelicButton as="button" type="submit" disabled={isSubmitting}>
@@ -191,6 +183,6 @@ export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
         )}
       </div>
       {status && <p className="text-xs text-paperWhite/85">{status}</p>}
-    </form>
+    </CrystalCard>
   );
 }
