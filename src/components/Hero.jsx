@@ -39,6 +39,7 @@ export default function Hero() {
             Mix &amp; Master
           </PsychedelicButton>
         </div>
+        <div id="dock-sentinel" aria-hidden="true" className="mt-1 h-px w-full" />
 
         <div className="mt-6 mx-auto max-w-[560px] text-xs sm:text-sm text-paperWhite/60">
           <div className="grid gap-2 leading-relaxed text-left sm:text-center">

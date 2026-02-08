@@ -3,7 +3,7 @@ import GhostButton from "./ui/GhostButton.jsx";
 
 const MENU_TRANSITION_MS = 240;
 
-export default function TopNav() {
+export default function TopNav({ onMenuStateChange }) {
   const [isMenuMounted, setIsMenuMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const baseUrl = import.meta.env.BASE_URL;
@@ -53,6 +53,12 @@ export default function TopNav() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [closeMenu, isMenuMounted]);
+
+  useEffect(() => {
+    if (!onMenuStateChange) return undefined;
+    onMenuStateChange(isMenuMounted);
+    return () => onMenuStateChange(false);
+  }, [isMenuMounted, onMenuStateChange]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/15 bg-black/70 backdrop-blur">

@@ -51,7 +51,7 @@ export default function Home() {
   const hasConfirmedShows = Boolean(showsCta) && shows.some((show) => show.href);
 
   return (
-    <main className="min-h-screen bg-ink">
+    <main className="min-h-screen bg-ink pb-[calc(6.5rem+env(safe-area-inset-bottom))] md:pb-0">
       <Hero />
 
       <section id="proof" className="relative mx-auto max-w-6xl isolate overflow-hidden px-4 pb-12">

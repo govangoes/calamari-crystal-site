@@ -1,7 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import TopNav from "./components/TopNav.jsx";
 import Footer from "./components/Footer.jsx";
+import CrystalDock from "./components/ui/CrystalDock.jsx";
 import Home from "./pages/Home.jsx";
 import Story from "./pages/Story.jsx";
 import Merch from "./pages/Merch.jsx";
@@ -32,11 +33,15 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  const { pathname } = useLocation();
+  const [isMenuOverlayActive, setIsMenuOverlayActive] = useState(false);
+  const showCrystalDock = pathname === "/";
+
   return (
     <>
       <ScrollToTop />
       <div className="min-h-dvh bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0a0a0a] to-black text-paperWhite flex flex-col">
-        <TopNav />
+        <TopNav onMenuStateChange={setIsMenuOverlayActive} />
         <div className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -62,6 +67,7 @@ export default function App() {
           </Routes>
         </div>
         <Footer />
+        {showCrystalDock && <CrystalDock menuOpen={isMenuOverlayActive} />}
       </div>
     </>
   );
