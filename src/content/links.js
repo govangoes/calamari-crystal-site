@@ -1,4 +1,4 @@
-import { HAS_SPOTIFY, SPOTIFY_ID, SPOTIFY_TYPE, YT_VIDEO_ID } from "./media.js";
+import { HAS_SPOTIFY, HAS_YOUTUBE, SPOTIFY_ID, SPOTIFY_TYPE, YT_VIDEO_ID } from "./media.js";
 
 const clean = (value) => (value && value.trim() ? value.trim() : "");
 
@@ -6,15 +6,13 @@ export const SPOTIFY_URL = HAS_SPOTIFY
   ? `https://open.spotify.com/${SPOTIFY_TYPE}/${SPOTIFY_ID}`
   : "";
 export const YOUTUBE_URL =
-  clean(import.meta.env.VITE_YT_CHANNEL_URL) || `https://www.youtube.com/watch?v=${YT_VIDEO_ID}`;
+  clean(import.meta.env.VITE_YT_CHANNEL_URL) ||
+  (HAS_YOUTUBE ? `https://www.youtube.com/watch?v=${YT_VIDEO_ID}` : "");
 export const APPLE_MUSIC_URL = "https://music.apple.com/us/artist/go-van-goes/1462114556";
 export const BANDCAMP_URL = clean(import.meta.env.VITE_BANDCAMP_URL);
 
-export const MIX_MASTER_FORM_URL = "https://tally.so/r/zxYala";
 export const FILE_UPLOAD_URL =
   "https://drive.google.com/drive/folders/1ZSxhU4_faGw33ARMDqDPIbo0aXhDxG5R?usp=sharing";
-export const BOOKING_FORM_URL = clean(import.meta.env.VITE_BOOKING_FORM_URL);
-export const JOIN_CREW_FORM_URL = clean(import.meta.env.VITE_JOIN_CREW_FORM_URL);
 
 export const SHOP_URL = clean(import.meta.env.VITE_SHOP_URL);
 export const TOUR_URL = clean(import.meta.env.VITE_TOUR_URL);

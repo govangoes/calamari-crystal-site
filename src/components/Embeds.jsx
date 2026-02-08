@@ -1,4 +1,6 @@
 export function SpotifyEmbed({ id, type = "album", title = "Spotify Player" }) {
+  if (!id) return null;
+
   return (
     <div className="aspect-video w-full rounded-lg overflow-hidden border border-white/10">
       <iframe
@@ -14,6 +16,8 @@ export function SpotifyEmbed({ id, type = "album", title = "Spotify Player" }) {
 }
 
 export function YouTubeEmbed({ id, title = "YouTube" }) {
+  if (!id) return null;
+
   return (
     <div className="aspect-video w-full rounded-lg overflow-hidden border border-white/10">
       <iframe

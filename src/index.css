@@ -148,32 +148,20 @@
 
   .ghost-button {
     color: var(--text-strong);
-    border: 1px solid rgba(195, 203, 224, 0.48);
-    background: rgba(8, 11, 22, 0.2);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.08),
-      0 6px 14px rgba(5, 9, 22, 0.26);
-    backdrop-filter: blur(6px);
+    border: 1px solid rgba(212, 220, 238, 0.4);
+    background: rgba(8, 11, 24, 0.3);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   .ghost-button::before {
     opacity: 0;
-    background: radial-gradient(circle at 30% 50%, rgba(34, 211, 238, 0.34), transparent 65%);
-    transition: opacity 0.22s ease;
   }
 
   .ghost-button:hover {
     transform: translateY(-1px);
-    color: #eef7ff;
-    border-color: rgba(34, 211, 238, 0.65);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.12),
-      0 10px 22px rgba(4, 10, 22, 0.34),
-      0 0 20px rgba(34, 211, 238, 0.2);
-  }
-
-  .ghost-button:hover::before {
-    opacity: 1;
+    border-color: rgba(34, 211, 238, 0.55);
+    background: rgba(9, 14, 29, 0.45);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
   }
 
   .ghost-button:active {
@@ -186,33 +174,57 @@
     z-index: 0;
     pointer-events: none;
     border-radius: inherit;
-    opacity: 0.2;
-    background:
-      radial-gradient(120% 95% at 8% 0%, rgba(123, 52, 189, 0.42), transparent 62%),
-      radial-gradient(110% 90% at 92% 0%, rgba(34, 211, 238, 0.26), transparent 58%),
-      radial-gradient(95% 75% at 52% 100%, rgba(255, 209, 102, 0.16), transparent 66%);
     overflow: hidden;
+    opacity: 0.14;
+  }
+
+  .psy-texture-layer--low {
+    opacity: 0.12;
+  }
+
+  .psy-texture-layer--medium {
+    opacity: 0.2;
+  }
+
+  .psy-texture-layer--hero {
+    background:
+      radial-gradient(95% 85% at 0% 8%, rgba(111, 45, 168, 0.66), transparent 58%),
+      radial-gradient(95% 90% at 100% 10%, rgba(34, 211, 238, 0.52), transparent 62%),
+      radial-gradient(90% 75% at 88% 100%, rgba(111, 45, 168, 0.4), transparent 64%),
+      linear-gradient(140deg, rgba(8, 11, 24, 0.08), rgba(8, 11, 24, 0));
+  }
+
+  .psy-texture-layer--section {
+    background:
+      radial-gradient(85% 70% at 2% 0%, rgba(111, 45, 168, 0.48), transparent 60%),
+      radial-gradient(90% 75% at 98% 0%, rgba(34, 211, 238, 0.34), transparent 62%),
+      radial-gradient(95% 70% at 95% 100%, rgba(111, 45, 168, 0.3), transparent 68%),
+      linear-gradient(160deg, rgba(8, 11, 24, 0.06), rgba(8, 11, 24, 0));
   }
 
   .psy-texture-layer::before {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-      repeating-linear-gradient(-32deg, rgba(244, 246, 255, 0.04) 0 1px, transparent 1px 7px),
-      radial-gradient(circle at 20% 20%, rgba(244, 246, 255, 0.16), transparent 42%);
-    mix-blend-mode: screen;
-    opacity: 0.28;
+    background-image: radial-gradient(rgba(244, 246, 255, 0.1) 0.45px, transparent 0.45px);
+    background-size: 3px 3px;
+    opacity: 0.18;
+    mix-blend-mode: soft-light;
   }
 
   .psy-texture-layer::after {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 0.5px, transparent 0.5px);
-    background-size: 3px 3px;
-    opacity: 0.2;
-    mix-blend-mode: soft-light;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      transparent 26%,
+      transparent 74%,
+      rgba(255, 255, 255, 0.12) 100%
+    );
+    opacity: 0.22;
+    mix-blend-mode: screen;
   }
 
   .pill {

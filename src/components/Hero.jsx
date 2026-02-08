@@ -1,5 +1,5 @@
 import React from "react";
-import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL, SHOP_URL } from "../content/links.js";
+import { FILE_UPLOAD_URL, SHOP_URL } from "../content/links.js";
 import PsychedelicButton from "./ui/PsychedelicButton.jsx";
 import PsychedelicTextureLayer from "./ui/PsychedelicTextureLayer.jsx";
 
@@ -12,7 +12,7 @@ export default function Hero() {
       aria-label="Introduction and calls to action"
       className="relative isolate flex flex-col items-center justify-center gap-6 overflow-hidden px-6 pb-32 pt-40 text-center sm:pb-40 sm:pt-48"
     >
-      <PsychedelicTextureLayer className="opacity-[0.24]" />
+      <PsychedelicTextureLayer variant="hero" strength="medium" />
       <div className="relative z-[1] text-center">
         <div className="mx-auto max-w-[900px]">
           <h1 className="font-extrabold text-[clamp(2rem,3.6vw,4rem)] leading-[1.05] tracking-[-0.01em] drop-shadow-[0_2px_18px_rgba(8,12,24,0.35)]">
@@ -35,13 +35,7 @@ export default function Hero() {
           >
             Book Me
           </PsychedelicButton>
-          <PsychedelicButton
-            as="a"
-            href={MIX_MASTER_FORM_URL}
-            className="text-sm sm:text-base"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <PsychedelicButton as="a" href={`${baseUrl}#mixmaster`} className="text-sm sm:text-base">
             Mix &amp; Master
           </PsychedelicButton>
         </div>

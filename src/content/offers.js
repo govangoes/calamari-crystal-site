@@ -1,4 +1,7 @@
-export const BOOKING_EMAIL = "bookings@govangoes.com";
+const clean = (value) => (value && value.trim() ? value.trim() : "");
+
+export const CONTACT_EMAIL = clean(import.meta.env.VITE_CONTACT_EMAIL) || "bookings@govangoes.com";
+export const BOOKING_EMAIL = CONTACT_EMAIL;
 
 /**
  * Put your Gumroad links here.
@@ -22,4 +25,4 @@ const body = encodeURIComponent(
     `Thanks!`,
 );
 
-export const CUSTOM_AUDIO_MAILTO = `mailto:${BOOKING_EMAIL}?subject=${subject}&body=${body}`;
+export const CUSTOM_AUDIO_MAILTO = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;

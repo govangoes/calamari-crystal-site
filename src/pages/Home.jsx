@@ -2,19 +2,19 @@ import { Link } from "react-router-dom";
 import Hero from "../components/Hero.jsx";
 import Section from "../components/Section.jsx";
 import { SpotifyEmbed, YouTubeEmbed } from "../components/Embeds.jsx";
-import { BOOKING_EMAIL } from "../content/offers.js";
+import BookingForm from "../components/forms/BookingForm.jsx";
+import MixMasterForm from "../components/forms/MixMasterForm.jsx";
+import { CONTACT_EMAIL } from "../content/offers.js";
 import { epkPhotos } from "../content/epkPhotos.js";
-import { HAS_SPOTIFY, SPOTIFY_ID, SPOTIFY_TYPE, YT_VIDEO_ID } from "../content/media.js";
 import {
-  BOOKING_FORM_URL,
-  FILE_UPLOAD_URL,
-  JOIN_CREW_FORM_URL,
-  MIX_MASTER_FORM_URL,
-  STREAMING_LINKS,
-} from "../content/links.js";
+  HAS_SPOTIFY,
+  HAS_YOUTUBE,
+  SPOTIFY_ID,
+  SPOTIFY_TYPE,
+  YT_VIDEO_ID,
+} from "../content/media.js";
+import { FILE_UPLOAD_URL, STREAMING_LINKS } from "../content/links.js";
 import { shows, showsCta } from "../content/shows.js";
-import GhostButton from "../components/ui/GhostButton.jsx";
-import PsychedelicButton from "../components/ui/PsychedelicButton.jsx";
 import PsychedelicTextureLayer from "../components/ui/PsychedelicTextureLayer.jsx";
 
 const proofItems = ["Apple Music artist profile", "Remote delivery", "Notes welcome"];
@@ -40,27 +40,15 @@ const resources = [
   },
 ];
 
-const bookingTemplate = `Booking inquiry
-
-Event type:
-Date & time:
-Location:
-Set length:
-Budget range:
-Contact name + phone:
-`;
-
 export default function Home() {
-  const hasBookingForm = Boolean(BOOKING_FORM_URL);
-  const hasJoinCrewForm = Boolean(JOIN_CREW_FORM_URL);
   const hasConfirmedShows = Boolean(showsCta) && shows.some((show) => show.href);
 
   return (
-    <main className="bg-ink min-h-screen">
+    <main className="min-h-screen bg-ink">
       <Hero />
 
       <section id="proof" className="relative mx-auto max-w-6xl isolate overflow-hidden px-4 pb-12">
-        <PsychedelicTextureLayer className="opacity-[0.14]" />
+        <PsychedelicTextureLayer variant="section" strength="low" />
         <div className="relative z-[1] flex flex-wrap items-center gap-2 text-xs text-muted">
           {proofItems.map((item) => (
             <span
@@ -80,27 +68,22 @@ export default function Home() {
         description="Remote vocal mixing & mastering with clear revisions and a calm, guided process."
         contentClassName="space-y-6"
         withTexture
-        textureClassName="opacity-[0.16]"
+        textureVariant="section"
+        textureStrength="low"
       >
         <div className="grid gap-3 sm:grid-cols-3">
           {tiers.map((tier) => (
             <div key={tier.name} className="rounded-xl border border-white/10 bg-ink/40 p-4">
               <div className="flex items-baseline justify-between gap-2">
                 <span className="text-sm font-semibold text-paperWhite">{tier.name}</span>
-                <span className="text-sm text-monteGold font-semibold">{tier.price}</span>
+                <span className="text-sm font-semibold text-monteGold">{tier.price}</span>
               </div>
               <p className="mt-2 text-xs text-muted">{tier.detail}</p>
             </div>
           ))}
         </div>
-        <div className="flex flex-wrap gap-3">
-          <PsychedelicButton as="a" href={MIX_MASTER_FORM_URL} target="_blank" rel="noreferrer">
-            Mix &amp; Master →
-          </PsychedelicButton>
-          <a className="pill" href={FILE_UPLOAD_URL} target="_blank" rel="noreferrer">
-            Upload Files →
-          </a>
-        </div>
+
+        <MixMasterForm fileUploadUrl={FILE_UPLOAD_URL} />
       </Section>
 
       <Section
@@ -110,75 +93,29 @@ export default function Home() {
         description="Shows, hosting, and brand events with clear communication from inquiry to showtime."
         contentClassName="space-y-4"
         withTexture
-        textureClassName="opacity-[0.14]"
+        textureVariant="section"
+        textureStrength="low"
       >
-        {hasBookingForm ? (
-          <div className="flex flex-wrap items-center gap-3">
-            <GhostButton as="a" href={BOOKING_FORM_URL} target="_blank" rel="noreferrer">
-              Booking Inquiry →
-            </GhostButton>
-            {hasJoinCrewForm && (
-              <a
-                className="pill border-crystal/40 text-crystal hover:bg-crystal/10"
-                href={JOIN_CREW_FORM_URL}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Join the Crew
-              </a>
-            )}
-          </div>
-        ) : (
-          <>
-            <a className="pill" href={`mailto:${BOOKING_EMAIL}`}>
-              {BOOKING_EMAIL}
-            </a>
-            <div className="rounded-xl border border-white/10 bg-ink/40 p-4">
-              <div className="text-[10px] uppercase tracking-[0.35em] text-muted">
-                Booking inquiry template
-              </div>
-              <pre className="mt-3 whitespace-pre-wrap font-sans text-xs text-muted">
-                {bookingTemplate}
-              </pre>
-            </div>
-            {hasJoinCrewForm && (
-              <a
-                className="inline-flex text-xs text-crystal hover:text-monteGold"
-                href={JOIN_CREW_FORM_URL}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Join the Crew →
-              </a>
-            )}
-          </>
-        )}
+        <BookingForm />
 
         <div className="text-xs text-muted">
           {hasConfirmedShows ? (
             <a
-              className="hover:text-crystal transition"
+              className="transition hover:text-crystal"
               href={showsCta.href}
               target="_blank"
               rel="noreferrer"
             >
               See all dates →
             </a>
-          ) : hasJoinCrewForm ? (
+          ) : (
             <>
-              Shows updating —{" "}
-              <a
-                className="hover:text-crystal transition"
-                href={JOIN_CREW_FORM_URL}
-                target="_blank"
-                rel="noreferrer"
-              >
-                join the crew
+              Shows updating — email{" "}
+              <a className="transition hover:text-crystal" href={`mailto:${CONTACT_EMAIL}`}>
+                {CONTACT_EMAIL}
               </a>{" "}
               for dates.
             </>
-          ) : (
-            "Shows updating — join the crew for dates."
           )}
         </div>
       </Section>
@@ -190,16 +127,21 @@ export default function Home() {
         description="Dive into the Calamari Crystal era."
         contentClassName="space-y-6"
       >
-        {HAS_SPOTIFY ? (
+        {HAS_YOUTUBE ? (
+          <YouTubeEmbed id={YT_VIDEO_ID} title="Featured Performance" />
+        ) : HAS_SPOTIFY ? (
           <SpotifyEmbed id={SPOTIFY_ID} type={SPOTIFY_TYPE} title="Featured Release" />
         ) : (
-          <YouTubeEmbed id={YT_VIDEO_ID} title="Featured Performance" />
+          <div className="rounded-xl border border-white/10 bg-ink/40 p-4 text-sm text-muted">
+            Featured embed is coming soon. Streaming links are live below.
+          </div>
         )}
+
         <div className="flex flex-wrap gap-3">
           {STREAMING_LINKS.map((link) => (
             <a
               key={link.label}
-              className="pill hover:bg-crystal/10"
+              className="pill transition hover:bg-crystal/10"
               href={link.href}
               target="_blank"
               rel="noreferrer"

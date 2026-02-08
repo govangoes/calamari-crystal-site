@@ -12,12 +12,20 @@ export default function Section({
   descriptionClassName = "",
   contentClassName = "",
   withTexture = false,
+  textureVariant = "section",
+  textureStrength = "low",
   textureClassName = "",
   children,
 }) {
   return (
     <ScrollReveal className="section mx-auto max-w-6xl isolate px-4 py-12 md:py-16">
-      {withTexture && <PsychedelicTextureLayer className={textureClassName} />}
+      {withTexture && (
+        <PsychedelicTextureLayer
+          variant={textureVariant}
+          strength={textureStrength}
+          className={textureClassName}
+        />
+      )}
       <div id={id} className="relative z-[1]">
         {eyebrow && (
           <p className="text-xs uppercase tracking-[0.4em] text-paperWhite/60">{eyebrow}</p>

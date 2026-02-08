@@ -1,5 +1,5 @@
 import { Mic, Music, Sliders, PenTool, Speaker, Package, ArrowRight } from "lucide-react";
-import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL } from "../content/links.js";
+import { FILE_UPLOAD_URL } from "../content/links.js";
 import GhostButton from "../components/ui/GhostButton.jsx";
 import PsychedelicButton from "../components/ui/PsychedelicButton.jsx";
 import PsychedelicTextureLayer from "../components/ui/PsychedelicTextureLayer.jsx";
@@ -116,13 +116,7 @@ export default function Services() {
             <PsychedelicButton as="a" className="px-8 py-3 text-lg" href={`${baseUrl}#bookings`}>
               Book Me
             </PsychedelicButton>
-            <PsychedelicButton
-              as="a"
-              className="px-8 py-3 text-lg"
-              href={MIX_MASTER_FORM_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <PsychedelicButton as="a" className="px-8 py-3 text-lg" href={`${baseUrl}#mixmaster`}>
               Mix &amp; Master <ArrowRight size={18} />
             </PsychedelicButton>
           </div>
@@ -143,7 +137,7 @@ export default function Services() {
           </div>
 
           <div className="relative mx-auto mt-10 max-w-4xl isolate overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 text-left">
-            <PsychedelicTextureLayer className="opacity-[0.16]" />
+            <PsychedelicTextureLayer variant="section" strength="medium" />
             <div className="relative z-[1]">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h2 className="text-lg font-semibold text-paperWhite">Mix &amp; Master Tiers</h2>
