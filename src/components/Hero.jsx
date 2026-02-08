@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL } from "../content/links.js";
+import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL, SHOP_URL } from "../content/links.js";
 
 export default function Hero() {
+  const baseUrl = import.meta.env.BASE_URL;
+  const hasShop = Boolean(SHOP_URL);
   return (
     <section
-      id="hero"
+      id="start"
       aria-label="Introduction and calls to action"
       className="relative flex flex-col items-center justify-center gap-6 px-6 pt-40 pb-32 text-center sm:pb-40 sm:pt-48"
     >
@@ -23,13 +24,13 @@ export default function Hero() {
         </div>
 
         <div className="mt-10 flex flex-wrap justify-center gap-3 sm:gap-4">
-          <Link
+          <a
             className="btn btn-primary text-sm sm:text-base"
-            to="/bookings"
+            href={`${baseUrl}#bookings`}
             aria-label="Book Go Van Goes for a show or event"
           >
             Book Me
-          </Link>
+          </a>
           <a
             href={MIX_MASTER_FORM_URL}
             className="btn btn-primary text-sm sm:text-base"
@@ -38,17 +39,6 @@ export default function Hero() {
           >
             Mix &amp; Master My Vocals
           </a>
-        </div>
-
-        <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs text-paperWhite/70">
-          {["Apple Music artist profile", "Remote delivery", "Notes welcome"].map((proof) => (
-            <span
-              key={proof}
-              className="rounded-full border border-crystal/30 bg-crystal/5 px-3 py-1"
-            >
-              {proof}
-            </span>
-          ))}
         </div>
 
         <div className="mt-6 mx-auto max-w-[560px] text-xs sm:text-sm text-paperWhite/60">
@@ -70,9 +60,9 @@ export default function Hero() {
         </div>
 
         <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <Link to="/music" className="pill">
+          <a href={`${baseUrl}#music`} className="pill">
             Listen
-          </Link>
+          </a>
           <a
             href="https://www.youtube.com/@govangoes"
             className="pill"
@@ -81,9 +71,11 @@ export default function Hero() {
           >
             Watch
           </a>
-          <Link to="/merch" className="pill">
-            Merch
-          </Link>
+          {hasShop && (
+            <a href={SHOP_URL} className="pill" target="_blank" rel="noopener noreferrer">
+              Merch
+            </a>
+          )}
         </div>
       </div>
     </section>

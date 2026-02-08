@@ -18,10 +18,11 @@ const socials = [
 ];
 
 export default function SocialLinks({ size = 28, className = "" }) {
+  const visibleSocials = socials.filter((social) => Boolean(social.href));
   return (
     <nav aria-label="Social links" className={className}>
       <ul className="flex flex-wrap items-center gap-4">
-        {socials.map(({ name, href, Icon }) => (
+        {visibleSocials.map(({ name, href, Icon }) => (
           <li key={name}>
             <a
               href={href}

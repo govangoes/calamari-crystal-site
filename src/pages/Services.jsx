@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Mic, Music, Sliders, PenTool, Speaker, Package, ArrowRight } from "lucide-react";
 import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL } from "../content/links.js";
 
@@ -25,6 +24,7 @@ const ServiceCard = ({ icon: Icon, title, desc, bestFor }) => (
 );
 
 export default function Services() {
+  const baseUrl = import.meta.env.BASE_URL;
   const services = [
     {
       title: "Mixing & Mastering",
@@ -104,9 +104,9 @@ export default function Services() {
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link className="btn btn-primary px-8 py-3 text-lg" to="/bookings">
+            <a className="btn btn-primary px-8 py-3 text-lg" href={`${baseUrl}#bookings`}>
               Book Me
-            </Link>
+            </a>
             <a
               className="px-8 py-3 rounded-full border border-white/20 hover:bg-white/10 transition text-paperWhite font-semibold flex items-center gap-2"
               href={MIX_MASTER_FORM_URL}
@@ -189,9 +189,12 @@ export default function Services() {
             I keep a focused roster so each project gets attention, clarity, and care.
           </p>
           <div className="mt-8">
-            <Link className="btn btn-primary inline-flex items-center gap-2" to="/contact">
+            <a
+              className="btn btn-primary inline-flex items-center gap-2"
+              href={`${baseUrl}#bookings`}
+            >
               Start Your Project <ArrowRight size={20} />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
