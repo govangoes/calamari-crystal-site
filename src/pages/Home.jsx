@@ -135,11 +135,7 @@ export default function Home() {
           <YouTubeEmbed id={YT_VIDEO_ID} title="Featured Performance" />
         ) : HAS_SPOTIFY ? (
           <SpotifyEmbed id={SPOTIFY_ID} type={SPOTIFY_TYPE} title="Featured Release" />
-        ) : (
-          <div className="rounded-xl border border-white/10 bg-ink/40 p-4 text-sm text-muted">
-            Featured embed is coming soon. Streaming links are live below.
-          </div>
-        )}
+        ) : null}
 
         <div className="flex flex-wrap gap-3">
           {STREAMING_LINKS.map((link) => (

@@ -31,8 +31,10 @@ function extractYouTubeId(value) {
   return /^[A-Za-z0-9_-]{11}$/.test(raw) ? raw : "";
 }
 
+const DEFAULT_YT_VIDEO_ID = "7Qn6OOGHV2Y";
 const rawYouTube = clean(import.meta.env.VITE_YT_VIDEO_ID);
-export const YT_VIDEO_ID = extractYouTubeId(rawYouTube);
+const parsedYouTubeId = extractYouTubeId(rawYouTube);
+export const YT_VIDEO_ID = parsedYouTubeId || DEFAULT_YT_VIDEO_ID;
 export const HAS_YOUTUBE = Boolean(YT_VIDEO_ID);
 
 const rawSpotifyId = clean(import.meta.env.VITE_SPOTIFY_ID);
