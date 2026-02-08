@@ -13,7 +13,7 @@ const ServiceCard = ({ icon: Icon, title, desc, bestFor }) => (
       </div>
 
       <h3 className="text-xl font-bold text-paperWhite">{title}</h3>
-      <p className="mt-3 text-paperWhite/70 text-sm leading-relaxed min-h-[60px]">{desc}</p>
+      <p className="mt-3 text-sm leading-relaxed text-muted min-h-[60px]">{desc}</p>
 
       <div className="mt-4 pt-4 border-t border-white/10">
         <p className="text-xs font-semibold text-crystal uppercase tracking-wider">Best For:</p>
@@ -97,7 +97,7 @@ export default function Services() {
           <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-paperWhite via-crystal to-paperWhite bg-[length:200%_auto] animate-gradient-x">
             Build Your Sound, With Care.
           </h1>
-          <p className="mt-6 text-xl text-paperWhite/80 leading-relaxed">
+          <p className="mt-6 text-xl leading-relaxed text-paperWhite/90">
             Mixing, mastering, and artist support with clear communication and a guided process.
             <br className="hidden md:block" />
             Your vision leads the decisions, and feedback is always welcome.
@@ -116,7 +116,7 @@ export default function Services() {
               Mix &amp; Master My Vocals <ArrowRight size={18} />
             </a>
           </div>
-          <div className="mt-4 flex flex-wrap justify-center gap-3 text-sm text-paperWhite/70">
+          <div className="mt-4 flex flex-wrap justify-center gap-3 text-sm text-muted">
             <span>Step 1: Fill out the form and share your vision</span>
             <span>
               Step 2:{" "}
@@ -154,7 +154,7 @@ export default function Services() {
                     <h3 className="text-lg font-semibold text-paperWhite">{tier.name}</h3>
                     <span className="text-monteGold font-semibold">{tier.price}</span>
                   </div>
-                  <ul className="mt-3 space-y-2 text-sm text-paperWhite/70 list-disc list-inside">
+                  <ul className="mt-3 list-inside list-disc space-y-2 text-sm text-muted">
                     {tier.bullets.map((bullet) => (
                       <li key={bullet}>{bullet}</li>
                     ))}
@@ -162,14 +162,14 @@ export default function Services() {
                 </div>
               ))}
             </div>
-            <div className="mt-4 space-y-1 text-xs text-paperWhite/60">
+            <div className="mt-4 space-y-1 text-xs text-muted">
               <p>
                 Turnaround depends on file quality and the current queue — I&rsquo;ll confirm timing
                 after I review your upload.
               </p>
               <p>Revisions are for notes and tweaks — not a full re-mix from scratch.</p>
             </div>
-            <p className="mt-3 text-xs text-paperWhite/70">
+            <p className="mt-3 text-xs text-muted">
               Add-ons: Extra revision $15 · Stems export $25 · Rush (same day) $50 (if available)
             </p>
           </div>
@@ -185,7 +185,7 @@ export default function Services() {
         {/* CTA Section */}
         <div className="mt-24 p-8 md:p-12 rounded-3xl bg-gradient-to-r from-crystal/20 to-purple-900/20 border border-crystal/30 text-center backdrop-blur-lg">
           <h2 className="text-3xl font-bold text-paperWhite">Ready When You Are.</h2>
-          <p className="mt-4 text-paperWhite/80 max-w-2xl mx-auto text-lg">
+          <p className="mt-4 mx-auto max-w-2xl text-lg text-paperWhite/90">
             I keep a focused roster so each project gets attention, clarity, and care.
           </p>
           <div className="mt-8">

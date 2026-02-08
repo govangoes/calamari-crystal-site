@@ -8,7 +8,8 @@
 /* === Brand tokens as CSS variables (for future use) === */
 @layer base {
   :root {
-    /* Reserved for future per-component tokens */
+    --text-strong: #f4f6ff;
+    --text-muted: #c3cbe0;
   }
 
   html {
@@ -20,22 +21,38 @@
   #root {
     height: 100%;
   }
-  :root {
-    --font-brand:
-      "Calamari Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-      "Apple Color Emoji", "Segoe UI Emoji";
-  }
 
   /* Default theme backdrop */
   body {
     @apply antialiased;
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-strong);
+  }
+
+  h1,
+  h2,
+  h3,
+  .wordmark {
+    font-family: var(--font-display);
+    letter-spacing: -0.018em;
+    line-height: 1.15;
   }
 }
 
 /* === Small helpers you can reuse in components === */
 @layer utilities {
+  .text-strong {
+    color: var(--text-strong);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+
   .btn {
     @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform;
+    font-family: var(--font-body);
   }
   .btn-primary {
     @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02];

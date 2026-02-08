@@ -57,7 +57,7 @@ export default function Home() {
       <Hero />
 
       <section id="proof" className="mx-auto max-w-6xl px-4 pb-12">
-        <div className="flex flex-wrap items-center gap-2 text-xs text-paperWhite/70">
+        <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
           {proofItems.map((item) => (
             <span
               key={item}
@@ -83,7 +83,7 @@ export default function Home() {
                 <span className="text-sm font-semibold text-paperWhite">{tier.name}</span>
                 <span className="text-sm text-monteGold font-semibold">{tier.price}</span>
               </div>
-              <p className="mt-2 text-xs text-paperWhite/60">{tier.detail}</p>
+              <p className="mt-2 text-xs text-muted">{tier.detail}</p>
             </div>
           ))}
         </div>
@@ -111,12 +111,7 @@ export default function Home() {
       >
         {hasBookingForm ? (
           <div className="flex flex-wrap items-center gap-3">
-            <a
-              className="btn btn-primary"
-              href={BOOKING_FORM_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="btn btn-primary" href={BOOKING_FORM_URL} target="_blank" rel="noreferrer">
               Booking Inquiry →
             </a>
             {hasJoinCrewForm && (
@@ -136,10 +131,10 @@ export default function Home() {
               {BOOKING_EMAIL}
             </a>
             <div className="rounded-xl border border-white/10 bg-ink/40 p-4">
-              <div className="text-[10px] uppercase tracking-[0.35em] text-paperWhite/50">
+              <div className="text-[10px] uppercase tracking-[0.35em] text-muted">
                 Booking inquiry template
               </div>
-              <pre className="mt-3 whitespace-pre-wrap text-xs text-paperWhite/70 font-sans">
+              <pre className="mt-3 whitespace-pre-wrap font-sans text-xs text-muted">
                 {bookingTemplate}
               </pre>
             </div>
@@ -156,7 +151,7 @@ export default function Home() {
           </>
         )}
 
-        <div className="text-xs text-paperWhite/60">
+        <div className="text-xs text-muted">
           {hasConfirmedShows ? (
             <a
               className="hover:text-crystal transition"
@@ -249,12 +244,9 @@ export default function Home() {
         contentClassName="grid gap-4 md:grid-cols-2"
       >
         {resources.map((resource) => (
-          <div
-            key={resource.title}
-            className="rounded-2xl border border-white/10 bg-ink/40 p-6"
-          >
+          <div key={resource.title} className="rounded-2xl border border-white/10 bg-ink/40 p-6">
             <h3 className="text-lg font-semibold text-paperWhite">{resource.title}</h3>
-            <p className="mt-2 text-sm text-paperWhite/70">{resource.description}</p>
+            <p className="mt-2 text-sm text-muted">{resource.description}</p>
             <div className="mt-4">
               <Link className="pill" to={resource.to}>
                 Open →
