@@ -103,6 +103,7 @@ export default function Home() {
       {/* START HERE: Survival-layer funnel */}
       <Section
         id="start"
+        eyebrow="Start"
         title="Start Here"
         description="Two lanes: live bookings and remote vocal mixing/mastering with a guided, artist-first process."
         contentClassName="grid gap-6 md:grid-cols-3"
@@ -130,6 +131,7 @@ export default function Home() {
       {/* SERVICES: make it obvious how to buy */}
       <Section
         id="services"
+        eyebrow="Mix + Master"
         title="Services"
         description="Remote vocal mixing & mastering with a calm, collaborative process and clear communication."
         descriptionClassName="max-w-2xl"
@@ -137,28 +139,32 @@ export default function Home() {
       >
         <div className="rounded-xl ring-1 ring-paperWhite/10 bg-graphite/50 p-6">
           <h3 className="text-xl text-paperWhite font-semibold">Mix & Master Services</h3>
-
-          <ul className="mt-4 space-y-4 text-paperWhite/70 leading-relaxed">
-            <li>
-              <div className="text-paperWhite font-semibold">BASIC — $79</div>
-              <div className="text-sm">Mix + master (1 song)</div>
-              <div className="text-xs text-paperWhite/60">
-                1 revision · Typical: 2–4 days (often faster)
+          <p className="mt-2 text-xs uppercase tracking-[0.35em] text-paperWhite/50">
+            Packages from $79
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3 text-paperWhite/80">
+            <div className="rounded-lg border border-white/10 bg-ink/40 p-3">
+              <div className="text-sm font-semibold text-paperWhite">Basic — $79</div>
+              <div className="mt-1 text-xs text-paperWhite/60">
+                1 revision · typical 2–4 days
               </div>
-            </li>
-            <li>
-              <div className="text-paperWhite font-semibold">PRO — $129</div>
-              <div className="text-sm">Mix + master (1 song)</div>
-              <div className="text-xs text-paperWhite/60">2 revisions · Typical: 1–2 days</div>
-            </li>
-            <li>
-              <div className="text-paperWhite font-semibold">DELUXE — $199</div>
-              <div className="text-sm">Mix + master (1 song)</div>
-              <div className="text-xs text-paperWhite/60">
-                Vocal cleanup + light tuning (if needed) · 3 revisions · Typical: 24–48 hours
+            </div>
+            <div className="rounded-lg border border-white/10 bg-ink/40 p-3">
+              <div className="text-sm font-semibold text-paperWhite">Pro — $129</div>
+              <div className="mt-1 text-xs text-paperWhite/60">
+                2 revisions · typical 1–2 days
               </div>
-            </li>
-          </ul>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-ink/40 p-3">
+              <div className="text-sm font-semibold text-paperWhite">Deluxe — $199</div>
+              <div className="mt-1 text-xs text-paperWhite/60">
+                cleanup/tuning · typical 24–48 hours
+              </div>
+            </div>
+          </div>
+          <Link className="mt-3 inline-flex text-xs text-crystal hover:text-monteGold" to="/services">
+            See full tiers →
+          </Link>
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a
@@ -198,6 +204,7 @@ export default function Home() {
       {/* Latest Drop / Capsule */}
       <Section
         id="drop"
+        eyebrow="Release"
         title="Latest Drop"
         description="Stream the new chapter and grab the capsule before it disappears."
         contentClassName="grid gap-6 md:grid-cols-2"
@@ -273,6 +280,7 @@ export default function Home() {
       {/* Listen */}
       <Section
         id="music"
+        eyebrow="Music"
         title="Listen"
         description="Dive into the Calamari Crystal era."
         contentClassName="grid gap-6 md:grid-cols-2"
@@ -297,6 +305,7 @@ export default function Home() {
       {/* Tour Dates */}
       <Section
         id="tour"
+        eyebrow="Tour"
         title="Tour Dates"
         description="Catch the live set or pull up to the next pop-up."
       >
@@ -326,7 +335,12 @@ export default function Home() {
       </Section>
 
       {/* Merch */}
-      <Section id="merch" title="Merch" description="Treasures from the deep—limited runs only.">
+      <Section
+        id="merch"
+        eyebrow="Treasures"
+        title="Merch"
+        description="Treasures from the deep—limited runs only."
+      >
         <div className="grid gap-6 md:grid-cols-3">
           {merchItems.map((item) => (
             <div
@@ -367,6 +381,7 @@ export default function Home() {
       {/* Story */}
       <Section
         id="story"
+        eyebrow="Lore"
         title="Story"
         description="A Monte Cristo revenge tale remixed undersea. The purple squid rises from betrayal to luminous redemption."
         descriptionClassName="max-w-2xl"
@@ -377,7 +392,12 @@ export default function Home() {
       </Section>
 
       {/* Press / EPK */}
-      <Section id="epk" title="Press Kit" description="Bio, live stats, photos, and stage specs.">
+      <Section
+        id="epk"
+        eyebrow="Press"
+        title="Press Kit"
+        description="Bio, live stats, photos, and stage specs."
+      >
         <Link className="pill" to="/press">
           Open EPK →
         </Link>
@@ -386,6 +406,7 @@ export default function Home() {
       {/* Newsletter / Social */}
       <Section
         id="newsletter"
+        eyebrow="Crew"
         title="Join the Crew"
         description="Drops, shows, and secret lore before the timeline sees it."
         contentClassName="grid gap-6 md:grid-cols-2"
@@ -419,6 +440,7 @@ export default function Home() {
       {/* Contact */}
       <Section
         id="contact"
+        eyebrow="Bookings"
         title="Contact"
         description="Bookings, partnerships, and press with clear next steps."
         contentClassName="flex gap-3"

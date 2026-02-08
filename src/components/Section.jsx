@@ -5,6 +5,7 @@ import ScrollReveal from "./ScrollReveal.jsx";
  */
 export default function Section({
   id,
+  eyebrow,
   title,
   description,
   descriptionClassName = "",
@@ -12,9 +13,16 @@ export default function Section({
   children,
 }) {
   return (
-    <ScrollReveal className="section mx-auto max-w-6xl px-4" id={id}>
-      <h2 className="text-2xl font-bold">{title}</h2>
-      {description && <p className={`mt-2 opacity-80 ${descriptionClassName}`}>{description}</p>}
+    <ScrollReveal className="section mx-auto max-w-6xl px-4 py-12 md:py-16" id={id}>
+      {eyebrow && (
+        <p className="text-xs uppercase tracking-[0.4em] text-paperWhite/60">{eyebrow}</p>
+      )}
+      <h2 className="mt-2 text-2xl md:text-3xl font-semibold text-paperWhite">{title}</h2>
+      {description && (
+        <p className={`mt-2 text-sm md:text-base text-paperWhite/70 ${descriptionClassName}`}>
+          {description}
+        </p>
+      )}
       {children && (
         <div className={contentClassName ? `mt-6 ${contentClassName}` : "mt-6"}>{children}</div>
       )}

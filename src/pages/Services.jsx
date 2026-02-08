@@ -63,6 +63,28 @@ export default function Services() {
       bestFor: "Career Artists",
     },
   ];
+  const tiers = [
+    {
+      name: "Basic",
+      price: "$79",
+      bullets: ["Mix + master (1 song)", "1 revision", "Typical: 2–4 days (often faster)"],
+    },
+    {
+      name: "Pro",
+      price: "$129",
+      popular: true,
+      bullets: ["Mix + master (1 song)", "2 revisions", "Typical: 1–2 days (priority)"],
+    },
+    {
+      name: "Deluxe",
+      price: "$199",
+      bullets: [
+        "Mix + master (1 song)",
+        "Vocal cleanup + light tuning (if needed)",
+        "3 revisions · Typical: 24–48 hours",
+      ],
+    },
+  ];
 
   return (
     <section className="relative min-h-screen">
@@ -110,39 +132,44 @@ export default function Services() {
             <span>Step 3: I&rsquo;ll reply with next steps, timeline, and feedback welcome</span>
           </div>
 
-          <div className="mt-10 mx-auto max-w-3xl rounded-2xl border border-white/10 bg-white/5 p-6 text-left sm:text-center">
-            <h2 className="text-lg font-semibold text-paperWhite">Mix &amp; Master Tiers</h2>
-            <ul className="mt-4 space-y-4 text-paperWhite/70 leading-relaxed">
-              <li>
-                <div className="text-paperWhite font-semibold">BASIC — $79</div>
-                <div className="text-sm">Mix + master (1 song)</div>
-                <div className="text-xs text-paperWhite/60">
-                  1 revision · Typical: 2–4 days (often faster)
+          <div className="mt-10 mx-auto max-w-4xl rounded-2xl border border-white/10 bg-white/5 p-6 text-left">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-lg font-semibold text-paperWhite">Mix &amp; Master Tiers</h2>
+              <span className="text-xs uppercase tracking-[0.35em] text-paperWhite/50">
+                Packages from $79
+              </span>
+            </div>
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {tiers.map((tier) => (
+                <div
+                  key={tier.name}
+                  className="relative rounded-2xl border border-white/10 bg-ink/50 p-5"
+                >
+                  {tier.popular && (
+                    <span className="absolute right-4 top-4 rounded-full border border-crystal/40 bg-crystal/10 px-2 py-1 text-[10px] uppercase tracking-[0.25em] text-crystal">
+                      Most Popular
+                    </span>
+                  )}
+                  <div className="flex items-baseline justify-between gap-2">
+                    <h3 className="text-lg font-semibold text-paperWhite">{tier.name}</h3>
+                    <span className="text-monteGold font-semibold">{tier.price}</span>
+                  </div>
+                  <ul className="mt-3 space-y-2 text-sm text-paperWhite/70 list-disc list-inside">
+                    {tier.bullets.map((bullet) => (
+                      <li key={bullet}>{bullet}</li>
+                    ))}
+                  </ul>
                 </div>
-              </li>
-              <li>
-                <div className="text-paperWhite font-semibold">PRO — $129</div>
-                <div className="text-sm">Mix + master (1 song)</div>
-                <div className="text-xs text-paperWhite/60">
-                  2 revisions · Typical: 1–2 days (priority)
-                </div>
-              </li>
-              <li>
-                <div className="text-paperWhite font-semibold">DELUXE — $199</div>
-                <div className="text-sm">Mix + master (1 song)</div>
-                <div className="text-xs text-paperWhite/60">
-                  Vocal cleanup + light tuning (if needed) · 3 revisions · Typical: 24–48 hours
-                </div>
-              </li>
-            </ul>
-            <p className="mt-4 text-sm text-paperWhite/60">
-              Turnaround depends on file quality and the current queue — I&rsquo;ll confirm timing
-              after I review your upload.
-            </p>
-            <p className="mt-2 text-sm text-paperWhite/60">
-              Revisions are for notes and tweaks — not a full re-mix from scratch.
-            </p>
-            <p className="mt-3 text-sm text-paperWhite/70">
+              ))}
+            </div>
+            <div className="mt-4 space-y-1 text-xs text-paperWhite/60">
+              <p>
+                Turnaround depends on file quality and the current queue — I&rsquo;ll confirm timing
+                after I review your upload.
+              </p>
+              <p>Revisions are for notes and tweaks — not a full re-mix from scratch.</p>
+            </div>
+            <p className="mt-3 text-xs text-paperWhite/70">
               Add-ons: Extra revision $15 · Stems export $25 · Rush (same day) $50 (if available)
             </p>
           </div>

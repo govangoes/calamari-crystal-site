@@ -40,6 +40,17 @@ export default function Hero() {
           </a>
         </div>
 
+        <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs text-paperWhite/70">
+          {["Apple Music artist profile", "Remote delivery", "Notes welcome"].map((proof) => (
+            <span
+              key={proof}
+              className="rounded-full border border-crystal/30 bg-crystal/5 px-3 py-1"
+            >
+              {proof}
+            </span>
+          ))}
+        </div>
+
         <div className="mt-6 mx-auto max-w-[560px] text-xs sm:text-sm text-paperWhite/60">
           <div className="grid gap-2 leading-relaxed text-left sm:text-center">
             <span>Step 1: Fill out the form and share your vision</span>
