@@ -2,6 +2,10 @@ import { useId, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { orlandoOpenMics } from "../data/orlandoOpenMics.js";
+import CrystalBadge from "../components/ui/CrystalBadge.jsx";
+import CrystalCard from "../components/ui/CrystalCard.jsx";
+import Hairline from "../components/ui/Hairline.jsx";
+import SectionHeader from "../components/ui/SectionHeader.jsx";
 
 export default function OpenMicsOrlando() {
   const [search, setSearch] = useState("");
@@ -41,19 +45,18 @@ export default function OpenMicsOrlando() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(79,70,229,0.3),_transparent_60%)]" />
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-4 py-16 sm:px-6 lg:px-8">
         <header className="space-y-6 text-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-violet-200">
-            Calamari Crystal Presents
-          </p>
-          <h1 className="text-4xl font-black leading-tight text-paperWhite drop-shadow-lg md:text-5xl">
-            🎤 Orlando Open Mics
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg text-violet-100">
-            Find the best spots to perform, connect, and vibe with the city. Curated hip-hop,
-            poetry, comedy, and mixed-genre stages to keep you in the loop.
-          </p>
+          <SectionHeader
+            align="center"
+            eyebrow="Calamari Crystal Presents"
+            titleAs="h1"
+            title="Orlando Open Mics"
+            subtitle="Find the best spots to perform, connect, and vibe with the city. Curated hip-hop, poetry, comedy, and mixed-genre stages to keep you in the loop."
+            className="mx-auto max-w-3xl"
+          />
+          <Hairline className="mx-auto max-w-xl" />
         </header>
 
-        <div className="grid gap-4 rounded-2xl border border-white/10 bg-black/30 p-6 shadow-2xl backdrop-blur">
+        <CrystalCard variant="glass" className="grid gap-4 p-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <label className="flex flex-col text-left text-sm font-semibold text-violet-100">
               Search
@@ -114,13 +117,15 @@ export default function OpenMicsOrlando() {
             {filteredEvents.length} event{filteredEvents.length === 1 ? "" : "s"} match your
             filters.
           </p>
-        </div>
+        </CrystalCard>
 
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {filteredEvents.map((event) => (
-            <article
+            <CrystalCard
+              as="article"
+              variant="glass"
               key={event.name}
-              className="group relative flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-[0_0_40px_-15px_rgba(96,165,250,0.8)] transition duration-300 hover:-translate-y-1 hover:border-ultraviolet/60 hover:shadow-[0_0_50px_-10px_rgba(99,102,241,0.9)]"
+              className="group flex h-full flex-col justify-between border-white/20 bg-slate-900/70 p-6 transition duration-300 hover:-translate-y-1 hover:border-crystal/60"
             >
               <div className="space-y-4">
                 <div>
@@ -139,12 +144,15 @@ export default function OpenMicsOrlando() {
                 </div>
                 <RatingStars rating={event.rating} />
                 <div className="flex flex-wrap items-center gap-3 text-sm text-violet-100">
-                  <span className="rounded-full bg-ultraviolet/20 px-3 py-1 text-ultraviolet shadow-inner">
+                  <CrystalBadge
+                    variant="chip"
+                    className="border-ultraviolet/50 bg-ultraviolet/15 text-crystal"
+                  >
                     {event.day}
-                  </span>
-                  <span className="rounded-full bg-orange-500/20 px-3 py-1 text-orange-300 shadow-inner">
+                  </CrystalBadge>
+                  <CrystalBadge variant="chip" className="border-opal/40 bg-opal/10 text-opal">
                     {event.time}
-                  </span>
+                  </CrystalBadge>
                 </div>
                 <p className="text-base text-violet-100/80">{event.description}</p>
                 {event.host && (
@@ -154,12 +162,13 @@ export default function OpenMicsOrlando() {
                 )}
                 <div className="flex flex-wrap gap-2">
                   {event.genre.map((tag) => (
-                    <span
+                    <CrystalBadge
                       key={tag}
-                      className="rounded-full border border-violet-400/30 bg-slate-800/70 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-violet-200 transition group-hover:border-ultraviolet/60 group-hover:text-paperWhite"
+                      variant="chip"
+                      className="border-violet-400/30 bg-slate-800/70 text-violet-200 transition group-hover:border-crystal/50 group-hover:text-paperWhite"
                     >
                       {tag}
-                    </span>
+                    </CrystalBadge>
                   ))}
                 </div>
               </div>
@@ -176,19 +185,26 @@ export default function OpenMicsOrlando() {
                   </span>
                 </a>
               </div>
-            </article>
+            </CrystalCard>
           ))}
           {filteredEvents.length === 0 && (
-            <div className="col-span-full rounded-2xl border border-dashed border-white/20 bg-slate-900/50 p-10 text-center text-violet-100">
+            <CrystalCard
+              variant="outline"
+              className="col-span-full border-dashed border-white/20 bg-slate-900/50 p-10 text-center text-violet-100"
+            >
               <p className="text-lg font-semibold">No open mics match those filters… yet.</p>
               <p className="mt-2 text-sm text-violet-200/70">
                 Try clearing your search or picking a different genre to explore more vibes.
               </p>
-            </div>
+            </CrystalCard>
           )}
         </div>
 
-        <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-ultraviolet/40 via-slate-900/80 to-[#0F172A] p-10 text-center shadow-[0_0_60px_-20px_rgba(79,70,229,0.9)]">
+        <CrystalCard
+          as="section"
+          variant="solid"
+          className="relative overflow-hidden rounded-3xl border-white/20 bg-gradient-to-br from-ultraviolet/40 via-slate-900/80 to-[#0F172A] p-10 text-center shadow-[0_0_60px_-20px_rgba(79,70,229,0.9)]"
+        >
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(226,232,240,0.12),_transparent_60%)]" />
           <h2 className="text-3xl font-extrabold text-paperWhite md:text-4xl">
             Submit Your Open Mic Event
@@ -204,7 +220,7 @@ export default function OpenMicsOrlando() {
             Submit your Open Mic
             <span aria-hidden>→</span>
           </Link>
-        </section>
+        </CrystalCard>
       </section>
     </main>
   );

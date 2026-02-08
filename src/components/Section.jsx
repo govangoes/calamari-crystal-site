@@ -1,5 +1,6 @@
 import ScrollReveal from "./ScrollReveal.jsx";
 import PsychedelicTextureLayer from "./ui/PsychedelicTextureLayer.jsx";
+import SectionHeader from "./ui/SectionHeader.jsx";
 
 /**
  * Reusable section with ScrollReveal animation, heading, description, and content area.
@@ -27,14 +28,13 @@ export default function Section({
         />
       )}
       <div id={id} className="relative z-[1]">
-        {eyebrow && (
-          <p className="text-xs uppercase tracking-[0.4em] text-paperWhite/60">{eyebrow}</p>
-        )}
-        <h2 className="mt-2 text-2xl md:text-3xl font-semibold text-paperWhite">{title}</h2>
-        {description && (
-          <p className={`mt-2 text-sm md:text-base text-paperWhite/70 ${descriptionClassName}`}>
-            {description}
-          </p>
+        {(eyebrow || title || description) && (
+          <SectionHeader
+            eyebrow={eyebrow}
+            title={title}
+            subtitle={description}
+            className={descriptionClassName}
+          />
         )}
         {children && (
           <div className={contentClassName ? `mt-6 ${contentClassName}` : "mt-6"}>{children}</div>

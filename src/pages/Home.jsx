@@ -5,6 +5,9 @@ import { SpotifyEmbed, YouTubeEmbed } from "../components/Embeds.jsx";
 import AsSeenIn from "../components/AsSeenIn.jsx";
 import BookingForm from "../components/forms/BookingForm.jsx";
 import MixMasterForm from "../components/forms/MixMasterForm.jsx";
+import CrystalBadge from "../components/ui/CrystalBadge.jsx";
+import CrystalCard from "../components/ui/CrystalCard.jsx";
+import Hairline from "../components/ui/Hairline.jsx";
 import { CONTACT_EMAIL } from "../content/offers.js";
 import { epkPhotos } from "../content/epkPhotos.js";
 import {
@@ -53,15 +56,13 @@ export default function Home() {
         <div className="relative z-[1] space-y-5">
           <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
             {proofItems.map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-crystal/30 bg-crystal/5 px-3 py-1"
-              >
+              <CrystalBadge key={item} variant="chip">
                 {item}
-              </span>
+              </CrystalBadge>
             ))}
           </div>
-          <AsSeenIn />
+          <Hairline />
+          <AsSeenIn className="border-white/15 bg-ink/25" />
         </div>
       </section>
 
@@ -77,13 +78,13 @@ export default function Home() {
       >
         <div className="grid gap-3 sm:grid-cols-3">
           {tiers.map((tier) => (
-            <div key={tier.name} className="rounded-xl border border-white/10 bg-ink/40 p-4">
+            <CrystalCard key={tier.name} variant="outline" className="p-4">
               <div className="flex items-baseline justify-between gap-2">
                 <span className="text-sm font-semibold text-paperWhite">{tier.name}</span>
                 <span className="text-sm font-semibold text-monteGold">{tier.price}</span>
               </div>
               <p className="mt-2 text-xs text-muted">{tier.detail}</p>
-            </div>
+            </CrystalCard>
           ))}
         </div>
 
@@ -189,7 +190,7 @@ export default function Home() {
         contentClassName="grid gap-4 md:grid-cols-2"
       >
         {resources.map((resource) => (
-          <div key={resource.title} className="rounded-2xl border border-white/10 bg-ink/40 p-6">
+          <CrystalCard key={resource.title} variant="solid" className="p-6">
             <h3 className="text-lg font-semibold text-paperWhite">{resource.title}</h3>
             <p className="mt-2 text-sm text-muted">{resource.description}</p>
             <div className="mt-4">
@@ -197,7 +198,7 @@ export default function Home() {
                 Open →
               </Link>
             </div>
-          </div>
+          </CrystalCard>
         ))}
       </Section>
     </main>

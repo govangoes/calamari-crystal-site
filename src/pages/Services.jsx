@@ -3,14 +3,18 @@ import { FILE_UPLOAD_URL } from "../content/links.js";
 import GhostButton from "../components/ui/GhostButton.jsx";
 import PsychedelicButton from "../components/ui/PsychedelicButton.jsx";
 import PsychedelicTextureLayer from "../components/ui/PsychedelicTextureLayer.jsx";
+import CrystalBadge from "../components/ui/CrystalBadge.jsx";
+import CrystalCard from "../components/ui/CrystalCard.jsx";
+import Hairline from "../components/ui/Hairline.jsx";
+import SectionHeader from "../components/ui/SectionHeader.jsx";
 
 // Reusable Service Card Component with "Glass" Effect
 const ServiceCard = ({ icon: Icon, title, desc, bestFor }) => (
-  <div className="group relative flex flex-col p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
-    {/* Glow Effect on Hover */}
-    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-crystal/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-    <div className="relative z-10">
+  <CrystalCard
+    variant="glass"
+    className="group flex h-full flex-col p-6 transition duration-300 hover:-translate-y-1"
+  >
+    <div>
       <div className="w-12 h-12 rounded-lg bg-crystal/20 flex items-center justify-center text-crystal mb-4 group-hover:scale-110 transition-transform">
         <Icon size={24} />
       </div>
@@ -19,11 +23,13 @@ const ServiceCard = ({ icon: Icon, title, desc, bestFor }) => (
       <p className="mt-3 text-sm leading-relaxed text-muted min-h-[60px]">{desc}</p>
 
       <div className="mt-4 pt-4 border-t border-white/10">
-        <p className="text-xs font-semibold text-crystal uppercase tracking-wider">Best For:</p>
+        <CrystalBadge variant="tag" className="text-crystal">
+          Best For
+        </CrystalBadge>
         <p className="text-sm text-paperWhite/90 mt-1">{bestFor}</p>
       </div>
     </div>
-  </div>
+  </CrystalCard>
 );
 
 export default function Services() {
@@ -103,14 +109,13 @@ export default function Services() {
       <div className="max-w-6xl mx-auto px-4 py-20 relative z-10">
         {/* Header */}
         <header className="text-center max-w-3xl mx-auto mb-20">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-paperWhite via-crystal to-paperWhite bg-[length:200%_auto] animate-gradient-x">
-            Build Your Sound, With Care.
-          </h1>
-          <p className="mt-6 text-xl leading-relaxed text-paperWhite/90">
-            Mixing, mastering, and artist support with clear communication and a guided process.
-            <br className="hidden md:block" />
-            Your vision leads the decisions, and feedback is always welcome.
-          </p>
+          <SectionHeader
+            align="center"
+            eyebrow="Services"
+            titleAs="h1"
+            title="Build Your Sound, With Care."
+            subtitle="Mixing, mastering, and artist support with clear communication and a guided process. Your vision leads the decisions, and feedback is always welcome."
+          />
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <PsychedelicButton as="a" className="px-8 py-3 text-lg" href={`${baseUrl}#bookings`}>
@@ -135,26 +140,30 @@ export default function Services() {
             </span>
             <span>Step 3: I&rsquo;ll reply with next steps, timeline, and feedback welcome</span>
           </div>
+          <Hairline className="mx-auto mt-8 max-w-xl" />
 
-          <div className="relative mx-auto mt-10 max-w-4xl isolate overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 text-left">
+          <CrystalCard
+            variant="glass"
+            className="relative mx-auto mt-10 max-w-4xl isolate overflow-hidden p-6 text-left"
+          >
             <PsychedelicTextureLayer variant="section" strength="medium" />
             <div className="relative z-[1]">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h2 className="text-lg font-semibold text-paperWhite">Mix &amp; Master Tiers</h2>
-                <span className="text-xs uppercase tracking-[0.35em] text-paperWhite/50">
+                <CrystalBadge variant="pill" className="text-paperWhite/75">
                   Packages from $79
-                </span>
+                </CrystalBadge>
               </div>
               <div className="mt-5 grid gap-4 md:grid-cols-3">
                 {tiers.map((tier) => (
-                  <div
-                    key={tier.name}
-                    className="relative rounded-2xl border border-white/10 bg-ink/50 p-5"
-                  >
+                  <CrystalCard key={tier.name} variant="outline" className="relative p-5">
                     {tier.popular && (
-                      <span className="absolute right-4 top-4 rounded-full border border-crystal/40 bg-crystal/10 px-2 py-1 text-[10px] uppercase tracking-[0.25em] text-crystal">
+                      <CrystalBadge
+                        variant="tag"
+                        className="absolute right-4 top-4 border-crystal/40 bg-crystal/10 text-crystal"
+                      >
                         Most Popular
-                      </span>
+                      </CrystalBadge>
                     )}
                     <div className="flex items-baseline justify-between gap-2">
                       <h3 className="text-lg font-semibold text-paperWhite">{tier.name}</h3>
@@ -165,7 +174,7 @@ export default function Services() {
                         <li key={bullet}>{bullet}</li>
                       ))}
                     </ul>
-                  </div>
+                  </CrystalCard>
                 ))}
               </div>
               <div className="mt-4 space-y-1 text-xs text-muted">
@@ -179,7 +188,7 @@ export default function Services() {
                 Add-ons: Extra revision $15 · Stems export $25 · Rush (same day) $50 (if available)
               </p>
             </div>
-          </div>
+          </CrystalCard>
         </header>
 
         {/* Services Grid */}
@@ -190,7 +199,10 @@ export default function Services() {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-24 p-8 md:p-12 rounded-3xl bg-gradient-to-r from-crystal/20 to-purple-900/20 border border-crystal/30 text-center backdrop-blur-lg">
+        <CrystalCard
+          variant="solid"
+          className="mt-24 rounded-3xl border-crystal/30 bg-gradient-to-r from-crystal/20 to-purple-900/20 p-8 text-center md:p-12"
+        >
           <h2 className="text-3xl font-bold text-paperWhite">Ready When You Are.</h2>
           <p className="mt-4 mx-auto max-w-2xl text-lg text-paperWhite/90">
             I keep a focused roster so each project gets attention, clarity, and care.
@@ -204,7 +216,7 @@ export default function Services() {
               Start Your Project <ArrowRight size={20} />
             </GhostButton>
           </div>
-        </div>
+        </CrystalCard>
       </div>
     </section>
   );
