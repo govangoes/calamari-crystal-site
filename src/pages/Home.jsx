@@ -6,6 +6,7 @@ import AsSeenIn from "../components/AsSeenIn.jsx";
 import BookingForm from "../components/forms/BookingForm.jsx";
 import MixMasterForm from "../components/forms/MixMasterForm.jsx";
 import ProofGrid from "../components/ProofGrid.jsx";
+import MixTempleSection from "../components/MixTempleSection.jsx";
 import CrystalBadge from "../components/ui/CrystalBadge.jsx";
 import CrystalCard from "../components/ui/CrystalCard.jsx";
 import Hairline from "../components/ui/Hairline.jsx";
@@ -169,6 +170,8 @@ export default function Home() {
           ))}
         </div>
       </Section>
+
+      <MixTempleSection />
 
       <Section
         id="press"

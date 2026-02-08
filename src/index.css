@@ -475,10 +475,167 @@
     max-width: var(--cc-container-max);
   }
 
+  .mix-temple-root {
+    background:
+      linear-gradient(145deg, rgba(8, 12, 28, 0.9), rgba(6, 10, 22, 0.86)), rgba(6, 10, 22, 0.82);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 28px 64px rgba(3, 6, 16, 0.42);
+  }
+
+  .mix-temple-stage-sticky {
+    position: relative;
+  }
+
+  .mix-temple-stage {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 1.15rem;
+    overflow: hidden;
+    border: 1px solid rgba(195, 203, 224, 0.24);
+    background:
+      radial-gradient(85% 85% at 50% 0%, rgba(34, 211, 238, 0.18), transparent 62%),
+      radial-gradient(75% 80% at 20% 100%, rgba(111, 45, 168, 0.25), transparent 65%),
+      rgba(6, 10, 22, 0.9);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 18px 44px rgba(2, 6, 18, 0.5),
+      0 0 0 1px rgba(34, 211, 238, 0.08);
+  }
+
+  .mix-temple-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: opacity, transform;
+    transition:
+      opacity 0.55s ease,
+      transform 0.55s ease;
+  }
+
+  .mix-temple-layer--base {
+    z-index: 1;
+    opacity: 1;
+    transform: none;
+  }
+
+  .mix-temple-layer--overlay {
+    z-index: 2;
+    opacity: 0;
+    transform: scale(1.02);
+  }
+
+  .mix-temple-layer--active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .mix-temple-layer--reduced-motion {
+    transition: none;
+    transform: none;
+  }
+
+  .mix-temple-frame-fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: rgba(236, 241, 255, 0.82);
+    background:
+      linear-gradient(145deg, rgba(111, 45, 168, 0.26), rgba(6, 10, 22, 0.9)), rgba(6, 10, 22, 0.82);
+  }
+
+  .mix-temple-step {
+    position: relative;
+    padding-block: 0.15rem;
+  }
+
+  .mix-temple-step-card {
+    padding: 1.1rem;
+    border-color: rgba(195, 203, 224, 0.24);
+    background: rgba(7, 11, 24, 0.5);
+    transition:
+      transform 0.28s ease,
+      box-shadow 0.28s ease,
+      border-color 0.28s ease;
+  }
+
+  .mix-temple-step-card--active {
+    transform: translateY(-2px);
+    border-color: rgba(34, 211, 238, 0.52);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.07),
+      0 20px 42px rgba(4, 9, 22, 0.46),
+      0 0 30px rgba(34, 211, 238, 0.15);
+    animation: mix-temple-pulse 2.8s ease-in-out infinite;
+  }
+
+  .mix-temple-step-card--reduced-motion {
+    transition: none;
+    transform: none;
+    animation: none;
+  }
+
+  @keyframes mix-temple-pulse {
+    0%,
+    100% {
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        0 20px 42px rgba(4, 9, 22, 0.46),
+        0 0 28px rgba(34, 211, 238, 0.11);
+    }
+    50% {
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        0 22px 46px rgba(4, 9, 22, 0.5),
+        0 0 34px rgba(34, 211, 238, 0.2);
+    }
+  }
+
   @media (min-width: 768px) {
     .section {
       padding-top: var(--cc-section-y);
       padding-bottom: var(--cc-section-y);
+    }
+
+    .mix-temple-step {
+      min-height: 42vh;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mix-temple-stage-sticky {
+      position: sticky;
+      top: calc(4rem + 1.25rem);
+    }
+
+    .mix-temple-step {
+      min-height: 56vh;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mix-temple-layer,
+    .mix-temple-step-card {
+      transition: none !important;
+      transform: none !important;
+      animation: none !important;
+    }
+
+    .mix-temple-step-card--active {
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 12px 28px rgba(4, 9, 22, 0.36);
     }
   }
 

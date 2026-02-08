@@ -10,6 +10,7 @@ export default function TopNav() {
   const menuItems = [
     { label: "Start", href: `${baseUrl}#start` },
     { label: "Mix & Master", href: `${baseUrl}#mixmaster` },
+    { label: "Mix Temple", href: `${baseUrl}#mix-temple` },
     { label: "Bookings", href: `${baseUrl}#bookings` },
     { label: "Music", href: `${baseUrl}#music` },
     { label: "Press", href: `${baseUrl}#press` },
