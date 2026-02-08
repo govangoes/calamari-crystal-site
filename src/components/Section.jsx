@@ -19,7 +19,7 @@ export default function Section({
   children,
 }) {
   return (
-    <ScrollReveal className="section mx-auto max-w-6xl isolate px-4 py-12 md:py-16">
+    <ScrollReveal className="section section-shell mx-auto isolate px-4">
       {withTexture && (
         <PsychedelicTextureLayer
           variant={textureVariant}
