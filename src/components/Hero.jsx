@@ -1,5 +1,6 @@
 import React from "react";
 import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL, SHOP_URL } from "../content/links.js";
+import PsychedelicButton from "./ui/PsychedelicButton.jsx";
 
 export default function Hero() {
   const baseUrl = import.meta.env.BASE_URL;
@@ -24,21 +25,23 @@ export default function Hero() {
         </div>
 
         <div className="mt-10 flex flex-wrap justify-center gap-3 sm:gap-4">
-          <a
-            className="btn btn-primary text-sm sm:text-base"
+          <PsychedelicButton
+            as="a"
+            className="text-sm sm:text-base"
             href={`${baseUrl}#bookings`}
             aria-label="Book Go Van Goes for a show or event"
           >
             Book Me
-          </a>
-          <a
+          </PsychedelicButton>
+          <PsychedelicButton
+            as="a"
             href={MIX_MASTER_FORM_URL}
-            className="btn btn-primary text-sm sm:text-base"
+            className="text-sm sm:text-base"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Mix &amp; Master My Vocals
-          </a>
+            Mix &amp; Master
+          </PsychedelicButton>
         </div>
 
         <div className="mt-6 mx-auto max-w-[560px] text-xs sm:text-sm text-paperWhite/60">

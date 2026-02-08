@@ -13,6 +13,8 @@ import {
   STREAMING_LINKS,
 } from "../content/links.js";
 import { shows, showsCta } from "../content/shows.js";
+import GhostButton from "../components/ui/GhostButton.jsx";
+import PsychedelicButton from "../components/ui/PsychedelicButton.jsx";
 
 const proofItems = ["Apple Music artist profile", "Remote delivery", "Notes welcome"];
 
@@ -88,14 +90,9 @@ export default function Home() {
           ))}
         </div>
         <div className="flex flex-wrap gap-3">
-          <a
-            className="btn btn-primary"
-            href={MIX_MASTER_FORM_URL}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Mix &amp; Master My Vocals →
-          </a>
+          <PsychedelicButton as="a" href={MIX_MASTER_FORM_URL} target="_blank" rel="noreferrer">
+            Mix &amp; Master →
+          </PsychedelicButton>
           <a className="pill" href={FILE_UPLOAD_URL} target="_blank" rel="noreferrer">
             Upload Files →
           </a>
@@ -111,9 +108,9 @@ export default function Home() {
       >
         {hasBookingForm ? (
           <div className="flex flex-wrap items-center gap-3">
-            <a className="btn btn-primary" href={BOOKING_FORM_URL} target="_blank" rel="noreferrer">
+            <GhostButton as="a" href={BOOKING_FORM_URL} target="_blank" rel="noreferrer">
               Booking Inquiry →
-            </a>
+            </GhostButton>
             {hasJoinCrewForm && (
               <a
                 className="pill border-crystal/40 text-crystal hover:bg-crystal/10"

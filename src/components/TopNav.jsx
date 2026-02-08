@@ -1,4 +1,5 @@
 import { useState } from "react";
+import GhostButton from "./ui/GhostButton.jsx";
 
 export default function TopNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,15 +26,14 @@ export default function TopNav() {
           </span>
           <span className="hidden sm:inline-block h-px w-6 bg-gradient-to-r from-crystal to-paperWhite/80 opacity-70 transition group-hover:opacity-100" />
         </a>
-        <button
-          type="button"
-          className="text-xs font-medium uppercase tracking-[0.3em] text-muted transition hover:text-strong"
+        <GhostButton
+          className="px-4 py-2 text-[0.64rem] font-medium uppercase tracking-[0.3em]"
           aria-expanded={isOpen}
           aria-controls="site-menu"
           onClick={() => setIsOpen(true)}
         >
           Menu
-        </button>
+        </GhostButton>
       </div>
 
       {isOpen && (
@@ -50,13 +50,12 @@ export default function TopNav() {
           >
             <div className="flex items-center justify-between">
               <span className="text-xs uppercase tracking-[0.4em] text-muted">Menu</span>
-              <button
-                type="button"
-                className="text-xs uppercase tracking-[0.3em] text-muted hover:text-strong"
+              <GhostButton
+                className="px-3 py-1.5 text-[0.62rem] uppercase tracking-[0.28em]"
                 onClick={() => setIsOpen(false)}
               >
                 Close
-              </button>
+              </GhostButton>
             </div>
             <nav className="mt-6 flex flex-col gap-4 text-sm text-muted">
               {menuItems.map((item) => (

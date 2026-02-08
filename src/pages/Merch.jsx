@@ -1,5 +1,6 @@
 import ScrollReveal from "../components/ScrollReveal.jsx";
 import { merchItems, merchCta } from "../content/merch.js";
+import GhostButton from "../components/ui/GhostButton.jsx";
 
 export default function Merch() {
   return (
@@ -37,14 +38,9 @@ export default function Merch() {
       </div>
       <div className="text-center">
         {merchCta ? (
-          <a
-            className="btn btn-primary"
-            href={merchCta.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <GhostButton as="a" href={merchCta.href} target="_blank" rel="noopener noreferrer">
             {merchCta.label}
-          </a>
+          </GhostButton>
         ) : (
           <span className="pill text-paperWhite/60">Full drop coming soon</span>
         )}

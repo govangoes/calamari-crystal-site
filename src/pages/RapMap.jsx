@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import ScrollReveal from "../components/ScrollReveal.jsx";
 import RapMapExplorer from "../components/RapMapExplorer.jsx";
+import GhostButton from "../components/ui/GhostButton.jsx";
 
 const features = [
   {
@@ -62,21 +63,15 @@ export default function RapMap() {
           can study legends or spotlight your own sound.
         </p>
         <div className="flex flex-col items-center gap-4 sm:flex-row">
-          <a href="#explore" className="btn-primary">
+          <GhostButton as="a" href="#explore">
             Explore the Map
-          </a>
-          <Link
-            className="btn border border-white/20 bg-white/5 text-paperWhite hover:border-crystal/60 hover:text-crystal"
-            to="/upload"
-          >
+          </GhostButton>
+          <GhostButton as={Link} to="/upload">
             Upload Your Lyrics
-          </Link>
-          <Link
-            className="btn border border-white/20 bg-white/5 text-paperWhite hover:border-crystal/60 hover:text-crystal"
-            to="/contact"
-          >
+          </GhostButton>
+          <GhostButton as={Link} to="/contact">
             Collaborate with Us
-          </Link>
+          </GhostButton>
         </div>
       </section>
 

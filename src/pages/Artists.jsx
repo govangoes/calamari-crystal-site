@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import RapMapExplorer from "../components/RapMapExplorer.jsx";
 import { rapMapArtists } from "../data/rapMapArtists.js";
+import GhostButton from "../components/ui/GhostButton.jsx";
 
 export default function Artists() {
   return (
@@ -23,15 +24,12 @@ export default function Artists() {
           own catalog.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link to="/lyrics-lab" className="btn-primary">
+          <GhostButton as={Link} to="/lyrics-lab">
             Analyze Your Lyrics
-          </Link>
-          <Link
-            to="/rap-map"
-            className="btn border border-white/20 bg-white/5 text-paperWhite hover:border-crystal/60 hover:text-crystal"
-          >
+          </GhostButton>
+          <GhostButton as={Link} to="/rap-map">
             Full Rap Map
-          </Link>
+          </GhostButton>
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-4 pb-16 text-paperWhite">

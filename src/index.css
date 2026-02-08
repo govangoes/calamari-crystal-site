@@ -54,118 +54,146 @@
     @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition transform;
     font-family: var(--font-body);
   }
+
   .btn-primary {
-    @apply btn bg-monteGold text-ink hover:shadow-crystal hover:scale-[1.02];
+    @apply btn border border-crystal/40 bg-ultraviolet/35 text-paperWhite hover:bg-ultraviolet/55;
   }
-  /* === Primary CTA: GoVanGoes gradient button (Uiverse-inspired, high contrast) === */
-  .gradient-button {
+
+  .ui-btn {
     position: relative;
-    padding: 16px 32px;
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    color: white;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    border-radius: 999px;
-    overflow: hidden;
-    transform: translateZ(0);
-    transition:
-      transform 0.2s ease,
-      filter 0.2s ease;
+    isolation: isolate;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
-  }
-
-  .gradient-button:hover {
-    transform: scale(1.03);
-    filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.22));
-  }
-
-  .gradient-button::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg, #ffffff, #8a5bff, #ff2db2, #00e5ff, #ffd84d, #ffffff);
-    z-index: -2;
-    filter: blur(12px);
-    transform: rotate(0deg);
-    transition: transform 1.5s ease-in-out;
-  }
-
-  .gradient-button:hover::before {
-    transform: rotate(180deg);
-  }
-
-  .gradient-button::after {
-    content: "";
-    position: absolute;
-    inset: 3px;
-    background: #05050a;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 999px;
-    z-index: -1;
-    filter: blur(4px);
+    font-family: var(--font-body);
+    font-size: 0.94rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-decoration: none;
+    transform: translateZ(0);
+    overflow: hidden;
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease,
+      border-color 0.22s ease,
+      background-color 0.22s ease,
+      color 0.22s ease;
   }
 
-  .gradient-text {
-    color: transparent;
-    background: conic-gradient(from 0deg, #ffffff, #d7c6ff, #ffd1ef, #c9f7ff, #fff1b3, #ffffff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    text-shadow: 0 1px 12px rgba(255, 255, 255, 0.25);
-    filter: hue-rotate(0deg);
+  .ui-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
   }
 
-  .gradient-button:hover .gradient-text {
-    animation: hue-rotating 2s linear infinite;
+  .ui-btn:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px rgba(10, 16, 34, 0.95),
+      0 0 0 4px rgba(34, 211, 238, 0.55),
+      0 0 22px rgba(34, 211, 238, 0.3);
   }
 
-  .gradient-button:active {
+  .psy-button {
+    color: var(--text-strong);
+    border: 1px solid rgba(123, 52, 189, 0.85);
+    background:
+      linear-gradient(
+        125deg,
+        rgba(111, 45, 168, 0.86) 0%,
+        rgba(63, 61, 162, 0.72) 44%,
+        rgba(34, 211, 238, 0.34) 72%,
+        rgba(111, 45, 168, 0.8) 100%
+      ),
+      rgba(7, 10, 20, 0.92);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 10px 22px rgba(18, 8, 44, 0.5),
+      0 0 28px rgba(34, 211, 238, 0.18);
+  }
+
+  .psy-button::before {
+    background: linear-gradient(
+      110deg,
+      transparent 0%,
+      transparent 34%,
+      rgba(255, 255, 255, 0.28) 48%,
+      transparent 62%,
+      transparent 100%
+    );
+    transform: translateX(-130%);
+    transition: transform 0.72s ease;
+  }
+
+  .psy-button:hover {
+    transform: translateY(-1px) scale(1.015);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 12px 26px rgba(18, 8, 44, 0.56),
+      0 0 32px rgba(34, 211, 238, 0.24);
+  }
+
+  .psy-button:hover::before {
+    transform: translateX(130%);
+  }
+
+  .psy-button:active {
     transform: scale(0.99);
   }
 
-  .gradient-button:focus-visible {
-    outline: 3px solid #ffffff;
-    outline-offset: 3px;
+  .ghost-button {
+    color: var(--text-strong);
+    border: 1px solid rgba(195, 203, 224, 0.48);
+    background: rgba(8, 11, 22, 0.2);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 6px 14px rgba(5, 9, 22, 0.26);
+    backdrop-filter: blur(6px);
   }
 
-  @keyframes hue-rotating {
-    to {
-      filter: hue-rotate(360deg);
-    }
+  .ghost-button::before {
+    opacity: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(34, 211, 238, 0.34), transparent 65%);
+    transition: opacity 0.22s ease;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .gradient-button,
-    .gradient-button:hover,
-    .gradient-button:active {
-      transition: none !important;
-      transform: none !important;
-      filter: none !important;
-    }
-    .gradient-button:hover::before {
-      transform: none;
-    }
-    .gradient-button:hover .gradient-text {
-      animation: none;
-    }
+  .ghost-button:hover {
+    transform: translateY(-1px);
+    color: #eef7ff;
+    border-color: rgba(34, 211, 238, 0.65);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 10px 22px rgba(4, 10, 22, 0.34),
+      0 0 20px rgba(34, 211, 238, 0.2);
   }
+
+  .ghost-button:hover::before {
+    opacity: 1;
+  }
+
+  .ghost-button:active {
+    transform: scale(0.99);
+  }
+
   .pill {
     @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm;
+    font-family: var(--font-body);
   }
+
   .section {
     @apply relative py-16 md:py-24;
   }
+
   .scroll-cue {
     @apply absolute left-1/2 -translate-x-1/2 bottom-4 text-white/80 text-xs flex flex-col items-center gap-1;
     animation: floaty 2.4s ease-in-out infinite;
   }
+
   @keyframes floaty {
     0%,
     100% {
@@ -173,6 +201,17 @@
     }
     50% {
       transform: translate(-50%, -6px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ui-btn,
+    .ui-btn:hover,
+    .ui-btn:active,
+    .ui-btn::before {
+      transition: none !important;
+      transform: none !important;
+      animation: none !important;
     }
   }
 }

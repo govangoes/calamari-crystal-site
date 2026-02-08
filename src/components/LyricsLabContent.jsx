@@ -1,6 +1,7 @@
 import { useState } from "react";
 import analyzeLyrics from "../utils/lyricsAnalysis.js";
 import MetricBar from "./MetricBar.jsx";
+import GhostButton from "./ui/GhostButton.jsx";
 
 const sampleLyrics = `Masked hero in the moonlight, steady with the ink.
 Shadow of the city, every bar a missing link.
@@ -49,9 +50,7 @@ export default function LyricsLabContent({
               >
                 Use Sample
               </button>
-              <button type="button" onClick={handleAnalyze} className="btn-primary">
-                Analyze
-              </button>
+              <GhostButton onClick={handleAnalyze}>Analyze</GhostButton>
             </div>
           </div>
           <textarea

@@ -1,5 +1,7 @@
 import { Mic, Music, Sliders, PenTool, Speaker, Package, ArrowRight } from "lucide-react";
 import { FILE_UPLOAD_URL, MIX_MASTER_FORM_URL } from "../content/links.js";
+import GhostButton from "../components/ui/GhostButton.jsx";
+import PsychedelicButton from "../components/ui/PsychedelicButton.jsx";
 
 // Reusable Service Card Component with "Glass" Effect
 const ServiceCard = ({ icon: Icon, title, desc, bestFor }) => (
@@ -104,17 +106,18 @@ export default function Services() {
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a className="btn btn-primary px-8 py-3 text-lg" href={`${baseUrl}#bookings`}>
+            <PsychedelicButton as="a" className="px-8 py-3 text-lg" href={`${baseUrl}#bookings`}>
               Book Me
-            </a>
-            <a
-              className="px-8 py-3 rounded-full border border-white/20 hover:bg-white/10 transition text-paperWhite font-semibold flex items-center gap-2"
+            </PsychedelicButton>
+            <PsychedelicButton
+              as="a"
+              className="px-8 py-3 text-lg"
               href={MIX_MASTER_FORM_URL}
               target="_blank"
               rel="noreferrer"
             >
-              Mix &amp; Master My Vocals <ArrowRight size={18} />
-            </a>
+              Mix &amp; Master <ArrowRight size={18} />
+            </PsychedelicButton>
           </div>
           <div className="mt-4 flex flex-wrap justify-center gap-3 text-sm text-muted">
             <span>Step 1: Fill out the form and share your vision</span>
@@ -189,12 +192,13 @@ export default function Services() {
             I keep a focused roster so each project gets attention, clarity, and care.
           </p>
           <div className="mt-8">
-            <a
-              className="btn btn-primary inline-flex items-center gap-2"
+            <GhostButton
+              as="a"
+              className="inline-flex items-center gap-2"
               href={`${baseUrl}#bookings`}
             >
               Start Your Project <ArrowRight size={20} />
-            </a>
+            </GhostButton>
           </div>
         </div>
       </div>

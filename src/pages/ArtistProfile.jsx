@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import analyzeLyrics from "../utils/lyricsAnalysis.js";
 import MetricBar from "../components/MetricBar.jsx";
 import { getArtistById } from "../data/rapMapArtists.js";
+import GhostButton from "../components/ui/GhostButton.jsx";
 
 export default function ArtistProfile() {
   const { id } = useParams();
@@ -46,15 +47,12 @@ export default function ArtistProfile() {
             <p className="mt-4 max-w-2xl text-paperWhite/75">{artist.summary}</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link to="/upload" className="btn-primary">
+            <GhostButton as={Link} to="/upload">
               Upload Lyrics
-            </Link>
-            <Link
-              to="/artists"
-              className="btn border border-white/20 bg-white/5 text-paperWhite hover:border-crystal/60 hover:text-crystal"
-            >
+            </GhostButton>
+            <GhostButton as={Link} to="/artists">
               Back to Artists
-            </Link>
+            </GhostButton>
           </div>
         </div>
       </section>
