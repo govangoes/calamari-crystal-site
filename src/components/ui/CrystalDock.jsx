@@ -37,7 +37,7 @@ export default function CrystalDock({
       {
         root: null,
         threshold: 0,
-        rootMargin: "0px 0px -18% 0px",
+        rootMargin: "0px",
       },
     );
 

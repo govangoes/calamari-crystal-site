@@ -56,9 +56,9 @@ export default function TopNav({ onMenuStateChange }) {
 
   useEffect(() => {
     if (!onMenuStateChange) return undefined;
-    onMenuStateChange(isMenuMounted);
+    onMenuStateChange(isMenuOpen);
     return () => onMenuStateChange(false);
-  }, [isMenuMounted, onMenuStateChange]);
+  }, [isMenuOpen, onMenuStateChange]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/15 bg-black/70 backdrop-blur">

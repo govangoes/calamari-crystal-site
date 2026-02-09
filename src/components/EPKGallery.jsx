@@ -1,5 +1,5 @@
 /* global fetch */
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Lightbox from "./Lightbox.jsx";
 import "./EPKGallery.css";
 
@@ -9,15 +9,35 @@ function toWebp(src) {
   return src.slice(0, i) + ".webp";
 }
 
+function resolveBaseUrl(baseUrl, src) {
+  if (!src) return src;
+  if (/^https?:\/\//.test(src)) return src;
+  const trimmedBase = baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl;
+  if (src.startsWith("/")) {
+    return `${trimmedBase}${src}`;
+  }
+  return `${baseUrl}${src}`;
+}
+
 export default function EPKGallery({ items: itemsProp }) {
   const [items, setItems] = useState(itemsProp || []);
   const [openIndex, setOpenIndex] = useState(null);
   const [error, setError] = useState(null);
+  const baseUrl = import.meta.env.BASE_URL;
+  const manifestUrl = resolveBaseUrl(baseUrl, "images/you/manifest.json");
+  const resolvedItems = useMemo(
+    () =>
+      items.map((item) => ({
+        ...item,
+        src: resolveBaseUrl(baseUrl, item.src),
+      })),
+    [baseUrl, items],
+  );
 
   useEffect(() => {
     if (itemsProp && itemsProp.length) return; // using provided items
     let cancelled = false;
-    fetch("/images/you/manifest.json", { cache: "no-cache" })
+    fetch(manifestUrl, { cache: "no-cache" })
       .then((r) => (r.ok ? r.json() : []))
       .then((data) => {
         if (!cancelled) setItems(Array.isArray(data) ? data : []);
@@ -28,20 +48,20 @@ export default function EPKGallery({ items: itemsProp }) {
     return () => {
       cancelled = true;
     };
-  }, [itemsProp]);
+  }, [itemsProp, manifestUrl]);
 
   if (error) {
     return <div className="text-sm text-red-400">{String(error)}</div>;
   }
 
-  if (!items.length) {
+  if (!resolvedItems.length) {
     return <div className="opacity-70">Press photos coming soon.</div>;
   }
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-8">
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((it, idx) => {
+        {resolvedItems.map((it, idx) => {
           // Prefer WebP now that variants are generated at build-time.
           return (
             <figure
@@ -115,11 +135,11 @@ export default function EPKGallery({ items: itemsProp }) {
       </div>
       {openIndex != null && (
         <Lightbox
-          items={items}
+          items={resolvedItems}
           index={openIndex}
           onClose={() => setOpenIndex(null)}
-          onPrev={() => setOpenIndex((i) => (i > 0 ? i - 1 : items.length - 1))}
-          onNext={() => setOpenIndex((i) => (i < items.length - 1 ? i + 1 : 0))}
+          onPrev={() => setOpenIndex((i) => (i > 0 ? i - 1 : resolvedItems.length - 1))}
+          onNext={() => setOpenIndex((i) => (i < resolvedItems.length - 1 ? i + 1 : 0))}
         />
       )}
     </section>
