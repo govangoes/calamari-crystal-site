@@ -12,6 +12,7 @@ export const APPLE_MUSIC_URL = "https://music.apple.com/us/artist/go-van-goes/14
 export const BANDCAMP_URL = clean(import.meta.env.VITE_BANDCAMP_URL);
 
 export const FILE_UPLOAD_URL =
+  clean(import.meta.env.VITE_FILE_UPLOAD_URL) ||
   "https://drive.google.com/drive/folders/1ZSxhU4_faGw33ARMDqDPIbo0aXhDxG5R?usp=sharing";
 
 export const SHOP_URL = clean(import.meta.env.VITE_SHOP_URL);
