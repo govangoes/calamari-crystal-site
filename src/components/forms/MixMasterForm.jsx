@@ -54,6 +54,13 @@ function validateMixMaster(fields) {
   return "";
 }
 
+function normalizeUrl(value) {
+  const trimmed = value.trim();
+  if (!trimmed) return "";
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
 export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
   const [fields, setFields] = useState(INITIAL_FIELDS);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -84,6 +91,13 @@ export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
     setValidationMessage("");
   };
 
+  const handleReferenceBlur = () => {
+    setFields((previous) => ({
+      ...previous,
+      referenceLink: normalizeUrl(previous.referenceLink),
+    }));
+  };
+
   const copySummary = async (summary = copyPayload) => {
     try {
       await copyTextToClipboard(summary);
@@ -105,6 +119,11 @@ export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const normalizedReferenceLink = normalizeUrl(fields.referenceLink);
+    const normalizedFields = {
+      ...fields,
+      referenceLink: normalizedReferenceLink,
+    };
     const validation = validateMixMaster(fields);
     if (validation) {
       setValidationMessage(validation);
@@ -121,16 +140,23 @@ export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
       toEmail: CONTACT_EMAIL,
       subject,
       fields: {
-        ...fields,
+        ...normalizedFields,
         tierPrice: selectedTier?.price || "",
         tierDetail: selectedTier?.detail || "",
       },
-      formattedBody,
+      formattedBody: formatMixMasterBody(normalizedFields, selectedTier),
     });
 
-    setSuccessSummary(copyPayload);
+    setSuccessSummary(
+      `Subject: ${subject}\n\n${formatMixMasterBody(normalizedFields, selectedTier)}`,
+    );
     if (result.via === "endpoint") {
       setFields(INITIAL_FIELDS);
+    } else {
+      setFields((previous) => ({
+        ...previous,
+        referenceLink: normalizedReferenceLink,
+      }));
     }
     setFeedbackMessage("Received. I’ll reply in 24–48 hours.");
     setIsSubmitting(false);
@@ -221,10 +247,13 @@ export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
           <CrystalInput
             id="mix-reference-link"
             name="referenceLink"
-            type="url"
+            type="text"
             value={fields.referenceLink}
             onChange={updateField("referenceLink")}
-            placeholder="https://..."
+            onBlur={handleReferenceBlur}
+            inputMode="url"
+            autoComplete="url"
+            placeholder="https://example.com (optional)"
           />
         </Field>
       </div>
