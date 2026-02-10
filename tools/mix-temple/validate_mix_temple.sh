@@ -4,13 +4,19 @@ set -euo pipefail
 ROOT="/Users/cloutlandishllc/Downloads/calamari-crystal-site/public/mix-temple"
 MIN_BYTES="${MIN_BYTES:-100000}"
 
-FILES=(
+DEFAULT_FILES=(
   "frame-0-hero.png"
   "frame-1-screen-brain.png"
   "frame-2-capture-chain.png"
   "frame-3-monitors.png"
   "frame-4-logic-pro-workflow.png"
 )
+
+if [[ "$#" -gt 0 ]]; then
+  FILES=("$@")
+else
+  FILES=("${DEFAULT_FILES[@]}")
+fi
 
 require_bin() {
   command -v "$1" >/dev/null 2>&1 || {

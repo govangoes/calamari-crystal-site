@@ -1,0 +1,90 @@
+{
+  "version": 2,
+  "model_root": "/Users/cloutlandishllc/Downloads/calamari-crystal-site/assets/mix-temple/models",
+  "instances": [
+    {
+      "id": "odyssey",
+      "file": "odyssey_g9_monitor.glb",
+      "name": "Rig_Odyssey",
+      "role": "monitor",
+      "location": [0.0, -0.02, 0.0],
+      "rotation_deg": [0.0, 0.0, 0.0],
+      "scale": [0.0038, 0.0032, 0.0019]
+    },
+    {
+      "id": "speaker_left",
+      "file": "adam_t7_speaker.glb",
+      "name": "Rig_SpeakerLeft",
+      "role": "speaker",
+      "location": [-2.42, -0.05, 0.0],
+      "rotation_deg": [0.0, 0.0, 0.0],
+      "scale": [0.24, 0.12, 0.29]
+    },
+    {
+      "id": "speaker_right",
+      "file": "adam_t7_speaker.glb",
+      "name": "Rig_SpeakerRight",
+      "role": "speaker",
+      "location": [2.42, -0.05, 0.0],
+      "rotation_deg": [0.0, 0.0, 0.0],
+      "scale": [0.24, 0.12, 0.29]
+    },
+    {
+      "id": "mac_studio",
+      "file": "mac_compact.glb",
+      "name": "Rig_MacStudio",
+      "role": "desktop",
+      "location": [0.0, -0.03, 0.18],
+      "rotation_deg": [0.0, 0.0, 0.0],
+      "scale": [1.0, 1.0, 1.0]
+    },
+    {
+      "id": "zen_go",
+      "file": "audio_interface.glb",
+      "name": "Rig_ZenGo",
+      "role": "interface",
+      "location": [1.06, -0.03, 0.12],
+      "rotation_deg": [0.0, 0.0, 0.0],
+      "scale": [1.02, 1.02, 1.02]
+    },
+    {
+      "id": "cloudlifter",
+      "file": "inline_preamp.glb",
+      "name": "Rig_Cloudlifter",
+      "role": "preamp",
+      "location": [-2.48, -0.03, 0.12],
+      "rotation_deg": [0.0, 0.0, 0.0],
+      "scale": [1.0, 1.0, 1.0]
+    },
+    {
+      "id": "sm7b",
+      "file": "shure_sm7b_mic.glb",
+      "name": "Rig_SM7B",
+      "role": "mic",
+      "location": [-2.95, -0.1, 0.48],
+      "rotation_deg": [0.0, 0.0, 15.0],
+      "scale": [1.45, 1.45, 1.45]
+    },
+    {
+      "id": "boom_arm",
+      "file": "boom_arm.glb",
+      "name": "Rig_BoomArm",
+      "role": "boom",
+      "location": [-3.36, 0.0, 0.31],
+      "rotation_deg": [0.0, 0.0, 6.0],
+      "scale": [0.88, 0.88, 0.88]
+    }
+  ],
+  "overlays": {
+    "screen_brain_ids": ["odyssey", "mac_studio"],
+    "capture_chain_points": [
+      [-2.74, -0.12, 0.48],
+      [-2.48, -0.03, 0.17],
+      [1.07, -0.03, 0.17],
+      [0.01, -0.03, 0.22]
+    ],
+    "speaker_woofer_offset": [0.0, -0.01, 0.28],
+    "daw_screen_center": [0.0, -0.08, 0.76],
+    "daw_screen_scale": [2.02, 0.004, 0.34]
+  }
+}
