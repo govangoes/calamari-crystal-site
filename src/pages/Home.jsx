@@ -57,6 +57,7 @@ export default function Home() {
       <section id="proof" className="relative mx-auto max-w-6xl isolate overflow-hidden px-4 pb-12">
         <PsychedelicTextureLayer variant="section" strength="low" />
         <div className="relative z-[1] space-y-5">
+          <AsSeenIn />
           <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
             {proofItems.map((item) => (
               <CrystalBadge key={item} variant="chip">
@@ -65,7 +66,6 @@ export default function Home() {
             ))}
           </div>
           <Hairline />
-          <AsSeenIn className="border-white/15 bg-ink/25" />
           <ProofGrid />
         </div>
       </section>

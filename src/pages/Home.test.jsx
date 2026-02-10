@@ -6,12 +6,29 @@ describe("Home", () => {
   it("renders THE MIX TEMPLE phase one section", () => {
     render(<Home />);
 
+    const asSeenInSection = screen.getByLabelText("As Seen In");
+    expect(within(asSeenInSection).getByText("AS SEEN IN")).toBeInTheDocument();
+    expect(within(asSeenInSection).getByRole("link", { name: "Rap Fiesta" })).toHaveAttribute(
+      "href",
+      "https://rapfiesta.com/go-van-goes-unknown-hacker-anthem/",
+    );
+    expect(within(asSeenInSection).getByRole("link", { name: "Orlando Voyager" })).toHaveAttribute(
+      "href",
+      "https://orlandovoyager.com/interview/meet-go-van-goes-of-orlando/",
+    );
+    expect(within(asSeenInSection).getByRole("link", { name: "Press Kit" })).toHaveAttribute(
+      "href",
+      "https://www.govangoes.com/press",
+    );
+
     const mixTempleSection = screen.getByLabelText("THE MIX TEMPLE gear tour");
     expect(screen.getByRole("heading", { name: "THE MIX TEMPLE" })).toBeInTheDocument();
     expect(within(mixTempleSection).getByText("Client-ready mix")).toBeInTheDocument();
     expect(within(mixTempleSection).getByText("Notes welcome")).toBeInTheDocument();
     expect(within(mixTempleSection).getByText("24–48h response")).toBeInTheDocument();
-    expect(within(mixTempleSection).getByText("THE MIX TEMPLE - Screen + Brain")).toBeInTheDocument();
+    expect(
+      within(mixTempleSection).getByText("THE MIX TEMPLE - Screen + Brain"),
+    ).toBeInTheDocument();
     expect(within(mixTempleSection).getByText("Logic Pro Workflow")).toBeInTheDocument();
     expect(within(mixTempleSection).getByText("Capture Chain")).toBeInTheDocument();
     expect(within(mixTempleSection).getByText("Translation")).toBeInTheDocument();
