@@ -483,6 +483,57 @@
       0 28px 64px rgba(3, 6, 16, 0.42);
   }
 
+  .mix-temple-proof-strip {
+    margin-top: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .mix-temple-proof-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.82rem;
+    border-radius: 999px;
+    border: 1px solid rgba(192, 203, 224, 0.24);
+    padding: 0.28rem 0.72rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    color: rgba(234, 239, 252, 0.88);
+    background:
+      linear-gradient(120deg, rgba(14, 21, 45, 0.56), rgba(8, 13, 27, 0.45)), rgba(8, 13, 27, 0.42);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 8px 20px rgba(3, 7, 18, 0.28);
+    backdrop-filter: blur(7px);
+  }
+
+  .mix-temple-actions {
+    margin-top: 0.92rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.6rem;
+    max-width: 34rem;
+  }
+
+  .mix-temple-action-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 2.72rem;
+  }
+
+  .mix-temple-system-spec {
+    margin-top: 0.62rem;
+    font-size: 0.75rem;
+    color: rgba(195, 203, 224, 0.74);
+    letter-spacing: 0.01em;
+    max-width: 40rem;
+  }
+
   .mix-temple-stage-sticky {
     position: relative;
   }
@@ -492,6 +543,8 @@
     aspect-ratio: 16 / 9;
     border-radius: 1.15rem;
     overflow: hidden;
+    isolation: isolate;
+    contain: paint;
     border: 1px solid rgba(195, 203, 224, 0.24);
     background:
       radial-gradient(85% 85% at 50% 0%, rgba(34, 211, 238, 0.18), transparent 62%),
@@ -503,38 +556,42 @@
       0 0 0 1px rgba(34, 211, 238, 0.08);
   }
 
+  .mix-temple-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(236, 241, 255, 0.08);
+    z-index: 4;
+  }
+
   .mix-temple-layer {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    will-change: opacity, transform;
-    transition:
-      opacity 0.55s ease,
-      transform 0.55s ease;
+    will-change: opacity;
+    transition: opacity 0.46s ease;
   }
 
   .mix-temple-layer--base {
     z-index: 1;
     opacity: 1;
-    transform: none;
   }
 
   .mix-temple-layer--overlay {
     z-index: 2;
     opacity: 0;
-    transform: scale(1.02);
   }
 
   .mix-temple-layer--active {
     opacity: 1;
-    transform: scale(1);
   }
 
   .mix-temple-layer--reduced-motion {
     transition: none;
-    transform: none;
   }
 
   .mix-temple-frame-fallback {
@@ -608,6 +665,10 @@
 
     .crystal-dock {
       display: none;
+    }
+
+    .mix-temple-actions {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .mix-temple-step {

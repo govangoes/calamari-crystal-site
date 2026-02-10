@@ -3,6 +3,7 @@ import { MIX_TEMPLE_HEADER, MIX_TEMPLE_HERO_SRC, MIX_TEMPLE_STEPS } from "../con
 import ScrollReveal from "./ScrollReveal.jsx";
 import CrystalBadge from "./ui/CrystalBadge.jsx";
 import CrystalCard from "./ui/CrystalCard.jsx";
+import GhostButton from "./ui/GhostButton.jsx";
 import PsychedelicButton from "./ui/PsychedelicButton.jsx";
 import PsychedelicTextureLayer from "./ui/PsychedelicTextureLayer.jsx";
 import SectionHeader from "./ui/SectionHeader.jsx";
@@ -12,6 +13,8 @@ const OBSERVER_OPTIONS = {
   rootMargin: "-45% 0px -45% 0px",
   threshold: 0,
 };
+
+const PROOF_STRIP_ITEMS = ["Client-ready mix", "Notes welcome", "24–48h response"];
 
 export default function MixTempleSection() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
@@ -109,6 +112,24 @@ export default function MixTempleSection() {
             title={MIX_TEMPLE_HEADER.title}
             subtitle={MIX_TEMPLE_HEADER.subtitle}
           />
+          <ul className="mix-temple-proof-strip" aria-label="Mix Temple proof points">
+            {PROOF_STRIP_ITEMS.map((item) => (
+              <li key={item} className="mix-temple-proof-pill">
+                {item}
+              </li>
+            ))}
+          </ul>
+          <div className="mix-temple-actions">
+            <PsychedelicButton as="a" href="#mixmaster" className="mix-temple-action-btn">
+              Mix &amp; Master
+            </PsychedelicButton>
+            <GhostButton as="a" href="#bookings" className="mix-temple-action-btn">
+              Book Me
+            </GhostButton>
+          </div>
+          <p className="mix-temple-system-spec">
+            Built in The Mix Temple — Mac Studio • Logic Pro • Precision chain
+          </p>
 
           <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-10">
             <div>
@@ -196,13 +217,6 @@ export default function MixTempleSection() {
                 );
               })}
             </div>
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <PsychedelicButton as="a" href={MIX_TEMPLE_HEADER.ctaHref}>
-              {MIX_TEMPLE_HEADER.ctaLabel}
-            </PsychedelicButton>
-            <p className="text-xs text-muted">Scroll for the full signal chain.</p>
           </div>
         </div>
       </section>
