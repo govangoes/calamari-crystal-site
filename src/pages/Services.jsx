@@ -118,9 +118,9 @@ export default function Services() {
           />
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <PsychedelicButton as="a" className="px-8 py-3 text-lg" href={`${baseUrl}#bookings`}>
+            <GhostButton as="a" className="px-8 py-3 text-lg" href={`${baseUrl}#bookings`}>
               Book Me
-            </PsychedelicButton>
+            </GhostButton>
             <PsychedelicButton as="a" className="px-8 py-3 text-lg" href={`${baseUrl}#mixmaster`}>
               Mix &amp; Master <ArrowRight size={18} />
             </PsychedelicButton>

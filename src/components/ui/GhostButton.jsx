@@ -8,7 +8,7 @@ export default function GhostButton({
   ...props
 }) {
   const resolvedType = Component === "button" ? (type ?? "button") : undefined;
-  const composedClassName = className ? `${BASE_CLASS} ${className}` : BASE_CLASS;
+  const composedClassName = [BASE_CLASS, className].filter(Boolean).join(" ");
 
   return (
     <Component className={composedClassName} type={resolvedType} {...props}>

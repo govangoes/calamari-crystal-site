@@ -1,5 +1,6 @@
 import React from "react";
 import { FILE_UPLOAD_URL, SHOP_URL } from "../content/links.js";
+import GhostButton from "./ui/GhostButton.jsx";
 import PsychedelicButton from "./ui/PsychedelicButton.jsx";
 import PsychedelicTextureLayer from "./ui/PsychedelicTextureLayer.jsx";
 
@@ -27,14 +28,14 @@ export default function Hero() {
         </div>
 
         <div className="mt-10 flex flex-wrap justify-center gap-3 sm:gap-4">
-          <PsychedelicButton
+          <GhostButton
             as="a"
             className="text-sm sm:text-base"
             href={`${baseUrl}#bookings`}
             aria-label="Book Go Van Goes for a show or event"
           >
             Book Me
-          </PsychedelicButton>
+          </GhostButton>
           <PsychedelicButton as="a" href={`${baseUrl}#mixmaster`} className="text-sm sm:text-base">
             Mix &amp; Master
           </PsychedelicButton>

@@ -10,18 +10,20 @@
   :root {
     --text-strong: #f4f6ff;
     --text-muted: #c3cbe0;
-    --cc-glow-strength: 0.35;
-    --cc-glow-hover-boost: 0.15;
-    --cc-glass-blur: 10px;
-    --cc-card-radius: 18px;
+    --cc-glow-strength: 0.3;
+    --cc-glow-hover-boost: 0.1;
+    --cc-glow-falloff: 1.18;
+    --cc-glass-blur: 13px;
+    --cc-card-radius: 20px;
     --cc-radius-sm: 12px;
-    --cc-radius-lg: 26px;
-    --cc-shadow-depth: 0.45;
-    --cc-texture-hero: 0.22;
-    --cc-texture-section: 0.14;
-    --cc-focus-ring: 2px;
+    --cc-radius-lg: 30px;
+    --cc-shadow-depth: 0.56;
+    --cc-texture-hero: 0.18;
+    --cc-texture-section: 0.11;
+    --cc-focus-ring: 3px;
+    --cc-hairline-alpha: 0.72;
     --cc-container-max: 1120px;
-    --cc-section-y: 72px;
+    --cc-section-y: 80px;
   }
 
   html {
@@ -62,12 +64,22 @@
     color: var(--text-muted);
   }
 
+  .surface {
+    border-color: rgba(210, 218, 238, 0.2);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 calc(26px * var(--cc-shadow-depth)) calc(56px * var(--cc-shadow-depth)) rgba(4, 9, 21, 0.34);
+    backdrop-filter: saturate(112%) blur(calc(var(--cc-glass-blur) * 0.16));
+  }
+
   .crystal-card {
     border-color: rgba(210, 218, 238, 0.22);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 calc(34px * var(--cc-shadow-depth)) calc(72px * var(--cc-shadow-depth))
-        rgba(5, 10, 24, 0.42);
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 calc(30px * var(--cc-shadow-depth)) calc(70px * var(--cc-shadow-depth))
+        rgba(5, 10, 24, 0.42),
+      0 0 calc(20px * var(--cc-glow-strength) * var(--cc-glow-falloff))
+        rgba(34, 211, 238, calc(0.015 + (var(--cc-glow-strength) * 0.05)));
   }
 
   .crystal-card--solid {
@@ -149,12 +161,12 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(123, 52, 189, 0.42) 32%,
-      rgba(34, 211, 238, 0.38) 50%,
-      rgba(123, 52, 189, 0.42) 68%,
+      rgba(123, 52, 189, calc(0.5 * var(--cc-hairline-alpha))) 32%,
+      rgba(34, 211, 238, calc(0.56 * var(--cc-hairline-alpha))) 50%,
+      rgba(123, 52, 189, calc(0.5 * var(--cc-hairline-alpha))) 68%,
       transparent 100%
     );
-    opacity: 0.65;
+    opacity: var(--cc-hairline-alpha);
   }
 
   .crystal-field-label {
@@ -222,6 +234,7 @@
     background-repeat: no-repeat;
   }
 
+  /* High-contrast focus ring: dark separator + bright outer ring for mixed glass/gradient surfaces. */
   .crystal-input:focus-visible,
   .crystal-textarea:focus-visible,
   .crystal-select:focus-visible {
@@ -229,9 +242,9 @@
     box-shadow:
       0 0 0 var(--cc-focus-ring) rgba(9, 13, 28, 0.96),
       0 0 0 calc(var(--cc-focus-ring) * 2)
-        rgba(111, 45, 168, calc(0.24 + (var(--cc-glow-strength) * 0.35))),
-      0 0 calc(16px + (14px * var(--cc-glow-strength)))
-        rgba(34, 211, 238, calc(0.1 + (var(--cc-glow-strength) * 0.2)));
+        rgba(111, 45, 168, calc(0.24 + ((var(--cc-glow-strength) * var(--cc-glow-falloff)) * 0.35))),
+      0 0 calc(16px + (14px * var(--cc-glow-strength) * var(--cc-glow-falloff)))
+        rgba(34, 211, 238, calc(0.1 + ((var(--cc-glow-strength) * var(--cc-glow-falloff)) * 0.2)));
     background: rgba(10, 14, 30, 0.88);
   }
 
@@ -308,14 +321,15 @@
     pointer-events: none;
   }
 
+  /* High-contrast focus ring: dark separator + bright outer ring for mixed glass/gradient surfaces. */
   .ui-btn:focus-visible {
     outline: none;
     box-shadow:
       0 0 0 var(--cc-focus-ring) rgba(10, 16, 34, 0.95),
       0 0 0 calc(var(--cc-focus-ring) * 2)
-        rgba(34, 211, 238, calc(0.4 + (var(--cc-glow-strength) * 0.45))),
-      0 0 calc(16px + (20px * var(--cc-glow-strength)))
-        rgba(34, 211, 238, calc(0.14 + (var(--cc-glow-strength) * 0.28)));
+        rgba(34, 211, 238, calc(0.4 + ((var(--cc-glow-strength) * var(--cc-glow-falloff)) * 0.45))),
+      0 0 calc(16px + (20px * var(--cc-glow-strength) * var(--cc-glow-falloff)))
+        rgba(34, 211, 238, calc(0.14 + ((var(--cc-glow-strength) * var(--cc-glow-falloff)) * 0.28)));
   }
 
   .psy-button {
@@ -333,8 +347,8 @@
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.14),
       0 10px 22px rgba(18, 8, 44, 0.5),
-      0 0 calc(34px * var(--cc-glow-strength))
-        rgba(34, 211, 238, calc(0.08 + (var(--cc-glow-strength) * 0.28)));
+      0 0 calc(34px * var(--cc-glow-strength) * var(--cc-glow-falloff))
+        rgba(34, 211, 238, calc(0.08 + ((var(--cc-glow-strength) * var(--cc-glow-falloff)) * 0.28)));
   }
 
   .psy-button::before {
@@ -355,12 +369,19 @@
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.2),
       0 12px 26px rgba(18, 8, 44, 0.56),
-      0 0 calc(38px * (var(--cc-glow-strength) + var(--cc-glow-hover-boost)))
+      0 0
+        calc(38px * (var(--cc-glow-strength) + var(--cc-glow-hover-boost)) * var(--cc-glow-falloff))
         rgba(
           34,
           211,
           238,
-          calc(0.08 + ((var(--cc-glow-strength) + var(--cc-glow-hover-boost)) * 0.36))
+          calc(
+            0.08 +
+              (
+                ((var(--cc-glow-strength) + var(--cc-glow-hover-boost)) * var(--cc-glow-falloff)) *
+                  0.36
+              )
+          )
         );
   }
 
@@ -374,27 +395,24 @@
 
   .ghost-button {
     color: var(--text-strong);
-    border: 1px solid rgba(212, 220, 238, 0.4);
-    background: rgba(8, 11, 24, 0.3);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 220, 238, 0.34);
+    background: rgba(8, 11, 24, 0.08);
+    box-shadow: none;
   }
 
   .ghost-button::before {
-    opacity: 0;
+    display: none;
   }
 
   .ghost-button:hover {
-    transform: translateY(-1px);
-    border-color: rgba(34, 211, 238, calc(0.26 + (var(--cc-glow-strength) * 0.56)));
-    background: rgba(9, 14, 29, 0.45);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.07),
-      0 0 calc(10px + (12px * var(--cc-glow-strength)))
-        rgba(34, 211, 238, calc(0.05 + (var(--cc-glow-strength) * 0.16)));
+    transform: translateY(-0.5px);
+    border-color: rgba(212, 220, 238, 0.58);
+    background: rgba(236, 241, 255, 0.08);
+    box-shadow: none;
   }
 
   .ghost-button:active {
-    transform: scale(0.99);
+    transform: translateY(0);
   }
 
   .psy-texture-layer {
@@ -406,58 +424,53 @@
     overflow: hidden;
     --cc-texture-base-opacity: var(--cc-texture-section);
     --cc-texture-strength-multiplier: 1;
+    /* Keep texture legible: edge accents with a calmer center and low global opacity. */
     opacity: calc(var(--cc-texture-base-opacity) * var(--cc-texture-strength-multiplier));
   }
 
   .psy-texture-layer--low {
-    --cc-texture-strength-multiplier: 0.88;
+    --cc-texture-strength-multiplier: 0.82;
   }
 
   .psy-texture-layer--medium {
-    --cc-texture-strength-multiplier: 1.18;
+    --cc-texture-strength-multiplier: 1.02;
   }
 
   .psy-texture-layer--hero {
     --cc-texture-base-opacity: var(--cc-texture-hero);
     background:
-      radial-gradient(95% 85% at 0% 8%, rgba(111, 45, 168, 0.66), transparent 58%),
-      radial-gradient(95% 90% at 100% 10%, rgba(34, 211, 238, 0.52), transparent 62%),
-      radial-gradient(90% 75% at 88% 100%, rgba(111, 45, 168, 0.4), transparent 64%),
-      linear-gradient(140deg, rgba(8, 11, 24, 0.08), rgba(8, 11, 24, 0));
+      radial-gradient(72% 68% at 0% 0%, rgba(123, 52, 189, 0.52), transparent 62%),
+      radial-gradient(76% 72% at 100% 100%, rgba(34, 211, 238, 0.4), transparent 64%),
+      radial-gradient(
+        122% 118% at 50% 52%,
+        rgba(4, 8, 20, 0.92) 0%,
+        rgba(4, 8, 20, 0.86) 48%,
+        rgba(4, 8, 20, 0.18) 82%,
+        transparent 100%
+      );
   }
 
   .psy-texture-layer--section {
     --cc-texture-base-opacity: var(--cc-texture-section);
     background:
-      radial-gradient(85% 70% at 2% 0%, rgba(111, 45, 168, 0.48), transparent 60%),
-      radial-gradient(90% 75% at 98% 0%, rgba(34, 211, 238, 0.34), transparent 62%),
-      radial-gradient(95% 70% at 95% 100%, rgba(111, 45, 168, 0.3), transparent 68%),
-      linear-gradient(160deg, rgba(8, 11, 24, 0.06), rgba(8, 11, 24, 0));
+      radial-gradient(70% 66% at 0% 6%, rgba(123, 52, 189, 0.4), transparent 60%),
+      radial-gradient(72% 68% at 100% 0%, rgba(34, 211, 238, 0.3), transparent 62%),
+      radial-gradient(
+        120% 116% at 50% 56%,
+        rgba(4, 8, 20, 0.9) 0%,
+        rgba(4, 8, 20, 0.82) 46%,
+        rgba(4, 8, 20, 0.15) 80%,
+        transparent 100%
+      );
   }
 
   .psy-texture-layer::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(244, 246, 255, 0.1) 0.45px, transparent 0.45px);
-    background-size: 3px 3px;
-    opacity: 0.18;
-    mix-blend-mode: soft-light;
-  }
-
-  .psy-texture-layer::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.14) 0%,
-      transparent 26%,
-      transparent 74%,
-      rgba(255, 255, 255, 0.12) 100%
-    );
-    opacity: 0.22;
-    mix-blend-mode: screen;
+    background-image: radial-gradient(rgba(244, 246, 255, 0.2) 0.32px, transparent 0.5px);
+    background-size: 3.1px 3.1px;
+    opacity: 0.04;
   }
 
   .pill {
@@ -916,12 +929,23 @@
   }
 
   .crystal-dock .ghost-button {
-    border-color: rgba(195, 203, 224, 0.46);
-    background: rgba(8, 12, 26, 0.42);
+    border-color: rgba(195, 203, 224, 0.42);
+    background: rgba(8, 12, 26, 0.16);
   }
 
   .crystal-dock .ghost-button:hover {
-    background: rgba(9, 14, 29, 0.52);
+    border-color: rgba(212, 220, 238, 0.58);
+    background: rgba(236, 241, 255, 0.12);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .psy-texture-layer {
+      --cc-texture-strength-multiplier: 0.72;
+    }
+
+    .psy-texture-layer::before {
+      opacity: 0.025;
+    }
   }
 
   .scroll-cue {

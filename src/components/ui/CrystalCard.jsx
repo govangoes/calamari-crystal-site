@@ -1,5 +1,5 @@
 const CARD_BASE =
-  "crystal-card relative isolate overflow-hidden rounded-[var(--cc-card-radius)] border text-paperWhite";
+  "surface crystal-card relative isolate overflow-hidden rounded-[var(--cc-card-radius)] border text-paperWhite";
 
 const VARIANT_CLASS_MAP = {
   solid: "crystal-card--solid",

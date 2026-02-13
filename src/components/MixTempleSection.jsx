@@ -5,7 +5,6 @@ import CrystalBadge from "./ui/CrystalBadge.jsx";
 import CrystalCard from "./ui/CrystalCard.jsx";
 import GhostButton from "./ui/GhostButton.jsx";
 import PsychedelicButton from "./ui/PsychedelicButton.jsx";
-import PsychedelicTextureLayer from "./ui/PsychedelicTextureLayer.jsx";
 import SectionHeader from "./ui/SectionHeader.jsx";
 
 const OBSERVER_OPTIONS = {
@@ -105,7 +104,6 @@ export default function MixTempleSection() {
         className="mix-temple-root relative isolate overflow-hidden rounded-[26px] border border-white/15 px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10"
         aria-label="THE MIX TEMPLE gear tour"
       >
-        <PsychedelicTextureLayer variant="section" strength="low" />
         <div className="relative z-[1]">
           <SectionHeader
             eyebrow={MIX_TEMPLE_HEADER.eyebrow}
