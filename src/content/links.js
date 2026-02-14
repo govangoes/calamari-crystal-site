@@ -10,6 +10,22 @@ export const YOUTUBE_URL =
   (HAS_YOUTUBE ? `https://www.youtube.com/watch?v=${YT_VIDEO_ID}` : "");
 export const APPLE_MUSIC_URL = "https://music.apple.com/us/artist/go-van-goes/1462114556";
 export const BANDCAMP_URL = clean(import.meta.env.VITE_BANDCAMP_URL);
+export const AUDIO_PROOF_URL = clean(import.meta.env.VITE_AUDIO_PROOF_URL);
+
+export const PRESS_FEATURE_LINKS = [
+  {
+    label: "Rap Fiesta",
+    href: "https://rapfiesta.com/go-van-goes-unknown-hacker-anthem/",
+  },
+  {
+    label: "Orlando Voyager",
+    href: "https://orlandovoyager.com/interview/meet-go-van-goes-of-orlando/",
+  },
+  {
+    label: "GoVanGoes Press Kit",
+    href: "https://www.govangoes.com/press",
+  },
+];
 
 export const FILE_UPLOAD_URL =
   clean(import.meta.env.VITE_FILE_UPLOAD_URL) ||

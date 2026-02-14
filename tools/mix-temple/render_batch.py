@@ -19,11 +19,11 @@ OVERLAY_COLLECTIONS = [
 ]
 
 FRAMES = [
-    ("frame-0-hero.png", set()),
-    ("frame-1-screen-brain.png", {"FRAME_1_SCREEN_BRAIN"}),
-    ("frame-2-capture-chain.png", {"FRAME_2_CAPTURE_CHAIN"}),
-    ("frame-3-monitors.png", {"FRAME_3_MONITORS"}),
-    ("frame-4-logic-pro-workflow.png", {"FRAME_4_DAW"}),
+    ("frame-0-hero.png", set(), True),
+    ("frame-1-screen-brain.png", {"FRAME_1_SCREEN_BRAIN"}, False),
+    ("frame-2-capture-chain.png", {"FRAME_2_CAPTURE_CHAIN"}, False),
+    ("frame-3-monitors.png", {"FRAME_3_MONITORS"}, False),
+    ("frame-4-logic-pro-workflow.png", {"FRAME_4_DAW"}, False),
 ]
 
 PROOF_FRAME_NAMES = {"frame-0-hero.png", "frame-2-capture-chain.png"}
@@ -75,6 +75,8 @@ def configure_render_settings(scene):
     scene.cycles.samples = max(SAMPLES, 32)
     scene.cycles.use_adaptive_sampling = True
     scene.cycles.adaptive_threshold = min(getattr(scene.cycles, "adaptive_threshold", 0.02), 0.02)
+    if hasattr(scene.cycles, "filter_width"):
+        scene.cycles.filter_width = 1.05
     if hasattr(scene.cycles, "use_denoising"):
         scene.cycles.use_denoising = True
     if scene.view_layers and hasattr(scene.view_layers[0], "cycles"):
@@ -122,17 +124,17 @@ def selected_frames(only_filenames, proof_mode):
     targets = set(only_filenames)
     filtered = [frame for frame in FRAMES if frame[0] in targets]
     if not filtered:
-        known = ", ".join(name for name, _ in FRAMES)
+        known = ", ".join(name for name, _, _ in FRAMES)
         raise RuntimeError(f"Unknown --only target(s). Expected one of: {known}")
     if len(filtered) != len(targets):
-        known = {name for name, _ in FRAMES}
+        known = {name for name, _, _ in FRAMES}
         unknown = sorted(targets - known)
         raise RuntimeError(f"Unknown --only target(s): {', '.join(unknown)}")
     return filtered
 
 
-def render_frame(scene, filename, active_overlays):
-    set_collection_enabled("BASE", True)
+def render_frame(scene, filename, active_overlays, include_base):
+    set_collection_enabled("BASE", include_base)
 
     for overlay in OVERLAY_COLLECTIONS:
         set_collection_enabled(overlay, overlay in active_overlays)
@@ -140,7 +142,10 @@ def render_frame(scene, filename, active_overlays):
     output_path = os.path.join(OUT_DIR, filename)
     scene.render.filepath = output_path
     bpy.ops.render.render(write_still=True)
-    print(f"Rendered {filename} with overlays: {sorted(active_overlays) if active_overlays else 'none'}")
+    print(
+        f"Rendered {filename} with overlays: {sorted(active_overlays) if active_overlays else 'none'}"
+        f" | include_base={include_base}"
+    )
 
 
 def main():
@@ -164,8 +169,8 @@ def main():
         bpy.ops.wm.save_mainfile(filepath=bpy.data.filepath or BLEND_PATH)
         print("Locked BASE/CAMERA/LIGHT transforms and saved blend.")
 
-    for filename, active_overlays in selected_frames(options["only"], options["proof"]):
-        render_frame(scene, filename, active_overlays)
+    for filename, active_overlays, include_base in selected_frames(options["only"], options["proof"]):
+        render_frame(scene, filename, active_overlays, include_base)
 
     # Restore overlay off-state at end.
     for overlay in OVERLAY_COLLECTIONS:

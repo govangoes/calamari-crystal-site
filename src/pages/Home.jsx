@@ -20,7 +20,7 @@ import {
   SPOTIFY_TYPE,
   YT_VIDEO_ID,
 } from "../content/media.js";
-import { FILE_UPLOAD_URL, STREAMING_LINKS } from "../content/links.js";
+import { AUDIO_PROOF_URL, FILE_UPLOAD_URL, STREAMING_LINKS } from "../content/links.js";
 import { shows, showsCta } from "../content/shows.js";
 import PsychedelicTextureLayer from "../components/ui/PsychedelicTextureLayer.jsx";
 
@@ -154,6 +154,21 @@ export default function Home() {
             />
           </VideoFrame>
         ) : null}
+
+        <CrystalCard variant="outline" className="space-y-3 p-5">
+          <h3 className="text-base font-semibold text-paperWhite">Audio proof</h3>
+          {AUDIO_PROOF_URL ? (
+            // This slot is music-only proof audio, so caption tracks do not apply.
+            // eslint-disable-next-line jsx-a11y/media-has-caption
+            <audio className="w-full" controls preload="metadata" src={AUDIO_PROOF_URL}>
+              Your browser does not support the audio element.
+            </audio>
+          ) : (
+            <p className="text-sm text-muted">
+              Audio proofs are being curated. Want one of your songs featured? Book a session.
+            </p>
+          )}
+        </CrystalCard>
 
         <Hairline />
         <div className="flex flex-wrap gap-3">

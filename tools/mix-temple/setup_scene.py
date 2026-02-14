@@ -4,7 +4,7 @@
 import json
 import math
 import os
-from typing import Dict, Iterable, List, Tuple
+from typing import Dict, List
 
 import bpy
 import mathutils
@@ -30,6 +30,8 @@ def reset_scene():
     scene.cycles.samples = max(SAMPLES, 32)
     scene.cycles.use_adaptive_sampling = True
     scene.cycles.adaptive_threshold = 0.02
+    if hasattr(scene.cycles, "filter_width"):
+        scene.cycles.filter_width = 1.05
     if hasattr(scene.cycles, "use_denoising"):
         scene.cycles.use_denoising = True
     if scene.view_layers and hasattr(scene.view_layers[0], "cycles"):
@@ -439,7 +441,7 @@ def import_asset_instance(instance, model_root, base_collection):
     return root
 
 
-def world_bbox(root):
+def world_bbox_extents(root):
     points = []
     for obj in [root, *root.children_recursive]:
         if obj.type != "MESH":
@@ -449,30 +451,43 @@ def world_bbox(root):
 
     if not points:
         origin = root.matrix_world.translation
-        return origin, mathutils.Vector((0.1, 0.1, 0.1))
+        min_v = origin - mathutils.Vector((0.1, 0.1, 0.1))
+        max_v = origin + mathutils.Vector((0.1, 0.1, 0.1))
+        return min_v, max_v
 
     min_v = mathutils.Vector((min(p.x for p in points), min(p.y for p in points), min(p.z for p in points)))
     max_v = mathutils.Vector((max(p.x for p in points), max(p.y for p in points), max(p.z for p in points)))
+    return min_v, max_v
+
+
+def world_bbox(root):
+    min_v, max_v = world_bbox_extents(root)
     center = (min_v + max_v) / 2
     half = (max_v - min_v) / 2
     return center, half
 
 
-def create_glow_hull(name, center, half_extents, material, collection, pad=(0.04, 0.02, 0.02)):
+def create_glow_outline(name, center, half_extents, material, collection, pad=(0.04, 0.02, 0.02), thickness=0.01):
     bpy.ops.mesh.primitive_cube_add(location=center)
-    hull = bpy.context.active_object
-    hull.name = name
-    hull.scale = (
+    outline = bpy.context.active_object
+    outline.name = name
+    outline.scale = (
         half_extents.x + pad[0],
         max(half_extents.y + pad[1], 0.01),
         half_extents.z + pad[2],
     )
-    hull.data.materials.append(material)
-    link_hierarchy_to_collection(hull, collection)
-    return hull
+    wireframe = outline.modifiers.new(name="Wireframe", type="WIREFRAME")
+    wireframe.use_replace = True
+    wireframe.use_even_offset = True
+    wireframe.use_relative_offset = False
+    wireframe.use_boundary = True
+    wireframe.thickness = max(thickness, 0.002)
+    outline.data.materials.append(material)
+    link_hierarchy_to_collection(outline, collection)
+    return outline
 
 
-def apply_premium_polish(scene, root_collection):
+def apply_premium_polish(scene, root_collection, camera_settings=None):
     # World: near-black base with low-saturation edge-biased ultraviolet/cyan energy.
     world = bpy.data.worlds.new("MixTempleWorld")
     scene.world = world
@@ -483,25 +498,25 @@ def apply_premium_polish(scene, root_collection):
 
     w_out = wnodes.new("ShaderNodeOutputWorld")
     w_bg = wnodes.new("ShaderNodeBackground")
-    w_bg.inputs["Strength"].default_value = 0.026
+    w_bg.inputs["Strength"].default_value = 0.02
     w_mix = wnodes.new("ShaderNodeMixRGB")
     w_mix.blend_type = "MIX"
-    w_mix.inputs["Fac"].default_value = 0.3
-    w_mix.inputs["Color1"].default_value = (0.018, 0.02, 0.028, 1.0)
+    w_mix.inputs["Fac"].default_value = 0.26
+    w_mix.inputs["Color1"].default_value = (0.016, 0.018, 0.024, 1.0)
 
     w_coord = wnodes.new("ShaderNodeTexCoord")
     w_mapping = wnodes.new("ShaderNodeMapping")
-    w_mapping.inputs["Scale"].default_value = (0.34, 1.0, 1.0)
-    w_mapping.inputs["Rotation"].default_value = (0.0, 0.0, 0.03)
+    w_mapping.inputs["Scale"].default_value = (0.3, 1.0, 1.0)
+    w_mapping.inputs["Rotation"].default_value = (0.0, 0.0, 0.02)
     w_grad = wnodes.new("ShaderNodeTexGradient")
     w_grad.gradient_type = "LINEAR"
     w_ramp = wnodes.new("ShaderNodeValToRGB")
     w_ramp.color_ramp.elements[0].position = 0.0
-    w_ramp.color_ramp.elements[0].color = (0.11, 0.09, 0.18, 1.0)
+    w_ramp.color_ramp.elements[0].color = (0.08, 0.075, 0.14, 1.0)
     w_mid = w_ramp.color_ramp.elements.new(0.5)
-    w_mid.color = (0.016, 0.018, 0.024, 1.0)
+    w_mid.color = (0.013, 0.015, 0.02, 1.0)
     w_ramp.color_ramp.elements[1].position = 1.0
-    w_ramp.color_ramp.elements[1].color = (0.06, 0.105, 0.13, 1.0)
+    w_ramp.color_ramp.elements[1].color = (0.045, 0.085, 0.11, 1.0)
 
     wlinks.new(w_coord.outputs["Generated"], w_mapping.inputs["Vector"])
     wlinks.new(w_mapping.outputs["Vector"], w_grad.inputs["Vector"])
@@ -513,43 +528,53 @@ def apply_premium_polish(scene, root_collection):
     # Camera: keep framing intent, perspective product lens, deterministic focus (no bokeh blur).
     camera_data = bpy.data.cameras.new("MixTempleCamera")
     camera_data.type = "PERSP"
-    camera_data.lens = 95
+    camera_defaults = {
+        "lens": 95,
+        "location": (0.0, -18.55, 1.24),
+        "target": (0.0, -0.02, 0.5),
+    }
+    if camera_settings:
+        camera_defaults["lens"] = float(camera_settings.get("lens", camera_defaults["lens"]))
+        camera_defaults["location"] = tuple(camera_settings.get("location", camera_defaults["location"]))
+        camera_defaults["target"] = tuple(camera_settings.get("target", camera_defaults["target"]))
+
+    camera_data.lens = camera_defaults["lens"]
     camera_data.sensor_width = 36
     camera_data.dof.use_dof = False
     camera = bpy.data.objects.new("MixTempleCamera", camera_data)
     root_collection.objects.link(camera)
-    camera.location = (0.0, -18.55, 1.24)
-    look_at(camera, (0.0, -0.02, 0.5))
+    camera.location = camera_defaults["location"]
+    look_at(camera, camera_defaults["target"])
     scene.camera = camera
 
     # Filmic contrast polish to keep blacks deep without muddy midtone haze.
     scene.view_settings.look = "High Contrast"
-    scene.view_settings.exposure = 0.08
+    scene.view_settings.exposure = 0.06
 
     # Lighting: clean key + cyan rim + very low fill, keeping black depth intact.
     add_area_light(
         "Key",
-        (0.1, -3.85, 3.45),
-        (0.0, -0.02, 0.82),
-        (4.5, 2.4),
-        178,
+        (0.06, -3.5, 3.72),
+        (0.0, -0.02, 0.86),
+        (4.2, 2.2),
+        172,
         (0.96, 0.97, 1.0),
     )
     add_area_light(
         "RimCyan",
-        (5.25, -1.28, 1.72),
+        (4.85, -1.18, 1.85),
         (0.0, -0.02, 0.78),
-        (4.1, 0.42),
-        118,
-        (0.53, 0.87, 1.0),
+        (3.9, 0.38),
+        86,
+        (0.47, 0.75, 0.9),
     )
     add_area_light(
         "FillLow",
-        (-3.6, -4.8, 1.4),
+        (-3.2, -4.6, 1.6),
         (-0.2, -0.02, 0.76),
-        (2.6, 1.0),
+        (2.2, 0.8),
         14,
-        (0.83, 0.8, 0.93),
+        (0.82, 0.81, 0.9),
     )
 
 
@@ -567,7 +592,7 @@ def build_scene():
     frame3 = ensure_collection("FRAME_3_MONITORS", root_collection)
     frame4 = ensure_collection("FRAME_4_DAW", root_collection)
 
-    apply_premium_polish(scene, root_collection)
+    apply_premium_polish(scene, root_collection, manifest.get("camera"))
 
     add_grounding_desk(base)
     shadow_catcher = make_shadow_catcher(location=(0, 0, 0.0), size=16)
@@ -585,53 +610,67 @@ def build_scene():
         "Mat_Glow_Cyan",
         base=(0.0, 0.0, 0.0, 1.0),
         metallic=0.0,
-        roughness=0.35,
-        emission_color=(0.22, 0.64, 1.0, 1.0),
-        emission_strength=2.0,
+        roughness=0.4,
+        emission_color=(0.2, 0.59, 0.95, 1.0),
+        emission_strength=1.15,
     )
     mat_glow_prism = make_material(
         "Mat_Glow_Prism",
         base=(0.0, 0.0, 0.0, 1.0),
         metallic=0.0,
-        roughness=0.35,
-        emission_color=(0.86, 0.4, 1.0, 1.0),
-        emission_strength=1.55,
+        roughness=0.4,
+        emission_color=(0.76, 0.44, 0.95, 1.0),
+        emission_strength=0.92,
     )
     mat_daw = make_material(
         "Mat_DAW",
         base=(0.0, 0.0, 0.0, 1.0),
         metallic=0.0,
-        roughness=0.2,
-        emission_color=(0.42, 0.82, 1.0, 1.0),
-        emission_strength=1.0,
+        roughness=0.24,
+        emission_color=(0.44, 0.84, 1.0, 1.0),
+        emission_strength=0.86,
     )
 
-    # Frame 1: screen + brain hulls.
+    # Frame 1: screen + brain contours (wire outlines, no filled blocks).
+    outline_pad = overlays.get("screen_outline_pad", [0.04, 0.02, 0.03])
+    outline_thickness = float(overlays.get("screen_outline_thickness", 0.01))
     for idx, target_id in enumerate(overlays["screen_brain_ids"]):
         center, half = world_bbox(roots[target_id])
         mat = mat_glow_prism if idx == 0 else mat_glow_cyan
-        create_glow_hull(f"Glow_{target_id}", center, half, mat, frame1, pad=(0.05, 0.03, 0.03))
+        id_thickness = outline_thickness if target_id == "odyssey" else outline_thickness * 0.62
+        create_glow_outline(
+            f"Glow_{target_id}",
+            center,
+            half,
+            mat,
+            frame1,
+            pad=tuple(float(v) for v in outline_pad),
+            thickness=id_thickness,
+        )
 
     # Frame 2: capture chain glow path.
     points = overlays["capture_chain_points"]
+    capture_chain_radius = float(overlays.get("capture_chain_radius", 0.0105))
     for idx in range(len(points) - 1):
         create_cable(
             f"Glow_Chain_{idx+1}",
             points[idx],
             points[idx + 1],
-            0.0105,
+            capture_chain_radius,
             mat_glow_cyan,
             frame2,
         )
 
     # Frame 3: speaker woofer glow rings.
     woofer_offset = overlays["speaker_woofer_offset"]
+    speaker_ring_major = float(overlays.get("speaker_ring_major_radius", 0.112))
+    speaker_ring_minor = float(overlays.get("speaker_ring_minor_radius", 0.013))
     for speaker_id in ("speaker_left", "speaker_right"):
         root = roots[speaker_id]
         center = root.matrix_world.translation + mathutils.Vector(woofer_offset)
         bpy.ops.mesh.primitive_torus_add(
-            major_radius=0.112,
-            minor_radius=0.013,
+            major_radius=speaker_ring_major,
+            minor_radius=speaker_ring_minor,
             location=center,
             rotation=(math.radians(-90), 0, math.radians(root.rotation_euler.z)),
         )
@@ -640,28 +679,67 @@ def build_scene():
         ring.data.materials.append(mat_glow_prism)
         link_hierarchy_to_collection(ring, frame3)
 
-    # Frame 4: DAW inspired abstract timeline.
-    daw_center = overlays["daw_screen_center"]
-    daw_scale = overlays["daw_screen_scale"]
+    # Frame 4: DAW overlay sits inside monitor screen plane.
+    monitor_id = overlays.get("daw_plane_monitor_id", "odyssey")
+    monitor_root = roots.get(monitor_id, roots["odyssey"])
+    monitor_min, monitor_max = world_bbox_extents(monitor_root)
 
-    bpy.ops.mesh.primitive_cube_add(location=daw_center, scale=tuple(daw_scale))
-    daw_base = bpy.context.active_object
-    daw_base.name = "DAW_ScreenGlow"
-    daw_base.data.materials.append(mat_glow_cyan)
-    link_hierarchy_to_collection(daw_base, frame4)
+    daw_y_offset = float(overlays.get("daw_plane_y_offset", 0.004))
+    daw_inset_x = float(overlays.get("daw_inset_x", 0.86))
+    daw_inset_z = float(overlays.get("daw_inset_z", 0.6))
+    daw_z_bias = float(overlays.get("daw_plane_z_bias", 0.0))
+    daw_lane_count = max(3, int(overlays.get("daw_lane_count", 5)))
+    daw_lane_height = float(overlays.get("daw_lane_height", 0.011))
+    daw_lane_spacing = float(overlays.get("daw_lane_spacing", 0.082))
+    daw_clip_rows = max(3, int(overlays.get("daw_clip_rows", 4)))
 
-    lane_z = [daw_center[2] + 0.24, daw_center[2] + 0.16, daw_center[2] + 0.08, daw_center[2], daw_center[2] - 0.08]
-    for idx, z in enumerate(lane_z):
-        bpy.ops.mesh.primitive_cube_add(location=(daw_center[0], daw_center[1] - 0.001, z), scale=(daw_scale[0] * 0.96, 0.0015, 0.01))
+    monitor_center = (monitor_min + monitor_max) / 2
+    daw_center = (
+        monitor_center.x,
+        monitor_min.y - daw_y_offset,
+        monitor_center.z + daw_z_bias,
+    )
+    daw_scale = (
+        max((monitor_max.x - monitor_min.x) * 0.5 * daw_inset_x, 0.8),
+        0.001,
+        max((monitor_max.z - monitor_min.z) * 0.5 * daw_inset_z, 0.14),
+    )
+
+    create_glow_outline(
+        "DAW_ScreenOutline",
+        mathutils.Vector(daw_center),
+        mathutils.Vector((daw_scale[0], 0.0006, daw_scale[2])),
+        mat_glow_cyan,
+        frame4,
+        pad=(0.01, 0.00025, 0.01),
+        thickness=0.0034,
+    )
+
+    top_lane_z = daw_center[2] + ((daw_lane_count - 1) * daw_lane_spacing * 0.5)
+    for idx in range(daw_lane_count):
+        z = top_lane_z - idx * daw_lane_spacing
+        bpy.ops.mesh.primitive_cube_add(
+            location=(daw_center[0], daw_center[1] - 0.0002, z),
+            scale=(daw_scale[0] * 0.96, 0.0004, daw_lane_height),
+        )
         lane = bpy.context.active_object
         lane.name = f"DAW_Lane_{idx+1}"
         lane.data.materials.append(mat_daw)
         link_hierarchy_to_collection(lane, frame4)
 
-        for block in range(4):
-            x = -1.95 + block * 1.25 + (0.09 if idx % 2 == 0 else -0.05)
-            width = 0.26 + 0.12 * ((idx + block) % 3)
-            bpy.ops.mesh.primitive_cube_add(location=(x, daw_center[1] - 0.0018, z), scale=(width, 0.0018, 0.018))
+        lane_span = daw_scale[0] * 1.92
+        clip_step = lane_span / daw_clip_rows
+        for block in range(daw_clip_rows):
+            width = clip_step * (0.34 + 0.1 * ((idx + block) % 3))
+            lane_jitter = clip_step * (0.08 if idx % 2 == 0 else -0.05)
+            x = -daw_scale[0] * 0.94 + clip_step * (block + 0.5) + lane_jitter
+            min_x = -daw_scale[0] * 0.93 + width * 0.5
+            max_x = daw_scale[0] * 0.93 - width * 0.5
+            x = min(max_x, max(min_x, x))
+            bpy.ops.mesh.primitive_cube_add(
+                location=(x, daw_center[1] - 0.00035, z),
+                scale=(width, 0.00038, daw_lane_height * 1.35),
+            )
             clip = bpy.context.active_object
             clip.name = f"DAW_Lane_{idx+1}_Clip_{block+1}"
             clip.data.materials.append(mat_glow_prism if block % 2 == 0 else mat_daw)

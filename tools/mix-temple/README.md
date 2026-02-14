@@ -44,6 +44,12 @@ npm run mix-temple:proof
 - `public/mix-temple/frame-3-monitors.png`
 - `public/mix-temple/frame-4-logic-pro-workflow.png`
 
+Render intent:
+
+- `frame-0-hero.png` includes the `BASE` collection (hero composition).
+- `frame-1` through `frame-4` are transparent overlays only (base hidden), designed to stack on top
+  of `frame-0-hero.png` in the web section.
+
 Validator pass criteria:
 
 - file exists
@@ -94,3 +100,20 @@ npm run preview
 ```
 
 Verify `/`, `/services`, `/contact`, and `/press` load.
+
+## Visual QA
+
+Run the harness:
+
+```bash
+tools/mix-temple/visual_qa.sh
+```
+
+What it does:
+
+- prints preview command (`npm run preview -- --host 127.0.0.1 --port 4176`)
+- prints manual QA checklist for alpha edges, transition stability, and overlay clarity
+- writes a quick QA bundle to `/tmp/mix-temple-qa/`
+- generates downscaled JPG previews for all five frames
+- generates RMSE diff images + metrics for frame transitions `0->1`, `1->2`, `2->3`, `3->4` when ImageMagick is available
+- falls back to `tools/mix-temple/visual_qa_previews.mjs` (Sharp-only previews) when ImageMagick is unavailable

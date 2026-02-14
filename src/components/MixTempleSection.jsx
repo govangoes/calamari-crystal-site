@@ -20,6 +20,8 @@ export default function MixTempleSection() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [failedFrames, setFailedFrames] = useState(() => new Set());
   const stepRefs = useRef([]);
+  const safeStepIndex = Math.min(activeStepIndex, MIX_TEMPLE_STEPS.length - 1);
+  const activeStep = MIX_TEMPLE_STEPS[safeStepIndex] || MIX_TEMPLE_STEPS[0];
 
   useEffect(() => {
     if (typeof window.matchMedia !== "function") return undefined;
@@ -117,16 +119,9 @@ export default function MixTempleSection() {
               </li>
             ))}
           </ul>
-          <div className="mix-temple-actions">
-            <PsychedelicButton as="a" href="#mixmaster" className="mix-temple-action-btn">
-              Mix &amp; Master
-            </PsychedelicButton>
-            <GhostButton as="a" href="#bookings" className="mix-temple-action-btn">
-              Book Me
-            </GhostButton>
-          </div>
-          <p className="mix-temple-system-spec">
-            Built in The Mix Temple — Mac Studio • Logic Pro • Precision chain
+          <p className="mix-temple-kicker">
+            Scroll the steps to reveal each stage of the chain. The gear is proof, but the outcome
+            is the point.
           </p>
 
           <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-10">
@@ -142,9 +137,9 @@ export default function MixTempleSection() {
                       onError={() => markFrameFailed(MIX_TEMPLE_HERO_SRC)}
                     />
                   )}
-                  <div className="hidden md:block" aria-hidden="true">
+                  <div aria-hidden="true">
                     {MIX_TEMPLE_STEPS.map((step, index) => {
-                      const isActive = activeStepIndex === index;
+                      const isActive = safeStepIndex === index;
                       const isMissing = failedFrames.has(step.frameSrc);
                       if (isMissing) return null;
 
@@ -169,6 +164,13 @@ export default function MixTempleSection() {
                       );
                     })}
                   </div>
+                  <div className="mix-temple-stage-caption" aria-live="polite">
+                    <p className="mix-temple-stage-caption-step">
+                      Step {safeStepIndex + 1} of {MIX_TEMPLE_STEPS.length}
+                    </p>
+                    <h3 className="mix-temple-stage-caption-title">{activeStep.title}</h3>
+                    <p className="mix-temple-stage-caption-outcome">{activeStep.outcome}</p>
+                  </div>
                   {heroFrameMissing && (
                     <div className="mix-temple-frame-fallback">
                       Add frame PNGs in /public/mix-temple to preview visuals.
@@ -180,7 +182,7 @@ export default function MixTempleSection() {
 
             <div className="space-y-3">
               {MIX_TEMPLE_STEPS.map((step, index) => {
-                const isActive = activeStepIndex === index;
+                const isActive = safeStepIndex === index;
                 const cardClassName = [
                   "mix-temple-step-card",
                   isActive ? "mix-temple-step-card--active" : "",
@@ -210,11 +212,21 @@ export default function MixTempleSection() {
                       </h3>
                       <p className="mt-2 text-sm text-paperWhite/85">{step.subtitle}</p>
                       <p className="mt-3 text-sm leading-relaxed text-muted">{step.detail}</p>
+                      <p className="mix-temple-step-outcome">{step.outcome}</p>
+                      <p className="mix-temple-step-proof">Proof: {step.proof}</p>
                     </CrystalCard>
                   </article>
                 );
               })}
             </div>
+          </div>
+          <div className="mix-temple-actions">
+            <PsychedelicButton as="a" href="#mixmaster" className="mix-temple-action-btn">
+              Mix &amp; Master
+            </PsychedelicButton>
+            <GhostButton as="a" href="#bookings" className="mix-temple-action-btn">
+              Book Me
+            </GhostButton>
           </div>
         </div>
       </section>

@@ -18,11 +18,11 @@ export default function Hero() {
         <div className="mx-auto max-w-[900px]">
           <h1 className="font-extrabold text-[clamp(2rem,3.6vw,4rem)] leading-[1.05] tracking-[-0.01em] drop-shadow-[0_2px_18px_rgba(8,12,24,0.35)]">
             <span className="block">Sound good. Look official. Move different.</span>
-            <span className="mt-4 block text-[clamp(1rem,1.6vw,1.35rem)] font-medium leading-[1.5] text-paperWhite/80">
-              <span>Mixing, mastering, and booking —</span>{" "}
-              <span className="text-[0.82em] font-normal text-paperWhite/60">
-                clean process, clear communication, serious results.
-              </span>
+            <span className="mt-4 block text-[clamp(1rem,1.6vw,1.35rem)] font-medium leading-[1.45] text-paperWhite/82">
+              Mixing, mastering, and booking — clean process, clear communication,
+            </span>
+            <span className="mt-1 block text-[clamp(0.78rem,1.15vw,0.95rem)] font-normal leading-[1.35] tracking-[0.01em] text-paperWhite/58">
+              serious results.
             </span>
           </h1>
         </div>

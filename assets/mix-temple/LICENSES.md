@@ -7,6 +7,18 @@ This repository uses a mixed asset strategy for Mix Temple:
 
 All sourced assets below were selected for commercial-compatible licensing.
 
+## Active Manifest Mapping (v3)
+
+Current `assets/mix-temple/manifest.json` instance mapping:
+
+- `odyssey` -> `odyssey_g9_monitor.glb` (external, attribution required)
+- `speaker_left` / `speaker_right` -> `adam_t7_speaker.glb` (external, attribution required)
+- `sm7b` -> `shure_sm7b_mic.glb` (external, attribution required)
+- `mac_studio` -> `mac_compact.glb` (in-repo generated)
+- `zen_go` -> `audio_interface.glb` (in-repo generated)
+- `cloudlifter` -> `inline_preamp.glb` (in-repo generated)
+- `boom_arm` -> `boom_arm.glb` (in-repo generated)
+
 ## External Models (Commercial-Compatible)
 
 ### `odyssey_g9_monitor.glb`
