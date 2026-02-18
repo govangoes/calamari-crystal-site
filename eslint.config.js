@@ -13,6 +13,7 @@ export default [
     files: [
       "api/**/*.js",
       "scripts/**/*.{js,mjs}",
+      "tools/**/*.{js,mjs}",
       "vite.config.*",
       "postcss.config.*",
       "tailwind.config.*",
