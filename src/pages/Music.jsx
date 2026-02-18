@@ -6,8 +6,8 @@ export default function Music() {
     setSEO({
       title: "Music — GoVanGoes",
       description: "Latest singles, EPs, and concept‑album tracks.",
-      url: "https://govangoes.com/music",
-      image: "/og.jpg",
+      url: "https://www.govangoes.com/music",
+      image: "/og-image.png",
       imageAlt: "GoVanGoes crest",
       site: "@govangoes",
       author: "GoVanGoes",

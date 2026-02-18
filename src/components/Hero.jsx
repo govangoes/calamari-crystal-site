@@ -1,82 +1,84 @@
-import Parallax from "./Parallax.jsx";
-
-const DEFAULT_HERO_BASENAME = "govangoes-logo";
-const FALLBACK_SEQUENCE = ["cloud_gold_logo", "squid_emblem"];
+import React from "react";
+import { FILE_UPLOAD_URL, SHOP_URL } from "../content/links.js";
+import GhostButton from "./ui/GhostButton.jsx";
+import PsychedelicButton from "./ui/PsychedelicButton.jsx";
+import PsychedelicTextureLayer from "./ui/PsychedelicTextureLayer.jsx";
 
 export default function Hero() {
-  const baseName = import.meta.env.VITE_HERO_IMAGE_BASENAME || DEFAULT_HERO_BASENAME;
-  const fallbackSources = Array.from(
-    new Set([baseName, DEFAULT_HERO_BASENAME, ...FALLBACK_SEQUENCE]),
-  );
-  const altText = import.meta.env.VITE_HERO_ALT || "GoVanGoes mark";
-
-  function onImgError(e) {
-    const target = e?.target;
-    if (!target) return;
-    const currentIndex = Number(target.dataset.fallbackIndex || 0);
-    if (currentIndex >= fallbackSources.length - 1) return;
-    const nextIndex = currentIndex + 1;
-    target.dataset.fallbackIndex = String(nextIndex);
-    const nextBase = fallbackSources[nextIndex];
-    target.src = `/${nextBase}.png`;
-  }
+  const baseUrl = import.meta.env.BASE_URL;
+  const hasShop = Boolean(SHOP_URL);
   return (
-    <section className="relative overflow-hidden bg-squid-gradient">
-      <div className="max-w-7xl mx-auto px-4 py-24">
-        <div className="flex flex-col items-center text-center gap-8">
-          <Parallax amount={28} className="relative w-full max-w-md md:max-w-lg">
-            <picture>
-              {/* Prefer custom hero image if present */}
-              <source srcSet={`/${baseName}.webp`} type="image/webp" />
-              {baseName !== DEFAULT_HERO_BASENAME && (
-                <source srcSet={`/${DEFAULT_HERO_BASENAME}.webp`} type="image/webp" />
-              )}
-              {/* Fallback webp */}
-              <source srcSet="/cloud_gold_logo.webp" type="image/webp" />
-              <img
-                src={`/${fallbackSources[0]}.png`}
-                alt={altText}
-                className="w-full drop-shadow-2xl shadow-crystal mx-auto"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                onError={onImgError}
-                data-fallback-index="0"
-              />
-            </picture>
-          </Parallax>
-          <div>
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-              Wildly influential. Unapologetically different.
-            </h1>
-            <p className="mt-4 text-ink/80 dark:text-paperWhite/80 max-w-2xl mx-auto">
-              Presence. Precision. Performance.
-            </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <a className="btn btn-primary" href="/music">
-                Listen Now
-              </a>
+    <section
+      id="start"
+      aria-label="Introduction and calls to action"
+      className="relative isolate flex flex-col items-center justify-center gap-6 overflow-hidden px-6 pb-32 pt-40 text-center sm:pb-40 sm:pt-48"
+    >
+      <PsychedelicTextureLayer variant="hero" strength="medium" />
+      <div className="relative z-[1] text-center">
+        <div className="mx-auto max-w-[900px]">
+          <h1 className="font-extrabold text-[clamp(2rem,3.6vw,4rem)] leading-[1.05] tracking-[-0.01em] drop-shadow-[0_2px_18px_rgba(8,12,24,0.35)]">
+            <span className="block">Sound good. Look official. Move different.</span>
+            <span className="mt-4 block text-[clamp(1rem,1.6vw,1.35rem)] font-medium leading-[1.45] text-paperWhite/82">
+              Mixing, mastering, and booking — clean process, clear communication,
+            </span>
+            <span className="mt-1 block text-[clamp(0.78rem,1.15vw,0.95rem)] font-normal leading-[1.35] tracking-[0.01em] text-paperWhite/58">
+              serious results.
+            </span>
+          </h1>
+        </div>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-3 sm:gap-4">
+          <GhostButton
+            as="a"
+            className="text-sm sm:text-base"
+            href={`${baseUrl}#bookings`}
+            aria-label="Book Go Van Goes for a show or event"
+          >
+            Book Me
+          </GhostButton>
+          <PsychedelicButton as="a" href={`${baseUrl}#mixmaster`} className="text-sm sm:text-base">
+            Mix &amp; Master
+          </PsychedelicButton>
+        </div>
+        <div id="dock-sentinel" aria-hidden="true" className="mt-1 h-px w-full" />
+
+        <div className="mt-6 mx-auto max-w-[560px] text-xs sm:text-sm text-paperWhite/60">
+          <div className="grid gap-2 leading-relaxed text-left sm:text-center">
+            <span>Step 1: Fill out the form and share your vision</span>
+            <span>
+              Step 2:{" "}
               <a
-                className="btn btn-secondary"
-                href="https://www.youtube.com/@govangoes"
+                className="underline text-paperWhite"
+                href={FILE_UPLOAD_URL}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
-                Watch a Performance
+                Upload Files
               </a>
-              <a className="btn btn-tertiary" href="/merch">
-                Shop the Drop
-              </a>
-            </div>
+            </span>
+            <span>Step 3: I&rsquo;ll reply with next steps, timeline, and feedback welcome</span>
           </div>
         </div>
+
+        <div className="mt-7 flex flex-wrap justify-center gap-3">
+          <a href={`${baseUrl}#music`} className="pill">
+            Listen
+          </a>
+          <a
+            href="https://www.youtube.com/@govangoes"
+            className="pill"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Watch
+          </a>
+          {hasShop && (
+            <a href={SHOP_URL} className="pill" target="_blank" rel="noopener noreferrer">
+              Merch
+            </a>
+          )}
+        </div>
       </div>
-      <a href="#sections" className="scroll-cue" aria-label="Scroll to content">
-        <span>Scroll</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </a>
     </section>
   );
 }
