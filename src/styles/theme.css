@@ -16,6 +16,8 @@
   --cc-opalGlow: #ffd166; /* warm highlight */
   --accent-coralPink: #ff7c8a; /* alt accent */
   --core-jadeCore: #10b981; /* success */
+  --brand-dominant: var(--cc-squidViolet);
+  --brand-accent: var(--cc-crystalCyan);
 }
 
 /* Dark scheme overrides */
@@ -32,4 +34,6 @@
   --cc-opalGlow: #ffcf6e;
   --accent-coralPink: #ff8b97;
   --core-jadeCore: #22c997;
+  --brand-dominant: var(--cc-squidViolet);
+  --brand-accent: var(--cc-crystalCyan);
 }

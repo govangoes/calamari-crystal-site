@@ -6,8 +6,8 @@ export default function Bookings() {
     setSEO({
       title: "Bookings — GoVanGoes",
       description: "Shows, brand events, press, and collaborations.",
-      url: "https://govangoes.com/bookings",
-      image: "/og.jpg",
+      url: "https://www.govangoes.com/bookings",
+      image: "/og-image.png",
       imageAlt: "GoVanGoes crest",
       site: "@govangoes",
       author: "GoVanGoes",
