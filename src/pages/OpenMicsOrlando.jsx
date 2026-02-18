@@ -222,6 +222,30 @@ export default function OpenMicsOrlando() {
             <span aria-hidden>→</span>
           </GhostButton>
         </CrystalCard>
+
+        <CrystalCard
+          as="section"
+          variant="outline"
+          className="relative overflow-hidden rounded-3xl border-dashed border-emerald-300/40 bg-emerald-500/5 p-10 text-center"
+        >
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_rgba(16,185,129,0.15),_transparent_65%)]" />
+          <h2 className="text-3xl font-extrabold text-paperWhite md:text-4xl">
+            Explore Orlando Nightlife Venues
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-muted">
+            Dive into the Calamari Crystal nightlife directory of kava bars, hookah lounges, and
+            live-vibe venues across Orlando.
+          </p>
+          <a
+            href="/orlando-nightlife.html"
+            className="group mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-300/60 bg-emerald-500/20 px-6 py-3 text-base font-semibold text-emerald-200 transition hover:border-emerald-200 hover:bg-emerald-400/30 hover:text-paperWhite"
+          >
+            Visit the Nightlife Guide
+            <span aria-hidden className="transition-transform group-hover:translate-x-1">
+              →
+            </span>
+          </a>
+        </CrystalCard>
       </section>
     </main>
   );
