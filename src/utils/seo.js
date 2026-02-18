@@ -40,7 +40,7 @@ export function setSEO({ title, description, image, imageAlt, url, author, site 
       ? image
       : origin + image
     : origin
-      ? origin + "/og.jpg"
+      ? origin + "/og-image.png"
       : undefined;
   if (absImage) {
     set('meta[property="og:image"]', "content", absImage);
