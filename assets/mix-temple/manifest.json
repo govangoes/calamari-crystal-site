@@ -2,9 +2,9 @@
   "version": 3,
   "model_root": "/Users/cloutlandishllc/Downloads/calamari-crystal-site/assets/mix-temple/models",
   "camera": {
-    "lens": 92,
-    "location": [0.0, -13.9, 1.44],
-    "target": [0.0, -0.02, 0.59]
+    "lens": 93,
+    "location": [0.0, -13.7, 1.43],
+    "target": [0.0, -0.02, 0.58]
   },
   "instances": [
     {
@@ -82,8 +82,8 @@
   ],
   "overlays": {
     "screen_brain_ids": ["odyssey", "mac_studio"],
-    "screen_outline_pad": [0.03, 0.015, 0.02],
-    "screen_outline_thickness": 0.0085,
+    "screen_outline_pad": [0.028, 0.014, 0.018],
+    "screen_outline_thickness": 0.0082,
     "capture_chain_points": [
       [-2.84, -0.12, 0.48],
       [-2.5, -0.055, 0.185],
@@ -101,7 +101,7 @@
     "daw_plane_z_bias": 0.11,
     "daw_lane_count": 5,
     "daw_lane_height": 0.011,
-    "daw_lane_spacing": 0.061,
+    "daw_lane_spacing": 0.059,
     "daw_clip_rows": 4
   }
 }

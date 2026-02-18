@@ -18,6 +18,10 @@ const PROOF_STRIP_ITEMS = ["Client-ready mix", "Notes welcome", "24–48h respon
 export default function MixTempleSection() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isDesktopStage, setIsDesktopStage] = useState(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") return true;
+    return window.matchMedia("(min-width: 1024px)").matches;
+  });
   const [failedFrames, setFailedFrames] = useState(() => new Set());
   const stepRefs = useRef([]);
   const safeStepIndex = Math.min(activeStepIndex, MIX_TEMPLE_STEPS.length - 1);
@@ -40,7 +44,25 @@ export default function MixTempleSection() {
   }, []);
 
   useEffect(() => {
-    const frameSources = [MIX_TEMPLE_HERO_SRC, ...MIX_TEMPLE_STEPS.map((step) => step.frameSrc)];
+    if (typeof window.matchMedia !== "function") return undefined;
+
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const onLayoutChange = () => setIsDesktopStage(mediaQuery.matches);
+
+    onLayoutChange();
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", onLayoutChange);
+      return () => mediaQuery.removeEventListener("change", onLayoutChange);
+    }
+
+    mediaQuery.addListener(onLayoutChange);
+    return () => mediaQuery.removeListener(onLayoutChange);
+  }, []);
+
+  useEffect(() => {
+    const frameSources = isDesktopStage
+      ? [MIX_TEMPLE_HERO_SRC, ...MIX_TEMPLE_STEPS.map((step) => step.frameSrc)]
+      : [];
     const preloaders = frameSources.map((src) => {
       const image = new window.Image();
       image.decoding = "async";
@@ -53,9 +75,15 @@ export default function MixTempleSection() {
         image.src = "";
       });
     };
-  }, []);
+  }, [isDesktopStage]);
 
   useEffect(() => {
+    if (isDesktopStage) return;
+    setActiveStepIndex(0);
+  }, [isDesktopStage]);
+
+  useEffect(() => {
+    if (!isDesktopStage) return undefined;
     if (typeof IntersectionObserver === "undefined") return undefined;
 
     const observer = new IntersectionObserver((entries) => {
@@ -86,7 +114,7 @@ export default function MixTempleSection() {
     observedSteps.forEach((step) => observer.observe(step));
 
     return () => observer.disconnect();
-  }, []);
+  }, [isDesktopStage]);
 
   const markFrameFailed = (source) => {
     setFailedFrames((previous) => {
@@ -120,69 +148,72 @@ export default function MixTempleSection() {
             ))}
           </ul>
           <p className="mix-temple-kicker">
-            Scroll the steps to reveal each stage of the chain. The gear is proof, but the outcome
-            is the point.
+            {isDesktopStage
+              ? "Scroll the steps to reveal each stage of the chain. The gear is proof, but the outcome is the point."
+              : "Mobile is intentionally simplified: cards only, outcome first."}
           </p>
 
           <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-10">
-            <div>
-              <div className="mix-temple-stage-sticky">
-                <div className="mix-temple-stage">
-                  {!heroFrameMissing && (
-                    <img
-                      src={MIX_TEMPLE_HERO_SRC}
-                      alt="THE MIX TEMPLE studio shrine hero frame"
-                      className="mix-temple-layer mix-temple-layer--base"
-                      loading="lazy"
-                      onError={() => markFrameFailed(MIX_TEMPLE_HERO_SRC)}
-                    />
-                  )}
-                  <div aria-hidden="true">
-                    {MIX_TEMPLE_STEPS.map((step, index) => {
-                      const isActive = safeStepIndex === index;
-                      const isMissing = failedFrames.has(step.frameSrc);
-                      if (isMissing) return null;
+            {isDesktopStage && (
+              <div>
+                <div className="mix-temple-stage-sticky">
+                  <div className="mix-temple-stage">
+                    {!heroFrameMissing && (
+                      <img
+                        src={MIX_TEMPLE_HERO_SRC}
+                        alt="THE MIX TEMPLE studio shrine hero frame"
+                        className="mix-temple-layer mix-temple-layer--base"
+                        loading="lazy"
+                        onError={() => markFrameFailed(MIX_TEMPLE_HERO_SRC)}
+                      />
+                    )}
+                    <div aria-hidden="true">
+                      {MIX_TEMPLE_STEPS.map((step, index) => {
+                        const isActive = safeStepIndex === index;
+                        const isMissing = failedFrames.has(step.frameSrc);
+                        if (isMissing) return null;
 
-                      const layerClassName = [
-                        "mix-temple-layer",
-                        "mix-temple-layer--overlay",
-                        isActive ? "mix-temple-layer--active" : "",
-                        prefersReducedMotion ? "mix-temple-layer--reduced-motion" : "",
-                      ]
-                        .filter(Boolean)
-                        .join(" ");
+                        const layerClassName = [
+                          "mix-temple-layer",
+                          "mix-temple-layer--overlay",
+                          isActive ? "mix-temple-layer--active" : "",
+                          prefersReducedMotion ? "mix-temple-layer--reduced-motion" : "",
+                        ]
+                          .filter(Boolean)
+                          .join(" ");
 
-                      return (
-                        <img
-                          key={step.id}
-                          src={step.frameSrc}
-                          alt=""
-                          className={layerClassName}
-                          loading="lazy"
-                          onError={() => markFrameFailed(step.frameSrc)}
-                        />
-                      );
-                    })}
-                  </div>
-                  <div className="mix-temple-stage-caption" aria-live="polite">
-                    <p className="mix-temple-stage-caption-step">
-                      Step {safeStepIndex + 1} of {MIX_TEMPLE_STEPS.length}
-                    </p>
-                    <h3 className="mix-temple-stage-caption-title">{activeStep.title}</h3>
-                    <p className="mix-temple-stage-caption-outcome">{activeStep.outcome}</p>
-                  </div>
-                  {heroFrameMissing && (
-                    <div className="mix-temple-frame-fallback">
-                      Add frame PNGs in /public/mix-temple to preview visuals.
+                        return (
+                          <img
+                            key={step.id}
+                            src={step.frameSrc}
+                            alt=""
+                            className={layerClassName}
+                            loading="lazy"
+                            onError={() => markFrameFailed(step.frameSrc)}
+                          />
+                        );
+                      })}
                     </div>
-                  )}
+                    <div className="mix-temple-stage-caption" aria-live="polite">
+                      <p className="mix-temple-stage-caption-step">
+                        Step {safeStepIndex + 1} of {MIX_TEMPLE_STEPS.length}
+                      </p>
+                      <h3 className="mix-temple-stage-caption-title">{activeStep.title}</h3>
+                      <p className="mix-temple-stage-caption-outcome">{activeStep.outcome}</p>
+                    </div>
+                    {heroFrameMissing && (
+                      <div className="mix-temple-frame-fallback">
+                        Add frame PNGs in /public/mix-temple to preview visuals.
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             <div className="space-y-3">
               {MIX_TEMPLE_STEPS.map((step, index) => {
-                const isActive = safeStepIndex === index;
+                const isActive = isDesktopStage && safeStepIndex === index;
                 const cardClassName = [
                   "mix-temple-step-card",
                   isActive ? "mix-temple-step-card--active" : "",

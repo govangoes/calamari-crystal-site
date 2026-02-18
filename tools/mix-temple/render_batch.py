@@ -76,7 +76,7 @@ def configure_render_settings(scene):
     scene.cycles.use_adaptive_sampling = True
     scene.cycles.adaptive_threshold = min(getattr(scene.cycles, "adaptive_threshold", 0.02), 0.02)
     if hasattr(scene.cycles, "filter_width"):
-        scene.cycles.filter_width = 1.05
+        scene.cycles.filter_width = 1.0
     if hasattr(scene.cycles, "use_denoising"):
         scene.cycles.use_denoising = True
     if scene.view_layers and hasattr(scene.view_layers[0], "cycles"):

@@ -31,7 +31,7 @@ def reset_scene():
     scene.cycles.use_adaptive_sampling = True
     scene.cycles.adaptive_threshold = 0.02
     if hasattr(scene.cycles, "filter_width"):
-        scene.cycles.filter_width = 1.05
+        scene.cycles.filter_width = 1.0
     if hasattr(scene.cycles, "use_denoising"):
         scene.cycles.use_denoising = True
     if scene.view_layers and hasattr(scene.view_layers[0], "cycles"):
@@ -557,7 +557,7 @@ def apply_premium_polish(scene, root_collection, camera_settings=None):
         (0.06, -3.5, 3.72),
         (0.0, -0.02, 0.86),
         (4.2, 2.2),
-        172,
+        174,
         (0.96, 0.97, 1.0),
     )
     add_area_light(
@@ -565,7 +565,7 @@ def apply_premium_polish(scene, root_collection, camera_settings=None):
         (4.85, -1.18, 1.85),
         (0.0, -0.02, 0.78),
         (3.9, 0.38),
-        86,
+        83,
         (0.47, 0.75, 0.9),
     )
     add_area_light(
@@ -573,7 +573,7 @@ def apply_premium_polish(scene, root_collection, camera_settings=None):
         (-3.2, -4.6, 1.6),
         (-0.2, -0.02, 0.76),
         (2.2, 0.8),
-        14,
+        15,
         (0.82, 0.81, 0.9),
     )
 
@@ -637,7 +637,7 @@ def build_scene():
     for idx, target_id in enumerate(overlays["screen_brain_ids"]):
         center, half = world_bbox(roots[target_id])
         mat = mat_glow_prism if idx == 0 else mat_glow_cyan
-        id_thickness = outline_thickness if target_id == "odyssey" else outline_thickness * 0.62
+        id_thickness = outline_thickness if target_id == "odyssey" else outline_thickness * 0.58
         create_glow_outline(
             f"Glow_{target_id}",
             center,
@@ -712,7 +712,7 @@ def build_scene():
         mat_glow_cyan,
         frame4,
         pad=(0.01, 0.00025, 0.01),
-        thickness=0.0034,
+        thickness=0.0032,
     )
 
     top_lane_z = daw_center[2] + ((daw_lane_count - 1) * daw_lane_spacing * 0.5)
@@ -733,8 +733,8 @@ def build_scene():
             width = clip_step * (0.34 + 0.1 * ((idx + block) % 3))
             lane_jitter = clip_step * (0.08 if idx % 2 == 0 else -0.05)
             x = -daw_scale[0] * 0.94 + clip_step * (block + 0.5) + lane_jitter
-            min_x = -daw_scale[0] * 0.93 + width * 0.5
-            max_x = daw_scale[0] * 0.93 - width * 0.5
+            min_x = -daw_scale[0] * 0.9 + width * 0.5
+            max_x = daw_scale[0] * 0.9 - width * 0.5
             x = min(max_x, max(min_x, x))
             bpy.ops.mesh.primitive_cube_add(
                 location=(x, daw_center[1] - 0.00035, z),
