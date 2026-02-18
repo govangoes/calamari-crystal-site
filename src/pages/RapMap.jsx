@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import ScrollReveal from "../components/ScrollReveal.jsx";
 import RapMapExplorer from "../components/RapMapExplorer.jsx";
+import RhymeClusterPanel from "../components/RhymeClusterPanel.jsx";
 import GhostButton from "../components/ui/GhostButton.jsx";
 import CrystalBadge from "../components/ui/CrystalBadge.jsx";
 import CrystalCard from "../components/ui/CrystalCard.jsx";
 import Hairline from "../components/ui/Hairline.jsx";
 import SectionHeader from "../components/ui/SectionHeader.jsx";
+import { rhymeClusters } from "../data/rhymeClusters.js";
 
 const features = [
   {
@@ -111,6 +113,7 @@ export default function RapMap() {
       </section>
 
       <RapMapExplorer id="explore" />
+      <RhymeClusterPanel clusters={rhymeClusters} />
 
       <section className="mx-auto max-w-6xl space-y-12 px-4 pb-24 text-paperWhite">
         <ScrollReveal>
