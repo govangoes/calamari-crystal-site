@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Gem, Music, ShoppingBag, FileText, MessageCircle, Menu, X, Map } from "lucide-react";
 import ThemeToggle from "./ThemeToggle.jsx";
@@ -25,7 +25,7 @@ const MobileMenuItem = ({ to, children, onClick }) => (
     to={to}
     onClick={onClick}
     className={({ isActive }) =>
-      `block px-4 py-3 text-base font-medium transition
+      `block px-4 py-3 text-base font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crystal/70 focus-visible:ring-inset
        ${
          isActive
            ? "text-crystal bg-ink/10 dark:bg-graphite/60"
@@ -39,6 +39,24 @@ const MobileMenuItem = ({ to, children, onClick }) => (
 
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return undefined;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return undefined;
+    const handleEscape = (event) => {
+      if (event.key === "Escape") setIsMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isMobileMenuOpen]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -96,6 +114,7 @@ export default function NavBar() {
             className="p-2 rounded-md text-ink/80 dark:text-paperWhite/80 hover:bg-ink/5 dark:hover:bg-graphite/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crystal/70 transition"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-primary-menu"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -104,7 +123,10 @@ export default function NavBar() {
 
       {/* Mobile Dropdown Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-ink/10 dark:border-paperWhite/10 bg-paperWhite/95 dark:bg-ink/95 backdrop-blur-md">
+        <div
+          id="mobile-primary-menu"
+          className="md:hidden border-t border-ink/10 dark:border-paperWhite/10 bg-paperWhite/95 dark:bg-ink/95 backdrop-blur-md"
+        >
           <div className="py-2">
             <MobileMenuItem to="/story" onClick={closeMobileMenu}>
               Lore
