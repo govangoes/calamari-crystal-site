@@ -6,8 +6,8 @@ export default function About() {
     setSEO({
       title: "About — GoVanGoes",
       description: "Wildly Influential. Unapologetically Different. Story and mission.",
-      url: "https://govangoes.com/about",
-      image: "/og.jpg",
+      url: "https://www.govangoes.com/about",
+      image: "/og-image.png",
       imageAlt: "GoVanGoes crest",
       site: "@govangoes",
       author: "GoVanGoes",

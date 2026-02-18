@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <footer className="border-t border-ink/10 dark:border-paperWhite/10 bg-paperWhite/90 dark:bg-ink/80 backdrop-blur">
@@ -23,15 +25,15 @@ export default function Footer() {
             >
               YouTube
             </a>
-            <a className="hover:text-ink dark:hover:text-paperWhite" href="/press">
+            <Link className="hover:text-ink dark:hover:text-paperWhite" to="/press">
               Press
-            </a>
-            <a className="hover:text-ink dark:hover:text-paperWhite" href="/privacy">
+            </Link>
+            <Link className="hover:text-ink dark:hover:text-paperWhite" to="/privacy">
               Privacy
-            </a>
-            <a className="hover:text-ink dark:hover:text-paperWhite" href="/terms">
+            </Link>
+            <Link className="hover:text-ink dark:hover:text-paperWhite" to="/terms">
               Terms
-            </a>
+            </Link>
           </nav>
         </div>
       </div>

@@ -19,3 +19,6 @@ dist/
 .DS_Store
 Thumbs.db
 .vercel
+codex/
+mix-temple.blend
+mix-temple.blend1

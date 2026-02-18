@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orlando Nightlife Music Venues | Calamari Crystal Guide</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink-black: #0a0f1a;
+        --abyss-teal: #0b3d52;
+        --seafoam: #46c6a6;
+        --aqua-glow: #70f2ff;
+        --lavender-haze: #b9a4ff;
+        --coral-neon: #ff6f61;
+        --off-white: #f4f4f6;
+        --muted-gray: #4d5566;
+        --closed-overlay: rgba(13, 23, 33, 0.65);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Press Start 2P", cursive;
+        background: var(--ink-black);
+        color: var(--off-white);
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-image: linear-gradient(
+            90deg,
+            rgba(11, 61, 82, 0.35) 0,
+            rgba(11, 61, 82, 0) 50%,
+            rgba(11, 61, 82, 0.35) 100%
+          ),
+          repeating-linear-gradient(
+            45deg,
+            rgba(70, 198, 166, 0.1) 0,
+            rgba(70, 198, 166, 0.1) 4px,
+            rgba(10, 15, 26, 0.1) 4px,
+            rgba(10, 15, 26, 0.1) 8px
+          );
+      }
+
+      header {
+        text-align: center;
+        padding: 3rem 1.5rem 1rem;
+        background: linear-gradient(180deg, var(--abyss-teal), transparent);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: clamp(1.75rem, 3vw, 2.75rem);
+        color: var(--aqua-glow);
+        text-shadow: 2px 2px 0 var(--seafoam), 4px 4px 0 rgba(0, 0, 0, 0.45);
+      }
+
+      header p {
+        margin: 1rem auto 0;
+        max-width: 680px;
+        line-height: 1.6;
+        font-size: 0.75rem;
+        color: var(--lavender-haze);
+      }
+
+      nav {
+        padding: 0.75rem 1.5rem 2rem;
+        display: flex;
+        justify-content: center;
+      }
+
+      nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: 4px solid var(--seafoam);
+        border-radius: 0;
+        background: var(--ink-black);
+        color: var(--off-white);
+        text-decoration: none;
+        box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.65);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      }
+
+      nav a:hover,
+      nav a:focus-visible {
+        transform: translate(-4px, -4px);
+        box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.75);
+        background: var(--abyss-teal);
+        color: var(--aqua-glow);
+      }
+
+      nav a:active {
+        transform: translate(4px, 4px);
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.65);
+        background: var(--seafoam);
+        color: var(--ink-black);
+      }
+
+      main {
+        flex: 1;
+        padding: 1.5rem clamp(1rem, 4vw, 3.5rem) 4rem;
+        display: grid;
+        gap: 2.5rem;
+      }
+
+      section {
+        background: rgba(13, 23, 33, 0.75);
+        border: 6px solid var(--seafoam);
+        padding: clamp(1.5rem, 3vw, 2.5rem);
+        box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.65);
+        position: relative;
+      }
+
+      section h2 {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+        color: var(--aqua-glow);
+        letter-spacing: 0.08em;
+      }
+
+      .venue-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .venue-card {
+        background: rgba(10, 15, 26, 0.9);
+        border: 4px solid var(--lavender-haze);
+        padding: 1.5rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        min-height: 220px;
+        box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .venue-card:hover,
+      .venue-card:focus-within {
+        transform: translateY(-6px);
+        box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.6);
+      }
+
+      .venue-icon {
+        font-size: 1.5rem;
+        color: var(--coral-neon);
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
+      }
+
+      .venue-card h3 {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--seafoam);
+        line-height: 1.3;
+      }
+
+      .venue-card h3 a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .venue-card h3 a:hover,
+      .venue-card h3 a:focus-visible {
+        color: var(--aqua-glow);
+        border-color: var(--aqua-glow);
+      }
+
+      .venue-card p {
+        margin: 0;
+        font-size: 0.65rem;
+        line-height: 1.5;
+        color: var(--off-white);
+      }
+
+      .venue-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .venue-meta span {
+        display: block;
+        font-size: 0.6rem;
+        color: var(--lavender-haze);
+      }
+
+      .venue-links a {
+        font-size: 0.6rem;
+        text-decoration: none;
+        color: var(--aqua-glow);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-bottom: 2px solid transparent;
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .venue-links a:hover,
+      .venue-links a:focus-visible {
+        color: var(--coral-neon);
+        border-color: var(--coral-neon);
+      }
+
+      .closed-section {
+        border-color: var(--muted-gray);
+        background: rgba(23, 30, 42, 0.85);
+        filter: grayscale(20%);
+      }
+
+      .closed-section::after {
+        content: "ARCHIVED";
+        position: absolute;
+        top: 0.5rem;
+        right: 0.75rem;
+        font-size: 0.65rem;
+        color: var(--muted-gray);
+        letter-spacing: 0.18em;
+      }
+
+      .closed-section .venue-card {
+        border-color: var(--muted-gray);
+        background: rgba(45, 54, 68, 0.75);
+        color: var(--muted-gray);
+      }
+
+      .closed-section .venue-card h3,
+      .closed-section .venue-card p,
+      .closed-section .venue-card span {
+        color: var(--muted-gray);
+      }
+
+      .closed-section .venue-card h3 a {
+        color: var(--muted-gray);
+      }
+
+      .closed-section .venue-links a {
+        color: var(--muted-gray);
+      }
+
+      footer {
+        text-align: center;
+        padding: 2.5rem 1.5rem 3rem;
+        font-size: 0.6rem;
+        background: linear-gradient(0deg, var(--abyss-teal), transparent);
+        color: var(--lavender-haze);
+      }
+
+      @media (max-width: 600px) {
+        header {
+          padding: 2.5rem 1rem 1.5rem;
+        }
+
+        nav a {
+          width: 100%;
+          justify-content: center;
+        }
+
+        section {
+          padding: 1.25rem;
+        }
+
+        .venue-card {
+          min-height: unset;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Orlando Nightlife Music Venues</h1>
+      <p>
+        Explore the Calamari Crystal circuit of Orlando nightlife — kava lounges,
+        hookah havens, vibed-out bars, and clubs championing hip-hop, R&amp;B, and
+        eclectic sounds across the city.
+      </p>
+    </header>
+    <nav aria-label="Breadcrumb">
+      <a href="openmics.html">⬅ Back to Open Mics</a>
+    </nav>
+    <main>
+      <section aria-labelledby="kava-bars">
+        <h2 id="kava-bars">Kava Bars</h2>
+        <div class="venue-grid">
+          <!-- TODO: Replace placeholder cards with real Kava Bar venues -->
+          <article class="venue-card">
+            <div class="venue-icon" aria-hidden="true">☕</div>
+            <h3><a href="#">Placeholder Kava Lounge</a></h3>
+            <p>
+              Retro-futuristic kava retreat with nightly DJ chill sessions and
+              open mic cyphers.
+            </p>
+            <div class="venue-meta">
+              <span>District: Creative Village</span>
+              <span>Genres: Lo-fi hip-hop, chillwave, neo-soul</span>
+            </div>
+            <div class="venue-links">
+              <a href="#">Official Site</a>
+            </div>
+          </article>
+          <article class="venue-card">
+            <div class="venue-icon" aria-hidden="true">🎶</div>
+            <h3><a href="#">Neon Shell Kava Bar</a></h3>
+            <p>
+              Pixelated paradise with rotating beatmakers and immersive
+              projection art nights.
+            </p>
+            <div class="venue-meta">
+              <span>Neighborhood: Mills 50</span>
+              <span>Genres: Hip-hop instrumentals, vaporwave</span>
+            </div>
+            <div class="venue-links">
+              <a href="#">Instagram</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="hookah-bars">
+        <h2 id="hookah-bars">Hookah Bars</h2>
+        <div class="venue-grid">
+          <!-- TODO: Replace placeholder cards with real Hookah Lounge venues -->
+          <article class="venue-card">
+            <div class="venue-icon" aria-hidden="true">💨</div>
+            <h3><a href="#">Crystal Ember Lounge</a></h3>
+            <p>
+              Glow-lit hookah lounge pulsing with R&amp;B remixes and late-night
+              hip-hop showcases.
+            </p>
+            <div class="venue-meta">
+              <span>Address: 123 Halo St.</span>
+              <span>Genres: R&amp;B, hip-hop, Afrobeat</span>
+            </div>
+            <div class="venue-links">
+              <a href="#">Reserve a Table</a>
+            </div>
+          </article>
+          <article class="venue-card">
+            <div class="venue-icon" aria-hidden="true">🔥</div>
+            <h3><a href="#">Sprite Drift Hookah</a></h3>
+            <p>
+              Downtown speakeasy featuring open-format DJs and pixel-art
+              backdrops every weekend.
+            </p>
+            <div class="venue-meta">
+              <span>Neighborhood: Church Street</span>
+              <span>Genres: Hip-hop, trap, reggaeton</span>
+            </div>
+            <div class="venue-links">
+              <a href="#">Event Calendar</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="bars-lounges">
+        <h2 id="bars-lounges">Bars &amp; Lounges</h2>
+        <div class="venue-grid">
+          <!-- TODO: Replace placeholder cards with real Bar / Lounge venues -->
+          <article class="venue-card">
+            <div class="venue-icon" aria-hidden="true">🍹</div>
+            <h3><a href="#">Pixel Mixer Bar</a></h3>
+            <p>
+              Craft cocktail den with beat residencies celebrating Orlando’s
+              underground hip-hop collectives.
+            </p>
+            <div class="venue-meta">
+              <span>Address: 404 Loop Ave.</span>
+              <span>Genres: Boom bap, nu-disco, funk</span>
+            </div>
+            <div class="venue-links">
+              <a href="#">View Lineup</a>
+            </div>
+          </article>
+          <article class="venue-card">
+            <div class="venue-icon" aria-hidden="true">🕹️</div>
+            <h3><a href="#">Retro Reef Lounge</a></h3>
+            <p>
+              Hybrid arcade lounge highlighting vinyl DJ sets and indie hip-hop
+              listening parties.
+            </p>
+            <div class="venue-meta">
+              <span>Neighborhood: Thornton Park</span>
+              <span>Genres: Indie hip-hop, electro-funk</span>
+            </div>
+            <div class="venue-links">
+              <a href="#">Menu &amp; Sounds</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="night-clubs">
+        <h2 id="night-clubs">Night Clubs</h2>
+        <div class="venue-grid">
+          <!-- TODO: Replace placeholder cards with real Night Club venues -->
+          <article class="venue-card">
+            <div class="venue-icon" aria-hidden="true">🌌</div>
+            <h3><a href="#">Starlit Kraken Club</a></h3>
+            <p>
+              Multi-room nightlife cosmos fusing trap, bass, and future beats
+              under neon tentacles.
+            </p>
+            <div class="venue-meta">
+              <span>Address: 777 Pulse Blvd.</span>
+              <span>Genres: Trap, bass, experimental hip-hop</span>
+            </div>
+            <div class="venue-links">
+              <a href="#">Buy Tickets</a>
+            </div>
+          </article>
+          <article class="venue-card">
+            <div class="venue-icon" aria-hidden="true">🎛️</div>
+            <h3><a href="#">Circuit Current</a></h3>
+            <p>
+              Rooftop dance floor with cascading LEDs and high-energy DJ crews.
+            </p>
+            <div class="venue-meta">
+              <span>Neighborhood: Lake Eola Heights</span>
+              <span>Genres: Open-format, hip-hop, EDM</span>
+            </div>
+            <div class="venue-links">
+              <a href="#">RSVP</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="closed-section" aria-labelledby="closed-venues">
+        <h2 id="closed-venues">Closed or No Longer Operating Venues</h2>
+        <div class="venue-grid">
+          <!-- TODO: Replace placeholder cards with archived / closed venues -->
+          <article class="venue-card">
+            <div class="venue-icon" aria-hidden="true">🚫</div>
+            <h3><a href="#">Echo Depths</a></h3>
+            <p>
+              Former downtown landmark remembered for legendary hip-hop battles
+              and synthwave nights.
+            </p>
+            <div class="venue-meta">
+              <span>Address: 999 Memory Ln.</span>
+              <span>Genres: Hip-hop, synthwave (archived)</span>
+            </div>
+            <div class="venue-links">
+              <a href="#">Legacy Article</a>
+            </div>
+          </article>
+          <article class="venue-card">
+            <div class="venue-icon" aria-hidden="true">🕯️</div>
+            <h3><a href="#">Crystal Cove Social</a></h3>
+            <p>
+              Intimate lounge that once hosted monthly R&amp;B showcases and poetry
+              slams.
+            </p>
+            <div class="venue-meta">
+              <span>Neighborhood: Ivanhoe Village</span>
+              <span>Genres: R&amp;B, neo-soul (archived)</span>
+            </div>
+            <div class="venue-links">
+              <a href="#">Remember When</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer>
+      Data compiled by Calamari Crystal Collective — last updated April 2025.
+    </footer>
+  </body>
+</html>
