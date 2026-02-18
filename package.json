@@ -22,26 +22,36 @@
     "prebuild": "node scripts/update-sitemap-lastmod.mjs && node scripts/optimize-images.mjs",
     "dev": "vite",
     "build": "vite build",
+    "build:gh": "cross-env GITHUB_PAGES=true vite build",
     "preview": "vite preview",
     "clean": "rimraf dist",
     "img:opt": "node scripts/optimize-images.mjs",
+    "mix-temple:assets": "blender -b --python /Users/cloutlandishllc/Downloads/calamari-crystal-site/tools/mix-temple/build_asset_library.py",
+    "mix-temple:setup": "npm run mix-temple:assets && cross-env MIX_TEMPLE_SAMPLES=128 blender -b --python /Users/cloutlandishllc/Downloads/calamari-crystal-site/tools/mix-temple/setup_scene.py",
+    "mix-temple:render": "cross-env MIX_TEMPLE_SAMPLES=128 blender -b /Users/cloutlandishllc/Downloads/calamari-crystal-site/mix-temple.blend --python /Users/cloutlandishllc/Downloads/calamari-crystal-site/tools/mix-temple/render_batch.py -- --lock-base",
+    "mix-temple:proof": "npm run mix-temple:setup && cross-env MIX_TEMPLE_SAMPLES=96 blender -b /Users/cloutlandishllc/Downloads/calamari-crystal-site/mix-temple.blend --python /Users/cloutlandishllc/Downloads/calamari-crystal-site/tools/mix-temple/render_batch.py -- --proof --lock-base && /Users/cloutlandishllc/Downloads/calamari-crystal-site/tools/mix-temple/validate_mix_temple.sh frame-0-hero.png frame-2-capture-chain.png",
+    "mix-temple:validate": "/Users/cloutlandishllc/Downloads/calamari-crystal-site/tools/mix-temple/validate_mix_temple.sh",
+    "mix-temple:all": "npm run mix-temple:setup && npm run mix-temple:render && npm run mix-temple:validate",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "npm run lint && npm run format:check",
-    "test": "echo 'No tests configured'"
+    "test": "vitest run"
   },
   "dependencies": {
     "lucide-react": "^0.553.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.30.1"
+    "react-router-dom": "^6.30.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
     "@vitejs/plugin-react": "^5.0.2",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^10.1.0",
     "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jest-dom": "^5.4.0",
@@ -49,12 +59,17 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-testing-library": "^6.5.0",
+    "jsdom": "^25.0.1",
     "postcss": "^8.4.41",
     "prettier": "^3.3.3",
     "rimraf": "^5.0.5",
     "sharp": "^0.34.4",
     "tailwindcss": "^3.4.14",
-    "vite": "^7.1.12"
+    "vite": "^7.2.2",
+    "vitest": "^2.1.6"
+  },
+  "overrides": {
+    "esbuild": "^0.25.0"
   },
   "resolutions": {}
 }
