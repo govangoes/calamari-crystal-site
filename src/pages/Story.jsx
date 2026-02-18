@@ -11,23 +11,20 @@ export default function Story() {
       </header>
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <picture>
-          <source srcSet="/squid_emblem.webp" type="image/webp" />
+          <source srcSet="/maskable-icon-512.webp" type="image/webp" />
           <img
-            src="/squid_emblem.png"
-            alt="Squid emblem"
+            src="/icon-512.png"
+            alt="Cloutlandish icon"
             className="w-full rounded-lg shadow-crystal"
             decoding="async"
           />
         </picture>
-        <picture>
-          <source srcSet="/cloud_gold_logo.webp" type="image/webp" />
-          <img
-            src="/cloud_gold_logo.png"
-            alt="Cloud logo"
-            className="w-full rounded-lg opacity-80"
-            decoding="async"
-          />
-        </picture>
+        <img
+          src="/apple-touch-icon.png"
+          alt="Cloutlandish icon for Apple devices"
+          className="w-full rounded-lg opacity-80"
+          decoding="async"
+        />
       </div>
     </main>
   );
