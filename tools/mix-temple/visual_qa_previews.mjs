@@ -27,7 +27,12 @@ async function buildPreviews() {
     const outputPath = path.join(OUTPUT_DIR, outputName);
 
     await sharp(inputPath)
-      .resize({ width: 1280, height: 720, fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .resize({
+        width: 1280,
+        height: 720,
+        fit: "contain",
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
+      })
       .flatten({ background: { r: 5, g: 7, b: 15 } })
       .jpeg({ quality: 90, mozjpeg: true })
       .toFile(outputPath);
@@ -37,6 +42,8 @@ async function buildPreviews() {
 }
 
 buildPreviews().catch((error) => {
-  process.stderr.write(`visual_qa_previews failed: ${error instanceof Error ? error.message : String(error)}\n`);
+  process.stderr.write(
+    `visual_qa_previews failed: ${error instanceof Error ? error.message : String(error)}\n`,
+  );
   process.exitCode = 1;
 });
