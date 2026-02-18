@@ -1,0 +1,63 @@
+import { useState } from "react";
+
+const rhymeFamilyClasses = {
+  a: "text-[#00ff8a] [text-shadow:0_0_8px_rgba(0,255,138,0.9)]",
+  b: "text-[#ff3ee5] [text-shadow:0_0_8px_rgba(255,62,229,0.85)]",
+  c: "border-b-2 border-[#00ff8a] pb-[2px] text-paperWhite",
+};
+
+const fallbackRhymeClass = "text-crystal [text-shadow:0_0_8px_rgba(34,211,238,0.85)]";
+
+const getRhymeClass = (family) => rhymeFamilyClasses[family] ?? fallbackRhymeClass;
+
+export default function RhymeClusterPanel({ cluster }) {
+  const [activeFamily, setActiveFamily] = useState(null);
+
+  if (!cluster) return null;
+
+  return (
+    <section className="mx-auto max-w-6xl px-4 pb-20 text-paperWhite">
+      <div className="mx-auto w-full max-w-2xl rounded-[14px] border border-[#00ff8a]/80 bg-[#111118] p-5 shadow-[0_0_18px_rgba(0,255,138,0.35)] md:p-8">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <h3 className="text-lg font-bold text-[#00ff8a] [text-shadow:0_0_8px_rgba(0,255,138,0.85)] md:text-2xl">
+            {cluster.title}
+          </h3>
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#ff3ee5] [text-shadow:0_0_8px_rgba(255,62,229,0.8)] md:text-sm">
+            BPM: {cluster.bpm}
+          </p>
+        </div>
+
+        <div className="grid gap-2 leading-relaxed">
+          {cluster.lines.map((line) => (
+            <p key={line.id} className="text-base md:text-[1.08rem]">
+              {line.tokens.map((token, index) => {
+                if (!token.rhyme) {
+                  return <span key={`${line.id}-${index}`}>{token.text}</span>;
+                }
+
+                const family = token.rhyme.toLowerCase();
+                const isActive = activeFamily === family;
+                const isDimmed = activeFamily && !isActive;
+
+                return (
+                  <span
+                    key={`${line.id}-${index}`}
+                    onMouseEnter={() => setActiveFamily(family)}
+                    onMouseLeave={() => setActiveFamily(null)}
+                    className={`transition ${
+                      isActive ? "brightness-125 saturate-150" : ""
+                    } ${isDimmed ? "opacity-55" : "opacity-100"} ${getRhymeClass(family)}`}
+                  >
+                    {token.text}
+                  </span>
+                );
+              })}
+            </p>
+          ))}
+        </div>
+
+        <p className="mt-4 text-center text-xs text-paperWhite/55">{cluster.footer}</p>
+      </div>
+    </section>
+  );
+}

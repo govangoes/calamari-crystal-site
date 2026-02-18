@@ -1,0 +1,312 @@
+import { useEffect, useMemo, useState } from "react";
+import analyzeLyrics from "../utils/lyricsAnalysis.js";
+
+const rhymeFamilyClasses = {
+  a: "text-[#00ff8a] [text-shadow:0_0_8px_rgba(0,255,138,0.9)]",
+  b: "text-[#ff3ee5] [text-shadow:0_0_8px_rgba(255,62,229,0.85)]",
+  c: "border-b-2 border-[#00ff8a] pb-[2px] text-paperWhite",
+};
+
+const fallbackRhymeClass = "text-crystal [text-shadow:0_0_8px_rgba(34,211,238,0.85)]";
+const FAMILY_LABELS = ["a", "b", "c", "d", "e", "f", "g", "h"];
+const autoClusterId = "custom-auto-cluster";
+
+const getRhymeClass = (family) => rhymeFamilyClasses[family] ?? fallbackRhymeClass;
+
+const extractRhymeKey = (word) => {
+  const cleaned = (word || "")
+    .toLowerCase()
+    .replace(/[^a-z']/g, "")
+    .replace(/'+/g, "");
+  if (!cleaned) return "";
+  const vowels = "aeiouy";
+  for (let i = cleaned.length - 1; i >= 0; i -= 1) {
+    if (vowels.includes(cleaned[i])) return cleaned.slice(i);
+  }
+  return cleaned.slice(-3);
+};
+
+const buildAutoClusterFromLyrics = (lyrics, bpm = 92) => {
+  const normalized = (lyrics || "").replace(/\r\n/g, "\n").trim();
+  if (!normalized) return null;
+
+  const analysis = analyzeLyrics(normalized);
+  const rawLines = normalized
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .slice(0, 16);
+  if (rawLines.length === 0) return null;
+
+  const endings = rawLines
+    .map((line) => {
+      const match = line.match(/([A-Za-z0-9']+)\s*[^A-Za-z0-9']*$/);
+      const word = match?.[1] || "";
+      return extractRhymeKey(word);
+    })
+    .filter(Boolean);
+
+  const knownKeys = analysis.topRhymes.map((entry) => entry.key).filter(Boolean);
+  const keyPool = [...new Set([...knownKeys, ...endings])].slice(0, FAMILY_LABELS.length);
+  const familyByKey = new Map(
+    keyPool.map((key, index) => [
+      key,
+      FAMILY_LABELS[index] ?? FAMILY_LABELS[FAMILY_LABELS.length - 1],
+    ]),
+  );
+
+  const lines = rawLines.map((line, index) => {
+    const match = line.match(/^(.*?)([A-Za-z0-9']+)([^A-Za-z0-9']*)$/);
+    if (!match) {
+      return { id: `auto-line-${index + 1}`, tokens: [{ text: line }] };
+    }
+
+    const [, before, word, after] = match;
+    const key = extractRhymeKey(word);
+    const family = familyByKey.get(key);
+    const tokens = [];
+
+    if (before) tokens.push({ text: before });
+    tokens.push(family ? { text: word, rhyme: family } : { text: word });
+    if (after) tokens.push({ text: after });
+
+    return { id: `auto-line-${index + 1}`, tokens };
+  });
+
+  const topKeys = analysis.topRhymes
+    .slice(0, 4)
+    .map((entry) => entry.key)
+    .filter(Boolean)
+    .join(", ");
+
+  return {
+    cluster: {
+      id: autoClusterId,
+      title: "Custom Lyrics - Auto Cluster",
+      bpm,
+      footer: topKeys
+        ? `Auto-tag active • Detected rhyme keys: ${topKeys}`
+        : "Auto-tag active • No strong rhyme keys detected yet",
+      lines,
+    },
+    analysis,
+  };
+};
+
+export default function RhymeClusterPanel({ cluster, clusters = [] }) {
+  const sourceClusters = useMemo(() => {
+    if (Array.isArray(clusters) && clusters.length > 0) return clusters;
+    return cluster ? [cluster] : [];
+  }, [cluster, clusters]);
+  const defaultClusterId = sourceClusters[0]?.id ?? "";
+
+  const [activeClusterId, setActiveClusterId] = useState(defaultClusterId);
+  const [customCluster, setCustomCluster] = useState(null);
+  const [customAnalysis, setCustomAnalysis] = useState(null);
+  const [customLyrics, setCustomLyrics] = useState("");
+  const [hoverFamily, setHoverFamily] = useState(null);
+  const [lockedFamily, setLockedFamily] = useState(null);
+
+  const clusterOptions = customCluster ? [...sourceClusters, customCluster] : sourceClusters;
+  const activeCluster =
+    clusterOptions.find((entry) => entry.id === activeClusterId) ?? clusterOptions[0];
+  const activeFamily = lockedFamily ?? hoverFamily;
+  const beatSeconds = activeCluster?.bpm > 0 ? 60 / activeCluster.bpm : 0.8;
+
+  useEffect(() => {
+    if (!activeClusterId && defaultClusterId) {
+      setActiveClusterId(defaultClusterId);
+    }
+  }, [activeClusterId, defaultClusterId]);
+
+  useEffect(() => {
+    setHoverFamily(null);
+    setLockedFamily(null);
+  }, [activeCluster?.id]);
+
+  const families = useMemo(() => {
+    const lines = activeCluster?.lines ?? [];
+    const found = new Set();
+    for (const line of lines) {
+      for (const token of line.tokens) {
+        if (token.rhyme) found.add(token.rhyme.toLowerCase());
+      }
+    }
+    return [...found].sort();
+  }, [activeCluster]);
+
+  const handleFamilyToggle = (family) => {
+    setLockedFamily((prev) => (prev === family ? null : family));
+  };
+
+  const clearFamilyFilters = () => {
+    setHoverFamily(null);
+    setLockedFamily(null);
+  };
+
+  const handleAutoTag = () => {
+    if (!customLyrics.trim()) return;
+    const generated = buildAutoClusterFromLyrics(customLyrics, activeCluster?.bpm || 92);
+    if (!generated) return;
+    setCustomCluster(generated.cluster);
+    setCustomAnalysis(generated.analysis);
+    setActiveClusterId(generated.cluster.id);
+  };
+
+  if (!activeCluster) return null;
+
+  return (
+    <section className="mx-auto max-w-6xl px-4 pb-20 text-paperWhite">
+      <div className="mx-auto w-full max-w-2xl rounded-[14px] border border-[#00ff8a]/80 bg-[#111118] p-5 shadow-[0_0_18px_rgba(0,255,138,0.35)] md:p-8">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <label
+            htmlFor="rhyme-cluster-select"
+            className="text-[11px] font-semibold uppercase tracking-[0.12em] text-paperWhite/65 md:text-xs"
+          >
+            Cluster Preset
+          </label>
+          <select
+            id="rhyme-cluster-select"
+            className="rounded-xl border border-white/20 bg-black/50 px-3 py-2 text-sm text-paperWhite outline-none transition focus:border-crystal/70 focus:ring-2 focus:ring-crystal/40"
+            value={activeCluster.id}
+            onChange={(event) => setActiveClusterId(event.target.value)}
+          >
+            {sourceClusters.map((entry) => (
+              <option key={entry.id} value={entry.id}>
+                {entry.title}
+              </option>
+            ))}
+            {customCluster && <option value={customCluster.id}>{customCluster.title}</option>}
+          </select>
+        </div>
+
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <h3 className="text-lg font-bold text-[#00ff8a] [text-shadow:0_0_8px_rgba(0,255,138,0.85)] md:text-2xl">
+            {activeCluster.title}
+          </h3>
+          <div className="flex items-center gap-2">
+            <span className="relative inline-flex h-2.5 w-2.5">
+              <span
+                className="absolute inline-flex h-full w-full rounded-full bg-[#ff3ee5]/70 motion-safe:animate-ping"
+                style={{ animationDuration: `${beatSeconds}s` }}
+                aria-hidden
+              />
+              <span
+                className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#ff3ee5]"
+                aria-hidden
+              />
+            </span>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#ff3ee5] [text-shadow:0_0_8px_rgba(255,62,229,0.8)] md:text-sm">
+              BPM: {activeCluster.bpm}
+            </p>
+          </div>
+        </div>
+
+        <div className="mb-4 flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={clearFamilyFilters}
+            className={`rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] transition md:text-xs ${
+              !activeFamily
+                ? "border-crystal/80 bg-crystal/20 text-crystal"
+                : "border-white/20 bg-black/20 text-paperWhite/70 hover:border-crystal/60"
+            }`}
+          >
+            All
+          </button>
+          {families.map((family) => {
+            const isActive = activeFamily === family;
+            return (
+              <button
+                key={family}
+                type="button"
+                onClick={() => handleFamilyToggle(family)}
+                onMouseEnter={() => setHoverFamily(family)}
+                onMouseLeave={() => setHoverFamily(null)}
+                className={`rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] transition md:text-xs ${
+                  isActive
+                    ? "border-[#00ff8a]/80 bg-[#00ff8a]/15 text-[#00ff8a]"
+                    : "border-white/20 bg-black/20 text-paperWhite/70 hover:border-[#00ff8a]/60"
+                }`}
+                aria-pressed={isActive}
+              >
+                Family {family.toUpperCase()}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="grid gap-2 leading-relaxed">
+          {activeCluster.lines.map((line) => (
+            <p key={line.id} className="text-base md:text-[1.08rem]">
+              {line.tokens.map((token, index) => {
+                if (!token.rhyme) {
+                  return <span key={`${line.id}-${index}`}>{token.text}</span>;
+                }
+
+                const family = token.rhyme.toLowerCase();
+                const isActive = activeFamily === family;
+                const isDimmed = activeFamily && !isActive;
+
+                return (
+                  <button
+                    key={`${line.id}-${index}`}
+                    type="button"
+                    onClick={() => handleFamilyToggle(family)}
+                    onMouseEnter={() => setHoverFamily(family)}
+                    onMouseLeave={() => setHoverFamily(null)}
+                    onFocus={() => setHoverFamily(family)}
+                    onBlur={() => setHoverFamily(null)}
+                    className={`transition ${isActive ? "brightness-125 saturate-150" : ""} ${
+                      isDimmed ? "opacity-55" : "opacity-100"
+                    } ${getRhymeClass(family)} inline bg-transparent p-0 text-left`}
+                    aria-pressed={isActive}
+                    aria-label={`Toggle rhyme family ${family.toUpperCase()}`}
+                  >
+                    {token.text}
+                  </button>
+                );
+              })}
+            </p>
+          ))}
+        </div>
+
+        <p className="mt-4 text-center text-xs text-paperWhite/55">{activeCluster.footer}</p>
+
+        <div className="mt-6 rounded-2xl border border-white/10 bg-black/40 p-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-paperWhite/70 md:text-xs">
+              Auto-Tag From Lyrics
+            </p>
+            <button
+              type="button"
+              onClick={handleAutoTag}
+              disabled={!customLyrics.trim()}
+              className="rounded-full border border-crystal/60 px-4 py-1.5 text-xs font-semibold text-crystal transition hover:bg-crystal hover:text-ink disabled:cursor-not-allowed disabled:border-white/20 disabled:text-paperWhite/40"
+            >
+              Generate Cluster
+            </button>
+          </div>
+          <textarea
+            value={customLyrics}
+            onChange={(event) => setCustomLyrics(event.target.value)}
+            placeholder="Paste your bars. Auto-tagging will map rhyme families from line endings."
+            rows={5}
+            className="mt-3 w-full rounded-xl border border-white/15 bg-black/35 p-3 text-sm text-paperWhite outline-none transition focus:border-crystal/70 focus:ring-2 focus:ring-crystal/40"
+          />
+          {customAnalysis && (
+            <p className="mt-2 text-xs text-paperWhite/55">
+              Lines: {customAnalysis.lineCount} • End-rhyme keys:{" "}
+              {customAnalysis.topRhymes.length > 0
+                ? customAnalysis.topRhymes
+                    .slice(0, 4)
+                    .map((entry) => entry.key)
+                    .join(", ")
+                : "none detected"}
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}

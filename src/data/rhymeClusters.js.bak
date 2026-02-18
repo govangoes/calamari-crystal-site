@@ -1,0 +1,40 @@
+export const rhymeClusters = [
+  {
+    id: "mfdoom-borrowed-time",
+    title: "MF DOOM - Rhyme Cluster",
+    bpm: 94,
+    footer: "Multi-syllabic rhyme mapping active • Rap Map v1",
+    lines: [
+      {
+        id: "line-1",
+        tokens: [
+          { text: "Living off " },
+          { text: "borrowed", rhyme: "a" },
+          { text: " time, the clock " },
+          { text: "ticks", rhyme: "a" },
+          { text: " faster" },
+        ],
+      },
+      {
+        id: "line-2",
+        tokens: [
+          { text: "That'd be the " },
+          { text: "hour", rhyme: "b" },
+          { text: " they knock the slick " },
+          { text: "blaster", rhyme: "b" },
+        ],
+      },
+      {
+        id: "line-3",
+        tokens: [
+          { text: "Dick Dastardly and " },
+          { text: "Muttley", rhyme: "c" },
+          { text: " with " },
+          { text: "sick laughter", rhyme: "c" },
+        ],
+      },
+    ],
+  },
+];
+
+export const getRhymeClusterById = (id) => rhymeClusters.find((cluster) => cluster.id === id);
