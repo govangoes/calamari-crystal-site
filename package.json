@@ -52,7 +52,7 @@
     "@vitejs/plugin-react": "^5.0.2",
     "autoprefixer": "^10.4.20",
     "cross-env": "^10.1.0",
-    "eslint": "^9.9.0",
+    "eslint": "^10.0.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jest-dom": "^5.4.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
