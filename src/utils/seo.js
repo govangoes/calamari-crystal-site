@@ -1,3 +1,11 @@
+const FALLBACK_SOCIAL_IMAGE = "/icon-192.png";
+const MISSING_SOCIAL_IMAGES = new Set(["/og.jpg", "/og-image.png"]);
+
+function resolveSocialImage(image) {
+  if (!image || MISSING_SOCIAL_IMAGES.has(image)) return FALLBACK_SOCIAL_IMAGE;
+  return image;
+}
+
 export function setSEO({ title, description, image, imageAlt, url, author, site } = {}) {
   const hasWindow = typeof window !== "undefined" && window.location;
   const origin = hasWindow ? window.location.origin : "";
@@ -35,16 +43,17 @@ export function setSEO({ title, description, image, imageAlt, url, author, site 
     set('meta[name="twitter:description"]', "content", description);
   }
 
-  const absImage = image
-    ? image.startsWith("http")
-      ? image
-      : origin + image
+  const resolvedImage = resolveSocialImage(image);
+  const absImage = resolvedImage.startsWith("http")
+    ? resolvedImage
     : origin
-      ? origin + "/og-image.png"
+      ? origin + resolvedImage
       : undefined;
   if (absImage) {
     set('meta[property="og:image"]', "content", absImage);
     set('meta[name="twitter:image"]', "content", absImage);
+    set('meta[property="og:image:width"]', "content", "192");
+    set('meta[property="og:image:height"]', "content", "192");
     if (imageAlt) {
       set('meta[property="og:image:alt"]', "content", imageAlt);
       set('meta[name="twitter:image:alt"]', "content", imageAlt);

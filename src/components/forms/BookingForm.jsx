@@ -10,6 +10,9 @@ import { copyTextToClipboard, submitFormWithFallback } from "./formUtils.js";
 
 const EVENT_TYPES = ["Show", "Hosting", "Brand", "Other"];
 const BUDGET_RANGES = ["Under $500", "$500-$1,000", "$1,000-$2,500", "$2,500+"];
+const ENDPOINT_SUCCESS_MESSAGE = "Received. I’ll reply in 24–48 hours.";
+const MAILTO_FALLBACK_MESSAGE =
+  "Your email app is opening with the details. Send that email to finish the request.";
 
 const INITIAL_FIELDS = {
   name: "",
@@ -57,6 +60,7 @@ export default function BookingForm({ className = "" }) {
   const [validationMessage, setValidationMessage] = useState("");
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [successSummary, setSuccessSummary] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const subject = "Booking Inquiry — Go Van Goes";
 
   const formattedBody = useMemo(() => formatBookingBody(fields), [fields]);
@@ -98,11 +102,15 @@ export default function BookingForm({ className = "" }) {
       formattedBody,
     });
 
+    const submittedToEndpoint = result.via === "endpoint";
+    const nextMessage = submittedToEndpoint ? ENDPOINT_SUCCESS_MESSAGE : MAILTO_FALLBACK_MESSAGE;
+
     setSuccessSummary(copyPayload);
-    if (result.via === "endpoint") {
+    setSuccessMessage(nextMessage);
+    if (submittedToEndpoint) {
       setFields(INITIAL_FIELDS);
     }
-    setFeedbackMessage("Received. I’ll reply in 24–48 hours.");
+    setFeedbackMessage(nextMessage);
     setIsSubmitting(false);
   };
 
@@ -112,7 +120,7 @@ export default function BookingForm({ className = "" }) {
     <CrystalCard as="form" variant="glass" className={rootClassName} onSubmit={handleSubmit}>
       {successSummary && (
         <CrystalCard variant="outline" className="space-y-3 border-crystal/35 bg-crystal/10 p-4">
-          <p className="text-sm font-medium text-strong">Received. I’ll reply in 24–48 hours.</p>
+          <p className="text-sm font-medium text-strong">{successMessage}</p>
           <GhostButton as="button" type="button" onClick={() => copySummary(successSummary)}>
             Copy summary
           </GhostButton>
