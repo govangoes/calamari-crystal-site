@@ -12,6 +12,9 @@ const TIERS = [
   { name: "Pro", price: "$129", detail: "2 revisions • typical 1–2 days" },
   { name: "Deluxe", price: "$199", detail: "cleanup/tuning • typical 24–48 hours" },
 ];
+const ENDPOINT_SUCCESS_MESSAGE = "Received. I’ll reply in 24–48 hours.";
+const MAILTO_FALLBACK_MESSAGE =
+  "Your email app is opening with the details. Send that email to finish the request.";
 
 const INITIAL_FIELDS = {
   name: "",
@@ -67,6 +70,7 @@ export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
   const [validationMessage, setValidationMessage] = useState("");
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [successSummary, setSuccessSummary] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const subject = "Mix / Master Intake — Go Van Goes";
 
   const selectedTier = useMemo(
@@ -147,10 +151,14 @@ export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
       formattedBody: formatMixMasterBody(normalizedFields, selectedTier),
     });
 
+    const submittedToEndpoint = result.via === "endpoint";
+    const nextMessage = submittedToEndpoint ? ENDPOINT_SUCCESS_MESSAGE : MAILTO_FALLBACK_MESSAGE;
+
     setSuccessSummary(
       `Subject: ${subject}\n\n${formatMixMasterBody(normalizedFields, selectedTier)}`,
     );
-    if (result.via === "endpoint") {
+    setSuccessMessage(nextMessage);
+    if (submittedToEndpoint) {
       setFields(INITIAL_FIELDS);
     } else {
       setFields((previous) => ({
@@ -158,7 +166,7 @@ export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
         referenceLink: normalizedReferenceLink,
       }));
     }
-    setFeedbackMessage("Received. I’ll reply in 24–48 hours.");
+    setFeedbackMessage(nextMessage);
     setIsSubmitting(false);
   };
 
@@ -168,7 +176,7 @@ export default function MixMasterForm({ className = "", fileUploadUrl = "" }) {
     <CrystalCard as="form" variant="glass" className={rootClassName} onSubmit={handleSubmit}>
       {successSummary && (
         <CrystalCard variant="outline" className="space-y-3 border-crystal/35 bg-crystal/10 p-4">
-          <p className="text-sm font-medium text-strong">Received. I’ll reply in 24–48 hours.</p>
+          <p className="text-sm font-medium text-strong">{successMessage}</p>
           <GhostButton as="button" type="button" onClick={() => copySummary(successSummary)}>
             Copy summary
           </GhostButton>
