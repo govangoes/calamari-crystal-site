@@ -14,12 +14,12 @@
     "url": "https://github.com/govangoes/calamari-crystal-site/issues"
   },
   "engines": {
-    "node": "20.x",
+    "node": ">=20.19.0 <21 || >=22.12.0",
     "npm": ">=9.0.0"
   },
   "type": "module",
   "scripts": {
-    "prebuild": "node scripts/update-sitemap-lastmod.mjs && node scripts/optimize-images.mjs",
+    "prebuild": "node scripts/optimize-images.mjs",
     "dev": "vite",
     "build": "vite build",
     "build:gh": "cross-env GITHUB_PAGES=true vite build",
