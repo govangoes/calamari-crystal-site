@@ -52,6 +52,7 @@ export default function App() {
             <Route path="/business" element={<Business />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/press" element={<Press />} />
+            <Route path="/epk" element={<Press />} />
             <Route path="/music" element={<Music />} />
             <Route path="/rap-map" element={<RapMap />} />
             <Route path="/artists" element={<Artists />} />
@@ -59,6 +60,7 @@ export default function App() {
             <Route path="/lyrics-lab" element={<LyricsLab />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/open-mics" element={<OpenMicsOrlando />} />
+            <Route path="/open-mics-orlando" element={<OpenMicsOrlando />} />
             <Route path="/bookings" element={<Bookings />} />
             <Route path="/about" element={<About />} />
             <Route path="/privacy" element={<Privacy />} />
