@@ -25,6 +25,31 @@ const Privacy = lazy(() => import("./pages/Privacy.jsx"));
 const Terms = lazy(() => import("./pages/Terms.jsx"));
 const NotFound = lazy(() => import("./pages/NotFound.jsx"));
 
+const appRoutes = [
+  { path: "/", Component: Home },
+  { path: "/services", Component: Services },
+  { path: "/story", Component: Story },
+  { path: "/merch", Component: Merch },
+  { path: "/marketing", Component: Marketing },
+  { path: "/business", Component: Business },
+  { path: "/contact", Component: Contact },
+  { path: "/press", Component: Press },
+  { path: "/epk", Component: Press },
+  { path: "/music", Component: Music },
+  { path: "/rap-map", Component: RapMap },
+  { path: "/artists", Component: Artists },
+  { path: "/artists/:id", Component: ArtistProfile },
+  { path: "/lyrics-lab", Component: LyricsLab },
+  { path: "/upload", Component: Upload },
+  { path: "/open-mics", Component: OpenMicsOrlando },
+  { path: "/open-mics-orlando", Component: OpenMicsOrlando },
+  { path: "/bookings", Component: Bookings },
+  { path: "/about", Component: About },
+  { path: "/privacy", Component: Privacy },
+  { path: "/terms", Component: Terms },
+  { path: "*", Component: NotFound },
+];
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -54,28 +79,9 @@ export default function App() {
         <div className="flex-1">
           <Suspense fallback={<RouteLoading />}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/story" element={<Story />} />
-              <Route path="/merch" element={<Merch />} />
-              <Route path="/marketing" element={<Marketing />} />
-              <Route path="/business" element={<Business />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/press" element={<Press />} />
-              <Route path="/epk" element={<Press />} />
-              <Route path="/music" element={<Music />} />
-              <Route path="/rap-map" element={<RapMap />} />
-              <Route path="/artists" element={<Artists />} />
-              <Route path="/artists/:id" element={<ArtistProfile />} />
-              <Route path="/lyrics-lab" element={<LyricsLab />} />
-              <Route path="/upload" element={<Upload />} />
-              <Route path="/open-mics" element={<OpenMicsOrlando />} />
-              <Route path="/open-mics-orlando" element={<OpenMicsOrlando />} />
-              <Route path="/bookings" element={<Bookings />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="*" element={<NotFound />} />
+              {appRoutes.map(({ path, Component }) => (
+                <Route key={path} path={path} element={<Component />} />
+              ))}
             </Routes>
           </Suspense>
         </div>
