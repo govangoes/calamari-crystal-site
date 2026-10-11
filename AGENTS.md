@@ -110,6 +110,11 @@ Calamari Crystal is a cinematic concept‑album website for GoVanGoes built with
 - `/api/availability` reads the private bookings Google Calendar and returns only booked dates (never titles). It needs `BOOKING_CALENDAR_ICS_URL` as a **server-only** Vercel env var (no `VITE_` prefix; the link works like a password).
 - Without that variable the booking calendar simply doesn't grey out any days. Recurring events are not expanded; add them as individual events.
 
+## Short Link & QR (in-person marketing)
+
+- `/go` is a temporary redirect to `/services?src=qr` (set in `vercel.json`). Print the short link, not the long one, so the destination can change without reprinting.
+- `node scripts/make-qr.mjs` regenerates `print/govangoes-qr.svg`, `print/govangoes-qr.png` and `print/sticker-sheet.html` (the PDF is that page printed to PDF). The QR encodes `https://www.govangoes.com/go`.
+
 ## Security Notes
 
 - Never commit secrets (API keys, credentials) to the repository.
