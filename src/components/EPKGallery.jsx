@@ -100,6 +100,10 @@ export default function EPKGallery({ items: itemsProp }) {
                     {it.caption ? (
                       <div
                         className="epk-card__caption"
+                        role="region"
+                        // The caption can scroll, so keyboard users need to be able to focus it.
+                        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+                        tabIndex={0}
                         aria-label={`Caption for ${it.title || "press photo"}`}
                       >
                         <p>{it.caption}</p>
