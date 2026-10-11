@@ -197,32 +197,45 @@ export default function Services() {
         </div>
 
         {/* Who you're working with */}
-        <div className="space-y-4">
-          <SectionHeader eyebrow="Who you're working with" title="GoVanGoes, artist and engineer" />
-          <p className="max-w-3xl text-sm leading-relaxed text-muted md:text-base">
-            I&rsquo;m a rapper, producer, and engineer based in Oviedo, Florida. I&rsquo;ve been
-            performing for about 18 years, I make my own beats, and I record and mix from my home
-            studio. I placed Top 3 at the Coast 2 Coast Showcase in Philadelphia, and my music has
-            been featured in Rap Fiesta and Orlando Voyager.
-          </p>
-          <div className="flex flex-wrap gap-3 text-sm">
-            {PRESS_FEATURE_LINKS.filter((link) => !link.href.includes("govangoes.com")).map(
-              (link) => (
-                <a
-                  key={link.label}
-                  className="pill"
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {link.label}
-                </a>
-              ),
-            )}
-            <Link className="pill" to="/about">
-              More about me →
-            </Link>
+        <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,17rem)] md:gap-10">
+          <div className="space-y-4">
+            <SectionHeader
+              eyebrow="Who you're working with"
+              title="GoVanGoes, artist and engineer"
+            />
+            <p className="max-w-3xl text-sm leading-relaxed text-muted md:text-base">
+              I&rsquo;m a rapper, producer, and engineer based in Oviedo, Florida. I&rsquo;ve been
+              performing for about 18 years, I make my own beats, and I record and mix from my home
+              studio. I placed Top 3 at the Coast 2 Coast Showcase in Philadelphia, and my music has
+              been featured in Rap Fiesta and Orlando Voyager.
+            </p>
+            <div className="flex flex-wrap gap-3 text-sm">
+              {PRESS_FEATURE_LINKS.filter((link) => !link.href.includes("govangoes.com")).map(
+                (link) => (
+                  <a
+                    key={link.label}
+                    className="pill"
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {link.label}
+                  </a>
+                ),
+              )}
+              <Link className="pill" to="/about">
+                More about me →
+              </Link>
+            </div>
           </div>
+          <img
+            src="/photos/govangoes-philly-seated.webp"
+            alt="GoVanGoes sitting on a stone ledge in Philadelphia, looking off to the side"
+            width="1100"
+            height="1100"
+            loading="lazy"
+            className="aspect-square w-full max-w-xs justify-self-center rounded-2xl border border-white/15 object-cover md:max-w-none"
+          />
         </div>
 
         {/* FAQ */}

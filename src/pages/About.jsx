@@ -51,6 +51,25 @@ export default function About() {
         </p>
       </div>
 
+      <div className="grid gap-4 sm:grid-cols-2">
+        <img
+          src="/photos/govangoes-philly-ledge.webp"
+          alt="GoVanGoes in a red plaid hoodie, sitting on a stone ledge in Philadelphia"
+          width="1100"
+          height="1099"
+          loading="lazy"
+          className="aspect-square w-full rounded-2xl border border-white/15 object-cover"
+        />
+        <img
+          src="/photos/govangoes-studio-mic.webp"
+          alt="GoVanGoes in headphones, smiling in front of a studio microphone"
+          width="825"
+          height="1100"
+          loading="lazy"
+          className="aspect-square w-full rounded-2xl border border-white/15 object-cover object-top"
+        />
+      </div>
+
       <section aria-labelledby="highlights-heading" className="space-y-4">
         <h2 id="highlights-heading" className="text-xl font-semibold text-paperWhite">
           The short version
