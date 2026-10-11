@@ -29,12 +29,23 @@ function ScrollToTop() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
     // Links like /#bookings should land on that section, not the top of the page.
-    const target = hash ? document.getElementById(hash.slice(1)) : null;
-    if (target?.scrollIntoView) {
-      target.scrollIntoView();
-      return;
+    // Images and lazy sections above the target can still shift the layout after the first
+    // scroll, so scroll again shortly after to land in the right spot.
+    const scrollToTarget = () => {
+      const target = hash ? document.getElementById(hash.slice(1)) : null;
+      if (target?.scrollIntoView) {
+        target.scrollIntoView();
+        return true;
+      }
+      return false;
+    };
+
+    if (!scrollToTarget()) {
+      window.scrollTo(0, 0);
+      return undefined;
     }
-    window.scrollTo(0, 0);
+    const timers = [250, 700].map((delay) => window.setTimeout(scrollToTarget, delay));
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
   }, [pathname, hash]);
   return null;
 }
