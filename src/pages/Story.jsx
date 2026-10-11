@@ -1,6 +1,20 @@
+import { useEffect } from "react";
 import React from "react";
+import setSEO from "../utils/seo.js";
 
 export default function Story() {
+  useEffect(() => {
+    setSEO({
+      title: "The Calamari Crystal Story — GoVanGoes",
+      description: "The story behind the Calamari Crystal concept album by GoVanGoes.",
+      url: "https://www.govangoes.com/story",
+      image: "/og-share.png",
+      imageAlt: "GoVanGoes logo: a gold G, V and G in a circle",
+      site: "@govangoes",
+      author: "GoVanGoes",
+    });
+  }, []);
+
   return (
     <main className="mx-auto max-w-6xl px-4 py-16 space-y-8">
       <header>

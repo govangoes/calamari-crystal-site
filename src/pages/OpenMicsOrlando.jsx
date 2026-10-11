@@ -1,4 +1,4 @@
-import { useId, useMemo, useState } from "react";
+import { useId, useMemo, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { orlandoOpenMics } from "../data/orlandoOpenMics.js";
@@ -10,8 +10,21 @@ import Field from "../components/ui/Field.jsx";
 import GhostButton from "../components/ui/GhostButton.jsx";
 import Hairline from "../components/ui/Hairline.jsx";
 import SectionHeader from "../components/ui/SectionHeader.jsx";
+import setSEO from "../utils/seo.js";
 
 export default function OpenMicsOrlando() {
+  useEffect(() => {
+    setSEO({
+      title: "Orlando Open Mics — GoVanGoes Creative",
+      description: "A guide to open mics in the Orlando area: search by genre and day.",
+      url: "https://www.govangoes.com/open-mics-orlando",
+      image: "/og-share.png",
+      imageAlt: "GoVanGoes logo: a gold G, V and G in a circle",
+      site: "@govangoes",
+      author: "GoVanGoes",
+    });
+  }, []);
+
   const [search, setSearch] = useState("");
   const [genreFilter, setGenreFilter] = useState("all");
   const [dayFilter, setDayFilter] = useState("all");
