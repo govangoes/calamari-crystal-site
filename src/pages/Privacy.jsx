@@ -4,7 +4,7 @@ import setSEO from "../utils/seo.js";
 export default function Privacy() {
   useEffect(() => {
     setSEO({
-      title: "Privacy — GoVanGoes",
+      title: "Privacy — GoVanGoes Creative",
       description: "Privacy policy and data usage overview.",
       url: "https://www.govangoes.com/privacy",
       image: "/og-image.png",

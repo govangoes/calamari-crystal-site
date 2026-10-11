@@ -6,7 +6,7 @@ import setSEO from "../utils/seo.js";
 export default function Bookings() {
   useEffect(() => {
     setSEO({
-      title: "Bookings — GoVanGoes",
+      title: "Book a Date — GoVanGoes Creative",
       description: "Shows, brand events, press, and collaborations.",
       url: "https://www.govangoes.com/bookings",
       image: "/icon-192.png",

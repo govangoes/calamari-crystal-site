@@ -18,7 +18,7 @@ const HIGHLIGHTS = [
 export default function About() {
   useEffect(() => {
     setSEO({
-      title: "About — GoVanGoes",
+      title: "About — GoVanGoes Creative",
       description:
         "GoVanGoes is a rapper, producer, and engineer in Oviedo, FL, and the artist behind GoVanGoes Creative.",
       url: "https://www.govangoes.com/about",

@@ -4,7 +4,7 @@ import setSEO from "../utils/seo.js";
 export default function Music() {
   useEffect(() => {
     setSEO({
-      title: "Music — GoVanGoes",
+      title: "Music — GoVanGoes Creative",
       description: "Latest singles, EPs, and concept‑album tracks.",
       url: "https://www.govangoes.com/music",
       image: "/og-image.png",

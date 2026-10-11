@@ -7,7 +7,7 @@ export default function Press() {
   const baseUrl = import.meta.env.BASE_URL;
   useEffect(() => {
     setSEO({
-      title: "Press — GoVanGoes",
+      title: "Press — GoVanGoes Creative",
       description: "Bio, photos, logos, and press contact.",
       url: "https://www.govangoes.com/press",
       image: "/og-image.png",
