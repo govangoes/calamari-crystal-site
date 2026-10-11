@@ -73,9 +73,9 @@ export default function TopNav({ onMenuStateChange }) {
             src="/govangoes-mark.webp"
             alt=""
             aria-hidden="true"
-            width="28"
-            height="28"
-            className="h-7 w-7"
+            width="32"
+            height="32"
+            className="h-8 w-8"
           />
           <span className="wordmark text-[0.68rem] sm:text-xs font-semibold uppercase tracking-[0.42em] text-strong">
             Go Van Goes

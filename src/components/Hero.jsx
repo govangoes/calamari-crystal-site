@@ -22,7 +22,7 @@ export default function Hero() {
             alt="GoVanGoes logo"
             width="512"
             height="512"
-            className="mx-auto mb-6 h-24 w-24 drop-shadow-[0_8px_30px_rgba(234,179,8,0.25)] sm:h-32 sm:w-32"
+            className="mx-auto mb-6 h-32 w-32 drop-shadow-[0_8px_30px_rgba(234,179,8,0.25)] sm:h-44 sm:w-44"
           />
           <p className="mb-4 text-[0.68rem] font-semibold uppercase tracking-[0.42em] text-crystal">
             {BRAND.company} · {BRAND.location}
