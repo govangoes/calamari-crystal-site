@@ -17,12 +17,22 @@ describe("BookingForm", () => {
 
   async function setupForm() {
     vi.stubEnv("VITE_FORM_ENDPOINT", "https://formspree.io/f/test123");
-    const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+    // The form asks /api/availability for booked days on load, and posts to the form endpoint on send.
+    const fetchMock = vi.fn((url) =>
+      Promise.resolve(
+        String(url).includes("/api/availability")
+          ? { ok: true, json: async () => ({ busyDates: ["2026-10-24"] }) }
+          : { ok: true },
+      ),
+    );
     vi.stubGlobal("fetch", fetchMock);
     const { default: BookingForm } = await import("./BookingForm.jsx");
     render(<BookingForm />);
     return fetchMock;
   }
+
+  const formPosts = (fetchMock) =>
+    fetchMock.mock.calls.filter(([url]) => String(url).includes("formspree.io"));
 
   it("walks through the steps and sends the picked date, time and length", async () => {
     const fetchMock = await setupForm();
@@ -54,7 +64,7 @@ describe("BookingForm", () => {
 
     expect(await screen.findByText("You’re on the list.")).toBeInTheDocument();
 
-    const [url, options] = fetchMock.mock.calls[0];
+    const [[url, options]] = formPosts(fetchMock);
     expect(url).toBe("https://formspree.io/f/test123");
     expect(JSON.parse(options.body)).toMatchObject({
       formType: "booking",
@@ -87,6 +97,20 @@ describe("BookingForm", () => {
     fireEvent.click(screen.getByRole("button", { name: "Send Booking Request" }));
 
     expect(await screen.findByText("You’re on the list.")).toBeInTheDocument();
-    expect(fetchMock).not.toHaveBeenCalled();
+    expect(formPosts(fetchMock)).toHaveLength(0);
+  });
+
+  it("blocks days that are already booked", async () => {
+    await setupForm();
+
+    fireEvent.click(screen.getByRole("button", { name: /Wedding/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Continue" }));
+
+    const booked = await screen.findByRole("button", {
+      name: "Saturday, October 24, 2026, already booked",
+    });
+    expect(booked).toBeDisabled();
+    expect(screen.getByText("Crossed-out days are already booked.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Saturday, October 17, 2026" })).toBeEnabled();
   });
 });

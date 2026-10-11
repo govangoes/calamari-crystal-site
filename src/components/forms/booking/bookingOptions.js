@@ -49,10 +49,10 @@ export const BUDGET_RANGES = [
 
 // Event length is picked on a slider in 30 minute steps, so nobody ends up with a 57 minute set.
 export const MIN_DURATION = 30;
-export const MAX_DURATION = 360;
+export const MAX_DURATION = 720;
 export const DURATION_STEP = 30;
 export const DEFAULT_DURATION = 120;
-export const DURATION_TICKS = [30, 60, 120, 180, 240, 300, 360];
+export const DURATION_TICKS = [30, 60, 120, 240, 360, 480, 600, 720];
 
 const MINUTES_PER_DAY = 24 * 60;
 

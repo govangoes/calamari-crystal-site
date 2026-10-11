@@ -13,9 +13,11 @@ function startOfDay(date) {
 
 /**
  * Month calendar for picking an event date.
- * `value` and `onChange` use YYYY-MM-DD strings. Days before `minDate` are disabled.
+ * `value`, `onChange`, and `busyDates` use YYYY-MM-DD strings.
+ * Days before `minDate` and days in `busyDates` can't be picked.
  */
-export default function CalendarPicker({ value, onChange, minDate }) {
+export default function CalendarPicker({ value, onChange, minDate, busyDates = [] }) {
+  const busy = new Set(busyDates);
   const earliest = startOfDay(minDate);
   const latest = new Date(earliest.getFullYear(), earliest.getMonth() + MONTHS_AHEAD, 0);
   const [view, setView] = useState(() => {
@@ -72,7 +74,8 @@ export default function CalendarPicker({ value, onChange, minDate }) {
           if (day === null) return <span key={`blank-${index}`} aria-hidden="true" />;
           const date = new Date(view.year, view.month, day);
           const iso = toIsoDate(date);
-          const disabled = date < earliest;
+          const booked = busy.has(iso);
+          const disabled = date < earliest || booked;
           const selected = iso === value;
           const stateClass = selected
             ? "border-crystal bg-crystal/25 font-semibold text-strong shadow-crystal"
@@ -83,15 +86,17 @@ export default function CalendarPicker({ value, onChange, minDate }) {
               type="button"
               disabled={disabled}
               aria-pressed={selected}
-              aria-label={formatLongDate(iso)}
+              aria-label={booked ? `${formatLongDate(iso)}, already booked` : formatLongDate(iso)}
               onClick={() => onChange(iso)}
               className={`aspect-square rounded-full border text-sm transition disabled:cursor-not-allowed disabled:opacity-25 disabled:hover:border-transparent disabled:hover:bg-transparent ${stateClass}`}
             >
-              {day}
+              {booked ? <s>{day}</s> : day}
             </button>
           );
         })}
       </div>
+
+      {busy.size > 0 && <p className="text-xs text-muted">Crossed-out days are already booked.</p>}
     </div>
   );
 }

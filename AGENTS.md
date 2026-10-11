@@ -67,7 +67,7 @@ Calamari Crystal is a cinematic concept‑album website for GoVanGoes built with
 - `src/components` — Hero, SocialLinks, CursorSquid, ScrollReveal and other reusable components
 - `src/assets` — Brand images and icons
 - `src/styles/palette.css` — Brand colour tokens for Tailwind
-- `api/*` — Vercel serverless functions (e.g., `/api/health`, `/api/phoneme`, `/api/dict`)
+- `api/*` — Vercel serverless functions (`/api/dict`, `/api/availability`). Helpers live in `api/_lib/` (not routed).
 - `scripts/*` — Node scripts (image optimisation, sitemap update, EXIF to manifest)
 - `public/` — Static assets and `sitemap.xml`
 
@@ -99,6 +99,16 @@ Calamari Crystal is a cinematic concept‑album website for GoVanGoes built with
 - Vercel auto‑deploys commits pushed to the `main` branch.
 - `vercel.json` defines SPA rewrites, security headers, and domain redirects; avoid changing them unless updating routing.
 - Domains `govangoes.com` and `www.govangoes.com` should both point to this project. A 308 redirect enforces a single canonical domain (currently `www.govangoes.com`).
+
+## Cost Rule
+
+- The owner has no budget for paid tools right now. Always use a free workaround first.
+- When something will truly need a paid plan long-term, add it to the paid-tools backlog doc in the Vocational Rehabilitation project so it can feed the VR expense lists. Don't add paid services to the code without asking.
+
+## Booking Availability
+
+- `/api/availability` reads the private bookings Google Calendar and returns only booked dates (never titles). It needs `BOOKING_CALENDAR_ICS_URL` as a **server-only** Vercel env var (no `VITE_` prefix; the link works like a password).
+- Without that variable the booking calendar simply doesn't grey out any days. Recurring events are not expanded; add them as individual events.
 
 ## Security Notes
 

@@ -15,7 +15,8 @@ describe("duration and time formatting", () => {
     expect(formatDuration(60)).toBe("1 hr");
     expect(formatDuration(90)).toBe("1 hr 30 min");
     expect(formatDuration(240)).toBe("4 hrs");
-    expect(formatDuration(360)).toBe("6 hrs+");
+    expect(formatDuration(360)).toBe("6 hrs");
+    expect(formatDuration(720)).toBe("12 hrs+");
   });
 
   it("formats clock times including noon and midnight", () => {

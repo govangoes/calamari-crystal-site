@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import BookingForm from "../components/forms/BookingForm.jsx";
 import { CONTACT_EMAIL } from "../content/offers.js";
 import setSEO from "../utils/seo.js";
 
@@ -15,11 +16,18 @@ export default function Bookings() {
     });
   }, []);
   return (
-    <main className="mx-auto max-w-6xl px-4 py-16">
-      <h1 className="text-3xl font-bold">Bookings</h1>
-      <p className="mt-3 text-paperWhite/80">For shows, brand events, press, and collaborations.</p>
-      <p className="mt-6">
-        Email: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+    <main className="mx-auto max-w-4xl space-y-6 px-4 py-16">
+      <header className="text-center">
+        <h1 className="text-3xl font-bold">Book GoVanGoes</h1>
+        <p className="mt-3 text-paperWhite/80">
+          Shows, weddings, parties, hosting, brand events, and collaborations.
+        </p>
+      </header>
+
+      <BookingForm />
+
+      <p className="text-center text-sm text-muted">
+        Prefer email? <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
       </p>
     </main>
   );

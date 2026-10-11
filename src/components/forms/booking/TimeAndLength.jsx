@@ -77,7 +77,7 @@ export function DurationSlider({ id, value, onChange, startMinutes }) {
       <p className="text-xs text-muted">
         {startMinutes === null
           ? "Choose a start time to see when it wraps up."
-          : `Wraps up around ${formatEndTime(startMinutes, value)}. Longer than 6 hours? Say so in the notes.`}
+          : `Wraps up around ${formatEndTime(startMinutes, value)}. Longer than 12 hours, or more than one day? Say so in the notes.`}
       </p>
     </div>
   );

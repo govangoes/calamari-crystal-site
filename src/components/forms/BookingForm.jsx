@@ -7,6 +7,7 @@ import Field from "../ui/Field.jsx";
 import GhostButton from "../ui/GhostButton.jsx";
 import CalendarPicker from "./booking/CalendarPicker.jsx";
 import { DurationSlider, TimeList } from "./booking/TimeAndLength.jsx";
+import useBusyDates from "./booking/useBusyDates.js";
 import {
   BUDGET_RANGES,
   DEFAULT_DURATION,
@@ -147,6 +148,7 @@ export default function BookingForm({ className = "" }) {
   const headingRef = useRef(null);
   const hasMounted = useRef(false);
   const minDate = useMemo(tomorrow, []);
+  const busyDates = useBusyDates();
 
   const info = describe(fields);
   const formattedBody = useMemo(() => formatBookingBody(fields), [fields]);
@@ -160,6 +162,13 @@ export default function BookingForm({ className = "" }) {
     }
     headingRef.current?.focus();
   }, [step]);
+
+  // If availability loads after someone already picked a day, drop it when it turns out to be booked.
+  useEffect(() => {
+    if (fields.date && busyDates.includes(fields.date)) {
+      setFields((previous) => ({ ...previous, date: "" }));
+    }
+  }, [busyDates, fields.date]);
 
   const setField = (key, value) => {
     setFields((previous) => ({ ...previous, [key]: value }));
@@ -315,6 +324,7 @@ export default function BookingForm({ className = "" }) {
                   <CalendarPicker
                     value={fields.date}
                     minDate={minDate}
+                    busyDates={busyDates}
                     onChange={(date) => setField("date", date)}
                   />
                   <TimeList
