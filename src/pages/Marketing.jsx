@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import ScrollReveal from "../components/ScrollReveal.jsx";
 import { Link } from "react-router-dom";
+import setSEO from "../utils/seo.js";
 
 const timeline = [
   {
@@ -17,6 +19,19 @@ const timeline = [
 ];
 
 export default function Marketing() {
+  useEffect(() => {
+    setSEO({
+      title: "Album Rollout — GoVanGoes Creative",
+      description: "Rollout plan for the Calamari Crystal concept album.",
+      url: "https://www.govangoes.com/marketing",
+      image: "/og-share.png",
+      imageAlt: "GoVanGoes logo: a gold G, V and G in a circle",
+      site: "@govangoes",
+      author: "GoVanGoes",
+      robots: "noindex,follow",
+    });
+  }, []);
+
   return (
     <section className="space-y-10">
       <header className="text-center space-y-2">

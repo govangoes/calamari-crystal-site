@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "../components/ScrollReveal.jsx";
 import RapMapExplorer from "../components/RapMapExplorer.jsx";
@@ -8,6 +9,7 @@ import CrystalCard from "../components/ui/CrystalCard.jsx";
 import Hairline from "../components/ui/Hairline.jsx";
 import SectionHeader from "../components/ui/SectionHeader.jsx";
 import { rhymeClusters } from "../data/rhymeClusters.js";
+import setSEO from "../utils/seo.js";
 
 const features = [
   {
@@ -48,6 +50,19 @@ const rapMapFeatureCards = [
 ];
 
 export default function RapMap() {
+  useEffect(() => {
+    setSEO({
+      title: "Rap Map — Rapper Vocabulary and Rhyme Maps | GoVanGoes",
+      description:
+        "Rap Map explores rapper vocabulary and rhyme patterns, and lets you analyze your own lyrics.",
+      url: "https://www.govangoes.com/rap-map",
+      image: "/og-share.png",
+      imageAlt: "GoVanGoes logo: a gold G, V and G in a circle",
+      site: "@govangoes",
+      author: "GoVanGoes",
+    });
+  }, []);
+
   return (
     <main className="relative overflow-hidden">
       <div

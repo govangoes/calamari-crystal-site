@@ -1,8 +1,22 @@
+import { useEffect } from "react";
 import ScrollReveal from "../components/ScrollReveal.jsx";
 import { merchItems, merchCta } from "../content/merch.js";
 import GhostButton from "../components/ui/GhostButton.jsx";
+import setSEO from "../utils/seo.js";
 
 export default function Merch() {
+  useEffect(() => {
+    setSEO({
+      title: "Merch — GoVanGoes Creative",
+      description: "Limited-run merch from GoVanGoes: story-driven pieces for super-fans.",
+      url: "https://www.govangoes.com/merch",
+      image: "/og-share.png",
+      imageAlt: "GoVanGoes logo: a gold G, V and G in a circle",
+      site: "@govangoes",
+      author: "GoVanGoes",
+    });
+  }, []);
+
   return (
     <section className="space-y-8">
       <header className="text-center">

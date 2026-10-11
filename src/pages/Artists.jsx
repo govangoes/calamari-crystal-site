@@ -1,9 +1,24 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import RapMapExplorer from "../components/RapMapExplorer.jsx";
 import { rapMapArtists } from "../data/rapMapArtists.js";
 import GhostButton from "../components/ui/GhostButton.jsx";
+import setSEO from "../utils/seo.js";
 
 export default function Artists() {
+  useEffect(() => {
+    setSEO({
+      title: "Artist Vocabulary Maps — Rap Map by GoVanGoes",
+      description:
+        "Browse the Rap Map beta: vocabulary fingerprints for rappers, and a way to analyze your own lyrics.",
+      url: "https://www.govangoes.com/artists",
+      image: "/og-share.png",
+      imageAlt: "GoVanGoes logo: a gold G, V and G in a circle",
+      site: "@govangoes",
+      author: "GoVanGoes",
+    });
+  }, []);
+
   return (
     <main className="relative overflow-hidden">
       <div

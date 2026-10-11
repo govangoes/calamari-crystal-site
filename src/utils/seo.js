@@ -6,7 +6,7 @@ function resolveSocialImage(image) {
   return image;
 }
 
-export function setSEO({ title, description, image, imageAlt, url, author, site } = {}) {
+export function setSEO({ title, description, image, imageAlt, url, author, site, robots } = {}) {
   const hasWindow = typeof window !== "undefined" && window.location;
   const origin = hasWindow ? window.location.origin : "";
   const currentUrl = hasWindow ? origin + window.location.pathname : url;
@@ -70,6 +70,15 @@ export function setSEO({ title, description, image, imageAlt, url, author, site 
       document.head.appendChild(link);
     }
     link.setAttribute("href", absUrl);
+  }
+
+  // Pages that shouldn't appear in search pass robots: "noindex,follow". Every other page
+  // clears it, so a noindex from one route never sticks after navigating to another.
+  const robotsEl = document.querySelector('meta[name="robots"]');
+  if (robots) {
+    set('meta[name="robots"]', "content", robots);
+  } else if (robotsEl) {
+    robotsEl.remove();
   }
 
   if (site) {
