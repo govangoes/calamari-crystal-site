@@ -8,7 +8,7 @@ import BookingForm from "../components/forms/BookingForm.jsx";
 import MixMasterForm from "../components/forms/MixMasterForm.jsx";
 import ProofGrid from "../components/ProofGrid.jsx";
 import ServiceTierCards from "../components/ServiceTierCards.jsx";
-import MixTempleSection from "../components/MixTempleSection.jsx";
+import StudioTour from "../components/StudioTour.jsx";
 import CrystalBadge from "../components/ui/CrystalBadge.jsx";
 import CrystalCard from "../components/ui/CrystalCard.jsx";
 import Hairline from "../components/ui/Hairline.jsx";
@@ -217,7 +217,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <MixTempleSection />
+      <StudioTour />
 
       <Section
         id="press"

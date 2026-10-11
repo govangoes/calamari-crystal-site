@@ -1,0 +1,252 @@
+/* Studio tour: a drawn desk that lights up along the signal path. */
+.studio-tour {
+  position: relative;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(160deg, rgba(10, 12, 24, 0.92), rgba(6, 8, 16, 0.9));
+  padding: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .studio-tour {
+    padding: 2rem;
+  }
+}
+
+/* No overflow:hidden on any ancestor, or the stage stops sticking. */
+.studio-stage-wrap {
+  position: sticky;
+  top: 4.5rem;
+  z-index: 5;
+  align-self: start;
+}
+
+@media (min-width: 1024px) {
+  .studio-stage-wrap {
+    top: 5.5rem;
+  }
+}
+
+.studio-stage {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(34, 211, 238, 0.07), transparent 60%), #07080f;
+  padding: 0.5rem 0.75rem 1rem;
+}
+
+.studio-drawing {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.studio-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.25rem 0.5rem 0;
+}
+
+.studio-caption-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--core-gvgGold, #ffd700);
+}
+
+.studio-caption-gear {
+  font-size: 0.85rem;
+  color: rgba(246, 247, 251, 0.75);
+}
+
+/* Gear */
+.studio-desk {
+  fill: #1a1d2b;
+}
+
+.studio-gear rect,
+.studio-gear circle,
+.studio-gear path {
+  transition:
+    fill 0.45s ease,
+    stroke 0.45s ease,
+    opacity 0.45s ease;
+}
+
+.studio-gear {
+  opacity: 0.4;
+  fill: #141726;
+  stroke: rgba(246, 247, 251, 0.35);
+  stroke-width: 1.5;
+  transition: opacity 0.45s ease;
+}
+
+.studio-gear--passed {
+  opacity: 0.75;
+}
+
+.studio-gear--lit {
+  opacity: 1;
+  stroke: var(--core-gvgGold, #ffd700);
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.35));
+}
+
+.studio-stand,
+.studio-stand-line {
+  fill: #141726;
+  stroke: rgba(246, 247, 251, 0.3);
+  stroke-width: 1.5;
+}
+
+.studio-stand-line {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.studio-booth {
+  stroke: rgba(34, 211, 238, 0.8);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 2 9;
+}
+
+.studio-band {
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.studio-knob {
+  fill: rgba(246, 247, 251, 0.18);
+}
+
+.studio-dot {
+  fill: rgba(34, 211, 238, 0.9);
+  stroke: none;
+}
+
+.studio-session rect {
+  fill: rgba(167, 139, 250, 0.55);
+  stroke: none;
+}
+
+.studio-session rect:nth-child(2n) {
+  fill: rgba(34, 211, 238, 0.5);
+}
+
+.studio-meter {
+  fill: rgba(255, 215, 0, 0.7) !important;
+  transform-box: fill-box;
+  transform-origin: bottom;
+}
+
+.studio-gear--lit .studio-meter--a {
+  animation: studio-meter 1.1s ease-in-out infinite alternate;
+}
+
+.studio-gear--lit .studio-meter--b {
+  animation: studio-meter 0.8s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes studio-meter {
+  from {
+    transform: scaleY(0.25);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Cables */
+.studio-cable {
+  stroke: var(--core-gvgGold, #ffd700);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 0.8s ease,
+    opacity 0.3s ease;
+}
+
+.studio-cable--on {
+  stroke-dashoffset: 0;
+  opacity: 0.85;
+}
+
+.studio-cable--flowing {
+  stroke-dasharray: 0.06 0.04;
+  animation: studio-flow 1.2s linear infinite;
+}
+
+@keyframes studio-flow {
+  to {
+    stroke-dashoffset: -0.1;
+  }
+}
+
+/* Steps */
+.studio-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 1024px) {
+  .studio-steps {
+    gap: 3rem;
+    padding: 4vh 0;
+  }
+}
+
+.studio-step {
+  position: relative;
+  border-left: 2px solid rgba(255, 255, 255, 0.14);
+  padding: 0.25rem 0 0.25rem 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.studio-step--active {
+  border-left-color: var(--core-gvgGold, #ffd700);
+}
+
+.studio-step-button {
+  all: unset;
+  cursor: pointer;
+}
+
+.studio-step-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.studio-step-button:focus-visible {
+  outline: 2px solid rgba(34, 211, 238, 0.9);
+  outline-offset: 4px;
+}
+
+.studio-step-outcome {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--core-gvgGold, #ffd700);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-cable,
+  .studio-gear,
+  .studio-gear * {
+    transition: none !important;
+  }
+  .studio-cable--flowing,
+  .studio-gear--lit .studio-meter {
+    animation: none !important;
+  }
+}
