@@ -86,7 +86,9 @@ export default function Services() {
               Book a Date
             </GhostButton>
             <PsychedelicButton as="a" className="px-8 py-3 text-lg" href={`${baseUrl}#mixmaster`}>
-              Mix &amp; Master <ArrowRight size={18} />
+              <span className="inline-flex items-center gap-2 whitespace-nowrap">
+                Mix &amp; Master <ArrowRight size={18} />
+              </span>
             </PsychedelicButton>
           </div>
         </header>
@@ -240,10 +242,14 @@ export default function Services() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <GhostButton as={Link} to="/bookings" className="inline-flex items-center gap-2">
-              Request a Date <ArrowRight size={20} />
+              <span className="inline-flex items-center gap-2 whitespace-nowrap">
+                Request a Date <ArrowRight size={20} />
+              </span>
             </GhostButton>
             <GhostButton as={Link} to="/#mixmaster" className="inline-flex items-center gap-2">
-              Start a Mix <ArrowRight size={20} />
+              <span className="inline-flex items-center gap-2 whitespace-nowrap">
+                Start a Mix <ArrowRight size={20} />
+              </span>
             </GhostButton>
           </div>
         </CrystalCard>
