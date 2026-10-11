@@ -39,14 +39,15 @@ describe("extractBusyDates", () => {
     expect(result.busyDates).toEqual(["2026-10-17"]);
   });
 
-  it("ignores cancelled and free events, and counts recurring ones without expanding them", () => {
+  it("ignores cancelled events, blocks free ones, and counts recurring ones without expanding them", () => {
     const result = busy(
       "DTSTART:20261020T180000\nDTEND:20261020T200000\nSTATUS:CANCELLED",
       "DTSTART:20261021T180000\nDTEND:20261021T200000\nTRANSP:TRANSPARENT",
       "DTSTART:20261022T180000\nDTEND:20261022T200000\nRRULE:FREQ=WEEKLY",
     );
-    expect(result.busyDates).toEqual([]);
+    expect(result.busyDates).toEqual(["2026-10-21"]);
     expect(result.recurringIgnored).toBe(1);
+    expect(result.eventsSeen).toBe(3);
   });
 
   it("drops past days, handles folded lines, and never returns event details", () => {

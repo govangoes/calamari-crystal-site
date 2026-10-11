@@ -4,7 +4,8 @@
 // Simple on purpose. Known limits:
 // - A day is "booked" if any busy event touches it (no partial-day slots).
 // - Recurring events (RRULE) are not expanded. They are counted so the caller can warn.
-// - Events marked "free" (TRANSPARENT) and cancelled events don't block a day.
+// - Cancelled events don't block a day. Events marked "free" DO block: Google marks all-day
+//   events as free by default, and everything on the bookings calendar should block its day.
 
 const TIME_ZONE = "America/New_York";
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -99,6 +100,8 @@ export function extractBusyDates(icsText, { now = new Date(), horizonDays = 550 
   const lastDay = addDays(today, horizonDays);
   const busy = new Set();
   let recurringIgnored = 0;
+  let eventsSeen = 0;
+  let eventsUnreadable = 0;
   let event = null;
 
   for (const rawLine of unfold(icsText).split(/\r?\n/)) {
@@ -108,15 +111,18 @@ export function extractBusyDates(icsText, { now = new Date(), horizonDays = 550 
     } else if (line === "END:VEVENT" && event) {
       const { props } = event;
       event = null;
+      eventsSeen += 1;
 
       if (props.STATUS?.value.toUpperCase() === "CANCELLED") continue;
-      if (props.TRANSP?.value.toUpperCase() === "TRANSPARENT") continue;
       if (props.RRULE) {
         recurringIgnored += 1;
         continue;
       }
       const start = props.DTSTART && parseDateValue(props.DTSTART.value);
-      if (!start) continue;
+      if (!start) {
+        eventsUnreadable += 1;
+        continue;
+      }
       const end = props.DTEND ? parseDateValue(props.DTEND.value) : null;
 
       for (const iso of eventDays(start, end)) {
@@ -124,11 +130,12 @@ export function extractBusyDates(icsText, { now = new Date(), horizonDays = 550 
       }
     } else if (event) {
       const parsed = parseLine(line);
-      if (parsed && ["DTSTART", "DTEND", "STATUS", "TRANSP", "RRULE"].includes(parsed.name)) {
+      if (parsed && ["DTSTART", "DTEND", "STATUS", "RRULE"].includes(parsed.name)) {
         event.props[parsed.name] = parsed;
       }
     }
   }
 
-  return { busyDates: [...busy].sort(), recurringIgnored };
+  // Counts only (no titles or dates) so a quiet calendar can be told apart from a broken one.
+  return { busyDates: [...busy].sort(), recurringIgnored, eventsSeen, eventsUnreadable };
 }

@@ -39,9 +39,9 @@ export default async function handler(req, res) {
     const text = await response.text();
     if (text.length > MAX_FEED_CHARS) throw new Error("feed_too_large");
 
-    const { busyDates, recurringIgnored } = extractBusyDates(text);
+    const { busyDates, ...counts } = extractBusyDates(text);
     res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600");
-    res.status(200).json({ configured: true, busyDates, recurringIgnored });
+    res.status(200).json({ configured: true, busyDates, ...counts });
   } catch {
     // No details on purpose. The page treats any failure as "no availability info".
     res.setHeader("Cache-Control", "no-store");
