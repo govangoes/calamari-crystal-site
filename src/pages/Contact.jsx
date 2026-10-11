@@ -1,7 +1,22 @@
+import { useEffect } from "react";
 import BookingForm from "../components/forms/BookingForm.jsx";
 import { CONTACT_EMAIL } from "../content/offers.js";
+import setSEO from "../utils/seo.js";
 
 export default function Contact() {
+  useEffect(() => {
+    setSEO({
+      title: "Contact — GoVanGoes Creative",
+      description:
+        "Shows, brand events, press, and collaborations. Request a date or send a message.",
+      url: "https://www.govangoes.com/contact",
+      image: "/icon-192.png",
+      imageAlt: "GoVanGoes icon",
+      site: "@govangoes",
+      author: "GoVanGoes",
+    });
+  }, []);
+
   return (
     <section className="mx-auto max-w-4xl space-y-6 px-4 py-10">
       <header className="text-center">

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero.jsx";
 import Section from "../components/Section.jsx";
@@ -23,6 +24,7 @@ import {
 } from "../content/media.js";
 import { AUDIO_PROOF_URL, FILE_UPLOAD_URL, STREAMING_LINKS } from "../content/links.js";
 import { shows, showsCta } from "../content/shows.js";
+import setSEO from "../utils/seo.js";
 import PsychedelicTextureLayer from "../components/ui/PsychedelicTextureLayer.jsx";
 
 const proofItems = ["Apple Music artist profile", "Remote delivery", "Notes welcome"];
@@ -50,6 +52,19 @@ const resources = [
 
 export default function Home() {
   const hasConfirmedShows = Boolean(showsCta) && shows.some((show) => show.href);
+
+  useEffect(() => {
+    setSEO({
+      title: "GoVanGoes Creative — Live, DJ, Mix & Master | Oviedo, FL",
+      description:
+        "Live performance and DJ sets, remote mixing and mastering, and studio guidance from GoVanGoes Creative in Oviedo, FL. Request a date in a few minutes.",
+      url: "https://www.govangoes.com/",
+      image: "/icon-192.png",
+      imageAlt: "GoVanGoes icon",
+      site: "@govangoes",
+      author: "GoVanGoes",
+    });
+  }, []);
 
   return (
     <main className="min-h-screen bg-ink pb-[calc(6.5rem+env(safe-area-inset-bottom))] md:pb-0">
