@@ -83,6 +83,14 @@ export default function RapMap() {
           subtitle="Rap Map is a living atlas of rhyme--mapping cadences, word choice, and cultural callbacks across eras. We start with MF DOOM and trace the influence through every cipher, so you can study legends or spotlight your own sound."
         />
         <div className="flex flex-col items-center gap-4 sm:flex-row">
+          <GhostButton
+            as="a"
+            href="https://govangoes.github.io/rap-map/"
+            target="_blank"
+            rel="noopener"
+          >
+            Try the Rhyme Tool (free)
+          </GhostButton>
           <GhostButton as="a" href="#explore">
             Explore the Map
           </GhostButton>
@@ -166,7 +174,7 @@ export default function RapMap() {
             <GhostButton
               as="a"
               className="mt-6"
-              href="mailto:hello@govangoes.com?subject=Rap%20Map%20Beta"
+              href="mailto:govangoes@gmail.com?subject=Rap%20Map%20Beta"
             >
               Request Beta Access
             </GhostButton>
