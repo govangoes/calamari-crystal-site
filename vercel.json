@@ -5,6 +5,11 @@
   "framework": "vite",
   "redirects": [
     {
+      "source": "/go",
+      "destination": "/services?src=qr",
+      "permanent": false
+    },
+    {
       "source": "/(.*)",
       "destination": "https://www.govangoes.com/$1",
       "permanent": true,
