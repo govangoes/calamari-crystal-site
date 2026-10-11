@@ -1,5 +1,5 @@
-const FALLBACK_SOCIAL_IMAGE = "/icon-192.png";
-const MISSING_SOCIAL_IMAGES = new Set(["/og.jpg", "/og-image.png"]);
+const FALLBACK_SOCIAL_IMAGE = "/og-share.png";
+const MISSING_SOCIAL_IMAGES = new Set(["/og.jpg", "/og-image.png", "/icon-192.png"]);
 
 function resolveSocialImage(image) {
   if (!image || MISSING_SOCIAL_IMAGES.has(image)) return FALLBACK_SOCIAL_IMAGE;
@@ -52,8 +52,8 @@ export function setSEO({ title, description, image, imageAlt, url, author, site 
   if (absImage) {
     set('meta[property="og:image"]', "content", absImage);
     set('meta[name="twitter:image"]', "content", absImage);
-    set('meta[property="og:image:width"]', "content", "192");
-    set('meta[property="og:image:height"]', "content", "192");
+    set('meta[property="og:image:width"]', "content", "1200");
+    set('meta[property="og:image:height"]', "content", "630");
     if (imageAlt) {
       set('meta[property="og:image:alt"]', "content", imageAlt);
       set('meta[name="twitter:image:alt"]', "content", imageAlt);

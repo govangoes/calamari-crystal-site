@@ -17,6 +17,13 @@ export default function Hero() {
       <PsychedelicTextureLayer variant="hero" strength="medium" />
       <div className="relative z-[1] text-center">
         <div className="mx-auto max-w-[900px]">
+          <img
+            src={`${baseUrl}govangoes-mark.webp`}
+            alt="GoVanGoes logo"
+            width="512"
+            height="512"
+            className="mx-auto mb-6 h-24 w-24 drop-shadow-[0_8px_30px_rgba(234,179,8,0.25)] sm:h-32 sm:w-32"
+          />
           <p className="mb-4 text-[0.68rem] font-semibold uppercase tracking-[0.42em] text-crystal">
             {BRAND.company} · {BRAND.location}
           </p>

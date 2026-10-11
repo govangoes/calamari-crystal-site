@@ -9,7 +9,7 @@
 //
 // The QR points at the short link /go, which redirects to /services (see vercel.json).
 // Dark modules on a white panel: scanners need high contrast, so the code is never inverted.
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import QRCode from "qrcode";
@@ -25,12 +25,22 @@ const options = {
   color: { dark: "#0a1022", light: "#ffffff" },
 };
 
+// The logo is embedded so the sticker sheet is a single self-contained file.
+const markPath = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "public",
+  "govangoes-mark.png",
+);
+const markUri = `data:image/png;base64,${(await readFile(markPath)).toString("base64")}`;
+
 const svg = await QRCode.toString(SHORT_LINK, { ...options, type: "svg" });
 const qrInner = svg.replace(/<\?xml[^>]*>\s*/, "");
 const png = await QRCode.toBuffer(SHORT_LINK, { ...options, type: "png", width: 1200 });
 
 const sticker = `
   <div class="sticker">
+    <img class="mark" src="${markUri}" alt="GoVanGoes logo" />
     <p class="brand">GoVanGoes Creative</p>
     <div class="qr">${qrInner}</div>
     <p class="cta">Scan to book a date<br />or start a mix</p>
@@ -52,8 +62,9 @@ const html = `<!doctype html>
   .sticker { width: 3in; height: 3in; border-radius: 0.3in; background: #0a1022; color: #f6f7fb;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 0.14in; text-align: center; border: 0.02in solid #22d3ee; }
-  .brand { margin: 0 0 0.08in; font-size: 0.17in; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #22d3ee; }
-  .qr { width: 1.7in; height: 1.7in; background: #fff; border-radius: 0.08in; overflow: hidden; }
+  .mark { width: 0.62in; height: 0.62in; margin-bottom: 0.02in; }
+  .brand { margin: 0 0 0.07in; font-size: 0.14in; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #22d3ee; }
+  .qr { width: 1.5in; height: 1.5in; background: #fff; border-radius: 0.08in; overflow: hidden; }
   .qr svg { width: 100%; height: 100%; display: block; }
   .cta { margin: 0.1in 0 0.04in; font-size: 0.17in; font-weight: 700; line-height: 1.2; }
   .link { margin: 0; font-size: 0.15in; color: #a78bfa; font-weight: 600; }
