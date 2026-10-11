@@ -3,7 +3,7 @@ import { render, screen, within } from "../test-utils";
 import Home from "./Home.jsx";
 
 describe("Home", () => {
-  it("renders THE MIX TEMPLE phase one section", () => {
+  it("renders the home page sections", () => {
     render(<Home />);
 
     const asSeenInSection = screen.getByLabelText("As Seen In");
@@ -47,29 +47,14 @@ describe("Home", () => {
       within(servicesSection).getByRole("heading", { name: "Make your room translate" }),
     ).toBeInTheDocument();
 
-    const mixTempleSection = screen.getByLabelText("THE MIX TEMPLE gear tour");
-    expect(screen.getByRole("heading", { name: "THE MIX TEMPLE" })).toBeInTheDocument();
-    expect(within(mixTempleSection).getByText("Client-ready mix")).toBeInTheDocument();
-    expect(within(mixTempleSection).getAllByText("Notes welcome")).toHaveLength(1);
-    expect(within(mixTempleSection).getByText("24–48h response")).toBeInTheDocument();
-    expect(within(mixTempleSection).getAllByText("Decision Speed")).toHaveLength(2);
-    expect(within(mixTempleSection).getByText("Clean Capture Chain")).toBeInTheDocument();
-    expect(within(mixTempleSection).getByText("Translation Confidence")).toBeInTheDocument();
-    expect(within(mixTempleSection).getByText("Delivery-Ready Workflow")).toBeInTheDocument();
-    expect(within(mixTempleSection).getByText("Step 1 of 4")).toBeInTheDocument();
+    const studioSection = screen.getByLabelText("Studio tour");
+    expect(screen.getByRole("heading", { name: "Inside the studio" })).toBeInTheDocument();
+    expect(within(studioSection).getByRole("button", { name: "The mic" })).toBeInTheDocument();
+    expect(within(studioSection).getByRole("button", { name: "The check" })).toBeInTheDocument();
     expect(
-      within(mixTempleSection).getAllByText("You get faster, more confident mix calls."),
-    ).toHaveLength(2);
-    expect(
-      within(mixTempleSection).getByText(
-        /Scroll the steps to reveal each stage of the chain\. The gear is proof, but the outcome is the point\./,
-      ),
-    ).toBeInTheDocument();
-    expect(within(mixTempleSection).getByRole("link", { name: "Mix & Master" })).toHaveAttribute(
-      "href",
-      "#mixmaster",
-    );
-    expect(within(mixTempleSection).getByRole("link", { name: "Book Me" })).toHaveAttribute(
+      within(studioSection).getByRole("link", { name: "Send a mix or master" }),
+    ).toHaveAttribute("href", "#mixmaster");
+    expect(within(studioSection).getByRole("link", { name: "Book a date" })).toHaveAttribute(
       "href",
       "#bookings",
     );
