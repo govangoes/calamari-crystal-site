@@ -9,30 +9,6 @@
       "destination": "https://www.govangoes.com/$1",
       "permanent": true,
       "has": [{ "type": "host", "value": "govangoes.com" }]
-    },
-    {
-      "source": "/(.*)",
-      "destination": "https://www.govangoes.com/$1",
-      "permanent": true,
-      "has": [{ "type": "host", "value": "govangoes.net" }]
-    },
-    {
-      "source": "/(.*)",
-      "destination": "https://www.govangoes.com/$1",
-      "permanent": true,
-      "has": [{ "type": "host", "value": "www.govangoes.net" }]
-    },
-    {
-      "source": "/(.*)",
-      "destination": "https://www.govangoes.com/$1",
-      "permanent": true,
-      "has": [{ "type": "host", "value": "govangoes.org" }]
-    },
-    {
-      "source": "/(.*)",
-      "destination": "https://www.govangoes.com/$1",
-      "permanent": true,
-      "has": [{ "type": "host", "value": "www.govangoes.org" }]
     }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
