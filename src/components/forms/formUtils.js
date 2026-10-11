@@ -52,14 +52,16 @@ export async function submitFormWithFallback({
 
   if (isConfiguredValue(FORM_ENDPOINT)) {
     try {
+      // Fields are sent at the top level (not nested) so form services like Formspree
+      // show each one as its own column and use `email` as the reply-to address.
+      // The Accept header makes the service answer with JSON instead of a redirect page.
       const response = await globalThis.fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
+          _subject: subject,
           formType,
-          subject,
-          toEmail,
-          fields,
+          ...fields,
           formattedBody,
           submittedAt: new Date().toISOString(),
         }),
