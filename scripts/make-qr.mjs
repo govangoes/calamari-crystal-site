@@ -19,7 +19,11 @@ const DISPLAY_LINK = "govangoes.com/go";
 const outDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "print");
 
 // "H" = highest error correction, so a scuffed or curved sticker still scans.
-const options = { errorCorrectionLevel: "H", margin: 2, color: { dark: "#0a1022", light: "#ffffff" } };
+const options = {
+  errorCorrectionLevel: "H",
+  margin: 2,
+  color: { dark: "#0a1022", light: "#ffffff" },
+};
 
 const svg = await QRCode.toString(SHORT_LINK, { ...options, type: "svg" });
 const qrInner = svg.replace(/<\?xml[^>]*>\s*/, "");
