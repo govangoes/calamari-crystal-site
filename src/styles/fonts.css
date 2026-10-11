@@ -1,7 +1,15 @@
+/* Self-hosted fonts (CSP allows font-src 'self' only). Latin subsets only. */
+@import "@fontsource/syne/latin-700.css";
+@import "@fontsource/syne/latin-800.css";
+@import "@fontsource/manrope/latin-400.css";
+@import "@fontsource/manrope/latin-500.css";
+@import "@fontsource/manrope/latin-600.css";
+@import "@fontsource/manrope/latin-700.css";
+
 /* Typography tokens */
 :root {
-  --font-display: "Space Grotesk", sans-serif;
+  --font-display: "Syne", "Manrope", system-ui, sans-serif;
   --font-body:
-    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji",
+    "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji",
     "Segoe UI Emoji", sans-serif;
 }
