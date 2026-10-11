@@ -1,6 +1,6 @@
 const clean = (value) => (value && value.trim() ? value.trim() : "");
 
-export const CONTACT_EMAIL = clean(import.meta.env.VITE_CONTACT_EMAIL) || "bookings@govangoes.com";
+export const CONTACT_EMAIL = clean(import.meta.env.VITE_CONTACT_EMAIL) || "govangoes@gmail.com";
 export const BOOKING_EMAIL = CONTACT_EMAIL;
 
 /**

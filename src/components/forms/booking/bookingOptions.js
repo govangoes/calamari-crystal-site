@@ -4,17 +4,12 @@
 export const SERVICES = [
   {
     id: "live",
-    label: "Live show / DJ set",
-    detail: "Clubs, venues, festivals, and private parties",
-  },
-  {
-    id: "wedding",
-    label: "Wedding",
-    detail: "Ceremony, cocktail hour, or reception",
+    label: "Live performance",
+    detail: "Clubs, venues, showcases, and festivals",
   },
   {
     id: "private",
-    label: "Birthday / private party",
+    label: "Private event performance",
     detail: "Birthdays, graduations, and celebrations",
   },
   {

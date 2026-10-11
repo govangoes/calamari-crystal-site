@@ -39,7 +39,7 @@ describe("BookingForm", () => {
 
     // Step 1: service. Continue stays locked until one is chosen.
     expect(screen.getByRole("button", { name: "Continue" })).toBeDisabled();
-    fireEvent.click(screen.getByRole("button", { name: /Wedding/ }));
+    fireEvent.click(screen.getByRole("button", { name: /Private event/ }));
     fireEvent.click(screen.getByRole("button", { name: "Continue" }));
 
     // Step 2: calendar, time list, length slider. Past days and today are not pickable.
@@ -70,7 +70,7 @@ describe("BookingForm", () => {
       formType: "booking",
       name: "Ada",
       email: "ada@example.com",
-      eventType: "Wedding",
+      eventType: "Private event performance",
       eventDate: "2026-10-17",
       startTime: "7:00 PM",
       endTime: "8:30 PM",
@@ -103,7 +103,7 @@ describe("BookingForm", () => {
   it("blocks days that are already booked", async () => {
     await setupForm();
 
-    fireEvent.click(screen.getByRole("button", { name: /Wedding/ }));
+    fireEvent.click(screen.getByRole("button", { name: /Private event/ }));
     fireEvent.click(screen.getByRole("button", { name: "Continue" }));
 
     const booked = await screen.findByRole("button", {

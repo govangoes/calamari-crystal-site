@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="border-t border-ink/10 dark:border-paperWhite/10 bg-paperWhite/90 dark:bg-ink/80 backdrop-blur">
       <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-ink/70 dark:text-paperWhite/70">
         <div className="flex flex-wrap gap-6 items-center justify-between">
-          <div>© {new Date().getFullYear()} GoVanGoes / Cloutlandish LLC</div>
+          <div>© {new Date().getFullYear()} GoVanGoes Creative</div>
           <nav className="flex gap-4 flex-wrap">
             <a
               className="hover:text-ink dark:hover:text-paperWhite"

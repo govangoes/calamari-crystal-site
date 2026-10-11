@@ -55,9 +55,9 @@ export default function Home() {
 
   useEffect(() => {
     setSEO({
-      title: "GoVanGoes Creative — Live, DJ, Mix & Master | Oviedo, FL",
+      title: "GoVanGoes Creative — Live, Host, Mix & Master | Oviedo, FL",
       description:
-        "Live performance and DJ sets, remote mixing and mastering, and studio guidance from GoVanGoes Creative in Oviedo, FL. Request a date in a few minutes.",
+        "Live performance and hosting, remote mixing and mastering, and studio guidance from GoVanGoes Creative in Oviedo, FL. Request a date in a few minutes.",
       url: "https://www.govangoes.com/",
       image: "/icon-192.png",
       imageAlt: "GoVanGoes icon",

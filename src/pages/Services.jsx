@@ -52,7 +52,7 @@ export default function Services() {
     setSEO({
       title: "Services — GoVanGoes Creative",
       description:
-        "Live performance and DJ sets, remote mixing and mastering, and studio consulting from GoVanGoes Creative in Oviedo, FL.",
+        "Live performance and hosting, remote mixing and mastering, and studio consulting from GoVanGoes Creative in Oviedo, FL.",
       url: "https://www.govangoes.com/services",
       image: "/icon-192.png",
       imageAlt: "GoVanGoes icon",
@@ -79,7 +79,7 @@ export default function Services() {
             eyebrow={`${BRAND.company} · ${BRAND.location}`}
             titleAs="h1"
             title="One artist. Three ways to work together."
-            subtitle="Live performance and DJ sets, remote mixing and mastering, and studio guidance. Pick what you need and request it in a few minutes. I review every request myself."
+            subtitle="Live performance and hosting, remote mixing and mastering, and studio guidance. Pick what you need and request it in a few minutes. I review every request myself."
           />
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <GhostButton as={Link} to="/bookings" className="px-8 py-3 text-lg">

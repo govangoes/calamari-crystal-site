@@ -20,7 +20,7 @@ export default function Bookings() {
       <header className="text-center">
         <h1 className="text-3xl font-bold">Book GoVanGoes</h1>
         <p className="mt-3 text-paperWhite/80">
-          Shows, weddings, parties, hosting, brand events, and collaborations.
+          Shows, hosting, appearances, brand events, and collaborations.
         </p>
       </header>
 

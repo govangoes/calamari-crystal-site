@@ -5,7 +5,7 @@ export const epkHero = {
   tagline: "Wildly influential. Unapologetically different.",
   blurb:
     "GoVanGoes is a rapper, performer, and creative director building a fan-first movement under the Cloutlandish banner. On stage he's controlled energy—sharp cadences, crowd work, and showmanship that turns a room into a choir. Off stage he's a systems thinker, producing content and experiences that travel across platforms and events. Bookings include live sets, speaking/hosting, branded content, and private events.",
-  contactEmail: "bookings@govangoes.com",
+  contactEmail: "govangoes@gmail.com",
 };
 
 // helper so paths with spaces load in <img src="...">

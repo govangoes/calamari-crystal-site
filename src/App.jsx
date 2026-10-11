@@ -9,7 +9,6 @@ const Services = lazy(() => import("./pages/Services.jsx"));
 const Story = lazy(() => import("./pages/Story.jsx"));
 const Merch = lazy(() => import("./pages/Merch.jsx"));
 const Marketing = lazy(() => import("./pages/Marketing.jsx"));
-const Business = lazy(() => import("./pages/Business.jsx"));
 const Contact = lazy(() => import("./pages/Contact.jsx"));
 const Press = lazy(() => import("./pages/Press.jsx"));
 const Music = lazy(() => import("./pages/Music.jsx"));
@@ -76,7 +75,6 @@ export default function App() {
               <Route path="/story" element={<Story />} />
               <Route path="/merch" element={<Merch />} />
               <Route path="/marketing" element={<Marketing />} />
-              <Route path="/business" element={<Business />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/press" element={<Press />} />
               <Route path="/epk" element={<Press />} />

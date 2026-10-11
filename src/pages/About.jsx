@@ -20,7 +20,7 @@ export default function About() {
     setSEO({
       title: "About — GoVanGoes",
       description:
-        "GoVanGoes is a rapper, producer, engineer, and DJ in Oviedo, FL, and the artist behind GoVanGoes Creative.",
+        "GoVanGoes is a rapper, producer, and engineer in Oviedo, FL, and the artist behind GoVanGoes Creative.",
       url: "https://www.govangoes.com/about",
       image: "/icon-192.png",
       imageAlt: "GoVanGoes icon",
@@ -35,13 +35,13 @@ export default function About() {
         eyebrow={`${BRAND.artist} · ${BRAND.location}`}
         titleAs="h1"
         title="Wildly Influential. Unapologetically Different."
-        subtitle="Rapper, producer, engineer, and DJ based in Oviedo, Florida."
+        subtitle="Rapper, producer, and engineer based in Oviedo, Florida."
       />
 
       <div className="space-y-4 text-sm leading-relaxed text-muted md:text-base">
         <p>
           GoVanGoes is the artist. GoVanGoes Creative is the company that brings that same standard
-          to other people&rsquo;s projects and events: live performance and DJ sets, mixing and
+          to other people&rsquo;s projects and events: live performance and hosting, mixing and
           mastering, and studio guidance.
         </p>
         <p>

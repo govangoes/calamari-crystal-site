@@ -18,16 +18,16 @@ export const SERVICE_TIERS = [
     id: "live",
     icon: "Mic",
     eyebrow: "Live & Events",
-    title: "Perform, DJ, and host",
+    title: "Perform and host",
     summary:
-      "Live sets, DJ sets, and hosting for the nights people remember: weddings, birthdays, clubs, showcases, and brand events.",
+      "Live performance, hosting, and appearances for the nights people remember: showcases, clubs, private events, and brand events.",
     includes: [
       "Live performance sets",
-      "DJ sets for weddings, birthdays, and private parties",
+      "Performances at birthdays, graduations, and private events",
       "Hosting and MC for showcases, open mics, and brand events",
       "Meet-and-greets and appearances",
     ],
-    bestFor: "Weddings • Birthdays • Clubs and bars • Community and brand events",
+    bestFor: "Showcases • Clubs and bars • Private events • Community and brand events",
     howItWorks:
       "Pick a service, date, and time in the booking form. I check the date, then reply with a clear quote and next steps.",
     cta: { label: "Check a date", to: "/bookings" },
@@ -107,6 +107,11 @@ export const FAQ_ITEMS = [
     question: "My event is longer than 12 hours or spans more than one day.",
     answer:
       "Choose the longest option in the form and say so in the notes. I'll build the quote around it.",
+  },
+  {
+    question: "Do you DJ weddings or run full DJ packages?",
+    answer:
+      "Not yet. For now I perform, host, and make appearances. DJ and wedding packages are planned, so email me if you have something specific in mind.",
   },
   {
     question: "Do you mix and master remotely?",

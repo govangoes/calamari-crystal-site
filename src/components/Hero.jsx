@@ -23,7 +23,7 @@ export default function Hero() {
           <h1 className="font-extrabold text-[clamp(2rem,3.6vw,4rem)] leading-[1.05] tracking-[-0.01em] drop-shadow-[0_2px_18px_rgba(8,12,24,0.35)]">
             <span className="block">{BRAND.tagline}</span>
             <span className="mx-auto mt-5 block max-w-[46rem] text-[clamp(1rem,1.6vw,1.3rem)] font-medium leading-[1.5] text-paperWhite/82">
-              Live performance and DJ sets, mixing and mastering, and studio consulting from one
+              Live performance and hosting, mixing and mastering, and studio consulting from one
               artist and engineer. Request a date or send a project in minutes.
             </span>
           </h1>

@@ -38,7 +38,7 @@ describe("Home", () => {
     // All three service tiers show up near the top of the page.
     const servicesSection = document.getElementById("services");
     expect(
-      within(servicesSection).getByRole("heading", { name: "Perform, DJ, and host" }),
+      within(servicesSection).getByRole("heading", { name: "Perform and host" }),
     ).toBeInTheDocument();
     expect(
       within(servicesSection).getByRole("heading", { name: "Mix, master, and polish" }),
