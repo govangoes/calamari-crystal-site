@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import GhostButton from "./ui/GhostButton.jsx";
 
 const MENU_TRANSITION_MS = 240;
@@ -6,15 +7,15 @@ const MENU_TRANSITION_MS = 240;
 export default function TopNav({ onMenuStateChange }) {
   const [isMenuMounted, setIsMenuMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const baseUrl = import.meta.env.BASE_URL;
   const menuItems = [
-    { label: "Start", href: `${baseUrl}#start` },
-    { label: "Mix & Master", href: `${baseUrl}#mixmaster` },
-    { label: "Mix Temple", href: `${baseUrl}#mix-temple` },
-    { label: "Bookings", href: `${baseUrl}#bookings` },
-    { label: "Music", href: `${baseUrl}#music` },
-    { label: "Press", href: `${baseUrl}#press` },
-    { label: "Resources", href: `${baseUrl}#resources` },
+    { label: "Services", to: "/services" },
+    { label: "Book a Date", to: "/bookings" },
+    { label: "Mix & Master", to: "/#mixmaster" },
+    { label: "Mix Temple", to: "/#mix-temple" },
+    { label: "Music", to: "/#music" },
+    { label: "Press", to: "/press" },
+    { label: "About", to: "/about" },
+    { label: "Contact", to: "/contact" },
   ];
 
   const closeMenu = useCallback(() => {
@@ -63,8 +64,8 @@ export default function TopNav({ onMenuStateChange }) {
   return (
     <header className="sticky top-0 z-50 border-b border-white/15 bg-black/70 backdrop-blur">
       <div className="mx-auto max-w-6xl px-4 flex items-center justify-between h-16">
-        <a
-          href={`${baseUrl}#start`}
+        <Link
+          to="/"
           className="group inline-flex items-center gap-2 rounded-full px-3 py-1 transition hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
           aria-label="Go Van Goes home"
         >
@@ -72,7 +73,7 @@ export default function TopNav({ onMenuStateChange }) {
             Go Van Goes
           </span>
           <span className="hidden sm:inline-block h-px w-6 bg-gradient-to-r from-crystal to-paperWhite/80 opacity-70 transition group-hover:opacity-100" />
-        </a>
+        </Link>
         <GhostButton
           className="px-4 py-2 text-[0.64rem] font-medium uppercase tracking-[0.3em]"
           aria-expanded={isMenuOpen}
@@ -104,14 +105,14 @@ export default function TopNav({ onMenuStateChange }) {
             </div>
             <nav className="mt-6 flex flex-col gap-4 text-sm text-muted">
               {menuItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
-                  href={item.href}
+                  to={item.to}
                   className="text-muted transition hover:text-crystal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crystal/60 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                   onClick={closeMenu}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

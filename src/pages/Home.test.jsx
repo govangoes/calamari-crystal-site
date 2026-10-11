@@ -23,10 +23,29 @@ describe("Home", () => {
       within(asSeenInSection).getByText("Press + features • Updated regularly"),
     ).toBeInTheDocument();
 
+    // The hero sells the services and points straight at booking.
     expect(
-      screen.getByText("Mixing, mastering, and booking — clean process, clear communication,"),
+      screen.getByRole("heading", {
+        level: 1,
+        name: /Sound good\. Look official\. Move different\./,
+      }),
     ).toBeInTheDocument();
-    expect(screen.getByText("serious results.")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Request a date to book GoVanGoes/ })).toHaveAttribute(
+      "href",
+      "/bookings",
+    );
+
+    // All three service tiers show up near the top of the page.
+    const servicesSection = document.getElementById("services");
+    expect(
+      within(servicesSection).getByRole("heading", { name: "Perform, DJ, and host" }),
+    ).toBeInTheDocument();
+    expect(
+      within(servicesSection).getByRole("heading", { name: "Mix, master, and polish" }),
+    ).toBeInTheDocument();
+    expect(
+      within(servicesSection).getByRole("heading", { name: "Make your room translate" }),
+    ).toBeInTheDocument();
 
     const mixTempleSection = screen.getByLabelText("THE MIX TEMPLE gear tour");
     expect(screen.getByRole("heading", { name: "THE MIX TEMPLE" })).toBeInTheDocument();

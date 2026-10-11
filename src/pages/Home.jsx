@@ -6,6 +6,7 @@ import AsSeenIn from "../components/AsSeenIn.jsx";
 import BookingForm from "../components/forms/BookingForm.jsx";
 import MixMasterForm from "../components/forms/MixMasterForm.jsx";
 import ProofGrid from "../components/ProofGrid.jsx";
+import ServiceTierCards from "../components/ServiceTierCards.jsx";
 import MixTempleSection from "../components/MixTempleSection.jsx";
 import CrystalBadge from "../components/ui/CrystalBadge.jsx";
 import CrystalCard from "../components/ui/CrystalCard.jsx";
@@ -53,6 +54,21 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-ink pb-[calc(6.5rem+env(safe-area-inset-bottom))] md:pb-0">
       <Hero />
+
+      <Section
+        id="services"
+        eyebrow="Services"
+        title="Three ways to work together"
+        description="Live and events, audio post-production, and studio guidance, all under one roof."
+        contentClassName="space-y-6"
+      >
+        <ServiceTierCards />
+        <div>
+          <Link className="pill" to="/services">
+            See everything included →
+          </Link>
+        </div>
+      </Section>
 
       <section id="proof" className="relative mx-auto max-w-6xl isolate overflow-hidden px-4 pb-12">
         <PsychedelicTextureLayer variant="section" strength="low" />

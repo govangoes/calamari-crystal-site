@@ -25,6 +25,12 @@ export default function Footer() {
             >
               YouTube
             </a>
+            <Link className="hover:text-ink dark:hover:text-paperWhite" to="/services">
+              Services
+            </Link>
+            <Link className="hover:text-ink dark:hover:text-paperWhite" to="/bookings">
+              Book a Date
+            </Link>
             <Link className="hover:text-ink dark:hover:text-paperWhite" to="/press">
               Press
             </Link>

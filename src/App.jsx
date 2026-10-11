@@ -26,10 +26,16 @@ const Terms = lazy(() => import("./pages/Terms.jsx"));
 const NotFound = lazy(() => import("./pages/NotFound.jsx"));
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
+    // Links like /#bookings should land on that section, not the top of the page.
+    const target = hash ? document.getElementById(hash.slice(1)) : null;
+    if (target?.scrollIntoView) {
+      target.scrollIntoView();
+      return;
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 }
 

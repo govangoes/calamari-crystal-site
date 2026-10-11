@@ -1,5 +1,12 @@
-import { Mic, Music, Sliders, PenTool, Speaker, Package, ArrowRight } from "lucide-react";
-import { FILE_UPLOAD_URL } from "../content/links.js";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { FILE_UPLOAD_URL, PRESS_FEATURE_LINKS } from "../content/links.js";
+import { BRAND } from "../content/services.js";
+import setSEO from "../utils/seo.js";
+import BookingSteps from "../components/BookingSteps.jsx";
+import Faq from "../components/Faq.jsx";
+import ServiceTierCards from "../components/ServiceTierCards.jsx";
 import GhostButton from "../components/ui/GhostButton.jsx";
 import PsychedelicButton from "../components/ui/PsychedelicButton.jsx";
 import PsychedelicTextureLayer from "../components/ui/PsychedelicTextureLayer.jsx";
@@ -8,154 +15,110 @@ import CrystalCard from "../components/ui/CrystalCard.jsx";
 import Hairline from "../components/ui/Hairline.jsx";
 import SectionHeader from "../components/ui/SectionHeader.jsx";
 
-// Reusable Service Card Component with "Glass" Effect
-const ServiceCard = ({ icon: Icon, title, desc, bestFor }) => (
-  <CrystalCard
-    variant="glass"
-    className="group flex h-full flex-col p-6 transition duration-300 hover:-translate-y-1"
-  >
-    <div>
-      <div className="w-12 h-12 rounded-lg bg-crystal/20 flex items-center justify-center text-crystal mb-4 group-hover:scale-110 transition-transform">
-        <Icon size={24} />
-      </div>
+// Mix & master packages were already public. Prices are unchanged.
+const MIX_TIERS = [
+  {
+    name: "Basic",
+    price: "$79",
+    bullets: ["Mix + master (1 song)", "1 revision", "Typical: 2–4 days (often faster)"],
+  },
+  {
+    name: "Pro",
+    price: "$129",
+    popular: true,
+    bullets: ["Mix + master (1 song)", "2 revisions", "Typical: 1–2 days (priority)"],
+  },
+  {
+    name: "Deluxe",
+    price: "$199",
+    bullets: [
+      "Mix + master (1 song)",
+      "Vocal cleanup + light tuning (if needed)",
+      "3 revisions · Typical: 24–48 hours",
+    ],
+  },
+];
 
-      <h3 className="text-xl font-bold text-paperWhite">{title}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-muted min-h-[60px]">{desc}</p>
-
-      <div className="mt-4 pt-4 border-t border-white/10">
-        <CrystalBadge variant="tag" className="text-crystal">
-          Best For
-        </CrystalBadge>
-        <p className="text-sm text-paperWhite/90 mt-1">{bestFor}</p>
-      </div>
-    </div>
-  </CrystalCard>
-);
+const ALSO_AVAILABLE = [
+  "Custom production built around your cadence and references",
+  "Songwriting and co-writing",
+  "Artist development roadmap: sound identity, branding, and release strategy",
+];
 
 export default function Services() {
   const baseUrl = import.meta.env.BASE_URL;
-  const services = [
-    {
-      title: "Mixing & Mastering",
-      icon: Sliders,
-      desc: "Tiered mix + master options with clear revisions and flexible turnaround.",
-      bestFor: "Singles • EPs • Albums",
-    },
-    {
-      title: "Vocal Production",
-      icon: Mic,
-      desc: "Clean vocals, tight timing, and tasteful polish while keeping the emotion intact.",
-      bestFor: "Hooks • Verses • Harmonies",
-    },
-    {
-      title: "Custom Production",
-      icon: Music,
-      desc: "Original production built around your cadence, story, and references, collaborative from sketch to final bounce.",
-      bestFor: "Hip-Hop • R&B • Alternative",
-    },
-    {
-      title: "Songwriting",
-      icon: PenTool,
-      desc: "Stronger hooks, cleaner verses, better structure. Co-writing available with a clear, discreet process.",
-      bestFor: "Artists needing a pen upgrade",
-    },
-    {
-      title: "Studio Design",
-      icon: Speaker,
-      desc: "Room analysis and treatment guidance so your recordings translate outside the room.",
-      bestFor: "Home Studios • Serious Creators",
-    },
-    {
-      title: "Development Packages",
-      icon: Package,
-      desc: "A focused roadmap: sound identity, branding, release strategy, and content built around your vision.",
-      bestFor: "Career Artists",
-    },
-  ];
-  const tiers = [
-    {
-      name: "Basic",
-      price: "$79",
-      bullets: ["Mix + master (1 song)", "1 revision", "Typical: 2–4 days (often faster)"],
-    },
-    {
-      name: "Pro",
-      price: "$129",
-      popular: true,
-      bullets: ["Mix + master (1 song)", "2 revisions", "Typical: 1–2 days (priority)"],
-    },
-    {
-      name: "Deluxe",
-      price: "$199",
-      bullets: [
-        "Mix + master (1 song)",
-        "Vocal cleanup + light tuning (if needed)",
-        "3 revisions · Typical: 24–48 hours",
-      ],
-    },
-  ];
+
+  useEffect(() => {
+    setSEO({
+      title: "Services — GoVanGoes Creative",
+      description:
+        "Live performance and DJ sets, remote mixing and mastering, and studio consulting from GoVanGoes Creative in Oviedo, FL.",
+      url: "https://www.govangoes.com/services",
+      image: "/icon-192.png",
+      imageAlt: "GoVanGoes icon",
+      site: "@govangoes",
+      author: "GoVanGoes",
+    });
+  }, []);
 
   return (
     <section className="relative min-h-screen">
-      {/* Background Ambience (Optional extra texture) */}
       <div
-        className="pointer-events-none absolute left-0 top-0 h-full w-full mix-blend-overlay opacity-5"
+        className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-5 mix-blend-overlay"
         style={{
           backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.35) 0.6px, transparent 0.6px)",
           backgroundSize: "3px 3px",
         }}
       />
 
-      <div className="max-w-6xl mx-auto px-4 py-20 relative z-10">
+      <div className="relative z-10 mx-auto max-w-6xl space-y-24 px-4 py-20">
         {/* Header */}
-        <header className="text-center max-w-3xl mx-auto mb-20">
+        <header className="mx-auto max-w-3xl text-center">
           <SectionHeader
             align="center"
-            eyebrow="Services"
+            eyebrow={`${BRAND.company} · ${BRAND.location}`}
             titleAs="h1"
-            title="Build Your Sound, With Care."
-            subtitle="Mixing, mastering, and artist support with clear communication and a guided process. Your vision leads the decisions, and feedback is always welcome."
+            title="One artist. Three ways to work together."
+            subtitle="Live performance and DJ sets, remote mixing and mastering, and studio guidance. Pick what you need and request it in a few minutes. I review every request myself."
           />
-
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <GhostButton as="a" className="px-8 py-3 text-lg" href={`${baseUrl}#bookings`}>
-              Book Me
+            <GhostButton as={Link} to="/bookings" className="px-8 py-3 text-lg">
+              Book a Date
             </GhostButton>
             <PsychedelicButton as="a" className="px-8 py-3 text-lg" href={`${baseUrl}#mixmaster`}>
               Mix &amp; Master <ArrowRight size={18} />
             </PsychedelicButton>
           </div>
-          <div className="mt-4 flex flex-wrap justify-center gap-3 text-sm text-muted">
-            <span>Step 1: Fill out the form and share your vision</span>
-            <span>
-              Step 2:{" "}
-              <a
-                className="underline text-paperWhite"
-                href={FILE_UPLOAD_URL}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Upload Files
-              </a>
-            </span>
-            <span>Step 3: I&rsquo;ll reply with next steps, timeline, and feedback welcome</span>
-          </div>
-          <Hairline className="mx-auto mt-8 max-w-xl" />
+        </header>
 
-          <CrystalCard
-            variant="glass"
-            className="relative mx-auto mt-10 max-w-4xl isolate overflow-hidden p-6 text-left"
-          >
+        {/* The three tiers, in detail */}
+        <div>
+          <ServiceTierCards detailed />
+        </div>
+
+        {/* How booking works */}
+        <div className="space-y-6">
+          <SectionHeader
+            eyebrow="Booking"
+            title="How booking works"
+            subtitle="No account and no payment to send a request. You'll know exactly what happens next."
+          />
+          <BookingSteps />
+        </div>
+
+        {/* Mix & master packages */}
+        <div id="mix-master-packages">
+          <CrystalCard variant="glass" className="relative isolate overflow-hidden p-6 text-left">
             <PsychedelicTextureLayer variant="section" strength="medium" />
             <div className="relative z-[1]">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <h2 className="text-lg font-semibold text-paperWhite">Mix &amp; Master Tiers</h2>
+                <h2 className="text-lg font-semibold text-paperWhite">Mix &amp; Master Packages</h2>
                 <CrystalBadge variant="pill" className="text-paperWhite/75">
                   Packages from $79
                 </CrystalBadge>
               </div>
               <div className="mt-5 grid gap-4 md:grid-cols-3">
-                {tiers.map((tier) => (
+                {MIX_TIERS.map((tier) => (
                   <CrystalCard key={tier.name} variant="outline" className="relative p-5">
                     {tier.popular && (
                       <CrystalBadge
@@ -167,7 +130,7 @@ export default function Services() {
                     )}
                     <div className="flex items-baseline justify-between gap-2">
                       <h3 className="text-lg font-semibold text-paperWhite">{tier.name}</h3>
-                      <span className="text-monteGold font-semibold">{tier.price}</span>
+                      <span className="font-semibold text-monteGold">{tier.price}</span>
                     </div>
                     <ul className="mt-3 list-inside list-disc space-y-2 text-sm text-muted">
                       {tier.bullets.map((bullet) => (
@@ -179,41 +142,108 @@ export default function Services() {
               </div>
               <div className="mt-4 space-y-1 text-xs text-muted">
                 <p>
-                  Turnaround depends on file quality and the current queue — I&rsquo;ll confirm
+                  Turnaround depends on file quality and the current queue. I&rsquo;ll confirm
                   timing after I review your upload.
                 </p>
-                <p>Revisions are for notes and tweaks — not a full re-mix from scratch.</p>
+                <p>Revisions are for notes and tweaks, not a full re-mix from scratch.</p>
+                <p>
+                  Add-ons: Extra revision $15 · Stems export $25 · Rush (same day) $50 (if
+                  available)
+                </p>
               </div>
-              <p className="mt-3 text-xs text-muted">
-                Add-ons: Extra revision $15 · Stems export $25 · Rush (same day) $50 (if available)
-              </p>
+              <Hairline className="my-5" />
+              <div className="flex flex-wrap items-center gap-4 text-sm text-muted">
+                <Link className="pill" to="/#mixmaster">
+                  Start a mix
+                </Link>
+                <span>
+                  Have big files?{" "}
+                  <a
+                    className="text-paperWhite underline"
+                    href={FILE_UPLOAD_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Upload them here
+                  </a>
+                  .
+                </span>
+              </div>
             </div>
           </CrystalCard>
-        </header>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((s) => (
-            <ServiceCard key={s.title} {...s} />
-          ))}
         </div>
 
-        {/* CTA Section */}
+        {/* Also available */}
+        <div className="space-y-4">
+          <SectionHeader eyebrow="Also available" title="More ways I can help" />
+          <ul className="grid gap-3 md:grid-cols-3">
+            {ALSO_AVAILABLE.map((item) => (
+              <li key={item}>
+                <CrystalCard variant="outline" className="h-full p-4 text-sm text-paperWhite/90">
+                  {item}
+                </CrystalCard>
+              </li>
+            ))}
+          </ul>
+          <p className="text-sm text-muted">
+            These are quoted per project. Use the{" "}
+            <Link className="text-paperWhite underline" to="/contact">
+              contact form
+            </Link>{" "}
+            and tell me what you have in mind.
+          </p>
+        </div>
+
+        {/* Who you're working with */}
+        <div className="space-y-4">
+          <SectionHeader eyebrow="Who you're working with" title="GoVanGoes, artist and engineer" />
+          <p className="max-w-3xl text-sm leading-relaxed text-muted md:text-base">
+            I&rsquo;m a rapper, producer, and engineer based in Oviedo, Florida. I&rsquo;ve been
+            performing for about 18 years, I make my own beats, and I record and mix from my home
+            studio. I placed Top 3 at the Coast 2 Coast Showcase in Philadelphia, and my music has
+            been featured in Rap Fiesta and Orlando Voyager.
+          </p>
+          <div className="flex flex-wrap gap-3 text-sm">
+            {PRESS_FEATURE_LINKS.filter((link) => !link.href.includes("govangoes.com")).map(
+              (link) => (
+                <a
+                  key={link.label}
+                  className="pill"
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {link.label}
+                </a>
+              ),
+            )}
+            <Link className="pill" to="/about">
+              More about me →
+            </Link>
+          </div>
+        </div>
+
+        {/* FAQ */}
+        <div className="space-y-6">
+          <SectionHeader eyebrow="Questions" title="Good to know" />
+          <Faq />
+        </div>
+
+        {/* CTA */}
         <CrystalCard
           variant="solid"
-          className="mt-24 rounded-3xl border-crystal/30 bg-gradient-to-r from-ultraviolet/28 via-ink/70 to-crystal/14 p-8 text-center md:p-12"
+          className="rounded-3xl border-crystal/30 bg-gradient-to-r from-ultraviolet/28 via-ink/70 to-crystal/14 p-8 text-center md:p-12"
         >
-          <h2 className="text-3xl font-bold text-paperWhite">Ready When You Are.</h2>
-          <p className="mt-4 mx-auto max-w-2xl text-lg text-muted">
-            I keep a focused roster so each project gets attention, clarity, and care.
+          <h2 className="text-3xl font-bold text-paperWhite">Ready when you are.</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">
+            Tell me what you need. I keep a focused roster so every project gets real attention.
           </p>
-          <div className="mt-8">
-            <GhostButton
-              as="a"
-              className="inline-flex items-center gap-2"
-              href={`${baseUrl}#bookings`}
-            >
-              Start Your Project <ArrowRight size={20} />
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <GhostButton as={Link} to="/bookings" className="inline-flex items-center gap-2">
+              Request a Date <ArrowRight size={20} />
+            </GhostButton>
+            <GhostButton as={Link} to="/#mixmaster" className="inline-flex items-center gap-2">
+              Start a Mix <ArrowRight size={20} />
             </GhostButton>
           </div>
         </CrystalCard>
