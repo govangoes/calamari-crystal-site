@@ -4,7 +4,7 @@ import setSEO from "../utils/seo.js";
 export default function Terms() {
   useEffect(() => {
     setSEO({
-      title: "Terms — GoVanGoes",
+      title: "Terms — GoVanGoes Creative",
       description: "Terms of service and purchase policies.",
       url: "https://www.govangoes.com/terms",
       image: "/og-image.png",
