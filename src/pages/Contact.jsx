@@ -3,7 +3,7 @@ import { CONTACT_EMAIL } from "../content/offers.js";
 
 export default function Contact() {
   return (
-    <section className="mx-auto max-w-3xl space-y-6 px-4 py-10">
+    <section className="mx-auto max-w-4xl space-y-6 px-4 py-10">
       <header className="text-center">
         <h1 className="text-3xl font-extrabold">Contact / Bookings</h1>
         <p className="mt-2 text-muted">Shows, brand events, press, collabs.</p>
